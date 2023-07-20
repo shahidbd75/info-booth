@@ -1,2 +1,15 @@
-<p>Buy and Sell works!</p>
-<router-outlet></router-outlet>
+<div class="row wrapper h-100">
+  <div class="col-lg-2 col-md-4 col-xs-12">
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="['items']">Items</button>
+      <button mat-menu-item [routerLink]="['item']">Buy</button>
+      <button mat-menu-item [routerLink]="['items']">Sell</button>
+    </mat-menu>
+
+  </div>
+  <div class="col-lg-10 col-md-8 col-xs-12">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

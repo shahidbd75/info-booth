@@ -5,7 +5,7 @@ import { SellBuyRoutingModule } from './sell-buy-routing.module';
 import { ItemsComponent } from './pages/items/items.component';
 import { ItemComponent } from './pages/item/item.component';
 import { LayoutComponent } from './pages/layout/layout.component';
-
+import { MaterialModule } from '../lib/material/material.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { LayoutComponent } from './pages/layout/layout.component';
   ],
   imports: [
     CommonModule,
-    SellBuyRoutingModule
+    SellBuyRoutingModule,
+    MaterialModule
   ]
 })
 export class SellBuyModule { }
