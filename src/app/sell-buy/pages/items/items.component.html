@@ -3,12 +3,15 @@
   <div class="col-6">
     <button mat-fab extended color="primary" [routerLink]="['../item']"><mat-icon fontIcon="add"></mat-icon>Add an Item</button>
   </div>
+  <div class="col-6">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="put an search item" #input>
+    </mat-form-field>
+  </div>
 </div>
 
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-</mat-form-field>
+
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>

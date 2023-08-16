@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NotAuthorizeComponent } from './components/not-authorize/not-authorize.component';
+import { MaterialModule } from '../lib/material/material.module';
 
 
 
@@ -17,7 +18,8 @@ import { NotAuthorizeComponent } from './components/not-authorize/not-authorize.
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MaterialModule
   ]
 })
 export class SharedModule { }
