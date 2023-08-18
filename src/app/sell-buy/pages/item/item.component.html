@@ -12,19 +12,15 @@
       <div class="col-md-4">
         <label for="categoryId" class="form-label">Category</label>
         <select class="form-select" aria-label="Please select Category" id="categoryId">
-          <option selected>Please select Category</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option selected value="null">Please select Category</option>
+          <option *ngFor="let item of categories$ | async" value={{item.id}}>{{item.name}}</option>
         </select>
       </div>
       <div class="col-md-4">
         <label for="subCategoryId" class="form-label">Sub Category</label>
         <select class="form-select" aria-label="Please select Sub Category" id="subCategoryId">
           <option selected>Please select Sub Category</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option *ngFor="let item of subCategories$ | async" value={{item.id}}>{{item.name}}</option>
         </select>
       </div>
       <div class="col-md-4">

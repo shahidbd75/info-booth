@@ -10,6 +10,9 @@ import { BuyComponent } from './pages/buy/buy.component';
 import { SellComponent } from './pages/sell/sell.component';
 import { SellListComponent } from './pages/sell-list/sell-list.component';
 import { BuyListComponent } from './pages/buy-list/buy-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CategoryService } from './services/category.service';
+import { SubCategoryService } from './services/sub-category.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { BuyListComponent } from './pages/buy-list/buy-list.component';
   imports: [
     CommonModule,
     SellBuyRoutingModule,
-    MaterialModule
-  ]
+    MaterialModule,
+    HttpClientModule
+  ],
+  providers: [CategoryService,SubCategoryService]
 })
 export class SellBuyModule { }
