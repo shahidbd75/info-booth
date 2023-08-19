@@ -13,6 +13,8 @@ import { BuyListComponent } from './pages/buy-list/buy-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryService } from './services/category.service';
 import { SubCategoryService } from './services/sub-category.service';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ItemService} from "./services/item.service";
 
 @NgModule({
   declarations: [
@@ -24,12 +26,14 @@ import { SubCategoryService } from './services/sub-category.service';
     SellListComponent,
     BuyListComponent
   ],
-  imports: [
-    CommonModule,
-    SellBuyRoutingModule,
-    MaterialModule,
-    HttpClientModule
-  ],
-  providers: [CategoryService,SubCategoryService]
+    imports: [
+        CommonModule,
+        FormsModule,
+        SellBuyRoutingModule,
+        MaterialModule,
+        HttpClientModule,
+        ReactiveFormsModule
+    ],
+  providers: [CategoryService,SubCategoryService, ItemService]
 })
 export class SellBuyModule { }
