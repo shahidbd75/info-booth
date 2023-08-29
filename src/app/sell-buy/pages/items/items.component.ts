@@ -1,23 +1,30 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
+import {MatSort, Sort} from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import {ItemService} from "../../services/item.service";
 import {ItemResponseModel} from "../../models/item.model";
 import {Subscription} from "rxjs";
+import {SelectionModel} from "@angular/cdk/collections";
 
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss']
 })
-export class ItemsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ItemsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'shortDescription', 'subCategoryName', 'condition'];
-  dataSource: MatTableDataSource<ItemResponseModel>;
+  dataSource = new MatTableDataSource<ItemResponseModel>();
+  selection = new SelectionModel<ItemResponseModel>(true, []);
   isLoading = false;
   subscription$: Subscription;
+  pageSize = 10;
+  page = 0;
+  count = 100;
+  pageEvent: PageEvent;
+  keyword = '';
+  sortField = 'name';
+  sortOrder = 'asc';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -30,27 +37,37 @@ export class ItemsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loadData();
   }
 
-  ngAfterViewInit() {
-    console.log('Hello')
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    this.loadData();
-  }
-
   loadData() {
     this.isLoading = true;
     const subscription$ = this.itemService.getItems().subscribe(_items => {
       this.dataSource = new MatTableDataSource(_items);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       this.isLoading = false;
+      this.sortChange();
     });
   }
-  applyFilter(event: Event) {
+  onFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  onPageChange(event: any): void {
+    console.log(event);
+    this.page = event.pageIndex;
+    this.pageSize = event.pageSize;
+  }
+
+  sortChange() {
+    this.sort.sortChange.subscribe((_sort: Sort)=> {
+      this.page = 0;
+      this.sortField = _sort.active;
+      this.sortOrder = _sort.direction;
+    });
   }
 
   ngOnDestroy(): void {

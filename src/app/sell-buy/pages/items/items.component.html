@@ -10,7 +10,7 @@
       <div class="col-6">
         <mat-form-field>
           <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="put an search item" #input>
+          <input matInput (input)="onFilter($event)" placeholder="put an search item" #input>
         </mat-form-field>
       </div>
     </div>
@@ -45,11 +45,14 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          <td class="mat-cell" colspan="4">No data matching the filter</td>
         </tr>
       </table>
 
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
+                     [length]="count" [pageSize]="pageSize"
+                     (page)="pageEvent = $event;onPageChange($event)"
+                     aria-label="Select page of users"></mat-paginator>
     </div>
   </div>
 </div>

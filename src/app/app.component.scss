@@ -1,0 +1,8 @@
+.action-buttons-group {
+  display: table-cell;
+  max-width: 500px;
+
+  .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+}

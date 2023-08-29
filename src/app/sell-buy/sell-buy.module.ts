@@ -15,6 +15,9 @@ import { CategoryService } from './services/category.service';
 import { SubCategoryService } from './services/sub-category.service';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ItemService} from "./services/item.service";
+import { SubCategoryComponent } from './pages/sub-category/sub-category.component';
+import { SubCategoriesComponent } from './pages/sub-categories/sub-categories.component';
+import {NgbootstrapModule} from "../lib/ngbootstrap/ngbootstrap.module";
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import {ItemService} from "./services/item.service";
     BuyComponent,
     SellComponent,
     SellListComponent,
-    BuyListComponent
+    BuyListComponent,
+    SubCategoryComponent,
+    SubCategoriesComponent
   ],
     imports: [
         CommonModule,
@@ -32,7 +37,8 @@ import {ItemService} from "./services/item.service";
         SellBuyRoutingModule,
         MaterialModule,
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbootstrapModule
     ],
   providers: [CategoryService,SubCategoryService, ItemService]
 })
