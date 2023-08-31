@@ -6,6 +6,7 @@ import {ItemService} from "../../services/item.service";
 import {ItemResponseModel} from "../../models/item.model";
 import {Subscription} from "rxjs";
 import {SelectionModel} from "@angular/cdk/collections";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-items',
@@ -13,7 +14,7 @@ import {SelectionModel} from "@angular/cdk/collections";
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name', 'shortDescription', 'subCategoryName', 'condition'];
+  displayedColumns: string[] = ['name', 'shortDescription', 'subCategoryName', 'condition', 'actions'];
   dataSource = new MatTableDataSource<ItemResponseModel>();
   selection = new SelectionModel<ItemResponseModel>(true, []);
   isLoading = false;
@@ -29,7 +30,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private itemService: ItemService) {
+  constructor(private itemService: ItemService, private router: Router) {
 
   }
 
@@ -74,5 +75,14 @@ export class ItemsComponent implements OnInit, OnDestroy {
     if(this.subscription$) {
       this.subscription$.unsubscribe();
     }
+  }
+
+  onEdit(element: ItemResponseModel) {
+    console.log(element.name);
+    this.router.navigate([`buy-sell/item/${element.name}`]);
+  }
+
+  onDelete(element: ItemResponseModel) {
+    console.log('Delete:',element.name);
   }
 }

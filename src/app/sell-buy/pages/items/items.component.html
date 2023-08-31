@@ -4,10 +4,10 @@
   </div>
   <div class="card-body">
     <div class="row pt-2">
-      <div class="col-6">
+      <div class="col-3">
         <button mat-fab extended color="primary" [routerLink]="['../item']"><mat-icon fontIcon="add"></mat-icon>Add an Item</button>
       </div>
-      <div class="col-6">
+      <div class="col-9">
         <mat-form-field>
           <mat-label>Filter</mat-label>
           <input matInput (input)="onFilter($event)" placeholder="put an search item" #input>
@@ -15,11 +15,11 @@
       </div>
     </div>
 
-    <div class="data-loader" *ngIf="isLoading">
-      <mat-spinner></mat-spinner>
-    </div>
-
     <div class="mat-elevation-z8">
+      <div class="data-loader" *ngIf="isLoading">
+        <mat-spinner></mat-spinner>
+      </div>
+
       <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
@@ -39,6 +39,25 @@
         <ng-container matColumnDef="condition">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Condition </th>
           <td mat-cell *matCellDef="let row"> {{row.condition}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Exit and delete menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item color="primary" (click)="onEdit(element)">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+                <span>Edit</span>
+              </button>
+              <button mat-menu-item color="warn" (click)="onDelete(element)">
+                <mat-icon aria-label="Delete">delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
