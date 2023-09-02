@@ -3,9 +3,9 @@ import {CategoryService} from "../../services/category.service";
 import {Observable} from "rxjs";
 import {OptionsModel} from "../../../shared/models/options-model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SubCategoryRequestModel} from "../../models/sub-category.model";
 import {SubCategoryService} from "../../services/sub-category.service";
 import {NotificationService} from "../../../lib/ngbootstrap/services/notification.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sub-category',
@@ -17,7 +17,7 @@ export class SubCategoryComponent implements OnInit{
   subCategoryForm: FormGroup;
   editMode = false;
   constructor(private categoryService: CategoryService, private subCategoryService: SubCategoryService , private fb: FormBuilder,
-              private notificationService: NotificationService,) {
+              private notificationService: NotificationService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class SubCategoryComponent implements OnInit{
   onUpdate() {
     const {name,categoryId: itemCategoryId, id } = this.subCategoryForm.value;
     this.subCategoryService.updateSubcategory({name,itemCategoryId,id,isActive: true})
-      .subscribe(()=>alert('updated'));
+      .subscribe(()=>console.log('updated'));
   }
   initializeForm() {
     this.subCategoryForm = this.fb.group({
@@ -49,5 +49,6 @@ export class SubCategoryComponent implements OnInit{
 
   onClear() {
     this.subCategoryForm.reset();
+    this.router.navigate(['buy-sell/sub-categories']);
   }
 }

@@ -86,6 +86,11 @@ export class PersonsComponent implements OnInit, OnDestroy{
   }
 
   onDelete(element: PersonResponseModel) {
-    console.log('Delete:',element.name);
+    const {id} = element;
+    if(confirm('Do you want to delete?') && id) {
+      this.personService.deletePerson(id).subscribe(()=> {
+        this.loadData();
+      })
+    }
   }
 }

@@ -18,10 +18,10 @@
     </form>
   </div>
   <div class="card-footer">
-    <div class="action-buttons-group">
-      <button mat-raised-button color="primary" (click)="onAdd()" [disabled]="!subCategoryForm.valid">Add</button>
-      <button mat-raised-button color="primary" (click)="onUpdate()" [disabled]="true">Update</button>
-      <button mat-raised-button color="warn" (click)="onClear()" )>Cancel</button>
+    <div class="action-button-container">
+      <button mat-raised-button color="primary" (click)="onAdd()" [disabled]="!subCategoryForm.valid" *ngIf="!editMode">Add</button>
+      <button mat-raised-button color="primary" (click)="onUpdate()" [disabled]="true" *ngIf="editMode">Update</button>
+      <button mat-raised-button color="warn" (click)="onClear()">Cancel</button>
     </div>
   </div>
 </div>

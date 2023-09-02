@@ -25,4 +25,8 @@ export class PersonClientService {
   getPersons(id: string): Observable<PersonResponseModel>{
     return this.http.get<PersonResponseModel>(`${this.person_url}/${id}`);
   }
+
+  deletePerson(id: string) : Observable<void> {
+    return this.http.delete<void>(`${this.person_url}/${id}`);
+  }
 }
