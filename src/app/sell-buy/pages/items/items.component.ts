@@ -4,7 +4,7 @@ import {MatSort, Sort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ItemService} from "../../services/item.service";
 import {ItemResponseModel} from "../../models/item.model";
-import {Subscription} from "rxjs";
+import {Subscription, delay} from "rxjs";
 import {SelectionModel} from "@angular/cdk/collections";
 import {Router} from "@angular/router";
 
@@ -40,7 +40,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.isLoading = true;
-    const subscription$ = this.itemService.getItems().subscribe(_items => {
+    this.subscription$ = this.itemService.getItems().subscribe(_items => {
       this.dataSource = new MatTableDataSource(_items);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

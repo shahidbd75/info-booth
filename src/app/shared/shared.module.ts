@@ -6,20 +6,33 @@ import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NotAuthorizeComponent } from './components/not-authorize/not-authorize.component';
 import { MaterialModule } from '../lib/material/material.module';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    DashboardComponent,
-    PageNotFoundComponent,
-    NotAuthorizeComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    MaterialModule
-  ]
+    declarations: [
+        LayoutComponent,
+        DashboardComponent,
+        PageNotFoundComponent,
+        NotAuthorizeComponent
+    ],
+    exports: [
+        LayoutComponent
+    ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        MaterialModule,
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule
+    ]
 })
 export class SharedModule { }

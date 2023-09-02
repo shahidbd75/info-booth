@@ -1,88 +1,89 @@
-
-<form class="card" [formGroup]="itemForm">
-  <div class="card-header">
-    Item Entry
-  </div>
-  <div class="card-body">
-    <div class="row g-3">
-      <div class="col-md-4 col-xs-12">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" formControlName="name" class="form-control" id="name">
+<form [formGroup]="itemForm">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Item Entry</mat-card-title>
+      <mat-card-subtitle>Buy & Sell</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <div class="row g-3 pt-2">
+        <div class="col-md-4 col-xs-12">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" formControlName="name" class="form-control" id="name">
+        </div>
+        <div class="col-md-4">
+          <label for="categoryId" class="form-label">Category</label>
+          <select class="form-select" formControlName="category" (change)="onCategoryChange()" aria-label="Please select Category" id="categoryId">
+            <option selected value="null">Please select Category</option>
+            <option *ngFor="let item of categories$ | async" value={{item.id}}>{{item.name}}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="subCategoryId" class="form-label">Sub Category</label>
+          <select class="form-select" formControlName="subCategoryId" aria-label="Please select Sub Category" id="subCategoryId">
+            <option selected value="null">Please select Sub Category</option>
+            <option *ngFor="let item of subCategories$ | async" value={{item.id}}>{{item.name}}</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="localname" class="form-label">Local Name</label>
+          <input type="text" formControlName="localName" class="form-control" id="localname">
+        </div>
+        <div class="col-md-4">
+          <label for="banglaName" class="form-label">Bangla Name</label>
+          <input type="text" formControlName="banglaName" class="form-control" id="banglaName">
+        </div>
+        <div class="col-md-4">
+          <label for="condition" class="form-label">Condition</label>
+          <select class="form-select" formControlName="condition" aria-label="Please select condition" id="condition">
+            <option selected>Please select condition</option>
+            <option value="1">New</option>
+            <option value="2">Intake</option>
+            <option value="3">Like New</option>
+            <option value="4">Old</option>
+            <option value="5">Not Working</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="shortDescription" class="form-label">Short Description</label>
+          <textarea class="form-control" formControlName="shortDescription" id="shortDescription" rows="3"></textarea>
+        </div>
+        <div class="col-md-8">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
+        </div>
+        <div class="col-md-4">
+          <label for="isSeasional" class="form-label">Is Seasonal</label>
+          <select class="form-select" aria-label="Please select condition" id="isSeasional">
+            <option selected>N/A</option>
+            <option value="1">Yes</option>
+            <option value="2">No</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="measurement" class="form-label">Measurement Unit</label>
+          <select class="form-select" aria-label="Please select condition" id="measurement">
+            <option selected>N/A</option>
+            <option value="1">Box</option>
+            <option value="2">Each</option>
+            <option value="3">Stripe</option>
+            <option value="4">Bottle</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="sellType" class="form-label">Sell Type</label>
+          <select class="form-select" aria-label="Please select condition" id="sellType">
+            <option selected>N/A</option>
+            <option value="1">Wholesale</option>
+            <option value="2">Khucra</option>
+          </select>
+        </div>
       </div>
-      <div class="col-md-4">
-        <label for="categoryId" class="form-label">Category</label>
-        <select class="form-select" formControlName="category" (change)="onCategoryChange()" aria-label="Please select Category" id="categoryId">
-          <option selected value="null">Please select Category</option>
-          <option *ngFor="let item of categories$ | async" value={{item.id}}>{{item.name}}</option>
-        </select>
-      </div>
-      <div class="col-md-4">
-        <label for="subCategoryId" class="form-label">Sub Category</label>
-        <select class="form-select" formControlName="subCategoryId" aria-label="Please select Sub Category" id="subCategoryId">
-          <option selected value="null">Please select Sub Category</option>
-          <option *ngFor="let item of subCategories$ | async" value={{item.id}}>{{item.name}}</option>
-        </select>
-      </div>
-      <div class="col-md-4">
-        <label for="localname" class="form-label">Local Name</label>
-        <input type="text" formControlName="localName" class="form-control" id="localname">
-      </div>
-      <div class="col-md-4">
-        <label for="banglaName" class="form-label">Bangla Name</label>
-        <input type="text" formControlName="banglaName" class="form-control" id="banglaName">
-      </div>
-      <div class="col-md-4">
-        <label for="condition" class="form-label">Condition</label>
-        <select class="form-select" formControlName="condition" aria-label="Please select condition" id="condition">
-          <option selected>Please select condition</option>
-          <option value="1">New</option>
-          <option value="2">Intake</option>
-          <option value="3">Like New</option>
-          <option value="4">Old</option>
-          <option value="5">Not Working</option>
-        </select>
-      </div>
-      <div class="col-md-4">
-        <label for="shortDescription" class="form-label">Short Description</label>
-        <textarea class="form-control" formControlName="shortDescription" id="shortDescription" rows="3"></textarea>
-      </div>
-      <div class="col-md-8">
-        <label for="description" class="form-label">Description</label>
-        <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
-      </div>
-      <div class="col-md-4">
-        <label for="isSeasional" class="form-label">Is Seasonal</label>
-        <select class="form-select" aria-label="Please select condition" id="isSeasional">
-          <option selected>N/A</option>
-          <option value="1">Yes</option>
-          <option value="2">No</option>
-        </select>
-      </div>
-      <div class="col-md-4">
-        <label for="measurement" class="form-label">Measurement Unit</label>
-        <select class="form-select" aria-label="Please select condition" id="measurement">
-          <option selected>N/A</option>
-          <option value="1">Box</option>
-          <option value="2">Each</option>
-          <option value="3">Stripe</option>
-          <option value="4">Bottle</option>
-        </select>
-      </div>
-      <div class="col-md-4">
-        <label for="sellType" class="form-label">Sell Type</label>
-        <select class="form-select" aria-label="Please select condition" id="sellType">
-          <option selected>N/A</option>
-          <option value="1">Wholesale</option>
-          <option value="2">Khucra</option>
-        </select>
-      </div>
-    </div>
-  </div>
-  <div class="card-footer">
-    <div class="button-wrapper">
+    </mat-card-content>
+    <mat-card-actions class="action-button-container">
       <button mat-raised-button color="primary" (click)="onItemAdd()" [disabled]="!itemForm.valid">Add</button>
       <button mat-raised-button color="primary" (click)="onItemUpdate()" [disabled]="!itemForm.valid">Update</button>
       <button mat-raised-button [routerLink]="['..']">Cancel</button>
-    </div>
-  </div>
+    </mat-card-actions>
+  </mat-card>
 </form>

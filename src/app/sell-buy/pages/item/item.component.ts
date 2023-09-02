@@ -3,7 +3,7 @@ import { CategoryService } from '../../services/category.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { Observable } from 'rxjs';
 import { SubCategoryService } from '../../services/sub-category.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ItemService} from "../../services/item.service";
 import {ItemRequestModel} from "../../models/item.model";
 
@@ -39,7 +39,9 @@ export class ItemComponent implements OnInit{
       this.itemForm.reset();
     });
   }
-  onItemUpdate() {}
+  onItemUpdate() {
+    console.log('updated');
+  }
 
   loadCategories() {
     this.categories$ = this.categoryService.getCategories();

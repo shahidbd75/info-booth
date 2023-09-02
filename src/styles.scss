@@ -5,3 +5,27 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.action-button-container {
+  display: table-cell;
+  max-width: 600px;
+  padding-left: 16px !important;  
+
+  .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+    width: 80px;
+  }
+}
+
+.spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
