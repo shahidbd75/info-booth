@@ -78,6 +78,13 @@
             <option value="2">Khucra</option>
           </select>
         </div>
+        <div class="col-md-4">
+          <label for="person" class="form-label">Posted By</label>
+          <select class="form-select" aria-label="Please select person" id="person" formControlName="person">
+            <option selected value="null">Please select person</option>
+            <option *ngFor="let item of persons$ | async" value={{item.id}}>{{item.name}}</option>
+          </select>
+        </div>
       </div>
     </mat-card-content>
     <mat-card-actions class="action-button-container">

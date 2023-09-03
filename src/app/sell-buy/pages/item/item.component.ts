@@ -6,6 +6,7 @@ import { SubCategoryService } from '../../services/sub-category.service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ItemService} from "../../services/item.service";
 import {ItemRequestModel} from "../../models/item.model";
+import { PersonClientService } from 'src/app/personnel/services/person-client.service';
 
 @Component({
   selector: 'app-item',
@@ -15,15 +16,17 @@ import {ItemRequestModel} from "../../models/item.model";
 export class ItemComponent implements OnInit{
   categories$: Observable<OptionsModel[]> | undefined;
   subCategories$: Observable<OptionsModel[]> | undefined;
+  persons$: Observable<OptionsModel[]> | undefined;
   itemForm: FormGroup;
   isEditMode = false;
 
   constructor(private categoryService: CategoryService, private subCategoryService: SubCategoryService,
-              private formBuilder: FormBuilder, private itemService: ItemService) {
+              private formBuilder: FormBuilder, private itemService: ItemService, private personService: PersonClientService) {
     this.createForm();
   }
   ngOnInit(): void {
     this.loadCategories();
+    this.persons$ = this.personService.getPersonOptions();
   }
 
   onCategoryChange() {
@@ -58,6 +61,7 @@ export class ItemComponent implements OnInit{
       description: [''],
       condition: [null],
       subCategoryId: [null, [Validators.required]],
+      person: [null, [Validators.required]],
       id: ['']
     });
   }

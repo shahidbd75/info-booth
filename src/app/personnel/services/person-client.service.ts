@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 import { PersonCreateRequestModel, PersonResponseModel, PersonUpdateRequestModel } from '../types/person.model';
+import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class PersonClientService {
@@ -28,5 +29,9 @@ export class PersonClientService {
 
   deletePerson(id: string) : Observable<void> {
     return this.http.delete<void>(`${this.person_url}/${id}`);
+  }
+
+  getPersonOptions(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(`${this.person_url}/options`);
   }
 }

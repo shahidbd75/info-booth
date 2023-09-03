@@ -18,6 +18,7 @@ import {ItemService} from "./services/item.service";
 import { SubCategoryComponent } from './pages/sub-category/sub-category.component';
 import { SubCategoriesComponent } from './pages/sub-categories/sub-categories.component';
 import {NgbootstrapModule} from "../lib/ngbootstrap/ngbootstrap.module";
+import { PersonnelModule } from '../personnel/personnel.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {NgbootstrapModule} from "../lib/ngbootstrap/ngbootstrap.module";
         MaterialModule,
         HttpClientModule,
         ReactiveFormsModule,
-        NgbootstrapModule
+        NgbootstrapModule,
+        PersonnelModule,
     ],
   providers: [CategoryService,SubCategoryService, ItemService]
 })
