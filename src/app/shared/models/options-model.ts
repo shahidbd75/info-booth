@@ -1,5 +1,5 @@
 export interface OptionsModel
 {
-  id: string;
+  id: string | number;
   name: string;
 }

@@ -8,6 +8,14 @@ export interface ItemRequestModel {
   condition: number;
   subCategoryId: string;
   measurementTypeId?: number;
+  transactionType: number;
+  personId: number;
+}
+
+export type ItemCreateRequestModel = ItemRequestModel
+
+export interface ItemUpdateRequestModel extends ItemRequestModel {
+  id: string
 }
 
 export interface ItemResponseModel {
@@ -20,5 +28,6 @@ export interface ItemResponseModel {
   subCategoryName: string;
   measurementTypeId?: number;
   measurementTypeName?: string;
+  transactionType: number;
 }
 

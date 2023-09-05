@@ -30,7 +30,7 @@ export class SubCategoryComponent implements OnInit{
     this.subCategoryService.addSubcategory({name,itemCategoryId}).subscribe(()=>
     {
       this.notificationService.success('Saved successfully');
-      this.subCategoryForm.reset();
+      this.subCategoryForm.reset({category: itemCategoryId});
     });
   }
 

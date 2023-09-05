@@ -7,10 +7,6 @@
     <mat-card-content>
       <mat-divider></mat-divider>
       <div class="row g-3 pt-2">
-        <div class="col-md-4 col-xs-12">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" formControlName="name" class="form-control" id="name">
-        </div>
         <div class="col-md-4">
           <label for="categoryId" class="form-label">Category</label>
           <select class="form-select" formControlName="category" (change)="onCategoryChange()" aria-label="Please select Category" id="categoryId">
@@ -24,7 +20,17 @@
             <option selected value="null">Please select Sub Category</option>
             <option *ngFor="let item of subCategories$ | async" value={{item.id}}>{{item.name}}</option>
           </select>
+          <div *ngIf="itemForm.get('subCategoryId')?.hasError('required') && itemForm.get('subCategoryId')?.touched" class="text-danger">
+            Sub category is required.
+          </div>
         </div>
+        <div class="col-md-4 col-xs-12">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" formControlName="name" class="form-control" id="name">
+          <div *ngIf="itemForm.get('name')?.hasError('required') && itemForm.get('name')?.touched" class="text-danger">
+            Name is required.
+          </div>
+        </div>        
         <div class="col-md-4">
           <label for="localname" class="form-label">Local Name</label>
           <input type="text" formControlName="localName" class="form-control" id="localname">
@@ -36,17 +42,21 @@
         <div class="col-md-4">
           <label for="condition" class="form-label">Condition</label>
           <select class="form-select" formControlName="condition" aria-label="Please select condition" id="condition">
-            <option selected>Please select condition</option>
+            <option selected value="null">Please select condition</option>
             <option value="1">New</option>
-            <option value="2">Intake</option>
-            <option value="3">Like New</option>
-            <option value="4">Old</option>
-            <option value="5">Not Working</option>
+            <option value="2">Used</option>
+            <option value="3">Intake</option>
+            <option value="4">Like New</option>
+            <option value="5">Running</option>
+            <option value="6">Not Working</option>
           </select>
         </div>
         <div class="col-md-4">
           <label for="shortDescription" class="form-label">Short Description</label>
           <textarea class="form-control" formControlName="shortDescription" id="shortDescription" rows="3"></textarea>
+          <div *ngIf="itemForm.get('shortDescription')?.hasError('required') && itemForm.get('shortDescription')?.touched" class="text-danger">
+            Short description is required.
+          </div>
         </div>
         <div class="col-md-8">
           <label for="description" class="form-label">Description</label>
@@ -55,35 +65,39 @@
         <div class="col-md-4">
           <label for="isSeasional" class="form-label">Is Seasonal</label>
           <select class="form-select" aria-label="Please select condition" id="isSeasional">
-            <option selected>N/A</option>
+            <option selected value="null">N/A</option>
             <option value="1">Yes</option>
             <option value="2">No</option>
           </select>
         </div>
         <div class="col-md-4">
           <label for="measurement" class="form-label">Measurement Unit</label>
-          <select class="form-select" aria-label="Please select condition" id="measurement">
-            <option selected>N/A</option>
-            <option value="1">Box</option>
-            <option value="2">Each</option>
-            <option value="3">Stripe</option>
-            <option value="4">Bottle</option>
+          <select class="form-select" aria-label="Please select condition" id="measurement" formControlName="measurementTypeId">
+            <option selected value="null">N/A</option>
+            <option *ngFor="let item of measurementTypes$ | async" value={{item.id}}>{{item.name}}</option>
           </select>
         </div>
         <div class="col-md-4">
-          <label for="sellType" class="form-label">Sell Type</label>
-          <select class="form-select" aria-label="Please select condition" id="sellType">
-            <option selected>N/A</option>
-            <option value="1">Wholesale</option>
-            <option value="2">Khucra</option>
+          <label for="transactionType" class="form-label">Transaction Type</label>
+          <select class="form-select" aria-label="Please select transaction" id="transactionType" formControlName="transactionType">
+            <option selected value="null">Please select type</option>
+            <option value="1">Sell</option>
+            <option value="2">Buy</option>
+            <option value="3">Borrow</option>
           </select>
+          <div *ngIf="itemForm.get('transactionType')?.hasError('required') && itemForm.get('transactionType')?.touched" class="text-danger">
+            Type is required.
+          </div>
         </div>
         <div class="col-md-4">
           <label for="person" class="form-label">Posted By</label>
-          <select class="form-select" aria-label="Please select person" id="person" formControlName="person">
+          <select class="form-select" aria-label="Please select person" id="person" formControlName="personId">
             <option selected value="null">Please select person</option>
             <option *ngFor="let item of persons$ | async" value={{item.id}}>{{item.name}}</option>
           </select>
+          <div *ngIf="itemForm.get('personId')?.hasError('required') && itemForm.get('personId')?.touched" class="text-danger">
+            Person is required.
+          </div>
         </div>
       </div>
     </mat-card-content>
