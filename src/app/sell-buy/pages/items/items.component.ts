@@ -4,9 +4,11 @@ import {MatSort, Sort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {ItemService} from "../../services/item.service";
 import {ItemResponseModel} from "../../models/item.model";
-import {Subscription, delay} from "rxjs";
+import {Subscription} from "rxjs";
 import {SelectionModel} from "@angular/cdk/collections";
 import {Router} from "@angular/router";
+import { ItemDataService } from '../../services/item-data.service';
+import { ItemTransactionType } from '../../enums/transaction-type';
 
 @Component({
   selector: 'app-items',
@@ -14,7 +16,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name', 'shortDescription', 'subCategoryName', 'condition', 'actions'];
+  displayedColumns: string[] = ['name', 'subCategoryName', 'transactionType','postedBy', 'actions'];
   dataSource = new MatTableDataSource<ItemResponseModel>();
   selection = new SelectionModel<ItemResponseModel>(true, []);
   isLoading = false;
@@ -26,11 +28,12 @@ export class ItemsComponent implements OnInit, OnDestroy {
   keyword = '';
   sortField = 'name';
   sortOrder = 'asc';
+  transactionType = ItemTransactionType;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private itemService: ItemService, private router: Router) {
+  constructor(private itemService: ItemService, private router: Router, private itemDataService: ItemDataService) {
 
   }
 
@@ -39,8 +42,8 @@ export class ItemsComponent implements OnInit, OnDestroy {
   }
 
   loadData() {
-    this.isLoading = true;
-    this.subscription$ = this.itemService.getItems().subscribe(_items => {
+      this.isLoading = true;
+      this.subscription$ = this.itemService.getItems().subscribe(_items => {
       this.dataSource = new MatTableDataSource(_items);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -77,12 +80,17 @@ export class ItemsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onEdit(element: ItemResponseModel) {
-    console.log(element.name);
-    this.router.navigate([`buy-sell/item/${element.name}`]);
+  onEdit(item: ItemResponseModel) {
+    this.itemDataService.selectedItem = item;
+    this.router.navigate([`buy-sell/item/${item.name}`]);
   }
 
   onDelete(element: ItemResponseModel) {
+    if(confirm('Do you want to remove item?') && element.id) {
+      this.itemService.removeItem(element.id).subscribe(()=> {
+        this.loadData();
+      })
+    }
     console.log('Delete:',element.name);
   }
 }

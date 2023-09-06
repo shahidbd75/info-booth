@@ -18,8 +18,8 @@ export class ItemService {
     return this.httpClient.put(API_ENDPOINT_CONST.BUY_SELL.ITEM_BASE, requestModel);
   }
 
-  removeItem(id: string): void {
-    this.httpClient.delete(`${API_ENDPOINT_CONST.BUY_SELL.ITEM_BASE}/${id}`);
+  removeItem(id: string): Observable<unknown> {
+    return this.httpClient.delete<unknown>(`${API_ENDPOINT_CONST.BUY_SELL.ITEM_BASE}/${id}`);
   }
 
   getItems(): Observable<Array<ItemResponseModel>> {

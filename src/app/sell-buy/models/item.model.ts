@@ -5,7 +5,7 @@ export interface ItemRequestModel {
   shortDescription: string;
   description: string;
   imageUrl: string;
-  condition: number;
+  condition?: number;
   subCategoryId: string;
   measurementTypeId?: number;
   transactionType: number;
@@ -19,15 +19,21 @@ export interface ItemUpdateRequestModel extends ItemRequestModel {
 }
 
 export interface ItemResponseModel {
-  name: string;
-  localName: string;
-  banglaName: string;
-  shortDescription: string;
-  description: string;
-  condition: number;
-  subCategoryName: string;
-  measurementTypeId?: number;
-  measurementTypeName?: string;
-  transactionType: number;
+  id:                  string;
+  name:                string;
+  localName:           string;
+  imageUrl:            string;
+  banglaName:          string;
+  shortDescription:    string;
+  description:         string;
+  condition:           number;
+  measurementTypeId:   number;
+  transactionType:     number;
+  subCategoryId:       string;
+  personId:            string;
+  personName:          string;
+  measurementTypeName: string;
+  subCategoryName:     string;
+  categoryId:          string;
 }
 

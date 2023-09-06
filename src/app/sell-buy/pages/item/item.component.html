@@ -102,8 +102,8 @@
       </div>
     </mat-card-content>
     <mat-card-actions class="action-button-container">
-      <button mat-raised-button color="primary" (click)="onItemAdd()" [disabled]="!itemForm.valid">Add</button>
-      <button mat-raised-button color="primary" (click)="onItemUpdate()" [disabled]="!itemForm.valid">Update</button>
+      <button mat-raised-button color="primary" (click)="onItemAdd()" [disabled]="!itemForm.valid" *ngIf="!isEditMode">Add</button>
+      <button mat-raised-button color="primary" (click)="onItemUpdate()" [disabled]="!itemForm.valid" *ngIf="isEditMode">Update</button>
       <button mat-raised-button [routerLink]="['..']">Cancel</button>
     </mat-card-actions>
   </mat-card>

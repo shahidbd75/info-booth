@@ -19,6 +19,7 @@ import { SubCategoryComponent } from './pages/sub-category/sub-category.componen
 import { SubCategoriesComponent } from './pages/sub-categories/sub-categories.component';
 import {NgbootstrapModule} from "../lib/ngbootstrap/ngbootstrap.module";
 import { PersonnelModule } from '../personnel/personnel.module';
+import { ItemDataService } from './services/item-data.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,6 @@ import { PersonnelModule } from '../personnel/personnel.module';
         NgbootstrapModule,
         PersonnelModule,
     ],
-  providers: [CategoryService,SubCategoryService, ItemService]
+  providers: [CategoryService,SubCategoryService, ItemService, ItemDataService]
 })
 export class SellBuyModule { }

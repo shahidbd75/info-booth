@@ -26,9 +26,9 @@
           <td mat-cell *matCellDef="let row"> {{row.name}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="shortDescription">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Short Description </th>
-          <td mat-cell *matCellDef="let row"> {{row.shortDescription}} </td>
+        <ng-container matColumnDef="transactionType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Type</th>
+          <td mat-cell *matCellDef="let row"> {{transactionType[row.transactionType]}} </td>
         </ng-container>
 
         <ng-container matColumnDef="subCategoryName">
@@ -36,9 +36,9 @@
           <td mat-cell *matCellDef="let row"> {{row.subCategoryName}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="condition">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Condition </th>
-          <td mat-cell *matCellDef="let row"> {{row.condition}} </td>
+        <ng-container matColumnDef="postedBy">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Posted By </th>
+          <td mat-cell *matCellDef="let row"> {{row.personName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">

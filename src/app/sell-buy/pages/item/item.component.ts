@@ -8,6 +8,7 @@ import {ItemService} from "../../services/item.service";
 import {ItemCreateRequestModel, ItemUpdateRequestModel} from "../../models/item.model";
 import { PersonClientService } from 'src/app/personnel/services/person-client.service';
 import { Router } from '@angular/router';
+import { ItemDataService } from '../../services/item-data.service';
 
 @Component({
   selector: 'app-item',
@@ -24,13 +25,24 @@ export class ItemComponent implements OnInit{
 
   constructor(private categoryService: CategoryService, private subCategoryService: SubCategoryService,
               private formBuilder: FormBuilder, private itemService: ItemService, private personService: PersonClientService,
-              private router: Router) {
+              private router: Router, private itemDataService: ItemDataService) {
     this.createForm();
   }
   ngOnInit(): void {
     this.loadCategories();
     this.persons$ = this.personService.getPersonOptions();
     this.measurementTypes$ = this.itemService.getMeasurementTypes();
+
+    if(this.itemDataService.selectedItem) {
+      const { categoryId: category,subCategoryId,...restValue} = this.itemDataService.selectedItem;
+      this.itemForm.patchValue({
+        ...restValue, category
+      });
+      this.onCategoryChange();
+      this.itemForm.patchValue({subCategoryId});
+      this.isEditMode = true;
+    }
+
   }
 
   onCategoryChange() {
@@ -48,12 +60,13 @@ export class ItemComponent implements OnInit{
       this.goToListPage();
     }, (error) => console.log(error));
   }
+
   onItemUpdate() {
     const { condition,measurementTypeId,transactionType, ...restValue } = this.itemForm.value;
     const requestModel: ItemUpdateRequestModel = {...restValue,condition: +condition, measurementTypeId: +measurementTypeId
     ,transactionType: +transactionType};
 
-    this.itemService.updateItem(requestModel).subscribe((_value) => {
+    this.itemService.updateItem(requestModel).subscribe(() => {
       this.itemForm.reset();
       this.goToListPage();
     }, (error) => console.log(error));
