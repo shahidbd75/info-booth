@@ -11,13 +11,18 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     CATEGORY_BASE: `${BASE_URL}ItemCategories`,
   },
   PERSONNEL: {
-    PERSON_BASE: `${BASE_URL}Persons`
+    PERSON_BASE: `${BASE_URL}Persons`,
+    OCCUPATION_BASE: `${BASE_URL}Occupations`,
+  },
+  OPTIONS: {
+    OPTION_BASE: `${BASE_URL}Options`
   }
 }
 
 export interface APIEndPoints {
   BUY_SELL: BuySell;
   PERSONNEL: Personnel;
+  OPTIONS: Options;
 }
 
 export interface BuySell {
@@ -30,4 +35,9 @@ export interface BuySell {
 
 export interface Personnel {
   PERSON_BASE: string;
+  OCCUPATION_BASE: string;
+}
+
+export interface Options {
+  OPTION_BASE: string;
 }

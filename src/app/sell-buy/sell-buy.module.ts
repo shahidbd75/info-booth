@@ -20,6 +20,8 @@ import { SubCategoriesComponent } from './pages/sub-categories/sub-categories.co
 import {NgbootstrapModule} from "../lib/ngbootstrap/ngbootstrap.module";
 import { PersonnelModule } from '../personnel/personnel.module';
 import { ItemDataService } from './services/item-data.service';
+import { SharedModule } from '../shared/shared.module';
+import { GlobalDataContextService } from '../shared/services/global-data-context.service';
 
 @NgModule({
   declarations: [
@@ -36,13 +38,14 @@ import { ItemDataService } from './services/item-data.service';
     imports: [
         CommonModule,
         FormsModule,
+        SharedModule,
         SellBuyRoutingModule,
         MaterialModule,
         HttpClientModule,
         ReactiveFormsModule,
         NgbootstrapModule,
-        PersonnelModule,
+        PersonnelModule,        
     ],
-  providers: [CategoryService,SubCategoryService, ItemService, ItemDataService]
+  providers: [CategoryService,SubCategoryService, ItemService, ItemDataService, GlobalDataContextService]
 })
 export class SellBuyModule { }

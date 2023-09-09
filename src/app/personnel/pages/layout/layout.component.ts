@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MenuType } from 'src/app/shared/models/menu-model';
+import { GlobalDataContextService } from 'src/app/shared/services/global-data-context.service';
 
 @Component({
   selector: 'app-layout',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
-
+  personnelMenus: MenuType[] = [{text: 'Occupation',link:'/personnel/occupation'}];
+  constructor(private globalDataContextService: GlobalDataContextService) {
+    this.globalDataContextService.menus$.next(this.personnelMenus);
+  }
 }

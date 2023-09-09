@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort, Sort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,9 +15,9 @@ import { ItemTransactionType } from '../../enums/transaction-type';
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss']
 })
-export class ItemsComponent implements OnInit, OnDestroy {
+export class ItemsComponent implements OnInit, OnDestroy, AfterViewInit {
   displayedColumns: string[] = ['name', 'subCategoryName', 'transactionType','postedBy', 'actions'];
-  dataSource = new MatTableDataSource<ItemResponseModel>();
+  dataSource: MatTableDataSource<ItemResponseModel>;
   selection = new SelectionModel<ItemResponseModel>(true, []);
   isLoading = false;
   subscription$: Subscription;
@@ -41,12 +41,15 @@ export class ItemsComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
   loadData() {
       this.isLoading = true;
       this.subscription$ = this.itemService.getItems().subscribe(_items => {
       this.dataSource = new MatTableDataSource(_items);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
       this.isLoading = false;
       this.sortChange();
     });

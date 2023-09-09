@@ -11,13 +11,19 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonDataService } from './services/person-data.service';
+import { SharedModule } from '../shared/shared.module';
+import { OccupationsComponent } from './pages/occupations/occupations.component';
+import { OccupationComponent } from './pages/occupation/occupation.component';
+import { OccupationService } from './services/occupation.service';
 
 
 @NgModule({
   declarations: [
     PersonComponent,
     LayoutComponent,
-    PersonsComponent
+    PersonsComponent,
+    OccupationsComponent,
+    OccupationComponent
   ],
   imports: [
     CommonModule,
@@ -26,8 +32,9 @@ import { PersonDataService } from './services/person-data.service';
     HttpClientModule,
     PersonnelRoutingModule,
     MaterialModule,
-    RouterModule
+    RouterModule, 
+    SharedModule,
   ],
-  providers: [PersonClientService, PersonDataService]
+  providers: [PersonClientService, PersonDataService,OccupationService]
 })
 export class PersonnelModule { }
