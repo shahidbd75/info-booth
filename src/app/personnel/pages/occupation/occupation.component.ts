@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EnumTableCreateModel, EnumTableResponseModel, EnumTableUpdateModel } from 'src/app/shared/models/enum-table-model';
 import { OccupationService } from '../../services/occupation.service';
-import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
