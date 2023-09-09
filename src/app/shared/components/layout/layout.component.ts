@@ -30,7 +30,7 @@ export class LayoutComponent implements OnInit{
       {text: 'Occupations', link: 'personnel/occupations'},
       {text: 'Persons', link: 'personnel/persons'},
       {text: 'Items', link: 'buy-sell'},
-      {text: 'Villages', link: 'buy-sell/sell-list'}
+      {text: 'Villages', link: 'location/villages'}
     ];
 
     // this.globalDataContextService.menus$.subscribe((newMenus:MenuType[]) => {

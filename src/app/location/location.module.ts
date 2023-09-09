@@ -6,13 +6,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../lib/material/material.module';
 import { VillageComponent } from './pages/village/village.component';
+import { RouterModule } from '@angular/router';
+import { LayoutComponent } from './pages/layout/layout.component';
+import { VillageService } from './services/village.service';
 
 
 
 @NgModule({
   declarations: [
     VillagesComponent,
-    VillageComponent
+    VillageComponent,
+    LayoutComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +24,17 @@ import { VillageComponent } from './pages/village/village.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialModule
-  ]
+    MaterialModule,
+    RouterModule.forChild([
+      {
+        path:'', component: LayoutComponent,
+        children: [
+          {path: 'villages', component: VillagesComponent},
+          {path: 'village/:id', component: VillageComponent},
+          {path: 'village', component: VillageComponent}
+        ]
+      }
+    ])
+  ], providers: [VillageService]
 })
 export class LocationModule { }
