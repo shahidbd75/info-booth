@@ -6,12 +6,15 @@ export type VillageRequestModel = {
 
 export type VillageCreateRequestModel = VillageRequestModel;
 
-export type VillageUpdateRequestModel = { id: number } & VillageRequestModel;
+export type VillageUpdateRequestModel = { id: string } & VillageRequestModel;
 
-export type VillageListResponseModel = {
-  villageId:    number;
-  villageName:  string;
+export type VillageResponseModel = {
+  id:    string;
+  name:  string;
   upazilaName:  string;
   districtName: string;
   banglaName:   string;
+  upazilaId: number;
+  districtId: number;
 };
+

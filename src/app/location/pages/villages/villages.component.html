@@ -9,12 +9,12 @@
   <mat-card-content>
     <div class="row pt-2">
       <div class="col-md-3 col-sm-12">
-        <button mat-fab extended color="primary" [routerLink]="['../village']"><mat-icon fontIcon="add"></mat-icon>Add an Occupation</button>
+        <button mat-fab extended color="primary" [routerLink]="['../village']"><mat-icon fontIcon="add"></mat-icon>Add an Village</button>
       </div>
       <div class="col-md-9 col-sm-12">
         <mat-form-field>
           <mat-label>Filter</mat-label>
-          <input matInput (input)="onFilter($event)" placeholder="put a search occupation" #input>
+          <input matInput (input)="onFilter($event)" placeholder="Search" #input>
         </mat-form-field>
       </div>
     </div>
@@ -23,7 +23,7 @@
       <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="villageName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-          <td mat-cell *matCellDef="let row"> {{row.villageName}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
         </ng-container>
         <ng-container matColumnDef="banglaName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Bangla Name </th>

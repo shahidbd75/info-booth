@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+import { VillageModule } from './village/village.module';
 
 
 
@@ -20,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
         LayoutComponent,
         DashboardComponent,
         PageNotFoundComponent,
-        NotAuthorizeComponent
+        NotAuthorizeComponent,
     ],
     exports: [
         LayoutComponent
@@ -34,7 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
         MatCardModule,
         MatMenuModule,
         MatIconModule,
-        MatButtonModule
+        MatButtonModule,
     ]
 })
 export class SharedModule { }

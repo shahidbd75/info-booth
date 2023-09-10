@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SellBuyRoutingModule } from './sell-buy-routing.module';
@@ -22,6 +22,8 @@ import { PersonnelModule } from '../personnel/personnel.module';
 import { ItemDataService } from './services/item-data.service';
 import { SharedModule } from '../shared/shared.module';
 import { GlobalDataContextService } from '../shared/services/global-data-context.service';
+import { VillageModule } from '../shared/village/village.module';
+import { VillageSelectComponent } from '../shared/village/village-select/village-select.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { GlobalDataContextService } from '../shared/services/global-data-context
     SellListComponent,
     BuyListComponent,
     SubCategoryComponent,
-    SubCategoriesComponent
+    SubCategoriesComponent,
   ],
     imports: [
         CommonModule,
@@ -44,8 +46,10 @@ import { GlobalDataContextService } from '../shared/services/global-data-context
         HttpClientModule,
         ReactiveFormsModule,
         NgbootstrapModule,
-        PersonnelModule,        
+        PersonnelModule,    
+        VillageModule    
     ],
-  providers: [CategoryService,SubCategoryService, ItemService, ItemDataService, GlobalDataContextService]
+  providers: [CategoryService,SubCategoryService, ItemService, ItemDataService, GlobalDataContextService],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class SellBuyModule { }

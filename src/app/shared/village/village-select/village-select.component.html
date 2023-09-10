@@ -1,0 +1,23 @@
+<ng-container [formGroup]="formGroup">
+  <div class="col-md-4">
+    <label for="district" class="form-label">District</label>
+    <select class="form-select" formControlName="district" aria-label="Please select district" id="district" (change)="loadUpazilas()">
+      <option selected value="null">Please select district</option>
+      <option *ngFor="let item of districts$ | async" value={{item.id}}>{{item.name}}</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="upazila" class="form-label">Upazila</label>
+    <select class="form-select" formControlName="upazila" aria-label="Please select upazila" id="upazila"  (change)="loadVillages()">
+      <option selected value="null">Please select upazila</option>
+      <option *ngFor="let item of upazilas$ | async" value={{item.id}}>{{item.name}}</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="village" class="form-label">Village</label>
+    <select class="form-select" formControlName="village" aria-label="Please select village" id="village" (change)="onVillageChange()">
+      <option selected value="null">Please select village</option>
+      <option *ngFor="let item of villages$ | async" value={{item.id}}>{{item.name}}</option>
+    </select>
+  </div>
+</ng-container>

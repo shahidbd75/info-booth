@@ -7,13 +7,19 @@
     <mat-card-content>
       <mat-divider></mat-divider>
       <div class="row g-3 pt-2">
-        <div class="col-md-4 col-xs-12">
+        <div class="col-md-4">
           <label for="district" class="form-label">District</label>
-          <input type="text" formControlName="district" class="form-control" id="district">
+          <select class="form-select" formControlName="districtId" aria-label="Please select district" id="district" (change)="loadUpazilas()">
+            <option selected value="null">Please select district</option>
+            <option *ngFor="let item of districts$ | async" value={{item.id}}>{{item.name}}</option>
+          </select>
         </div>
-        <div class="col-md-4 col-xs-12">
-          <label for="name" class="form-label">Upazila</label>
-          <input type="text" formControlName="upazila" class="form-control" id="name">
+        <div class="col-md-4">
+          <label for="upazila" class="form-label">Upazila</label>
+          <select class="form-select" formControlName="upazilaId" aria-label="Please select upazila" id="upazila">
+            <option selected value="null">Please select upazila</option>
+            <option *ngFor="let item of upazilas$ | async" value={{item.id}}>{{item.name}}</option>
+          </select>
         </div>
         <div class="col-md-4 col-xs-12">
           <label for="name" class="form-label">Name</label>
@@ -28,7 +34,7 @@
     <mat-card-actions class="action-button-container">
       <button mat-raised-button color="primary" (click)="onOccupationAdd()" [disabled]="!villageForm.valid" *ngIf="!isEditMode">Add</button>
       <button mat-raised-button color="primary" (click)="onOccupationUpdate()" [disabled]="!villageForm.valid" *ngIf="isEditMode">Update</button>
-      <button mat-raised-button [routerLink]="['..']">Cancel</button>
+      <button mat-raised-button (click)="reset()">Cancel</button>
     </mat-card-actions>
   </mat-card>
 </form>
