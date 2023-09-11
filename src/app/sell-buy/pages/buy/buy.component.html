@@ -6,7 +6,7 @@
   <mat-card-content>
     <form>
       <div class="row">
-        <app-village-select (villageChanges)="onVillageChange($event)" [reset]="reset"></app-village-select>
+        <app-village-select [districtId]="28" [upazilaId]="216" [villageId]="villageId" (villageChanges)="onVillageChange($event)" [reset]="reset"></app-village-select>
       </div>
     </form>
   </mat-card-content>

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OptionsService } from '../../services/options.service';
-import { Observable } from 'rxjs';
+import { Observable, delay } from 'rxjs';
 import { OptionsModel } from '../../models/options-model';
 
 @Component({
@@ -11,14 +11,15 @@ import { OptionsModel } from '../../models/options-model';
 })
 export class VillageSelectComponent implements OnInit, OnChanges {
   public formGroup: FormGroup;
-  districts$: Observable<OptionsModel[]> = this.optionService.getDistricts();
-  upazilas$: Observable<OptionsModel[]>;
-  villages$: Observable<OptionsModel[]>;
-  @Input() districtId?: number;
-  @Input() upazilaId: string;
+  @Input() districtId: number;
+  @Input() upazilaId: number;
   @Input() villageId: string;
   @Input() reset = false;
   @Output() villageChanges = new EventEmitter<string>();
+  districts$: Observable<OptionsModel[]> = this.optionService.getDistricts().pipe(delay(4));
+  upazilas$: Observable<OptionsModel[]>;
+  villages$: Observable<OptionsModel[]>;
+
   constructor(private fb: FormBuilder, private optionService: OptionsService) {
 
   }
@@ -32,8 +33,8 @@ export class VillageSelectComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.formGroup = this.fb.group({
       district: [this.districtId, [Validators.required]],
-      upazila: [null, [Validators.required]],
-      village: [null, [Validators.required]]
+      upazila: [this.upazilaId, [Validators.required]],
+      village: [this.villageId, [Validators.required]]
     });
 
     this.loadData();
@@ -56,12 +57,12 @@ export class VillageSelectComponent implements OnInit, OnChanges {
       this.loadUpazilas();
       if(this.upazilaId) {
         this.formGroup.patchValue({
-          upazila: this.districtId
+          upazila: this.upazilaId
         });
         this.loadVillages();
         if(this.villageId) {
           this.formGroup.patchValue({
-            village: this.districtId
+            village: this.villageId
           });
         }
       }
@@ -71,7 +72,7 @@ export class VillageSelectComponent implements OnInit, OnChanges {
   loadUpazilas() {
     const {district} = this.formGroup.value;
 
-    this.upazilas$ = this.optionService.getUpazilas(district);
+    this.upazilas$ = this.optionService.getUpazilas(district).pipe((delay(5)));
   }
 
   loadVillages() {

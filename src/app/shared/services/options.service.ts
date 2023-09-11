@@ -15,7 +15,7 @@ export class OptionsService {
     return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.OPTION_BASE}/districts`);
   }
 
-  getUpazilas(districtId: string): Observable<Array<OptionsModel>>{
+  getUpazilas(districtId: number): Observable<Array<OptionsModel>>{
     return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.OPTION_BASE}/upazilas/${districtId}`);
   }
 
