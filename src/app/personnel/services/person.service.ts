@@ -6,8 +6,8 @@ import { PersonCreateRequestModel, PersonResponseModel, PersonUpdateRequestModel
 import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
-export class PersonClientService {
-
+export class PersonService {
+  selectedPerson: PersonResponseModel | null;
   private person_url = `${API_ENDPOINT_CONST.PERSONNEL.PERSON_BASE}`;
   constructor(private http: HttpClient) { }
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 import { EnumTableCreateModel, EnumTableResponseModel, EnumTableUpdateModel } from 'src/app/shared/models/enum-table-model';
+import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class OccupationService {
@@ -32,5 +33,9 @@ export class OccupationService {
   deleteOccupation(id: number): Observable<unknown>
   {
     return this.http.delete(`${this.Occupation_URL}/${id}`);
+  }
+
+  getOccupationsOption(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(`${this.Occupation_URL}/options`);
   }
 }

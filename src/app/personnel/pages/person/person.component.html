@@ -6,110 +6,92 @@
     </mat-card-header>
     <mat-card-content>
       <mat-divider></mat-divider>
-      <div class="row g-3 pt-2">
-        <div class="col-md-4">
-          <label for="district" class="form-label">District</label>
-          <select class="form-select" formControlName="districtId" aria-label="Please select district" id="district" (change)="loadUpazilas()">
-            <option selected value="null">Please select district</option>
-            <option *ngFor="let item of districts$ | async" value={{item.id}}>{{item.name}}</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label for="upazila" class="form-label">Upazila</label>
-          <select class="form-select" formControlName="upazilaId" aria-label="Please select upazila" id="upazila">
-            <option selected value="null">Please select upazila</option>
-            <option *ngFor="let item of upazilas$ | async" value={{item.id}}>{{item.name}}</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label for="village" class="form-label">Village/City</label>
-          <select class="form-select" formControlName="villageId" aria-label="Please select village/city" id="village">
-            <option selected value="null">Please select village</option>
-            <option *ngFor="let item of villages$ | async" value={{item.id}}>{{item.name}}</option>
-          </select>
-        </div>
-        <div class="col-md-4 col-xs-12">
-          <label for="name" class="form-label">Full Name</label>
-          <input type="text" formControlName="name" class="form-control" id="name">
-        </div>
-        <div class="col-md-4 col-xs-12">
-          <label for="nickName" class="form-label">Nick Name</label>
-          <input type="text" formControlName="nickName" class="form-control" id="nickName">
-        </div>
-        <div class="col-md-4">
-          <label for="fname" class="form-label">Father Name</label>
-          <input type="text" formControlName="fatherName" class="form-control" id="fname">
-        </div>
-        <div class="col-md-4">
-          <label for="mname" class="form-label">Mother Name</label>
-          <input type="text" formControlName="motherName" class="form-control" id="mname">
-        </div>
-        <div class="col-md-4">
-          <label for="spouseName" class="form-label">Spouse Name</label>
-          <input type="text" formControlName="spouseName" class="form-control" id="spouseName">
-        </div>       
-        <div class="col-md-4">
-          <label for="gender" class="form-label">Gender</label>
-          <select class="form-select" formControlName="gender" aria-label="Please select gender" id="gender">
-            <option selected value="null">Please select gender</option>
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-            <option value="3">Other</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label for="religion" class="form-label">Religion</label>
-          <select class="form-select" aria-label="Please select religion" id="religion">
-            <option selected value="null">N/A</option>
-            <option value="1">Islam</option>
-            <option value="2">Hindu</option>
-            <option value="3">Buddha</option>
-            <option value="4">Christian</option>
-            <option value="5">Others</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label for="phone" class="form-label">Phone</label>
-          <input type="text" formControlName="phone" class="form-control" id="phone">
-        </div>
-        <div class="col-md-4">
-          <label for="alternativeContact" class="form-label">Alternative Contact</label>
-          <input type="text" formControlName="alternativeContact" class="form-control" id="alternativeContact">
-        </div>
-        <div class="col-md-4">
-          <label for="email" class="form-label">Email</label>
-          <input type="text" formControlName="email" class="form-control" id="email">
-        </div>
-        <div class="col-md-4">
-          <label for="nId" class="form-label">NID/Birth Certificate</label>
-          <input type="text" formControlName="nId" class="form-control" id="nId">
-        </div>
-        <div class="col-md-4">
-          <label for="occupation" class="form-label">Occupation</label>
-          <select class="form-select" aria-label="Please select occupation" id="occupation">
-            <option selected value="null">N/A</option>
-            <option value="1">Islam</option>
-          </select>
-        </div>
-        <div class="col-md-4">
-          <label for="age" class="form-label">Age</label>
-          <input type="text" formControlName="age" class="form-control" id="age">
-        </div>
-        <div class="col-md-4">
-          <label for="postalCode" class="form-label">Postal Code</label>
-          <input type="text" formControlName="postalCode" class="form-control" id="postalCode">
-        </div>
-
-        <div class="col-md-8">
-          <label for="address" class="form-label">Address</label>
-          <textarea class="form-control" formControlName="address" id="address" rows="3"></textarea>
+      <div class="g-3 pt-2">
+        <app-village-select  [districtId]="selectedDistrictId" [upazilaId]="selectedUpazilaId" [villageId]="selectedVillageId" (villageChanges)="onVillageChange($event)"></app-village-select>
+        <div class="row">
+          <div class="col-md-4 col-xs-12">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" formControlName="name" class="form-control" id="name">
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="nickName" class="form-label">Nick Name</label>
+            <input type="text" formControlName="nickName" class="form-control" id="nickName">
+          </div>
+          <div class="col-md-4">
+            <label for="fname" class="form-label">Father Name</label>
+            <input type="text" formControlName="fatherName" class="form-control" id="fname">
+          </div>
+          <div class="col-md-4">
+            <label for="mname" class="form-label">Mother Name</label>
+            <input type="text" formControlName="motherName" class="form-control" id="mname">
+          </div>
+          <div class="col-md-4">
+            <label for="spouseName" class="form-label">Spouse Name</label>
+            <input type="text" formControlName="spouseName" class="form-control" id="spouseName">
+          </div>       
+          <div class="col-md-4">
+            <label for="gender" class="form-label">Gender</label>
+            <select class="form-select" formControlName="gender" aria-label="Please select gender" id="gender">
+              <option selected value="null">Please select gender</option>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+              <option value="3">Other</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="religion" class="form-label">Religion</label>
+            <select class="form-select" aria-label="Please select religion" id="religion" formControlName="religion">
+              <option selected value="null">N/A</option>
+              <option value="1">Islam</option>
+              <option value="2">Hindu</option>
+              <option value="3">Buddha</option>
+              <option value="4">Christian</option>
+              <option value="5">Others</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" formControlName="phone" class="form-control" id="phone">
+          </div>
+          <div class="col-md-4">
+            <label for="alternativeContact" class="form-label">Alternative Contact</label>
+            <input type="text" formControlName="alternativeContact" class="form-control" id="alternativeContact">
+          </div>
+          <div class="col-md-4">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" formControlName="email" class="form-control" id="email">
+          </div>
+          <div class="col-md-4">
+            <label for="nId" class="form-label">NID/Birth Certificate</label>
+            <input type="text" formControlName="nId" class="form-control" id="nId">
+          </div>
+          <div class="col-md-4">
+            <label for="occupation" class="form-label">Occupation</label>
+            <select class="form-select" aria-label="Please select occupation" formControlName="occupation" id="occupation">
+              <option selected value="null">Please select occupation</option>
+              <option *ngFor="let occupation of occupations$ | async" [value]="occupation.id">{{occupation.name}}</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="age" class="form-label">Age</label>
+            <input type="text" formControlName="age" class="form-control" id="age">
+          </div>
+          <div class="col-md-4">
+            <label for="postalCode" class="form-label">Postal Code</label>
+            <input type="text" formControlName="postalCode" class="form-control" id="postalCode">
+          </div>
+  
+          <div class="col-md-8">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" formControlName="address" id="address" rows="3"></textarea>
+          </div>
         </div>
       </div>
     </mat-card-content>
     <mat-card-actions class="action-button-container">
       <button mat-raised-button color="primary" (click)="onPersonAdd()" [disabled]="!personForm.valid" *ngIf="!isEditMode">Add</button>
       <button mat-raised-button color="primary" (click)="onPersonUpdate()" [disabled]="!personForm.valid" *ngIf="isEditMode">Update</button>
-      <button mat-raised-button [routerLink]="['..']">Cancel</button>
+      <button mat-raised-button (click)="resetForm()">Cancel</button>
     </mat-card-actions>
   </mat-card>
 </form>

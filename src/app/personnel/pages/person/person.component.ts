@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PersonClientService } from '../../services/person-client.service';
-import { PersonCreateRequestModel, PersonUpdateRequestModel } from '../../types/person.model';
-import { PersonDataService } from '../../services/person-data.service';
-import { Observable, take } from 'rxjs';
+import { PersonService } from '../../services/person.service';
+import { PersonCreateRequestModel, PersonResponseModel, PersonUpdateRequestModel } from '../../types/person.model';
+import { Observable } from 'rxjs';
 import { OccupationService } from '../../services/occupation.service';
 import { OptionsService } from 'src/app/shared/services/options.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-person',
@@ -18,49 +18,66 @@ export class PersonComponent implements OnInit{
   isEditMode = false;
   upazilas$: Observable<OptionsModel[]>;
   villages$: Observable<OptionsModel[]>;
+  occupations$: Observable<OptionsModel[]>;
+  selectedDistrictId: number;
+  selectedUpazilaId: number;
+  selectedVillageId: string;
 
-  constructor(private formBuilder: FormBuilder, private personService: PersonClientService, public dataService: PersonDataService,
-    public optionsService: OptionsService, public occupationService: OccupationService) {
+  constructor(private formBuilder: FormBuilder, private personService: PersonService,
+    private router: Router, public occupationService: OccupationService) {
     this.createForm();
   }
-  districts$ = this.optionsService.getDistricts();
   ngOnInit(): void {
 
-    this.dataService.selectedPerson$.pipe(take(1)).subscribe(_person => {
-      if(_person) {
-        const {dateOfBirth, ...person} = _person;
-        this.personForm.setValue(person);
-        this.isEditMode = true;
-      }
-    })
+    this.loadPerson();
+    this.loadOccupation();
+  }
+
+  private loadPerson() {
+    if (this.personService.selectedPerson) {
+      const { districtId, upazilaId, villageId,occupationId,occupationName,districtName,upazilaName,villageName, ...person } = this.personService.selectedPerson;
+      this.personForm.setValue({ ...person, villageId, occupation:occupationId});
+      this.isEditMode = true;
+
+      this.selectedDistrictId = districtId;
+      this.selectedUpazilaId = upazilaId;
+      this.selectedVillageId = villageId;
+
+      this.personService.selectedPerson = null;
+    }
   }
 
   onPersonAdd() {
-    const requestModel: PersonCreateRequestModel = {...this.personForm.value, gender: +this.personForm.value.gender};
+    const {gender,occupation, religion,... restValue} = this.personForm.value;
+    const requestModel: PersonCreateRequestModel = {...restValue, gender: +gender, occupationId: +occupation,
+    religion: +religion};
 
     this.personService.savePersons(requestModel).subscribe(value => {
       this.personForm.reset();
+      this.router.navigate(['/personnel/persons']);
     });
   }
   onPersonUpdate() {
-    const requestModel: PersonUpdateRequestModel = {...this.personForm.value, gender: +this.personForm.value.gender};
+    const {gender,occupation, religion,... restValue} = this.personForm.value;
+    const requestModel: PersonUpdateRequestModel = {...restValue,  gender: +gender, occupationId: +occupation,
+      religion: +religion};
 
     this.personService.updatePersons(requestModel).subscribe(value => {
       this.personForm.reset();
-      this.isEditMode = false;
+      this.router.navigate(['/personnel/persons']);
     });
   }
 
-  loadUpazilas() {
-    const { districtId } = this.personForm.value;
-    this.personForm.controls['upazilaId'].reset();
-    this.upazilas$ = this.optionsService.getUpazilas(districtId);
+  resetForm() {
+    this.personForm.reset({villageId: this.selectedVillageId});
   }
 
-  loadVillages() {
-    const { upazilaId } = this.personForm.value;
-    this.personForm.controls['villageId'].reset();
-    this.villages$ = this.optionsService.getVillages(upazilaId);
+  onVillageChange(villageId: string) {
+    this.personForm.patchValue({villageId});
+  }
+
+  loadOccupation() {
+    this.occupations$ = this.occupationService.getOccupationsOption();
   }
 
   createForm() {
@@ -80,9 +97,8 @@ export class PersonComponent implements OnInit{
       occupation: [null, Validators.required],
       age: ['',Validators.maxLength(3)],
       nId: [''],
+      dateOfBirth:[null],
       postalCode: [''],
-      districtId: [null, Validators.required],
-      upazilaId: [null, Validators.required],
       villageId:[null, Validators.required]
     });
   }

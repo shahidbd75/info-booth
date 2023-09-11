@@ -6,15 +6,15 @@ import { PersonComponent } from './pages/person/person.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { PersonsComponent } from './pages/persons/persons.component';
 import { MaterialModule } from '../lib/material/material.module';
-import { PersonClientService } from './services/person-client.service';
+import { PersonService } from './services/person.service';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PersonDataService } from './services/person-data.service';
 import { SharedModule } from '../shared/shared.module';
 import { OccupationsComponent } from './pages/occupations/occupations.component';
 import { OccupationComponent } from './pages/occupation/occupation.component';
 import { OccupationService } from './services/occupation.service';
+import { VillageModule } from '../shared/village/village.module';
 
 
 @NgModule({
@@ -34,7 +34,8 @@ import { OccupationService } from './services/occupation.service';
     MaterialModule,
     RouterModule, 
     SharedModule,
+    VillageModule,
   ],
-  providers: [PersonClientService, PersonDataService,OccupationService]
+  providers: [PersonService,OccupationService]
 })
 export class PersonnelModule { }

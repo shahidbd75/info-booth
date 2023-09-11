@@ -1,4 +1,4 @@
-<ng-container [formGroup]="formGroup">
+<div [formGroup]="formGroup" class="row">
   <div class="col-md-4">
     <label for="district" class="form-label">District</label>
     <select class="form-select" formControlName="district" aria-label="Please select district" id="district" (change)="loadUpazilas()">
@@ -20,4 +20,4 @@
       <option *ngFor="let item of villages$ | async" value={{item.id}}>{{item.name}}</option>
     </select>
   </div>
-</ng-container>
+</div>

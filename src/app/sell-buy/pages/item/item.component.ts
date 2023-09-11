@@ -6,7 +6,7 @@ import { SubCategoryService } from '../../services/sub-category.service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ItemService} from "../../services/item.service";
 import {ItemCreateRequestModel, ItemUpdateRequestModel} from "../../models/item.model";
-import { PersonClientService } from 'src/app/personnel/services/person-client.service';
+import { PersonService } from 'src/app/personnel/services/person.service';
 import { Router } from '@angular/router';
 import { ItemDataService } from '../../services/item-data.service';
 
@@ -24,7 +24,7 @@ export class ItemComponent implements OnInit{
   isEditMode = false;
 
   constructor(private categoryService: CategoryService, private subCategoryService: SubCategoryService,
-              private formBuilder: FormBuilder, private itemService: ItemService, private personService: PersonClientService,
+              private formBuilder: FormBuilder, private itemService: ItemService, private personService: PersonService,
               private router: Router, private itemDataService: ItemDataService) {
     this.createForm();
   }

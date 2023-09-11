@@ -6,9 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { PersonResponseModel } from '../../types/person.model';
 import { Router } from '@angular/router';
-import { PersonClientService } from '../../services/person-client.service';
+import { PersonService } from '../../services/person.service';
 import { Gender } from '../../enums/gender.enum';
-import { PersonDataService } from '../../services/person-data.service';
 
 @Component({
   selector: 'app-persons',
@@ -32,7 +31,7 @@ export class PersonsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private personService: PersonClientService, private router: Router, private dataService: PersonDataService) {
+  constructor(private personService: PersonService, private router: Router) {
 
   }
 
@@ -81,7 +80,7 @@ export class PersonsComponent implements OnInit, OnDestroy {
   }
 
   onEdit(element: PersonResponseModel) {
-    this.dataService.selectedPerson$.next(element)
+    this.personService.selectedPerson = element;
     this.router.navigate([`personnel/person`]);
   }
 
