@@ -1,19 +1,37 @@
-
-  
-  {
-    "editor.tabSize": 2,
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": false
+{
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": false
   },
-
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true
+  },
+  "eslint.format.enable": true,
   "prettier.semi": true,
   "prettier.endOfLine": "lf",
   "prettier.singleQuote": true,
-
-  "eslint.packageManager": "npm",
-  "eslint.format.enable": true,
-  "eslint.alwaysShowStatus": true,
 }
+  
+//   {
+//     "editor.tabSize": 2,
+//   "editor.formatOnSave": true,
+//   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+//   "editor.codeActionsOnSave": {
+//     "source.fixAll.eslint": true,
+//     "source.organizeImports": false
+//   },
+//   "prettier.semi": true,
+//   "prettier.endOfLine": "lf",
+//   "prettier.singleQuote": true,
+
+//   "eslint.packageManager": "npm",
+//   "eslint.format.enable": true,
+//   "eslint.alwaysShowStatus": true,
+// }
