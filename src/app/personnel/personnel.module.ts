@@ -14,7 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { OccupationsComponent } from './pages/occupations/occupations.component';
 import { OccupationComponent } from './pages/occupation/occupation.component';
 import { OccupationService } from './services/occupation.service';
-import { VillageModule } from '../shared/village/village.module';
+import { VillageModule } from '../shared/modules/village-select/village.module';
 
 
 @NgModule({
@@ -32,7 +32,7 @@ import { VillageModule } from '../shared/village/village.module';
     HttpClientModule,
     PersonnelRoutingModule,
     MaterialModule,
-    RouterModule, 
+    RouterModule,
     SharedModule,
     VillageModule,
   ],

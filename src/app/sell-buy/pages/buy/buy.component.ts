@@ -1,6 +1,6 @@
 import { Component, ViewChild, ViewChildren } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { VillageSelectComponent } from 'src/app/shared/village/village-select/village-select.component';
+import { VillageSelectComponent } from 'src/app/shared/modules/village-select/village-select.component';
 
 @Component({
   selector: 'app-buy',

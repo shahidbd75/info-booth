@@ -22,8 +22,8 @@ import { PersonnelModule } from '../personnel/personnel.module';
 import { ItemDataService } from './services/item-data.service';
 import { SharedModule } from '../shared/shared.module';
 import { GlobalDataContextService } from '../shared/services/global-data-context.service';
-import { VillageModule } from '../shared/village/village.module';
-import { VillageSelectComponent } from '../shared/village/village-select/village-select.component';
+import { VillageModule } from '../shared/modules/village-select/village.module';
+import { VillageSelectComponent } from '../shared/modules/village-select/village-select.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +46,8 @@ import { VillageSelectComponent } from '../shared/village/village-select/village
         HttpClientModule,
         ReactiveFormsModule,
         NgbootstrapModule,
-        PersonnelModule,    
-        VillageModule    
+        PersonnelModule,
+        VillageModule
     ],
   providers: [CategoryService,SubCategoryService, ItemService, ItemDataService, GlobalDataContextService],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
