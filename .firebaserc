@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "infobooth-bd": {
+      "hosting": {
+        "infobooth": [
+          "infobooth-bd"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "infobooth-bd"
+  }
+}
