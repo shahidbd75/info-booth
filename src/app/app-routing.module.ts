@@ -12,6 +12,7 @@ const routes: Routes = [
     {path: 'buy-sell', loadChildren: () => import('./sell-buy/sell-buy.module').then(m=>m.SellBuyModule)},
     {path: 'personnel', loadChildren: () => import('./personnel/personnel.module').then(m=>m.PersonnelModule)},
     {path: 'location', loadChildren: () => import('./location/location.module').then(m=>m.LocationModule)},
+    {path: 'worker', loadChildren: () => import('./worker/worker.module').then(m=>m.WorkerModule)},
     {path: '', component: DashboardComponent}
   ]},
   {path: 'not-authorize', component: NotAuthorizeComponent},
