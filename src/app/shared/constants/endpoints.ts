@@ -19,6 +19,9 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
   },
   LOCATION: {
     VILLAGE_BASE: `${BASE_URL}Villages`
+  },
+  WORKER: {
+    WORKER_BASE: `${BASE_URL}Worker`
   }
 }
 
@@ -27,6 +30,7 @@ export interface APIEndPoints {
   PERSONNEL: Personnel;
   OPTIONS: Options;
   LOCATION: Location;
+  WORKER: Worker;
 }
 
 export interface BuySell {
@@ -48,4 +52,8 @@ export interface Options {
 
 export interface Location {
   VILLAGE_BASE: string;
+}
+
+export interface Worker {
+  WORKER_BASE: string;
 }

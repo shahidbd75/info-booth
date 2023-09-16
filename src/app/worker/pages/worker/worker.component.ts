@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { WorkerService } from '../services/worker.service';
+import { WorkerService } from '../../services/worker.service';
 
 @Component({
   selector: 'app-worker',

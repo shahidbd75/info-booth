@@ -22,4 +22,9 @@ export class OptionsService {
   getVillages(upazilaId: string): Observable<Array<OptionsModel>>{
     return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.OPTION_BASE}/vilages/${upazilaId}`);
   }
+
+  getGoodAts(): Observable<Array<OptionsModel>>{
+    return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.OPTION_BASE}/good-ats`);
+  }
+
 }

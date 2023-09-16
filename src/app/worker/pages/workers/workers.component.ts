@@ -1,22 +1,20 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { VillageService } from '../../services/village.service';
-import { Router } from '@angular/router';
-import { VillageResponseModel } from '../../types/village.model';
-import { SelectionModel } from '@angular/cdk/collections';
+import { WorkerService } from '../../services/worker.service';
+import { WorkerResponseModel } from '../../types/worker-model';
 import { Subscription } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-villages',
-  templateUrl: './villages.component.html',
-  styleUrls: ['./villages.component.scss']
+  selector: 'app-workers',
+  templateUrl: './workers.component.html',
+  styleUrls: ['./workers.component.scss']
 })
-export class VillagesComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name','banglaName','upazilaName','districtName', 'actions'];
-  dataSource:MatTableDataSource<VillageResponseModel>;
-  selection = new SelectionModel<VillageResponseModel>(true, []);
+export class WorkersComponent implements OnInit, OnDestroy{
+  displayedColumns: string[] = ['name','expectedWages','goodAt','village','upazila','district', 'actions'];
+  dataSource:MatTableDataSource<WorkerResponseModel>;
   isLoading = false;
   subscription$: Subscription;
   pageSize = 10;
@@ -28,22 +26,21 @@ export class VillagesComponent implements OnInit, OnDestroy {
   sortOrder = 'asc';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(private villageService: VillageService, private router: Router) {
-  }
+  constructor(private workerService: WorkerService, private router: Router){}
+  
+  
 
   ngOnInit(): void {
     this.loadData();
-    
   }
 
   ngOnDestroy(): void {
-      this.subscription$?.unsubscribe();
+    this.subscription$?.unsubscribe();
   }
 
   loadData() {
     this.isLoading = true;
-    this.subscription$ = this.villageService.getVillages().subscribe(_items => {
+    this.subscription$ = this.workerService.getAll().subscribe(_items => {
       this.dataSource = new MatTableDataSource(_items);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -74,15 +71,15 @@ export class VillagesComponent implements OnInit, OnDestroy {
     });
   }
 
-  onEdit(village: VillageResponseModel) {
-    this.villageService.selectedVillage = village;
-    this.router.navigate([`location/village`]);
+  onEdit(worker: WorkerResponseModel) {
+    //this.villageService.selectedVillage = village;
+    this.router.navigate([`worker/worker/${worker.id}`]);
   }
 
-  onDelete(element: VillageResponseModel) {
+  onDelete(element: WorkerResponseModel) {
     const { id }= element;
     if(confirm('Do you want to delete?') && id) {
-      this.villageService.deleteVillage(id).subscribe(()=> {
+      this.workerService.deleteWorker(id).subscribe(()=> {
         this.loadData();
       })
     }
