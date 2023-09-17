@@ -24,8 +24,8 @@ export type WorkerRequestModel = {
     teamLeaderMobile: string;
     totalTeamMember:  number;
     expectedWages:    number;
-    startTime:        string;
-    endTime:          string;
+    startTime:        Date;
+    endTime:          Date;
     isNegotiable:     boolean;
     detail:           string;
     goodAts:          number[];

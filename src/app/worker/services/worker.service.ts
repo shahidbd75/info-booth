@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 import { WorkerRequestModel, WorkerResponseModel } from '../types/worker-model';
+import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class WorkerService {
@@ -27,5 +28,21 @@ export class WorkerService {
 
   getWorkerById(id: string): Observable<WorkerResponseModel> {
     return this.http.get<WorkerResponseModel>(`${this.worker_url}/${id}`);
+  }
+
+  getGootAts(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(`${this.worker_url}/good-ats`);
+  }
+
+  getPreferableDays(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(`${this.worker_url}/preferable-days`);
+  }
+
+  getWorkAbilities(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(`${this.worker_url}/work-abilities`);
+  }
+
+  getWorkGroups(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(`${this.worker_url}/work-groups`);
   }
 }

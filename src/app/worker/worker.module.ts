@@ -9,6 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { WorkerService } from './services/worker.service';
 import { WorkersComponent } from './pages/workers/workers.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { PersonService } from '../personnel/services/person.service';
 
 const routes: Routes = [
   { path: '', component: LayoutComponent, children: [
@@ -32,8 +34,9 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NgSelectModule
   ],
-  providers: [WorkerService]
+  providers: [WorkerService, PersonService]
 })
 export class WorkerModule { }
