@@ -33,8 +33,8 @@ export class WorkerComponent implements OnInit {
       personId: [null, [Validators.required]],
       teamLeaderName: ['', [Validators.required,Validators.maxLength(100)]],
       teamLeaderMobile: ['', [Validators.required,Validators.maxLength(30)]],
-      totalTeamMember: ['', [Validators.required]],
-      expectedWages: [0, [Validators.required]],
+      totalTeamMember: [0, [Validators.required]],
+      expectedWages: [0, [Validators.required, Validators.maxLength(10)]],
       goodAts: [null],
       workGroups:[null],
       workAbilities:[null],
@@ -47,11 +47,11 @@ export class WorkerComponent implements OnInit {
   }
 
   onWorkerSave() {
-    const {startTime, endTime, ...restValue}: WorkerRequestModel = this.workerForm.value;
+    const {startTime, endTime, ...restValue} = this.workerForm.value;
 
-    // console.log({startTime: startTime,endTime: new Date(endTime)});
-    // return;
-    this.workerService.saveWorker({...restValue, startTime: new Date(startTime),endTime: new Date(endTime)}).subscribe(()=> {
+    const requestModel: WorkerRequestModel = {...restValue, startTime, endTime};
+
+    this.workerService.saveWorker(requestModel).subscribe(()=> {
       this.router.navigate(['worker/workers']);
     },(error) => console.log(error));
   }
@@ -65,5 +65,15 @@ export class WorkerComponent implements OnInit {
 
   resetForm() {
     this.router.navigate(['worker/workers']);
+  }
+
+  private formatTime(inputTime: string): string {
+    const date = new Date();
+    if(inputTime) {
+      date.setHours(+inputTime.split(':')[0]);
+      date.setMinutes(+inputTime.split(':')[1])
+    }
+
+    return date.toLocaleTimeString([], {timeStyle:'short'});
   }
 }
