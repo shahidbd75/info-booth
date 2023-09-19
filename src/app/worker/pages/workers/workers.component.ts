@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Component({
   selector: 'app-workers',
@@ -72,8 +73,8 @@ export class WorkersComponent implements OnInit, OnDestroy{
   }
 
   onEdit(worker: WorkerResponseModel) {
-    //this.villageService.selectedVillage = village;
-    this.router.navigate([`worker/worker/${worker.id}`]);
+    this.workerService.selectedWorker = worker;
+    this.router.navigate([`worker/worker`]);
   }
 
   onDelete(element: WorkerResponseModel) {
@@ -83,5 +84,9 @@ export class WorkersComponent implements OnInit, OnDestroy{
         this.loadData();
       })
     }
+  }
+
+  optionsToName(options: OptionsModel[]) : string {
+    return options.map((op: OptionsModel) => op.name).join(', ');
   }
 }

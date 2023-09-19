@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { WorkerService } from '../../services/worker.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { PersonService } from 'src/app/personnel/services/person.service';
 import { Observable } from 'rxjs';
-import { WorkerRequestModel } from '../../types/worker-model';
+import { WorkerRequestModel, WorkerResponseModel } from '../../types/worker-model';
 
 @Component({
   selector: 'app-worker',
@@ -15,18 +15,33 @@ import { WorkerRequestModel } from '../../types/worker-model';
 export class WorkerComponent implements OnInit {
   workerForm: FormGroup;
   isEditMode = false;
-  goodAts: OptionsModel[];
+  goodAts$: Observable<OptionsModel[]> = this.workerService.getGootAts();
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();
   workGroups$: Observable<OptionsModel[]> = this.workerService.getWorkGroups();
   workAbilities$: Observable<OptionsModel[]> = this.workerService.getWorkAbilities();
   perferableDays$: Observable<OptionsModel[]> = this.workerService.getPreferableDays();
 
-  constructor(private fb: FormBuilder, private router: Router, private workerService: WorkerService, private personService: PersonService) {
+  constructor(private fb: FormBuilder, private router: Router, private workerService: WorkerService, 
+    private personService: PersonService, private activatedRoute: ActivatedRoute) {
 
   }
   ngOnInit(): void {
     this.initializeFormGroup();
-    this.workerService.getGootAts().subscribe((options: OptionsModel[]) => this.goodAts = options);
+    this.loadData();
+  }
+ 
+  loadData() {
+    if(this.workerService.selectedWorker) {
+      const {id:personId,goodAts,workGroups, workAbilities, preferableDays, ...restvalues} = this.workerService.selectedWorker;
+      const goodAtIds = goodAts.map(g => g.id);
+      const workGroupIds = workGroups.map(wg => wg.id);
+      const workAbilityIds = workAbilities.map(wa => wa.id);
+      const preferableDayIds = preferableDays.map(pd => pd.id);
+      this.isEditMode = true;
+      this.workerForm.patchValue({...restvalues,personId, goodAts: goodAtIds, 
+        workAbilities: workAbilityIds, perferableDays: preferableDayIds, workGroups: workGroupIds});
+      this.workerService.selectedWorker = null;
+    }
   }
   initializeFormGroup() {
     this.workerForm = this.fb.group({
@@ -75,5 +90,15 @@ export class WorkerComponent implements OnInit {
     }
 
     return date.toLocaleTimeString([], {timeStyle:'short'});
+  }
+  private loadFromParam() {
+    this.activatedRoute.params.subscribe((param: Params) => {
+      const { id } = param;
+      if (id) {
+        this.workerService.getWorkerById(id).subscribe((worker: WorkerResponseModel) => {
+          this.workerForm.patchValue(worker);
+        });
+      }
+    });
   }
 }

@@ -7,6 +7,7 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class WorkerService {
+  selectedWorker: WorkerResponseModel | null;
   worker_url = API_ENDPOINT_CONST.WORKER.WORKER_BASE;
   constructor(private http: HttpClient) { }
 

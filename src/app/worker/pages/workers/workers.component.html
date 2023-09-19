@@ -31,7 +31,7 @@
           </ng-container>
           <ng-container matColumnDef="goodAt">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Good At</th>
-            <td mat-cell *matCellDef="let row"> {{row.goodAts}} </td>
+            <td mat-cell *matCellDef="let row"> {{optionsToName(row.goodAts)}} </td>
           </ng-container>
           <ng-container matColumnDef="village">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Village</th>

@@ -1,3 +1,5 @@
+import { OptionsModel } from "src/app/shared/models/options-model";
+
 export type WorkerResponseModel = {
     id:               string;
     teamLeaderName:   string;
@@ -9,10 +11,10 @@ export type WorkerResponseModel = {
     isNegotiable:     boolean;
     detail:           string;
     workerName:       string;
-    goodAts:          string[];
-    workGroups:       string[];
-    workAbilities:    string[];
-    preferableDays:   string[];
+    goodAts:          OptionsModel[];
+    workGroups:       OptionsModel[];
+    workAbilities:    OptionsModel[];
+    preferableDays:   OptionsModel[];
     village:          string;
     upazila:          string;
     district:         string;

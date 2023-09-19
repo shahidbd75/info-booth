@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-md-4 col-xs-12">
                   <label for="goodAts" class="form-label">Good Ats</label>
-                  <ng-select [items]="goodAts"
+                  <ng-select [items]="goodAts$ | async"
                       id="goodAts"
                       [multiple] = true
                       [searchable]="true"
