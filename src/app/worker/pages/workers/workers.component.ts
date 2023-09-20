@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { WorkerService } from '../../services/worker.service';
-import { WorkerResponseModel } from '../../types/worker-model';
+import { WorkerResponseModel, WorkerTableModel } from '../../types/worker-model';
 import { Subscription } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -14,8 +14,8 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
   styleUrls: ['./workers.component.scss']
 })
 export class WorkersComponent implements OnInit, OnDestroy{
-  displayedColumns: string[] = ['name','expectedWages','goodAt','village','upazila','district', 'actions'];
-  dataSource:MatTableDataSource<WorkerResponseModel>;
+  displayedColumns: string[] = ['district','upazila', 'village', 'name','expectedWages','goodAts','actions'];
+  dataSource:MatTableDataSource<WorkerTableModel>;
   isLoading = false;
   subscription$: Subscription;
   pageSize = 10;
@@ -25,12 +25,11 @@ export class WorkersComponent implements OnInit, OnDestroy{
   keyword = '';
   sortField = 'name';
   sortOrder = 'asc';
+  workers: WorkerResponseModel[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private workerService: WorkerService, private router: Router){}
   
-  
-
   ngOnInit(): void {
     this.loadData();
   }
@@ -41,8 +40,23 @@ export class WorkersComponent implements OnInit, OnDestroy{
 
   loadData() {
     this.isLoading = true;
-    this.subscription$ = this.workerService.getAll().subscribe(_items => {
-      this.dataSource = new MatTableDataSource(_items);
+    this.subscription$ = this.workerService.getAll().subscribe((_items: WorkerResponseModel[]) => {
+      this.workers = _items;
+      this.dataSource = new MatTableDataSource(_items.map((_item:WorkerResponseModel) => {
+        return {
+          id: _item.id,
+          name: _item.workerName,
+          district: _item.district,
+          expectedWages: _item.expectedWages,
+          isActive: _item.isActive,
+          village: _item.village,
+          upazila: _item.upazila,
+          goodAts: _item.goodAts?.map(g=>g.name).join(','),
+          preferableDays: _item.preferableDays?.map(g=>g.name).join(','),
+          workAbilities: _item.workAbilities?.map(g=>g.name).join(','),
+          workGroups: _item.workGroups?.map(g=>g.name).join(','),
+        }
+      }));
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.isLoading = false;
@@ -66,18 +80,19 @@ export class WorkersComponent implements OnInit, OnDestroy{
 
   sortChange() {
     this.sort.sortChange.subscribe((_sort: Sort)=> {
+      console.log(_sort);
       this.page = 0;
       this.sortField = _sort.active;
       this.sortOrder = _sort.direction;
     });
   }
 
-  onEdit(worker: WorkerResponseModel) {
-    this.workerService.selectedWorker = worker;
+  onEdit(worker: WorkerTableModel) {
+    this.workerService.selectedWorker = this.workers.find(x=>x.id === worker.id) ?? null;
     this.router.navigate([`worker/worker`]);
   }
 
-  onDelete(element: WorkerResponseModel) {
+  onDelete(element: WorkerTableModel) {
     const { id }= element;
     if(confirm('Do you want to delete?') && id) {
       this.workerService.deleteWorker(id).subscribe(()=> {

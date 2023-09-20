@@ -21,6 +21,20 @@ export type WorkerResponseModel = {
     isActive:         boolean;
 };
 
+export type WorkerTableModel = {
+    id:               string;
+    name:             string;
+    village:          string;
+    upazila:          string;
+    district:         string;
+    isActive:         boolean;
+    goodAts:          string;
+    workGroups:       string;
+    workAbilities:    string;
+    preferableDays:   string;
+    expectedWages:    number;
+}
+
 export type WorkerRequestModel = {
     teamLeaderName:   string;
     teamLeaderMobile: string;

@@ -64,7 +64,11 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the filter</td>
+          <td class="mat-cell" colspan="5">
+            <p class="text-info-emphasis p-2">
+              No data found 
+            </p>
+          </td>
         </tr>
       </table>
 

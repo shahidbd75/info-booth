@@ -28,11 +28,21 @@
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="['name','categoryName']"></tr>
         <tr mat-row *matRowDef="let row; columns: ['name','categoryName'];"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="5">
+            <p class="text-info-emphasis p-2">
+              No data found 
+            </p>
+          </td>
+        </tr>
       </table>
-    </div>
+
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
                      [length]="count" [pageSize]="pageSize"
                      (page)="pageEvent = $event;onPageChange($event)"
                      aria-label="Select page of users"></mat-paginator>
+    </div>
+
   </mat-card-content>
 </mat-card>
