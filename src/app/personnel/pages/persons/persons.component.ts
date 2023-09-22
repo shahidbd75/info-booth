@@ -21,7 +21,7 @@ export class PersonsComponent implements OnInit, OnDestroy {
   isLoading = false;
   subscription$: Subscription;
   pageSize = 10;
-  page = 0;
+  page = 1;
   count = 100;
   pageEvent: PageEvent;
   keyword = '';
