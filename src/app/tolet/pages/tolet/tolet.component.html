@@ -1,0 +1,130 @@
+<form [formGroup]="toletForm">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Tolet Entry</mat-card-title>
+      <mat-card-subtitle>Tolet</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <div class="g-3 pt-2">
+        <div class="row">
+          <div class="col-md-4 col-xs-12">
+            <label for="personId" class="form-label">Owner</label>
+            <ng-select
+              [items]="persons$ | async"
+              id="personId"
+              [searchable]="true"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="personId"
+            >
+            </ng-select>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" formControlName="title" class="form-control" id="title" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="rent" class="form-label">Rent(Taka)</label>
+            <input type="text" formControlName="rent" class="form-control" id="rent" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="IsRentNegotiable" class="form-label">Is Rent Negotiable</label>
+            <input type="number" formControlName="isRentNegotiable" class="form-control" id="IsRentNegotiable" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="AvailableFrom" class="form-label">Available From</label>
+            <input type="date" formControlName="availableFrom" class="form-control" id="AvailableFrom" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="FloorNumber" class="form-label">Floor Number</label>
+            <input type="number" formControlName="floorNumber" class="form-control" id="FloorNumber" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="TotalFloor" class="form-label">Total Floor</label>
+            <input type="number" formControlName="totalFloor" class="form-control" id="TotalFloor" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="NumberOfBed" class="form-label">Number Of Bed</label>
+            <input type="number" formControlName="numberOfBed" class="form-control" id="NumberOfBed" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="NumberOfBath" class="form-label">Number Of Bath</label>
+            <input type="number" formControlName="numberOfBath" class="form-control" id="NumberOfBath" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="AreaInSqFeet" class="form-label">Area (In Sq. Feet)</label>
+            <input type="number" formControlName="areaInSqFeet" class="form-control" id="AreaInSqFeet" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="RentType" class="form-label">Rent Type</label>
+            <ng-select
+              [items]="persons$ | async"
+              id="RentType"
+              [searchable]="true"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="rentType"
+            >
+            </ng-select>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="View" class="form-label">View</label>
+            <ng-select
+              [items]="persons$ | async"
+              id="View"
+              [searchable]="true"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="view"
+            >
+            </ng-select>
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <label for="Description" class="form-label">Description</label>
+            <input type="text" formControlName="description" class="form-control" id="Description" />
+          </div>
+
+          <div class="col-md-4 col-xs-12 pt-4">
+            <mat-checkbox formControlName="allowsPets" id="AllowsPets">Is AllowsPets</mat-checkbox>
+          </div>
+          <div class="col-md-4 col-xs-12 pt-4">
+            <mat-checkbox formControlName="isBachelorAllowed" id="IsBachelorAllowed">Is Bachelor Allowed</mat-checkbox>
+          </div>
+          <div class="col-md-4 col-xs-12 pt-4">
+            <mat-checkbox formControlName="hasParking" id="HasParking">Has Parking</mat-checkbox>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="CareTakerName" class="form-label">Care Taker Name</label>
+            <input type="text" formControlName="careTakerName" class="form-control" id="CareTakerName" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="CareTakerPhone" class="form-label">Care Taker Phone</label>
+            <input type="text" formControlName="careTakerPhone" class="form-control" id="CareTakerPhone" />
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-button-container">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onWorkerSave()"
+        [disabled]="!toletForm.valid"
+        *ngIf="!isEditMode"
+      >
+        Add
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onWorkerUpdate()"
+        [disabled]="!toletForm.valid"
+        *ngIf="isEditMode"
+      >
+        Update
+      </button>
+      <button mat-raised-button (click)="resetForm()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
