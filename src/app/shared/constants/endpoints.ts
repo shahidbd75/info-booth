@@ -3,10 +3,10 @@ import { environment } from "src/environments/environment";
 const BASE_URL = `${environment.baseUrl}`;
 
 export const API_ENDPOINT_CONST : APIEndPoints = {
-  BUY_SELL : {
-    GET_CATEGORIES_OPTIONS:`${BASE_URL}ItemCategories/options`,
-    GET_SUB_CATEGORY_BY_CATEGORY:(categoryId: string) => `${BASE_URL}ItemSubCategories/options/${categoryId}`,
-    ITEM_BASE:`${BASE_URL}Items`,
+  BUY_SELL: {
+    GET_CATEGORIES_OPTIONS: `${BASE_URL}ItemCategories/options`,
+    GET_SUB_CATEGORY_BY_CATEGORY: (categoryId: string) => `${BASE_URL}ItemSubCategories/options/${categoryId}`,
+    ITEM_BASE: `${BASE_URL}Items`,
     SUB_CATEGORY_BASE: `${BASE_URL}ItemSubCategories`,
     CATEGORY_BASE: `${BASE_URL}ItemCategories`,
   },
@@ -22,6 +22,13 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
   },
   WORKER: {
     WORKER_BASE: `${BASE_URL}Worker`
+  },
+  TOLET: {
+    TOLET_BASE: `${BASE_URL}`,
+    AMENITY_OPTIONS: `${BASE_URL}`,
+    FLAT_TYPE_OPTIONS: `${BASE_URL}`,
+    FLAT_VIEW_OPTIONS: `${BASE_URL}`,
+    LANDMARK_OPTIONS: `${BASE_URL}`,
   }
 }
 
@@ -31,6 +38,7 @@ export interface APIEndPoints {
   OPTIONS: Options;
   LOCATION: Location;
   WORKER: Worker;
+  TOLET: Tolet;
 }
 
 export interface BuySell {
@@ -56,4 +64,12 @@ export interface Location {
 
 export interface Worker {
   WORKER_BASE: string;
+}
+
+export interface Tolet {
+  TOLET_BASE: string;
+  AMENITY_OPTIONS: string;
+  FLAT_VIEW_OPTIONS: string;
+  LANDMARK_OPTIONS: string;
+  FLAT_TYPE_OPTIONS: string;
 }

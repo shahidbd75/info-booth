@@ -11,9 +11,9 @@ import { OptionsModel } from '../../models/options-model';
 })
 export class VillageSelectComponent implements OnInit, OnChanges {
   public formGroup: FormGroup;
-  @Input() districtId: number;
-  @Input() upazilaId: number;
-  @Input() villageId: string;
+  @Input({required:true}) districtId: number;
+  @Input({required:true}) upazilaId: number;
+  @Input({required:true}) villageId: string;
   @Input() reset = false;
   @Output() villageChanges = new EventEmitter<string>();
   districts$: Observable<OptionsModel[]> = this.optionService.getDistricts().pipe(delay(4));
@@ -24,7 +24,6 @@ export class VillageSelectComponent implements OnInit, OnChanges {
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.reset);
     if(this.reset) {
       this.formGroup.reset();
     }
@@ -72,12 +71,13 @@ export class VillageSelectComponent implements OnInit, OnChanges {
   loadUpazilas() {
     const {district} = this.formGroup.value;
 
+    this.formGroup.controls['upazila'].reset();
     this.upazilas$ = this.optionService.getUpazilas(district).pipe((delay(5)));
   }
 
   loadVillages() {
     const {upazila} = this.formGroup.value;
-
+    this.formGroup.controls['village'].reset();
     this.villages$ = this.optionService.getVillages(upazila);
   }
 }

@@ -7,6 +7,7 @@
     <mat-card-content>
       <mat-divider></mat-divider>
       <div class="g-3 pt-2">
+        <app-village-select [districtId]="selectedDistrictId" [upazilaId]="selectedUpazilaId" villageId="selectedVillageId" />
         <div class="row">
           <div class="col-md-4 col-xs-12">
             <label for="personId" class="form-label">Owner</label>
@@ -17,6 +18,7 @@
               bindValue="id"
               bindLabel="name"
               formControlName="personId"
+              placeholder="Please select owner"
             >
             </ng-select>
           </div>
@@ -26,12 +28,19 @@
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="rent" class="form-label">Rent(Taka)</label>
-            <input type="text" formControlName="rent" class="form-control" id="rent" />
+            <div class="input-group">
+              <input type="text" formControlName="rent" class="form-control" id="rent" />
+              <mat-checkbox formControlName="isRentNegotiable" id="IsRentNegotiable">Negotiable</mat-checkbox>
+            </div>
           </div>
+
           <div class="col-md-4 col-xs-12">
-            <label for="IsRentNegotiable" class="form-label">Is Rent Negotiable</label>
-            <input type="number" formControlName="isRentNegotiable" class="form-control" id="IsRentNegotiable" />
+            <label for="AdvanceMoney" class="form-label">Advance Money(Taka)</label>
+            <div class="input-group">
+              <input type="text" formControlName="advanceMoney" class="form-control" id="AdvanceMoney" />
+            </div>
           </div>
+
           <div class="col-md-4 col-xs-12">
             <label for="AvailableFrom" class="form-label">Available From</label>
             <input type="date" formControlName="availableFrom" class="form-control" id="AvailableFrom" />
@@ -59,24 +68,68 @@
           <div class="col-md-4 col-xs-12">
             <label for="RentType" class="form-label">Rent Type</label>
             <ng-select
-              [items]="persons$ | async"
+              [items]="rentType"
               id="RentType"
               [searchable]="true"
               bindValue="id"
               bindLabel="name"
               formControlName="rentType"
+              placeholder="Please select type"
             >
             </ng-select>
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="View" class="form-label">View</label>
             <ng-select
-              [items]="persons$ | async"
+              [items]="views"
               id="View"
               [searchable]="true"
               bindValue="id"
               bindLabel="name"
               formControlName="view"
+              placeholder="Please select flat view"
+            >
+            </ng-select>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="LandMarkIds" class="form-label">Land Marks</label>
+            <ng-select
+              [items]="views"
+              id="LandMarkIds"
+              [searchable]="true"
+              [multiple]="true"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="landMarkIds"
+              placeholder="Please select land marks"
+            >
+            </ng-select>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="Amenities" class="form-label">Amenities</label>
+            <ng-select
+              [items]="views"
+              id="Amenities"
+              [searchable]="true"
+              [multiple]="true"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="amenities"
+              placeholder="Please select amenities"
+            >
+            </ng-select>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="preferableReligion" class="form-label">Preferable Religion</label>
+            <ng-select
+              [items]="views"
+              id="preferableReligion"
+              [searchable]="true"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="preferableReligion"
+              placeholder="Please select preferable religion"
             >
             </ng-select>
           </div>
@@ -84,15 +137,10 @@
             <label for="Description" class="form-label">Description</label>
             <input type="text" formControlName="description" class="form-control" id="Description" />
           </div>
-
-          <div class="col-md-4 col-xs-12 pt-4">
-            <mat-checkbox formControlName="allowsPets" id="AllowsPets">Is AllowsPets</mat-checkbox>
-          </div>
           <div class="col-md-4 col-xs-12 pt-4">
             <mat-checkbox formControlName="isBachelorAllowed" id="IsBachelorAllowed">Is Bachelor Allowed</mat-checkbox>
-          </div>
-          <div class="col-md-4 col-xs-12 pt-4">
             <mat-checkbox formControlName="hasParking" id="HasParking">Has Parking</mat-checkbox>
+            <mat-checkbox formControlName="hasGenerator" id="HasGenerator">Is Generator Available</mat-checkbox>
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="CareTakerName" class="form-label">Care Taker Name</label>

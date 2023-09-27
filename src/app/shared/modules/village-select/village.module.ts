@@ -4,6 +4,7 @@ import { VillageSelectComponent } from './village-select.component';
 import { SharedModule } from '../../shared.module';
 import { OccupationService } from 'src/app/personnel/services/occupation.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    NgSelectModule,
   ],
   providers:[OccupationService],
   exports: [VillageSelectComponent]

@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../lib/material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { PersonService } from '../personnel/services/person.service';
+import { ToletService } from './services/tolet.service';
+import { ToletOptionsService } from './services/tolet-options.service';
+import { VillageModule } from '../shared/modules/village-select/village.module';
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { PersonService } from '../personnel/services/person.service';
     ReactiveFormsModule,
     HttpClientModule,
     NgSelectModule,
+    VillageModule
   ],
-  providers: [PersonService]
+  providers: [PersonService, ToletService, ToletOptionsService]
 })
 export class ToletModule { }

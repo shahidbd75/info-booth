@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { PersonService } from 'src/app/personnel/services/person.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { ToletService } from '../../services/tolet.service';
+import { ToletOptionsService } from '../../services/tolet-options.service';
+import { ToLetCreateRequestModel, ToLetUpdateRequestModel } from '../../types/tolet-request-model';
 
 @Component({
   selector: 'app-tolet',
@@ -14,11 +16,18 @@ import { ToletService } from '../../services/tolet.service';
 export class ToletComponent {
   toletForm: FormGroup;
   isEditMode = false;
+  selectedDistrictId: number;
+  selectedUpazilaId: number;
+  selectedVillageId: string;
+
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();
-  //workGroups$: Observable<OptionsModel[]> = this.workerService.getWorkGroups();
+  rentType: OptionsModel[] = [{id:1, name:'Family'},{id:2, name:'Bachelor'},{id:3, name:'Sublet'}]
+  views: OptionsModel[] = [{id:1, name:'South View'},{id:2, name:'North View'},{id:3, name:'East View'},{id:4, name:'West View'}];
+  //aminities$: Observable<OptionsModel[]> = 
+  //landmarks$: Observable<OptionsModel[]> = this.workerService.getWorkGroups();
 
   constructor(private fb: FormBuilder, private router: Router, private toletService: ToletService, 
-    private personService: PersonService, private activatedRoute: ActivatedRoute) {
+    private personService: PersonService, private activatedRoute: ActivatedRoute, public optionService: ToletOptionsService,) {
 
   }
   ngOnInit(): void {
@@ -46,6 +55,7 @@ export class ToletComponent {
       rent: ['', [Validators.required,Validators.maxLength(8)]],
       isRentNegotiable: [0, [Validators.required]],
       availableFrom: [null, [Validators.required]],
+      advanceMoney:[0],
       floorNumber: [null],
       totalFloor:[null],
       numberOfBed:[null],
@@ -54,29 +64,34 @@ export class ToletComponent {
       areaInSqFeet: [false],
       rentType:[null],
       view:[null],
-      allowsPets:[null],
+      hasGenerator:[null],
       isBachelorAllowed:[null],
       hasParking:[null],
       careTakerName:[null],
       careTakerPhone:[null],
+      landMarkIds:[null],
+      amenities:[null],
+      preferableReligion:[null],
     });
   }
 
   onWorkerSave() {
+    console.log(this.toletForm.value);
     // const {startTime, endTime, ...restValue} = this.toletForm.value;
 
-    // const requestModel: WorkerRequestModel = {...restValue, startTime, endTime};
+     const requestModel: ToLetCreateRequestModel = {...this.toletForm.value};
 
-    // this.toletService.saveWorker(requestModel).subscribe(()=> {
-    //   this.router.navigate(['worker/workers']);
-    // },(error) => console.log(error));
+    this.toletService.saveToLet(requestModel).subscribe(()=> {
+      this.router.navigate(['tolet/to-lets']);
+    },(error) => console.log(error));
   }
 
   onWorkerUpdate() {
-    // const requestModel: WorkerRequestModel = this.toletForm.value;
-    // this.toletService.updateWorker(requestModel).subscribe(()=> {
-    //   this.router.navigate(['worker/workers']);
-    // },(error) => console.log(error));
+    const requestModel: ToLetUpdateRequestModel = {...this.toletForm.value};
+
+    this.toletService.updateToLet(requestModel).subscribe(()=> {
+      this.router.navigate(['tolet/to-lets']);
+    },(error) => console.log(error));
   }
 
   resetForm() {
