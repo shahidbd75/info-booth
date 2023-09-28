@@ -15,6 +15,7 @@ import { OccupationsComponent } from './pages/occupations/occupations.component'
 import { OccupationComponent } from './pages/occupation/occupation.component';
 import { OccupationService } from './services/occupation.service';
 import { VillageModule } from '../shared/modules/village-select/village.module';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { VillageModule } from '../shared/modules/village-select/village.module';
     RouterModule,
     SharedModule,
     VillageModule,
+    NgSelectModule
   ],
   providers: [PersonService,OccupationService]
 })

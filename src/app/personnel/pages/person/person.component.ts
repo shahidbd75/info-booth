@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonService } from '../../services/person.service';
-import { PersonCreateRequestModel, PersonResponseModel, PersonUpdateRequestModel } from '../../types/person.model';
+import { PersonCreateRequestModel, PersonUpdateRequestModel } from '../../types/person.model';
 import { Observable } from 'rxjs';
 import { OccupationService } from '../../services/occupation.service';
 import { OptionsService } from 'src/app/shared/services/options.service';
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class PersonComponent implements OnInit{
   personForm: FormGroup;
   isEditMode = false;
-  upazilas$: Observable<OptionsModel[]>;
+  religions$: Observable<OptionsModel[]> = this.optionsService.getReligions();
   villages$: Observable<OptionsModel[]>;
   occupations$: Observable<OptionsModel[]>;
   selectedDistrictId: number;
@@ -24,7 +24,7 @@ export class PersonComponent implements OnInit{
   selectedVillageId: string;
 
   constructor(private formBuilder: FormBuilder, private personService: PersonService,
-    private router: Router, public occupationService: OccupationService) {
+    private router: Router, public occupationService: OccupationService, private optionsService: OptionsService) {
     this.createForm();
   }
   ngOnInit(): void {

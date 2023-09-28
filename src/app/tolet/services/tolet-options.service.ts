@@ -24,4 +24,8 @@ export class ToletOptionsService {
   getLandMarks(): Observable<Array<OptionsModel>> {
     return this.http.get<Array<OptionsModel>>(API_ENDPOINT_CONST.TOLET.LANDMARK_OPTIONS);
   }
+
+  getReligions(): Observable<Array<OptionsModel>> {
+    return this.http.get<Array<OptionsModel>>(API_ENDPOINT_CONST.OPTIONS.RELIGIONS);
+  }
 }

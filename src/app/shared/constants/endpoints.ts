@@ -15,7 +15,8 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     OCCUPATION_BASE: `${BASE_URL}Occupations`,
   },
   OPTIONS: {
-    OPTION_BASE: `${BASE_URL}Options`
+    OPTION_BASE: `${BASE_URL}Options`,
+    RELIGIONS: `${BASE_URL}Options/religions`,
   },
   LOCATION: {
     VILLAGE_BASE: `${BASE_URL}Villages`
@@ -24,11 +25,11 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     WORKER_BASE: `${BASE_URL}Worker`
   },
   TOLET: {
-    TOLET_BASE: `${BASE_URL}`,
-    AMENITY_OPTIONS: `${BASE_URL}`,
-    FLAT_TYPE_OPTIONS: `${BASE_URL}`,
-    FLAT_VIEW_OPTIONS: `${BASE_URL}`,
-    LANDMARK_OPTIONS: `${BASE_URL}`,
+    TOLET_BASE: `${BASE_URL}ToLets`,
+    AMENITY_OPTIONS: `${BASE_URL}ToLetsOptions/amenities`,
+    FLAT_TYPE_OPTIONS: `${BASE_URL}ToLetsOptions/rent-types`,
+    FLAT_VIEW_OPTIONS: `${BASE_URL}ToLetsOptions/flat-views`,
+    LANDMARK_OPTIONS: `${BASE_URL}ToLetsOptions/land-marks`,
   }
 }
 
@@ -56,6 +57,7 @@ export interface Personnel {
 
 export interface Options {
   OPTION_BASE: string;
+  RELIGIONS:string;
 }
 
 export interface Location {

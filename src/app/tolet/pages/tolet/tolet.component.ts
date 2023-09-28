@@ -1,19 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PersonService } from 'src/app/personnel/services/person.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { ToletService } from '../../services/tolet.service';
 import { ToletOptionsService } from '../../services/tolet-options.service';
 import { ToLetCreateRequestModel, ToLetUpdateRequestModel } from '../../types/tolet-request-model';
+import { ToLetDetailResponseModel } from '../../types/tolet-response-model';
 
 @Component({
   selector: 'app-tolet',
   templateUrl: './tolet.component.html',
   styleUrls: ['./tolet.component.scss']
 })
-export class ToletComponent {
+export class ToletComponent implements OnInit{
   toletForm: FormGroup;
   isEditMode = false;
   selectedDistrictId: number;
@@ -21,18 +22,20 @@ export class ToletComponent {
   selectedVillageId: string;
 
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();
-  rentType: OptionsModel[] = [{id:1, name:'Family'},{id:2, name:'Bachelor'},{id:3, name:'Sublet'}]
-  views: OptionsModel[] = [{id:1, name:'South View'},{id:2, name:'North View'},{id:3, name:'East View'},{id:4, name:'West View'}];
-  //aminities$: Observable<OptionsModel[]> = 
-  //landmarks$: Observable<OptionsModel[]> = this.workerService.getWorkGroups();
+  rentTypes$: Observable<OptionsModel[]> = this.optionService.getFlatTypes();
+  views$: Observable<OptionsModel[]> = this.optionService.getFlatViews();
+  aminities$: Observable<OptionsModel[]> = this.optionService.getAmenities();
+  landmarks$: Observable<OptionsModel[]> = this.optionService.getLandMarks();
+  religions$: Observable<OptionsModel[]> = this.optionService.getReligions();
 
   constructor(private fb: FormBuilder, private router: Router, private toletService: ToletService, 
     private personService: PersonService, private activatedRoute: ActivatedRoute, public optionService: ToletOptionsService,) {
 
   }
+
   ngOnInit(): void {
     this.initializeFormGroup();
-    this.loadData();
+    this.loadFromParam();
   }
  
   loadData() {
@@ -108,13 +111,13 @@ export class ToletComponent {
     return date.toLocaleTimeString([], {timeStyle:'short'});
   }
   private loadFromParam() {
-    // this.activatedRoute.params.subscribe((param: Params) => {
-    //   const { id } = param;
-    //   if (id) {
-    //     this.toletService.getWorkerById(id).subscribe((worker: WorkerResponseModel) => {
-    //       this.toletForm.patchValue(worker);
-    //     });
-    //   }
-    // });
+    this.activatedRoute.params.subscribe((param: Params) => {
+      const { id } = param;
+      if (id) {
+        this.toletService.getToLetById(id).subscribe((tolet: ToLetDetailResponseModel) => {
+          this.toletForm.patchValue(tolet);
+        });
+      }
+    });
   }
 }

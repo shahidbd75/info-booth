@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OptionsService {
-
   constructor(private http: HttpClient) { }
 
   getDistricts(): Observable<Array<OptionsModel>>{
@@ -25,6 +24,10 @@ export class OptionsService {
 
   getGoodAts(): Observable<Array<OptionsModel>>{
     return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.OPTION_BASE}/good-ats`);
+  }
+
+  getReligions(): Observable<OptionsModel[]> {
+    return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.RELIGIONS}`);
   }
 
 }

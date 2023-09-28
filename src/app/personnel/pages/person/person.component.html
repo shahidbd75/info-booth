@@ -42,11 +42,7 @@
             <label for="religion" class="form-label">Religion</label>
             <select class="form-select" aria-label="Please select religion" id="religion" formControlName="religion">
               <option selected value="null">N/A</option>
-              <option value="1">Islam</option>
-              <option value="2">Hindu</option>
-              <option value="3">Buddha</option>
-              <option value="4">Christian</option>
-              <option value="5">Others</option>
+              <option *ngFor="let religion of religions$ | async" [value]="religion.id">{{religion.name}}</option>
             </select>
           </div>
           <div class="col-md-4">
@@ -67,10 +63,17 @@
           </div>
           <div class="col-md-4">
             <label for="occupation" class="form-label">Occupation</label>
-            <select class="form-select" aria-label="Please select occupation" formControlName="occupation" id="occupation">
-              <option selected value="null">Please select occupation</option>
-              <option *ngFor="let occupation of occupations$ | async" [value]="occupation.id">{{occupation.name}}</option>
-            </select>
+              <ng-select
+              [items]="occupations$ | async"
+              id="occupation"
+              [searchable]="true"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="occupation"
+              placeholder="Please select occupation"
+            >
+            </ng-select>
           </div>
           <div class="col-md-4">
             <label for="age" class="form-label">Age</label>
