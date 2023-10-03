@@ -56,25 +56,26 @@ export class ToletComponent implements OnInit{
       personId: [null, [Validators.required]],
       title: ['', [Validators.required,Validators.maxLength(100)]],
       rent: ['', [Validators.required,Validators.maxLength(8)]],
-      isRentNegotiable: [0, [Validators.required]],
+      isRentNegotiable: [false, [Validators.required]],
       availableFrom: [null, [Validators.required]],
       advanceMoney:[0],
-      floorNumber: [null],
-      totalFloor:[null],
-      numberOfBed:[null],
-      numberOfBath:[null],
+      floorNumber: [0],
+      totalFloor:[0],
+      numberOfBed:[0],
+      numberOfBath:[0],
       description: ['', [Validators.maxLength(250)]],
       areaInSqFeet: [false],
-      rentType:[null],
-      view:[null],
-      hasGenerator:[null],
-      isBachelorAllowed:[null],
-      hasParking:[null],
+      rentTypeId:[null],
+      viewId:[null],
+      hasGenerator:[false],
+      isBachelorAllowed:[false],
+      hasParking:[false],
       careTakerName:[null],
       careTakerPhone:[null],
       landMarkIds:[null],
       amenities:[null],
       preferableReligion:[null],
+      villageId: [null, [Validators.required]]
     });
   }
 
@@ -99,6 +100,10 @@ export class ToletComponent implements OnInit{
 
   resetForm() {
     this.router.navigate(['tolet/to-lets']);
+  }
+
+  onVillageChange(villageId: string) {
+    this.toletForm.patchValue({villageId});
   }
 
   private formatTime(inputTime: string): string {

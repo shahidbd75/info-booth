@@ -7,7 +7,7 @@
     <mat-card-content>
       <mat-divider></mat-divider>
       <div class="g-3 pt-2">
-        <app-village-select [districtId]="selectedDistrictId" [upazilaId]="selectedUpazilaId" villageId="selectedVillageId" />
+        <app-village-select [districtId]="selectedDistrictId" [upazilaId]="selectedUpazilaId" villageId="selectedVillageId" (villageChanges)="onVillageChange($event)"/>
         <div class="row">
           <div class="col-md-4 col-xs-12">
             <label for="personId" class="form-label">Owner</label>
@@ -29,7 +29,7 @@
           <div class="col-md-4 col-xs-12">
             <label for="rent" class="form-label">Rent(Taka)</label>
             <div class="input-group">
-              <input type="text" formControlName="rent" class="form-control" id="rent" />
+              <input type="number" formControlName="rent" class="form-control" id="rent" />
               <mat-checkbox formControlName="isRentNegotiable" id="IsRentNegotiable">Negotiable</mat-checkbox>
             </div>
           </div>
@@ -37,7 +37,7 @@
           <div class="col-md-4 col-xs-12">
             <label for="AdvanceMoney" class="form-label">Advance Money(Taka)</label>
             <div class="input-group">
-              <input type="text" formControlName="advanceMoney" class="form-control" id="AdvanceMoney" />
+              <input type="number" formControlName="advanceMoney" class="form-control" id="AdvanceMoney" />
             </div>
           </div>
 
@@ -73,7 +73,7 @@
               [searchable]="true"
               bindValue="id"
               bindLabel="name"
-              formControlName="rentType"
+              formControlName="rentTypeId"
               placeholder="Please select type"
             >
             </ng-select>
@@ -86,7 +86,7 @@
               [searchable]="true"
               bindValue="id"
               bindLabel="name"
-              formControlName="view"
+              formControlName="viewId"
               placeholder="Please select flat view"
             >
             </ng-select>
@@ -112,7 +112,7 @@
               id="Amenities"
               [searchable]="true"
               [multiple]="true"
-              bindValue="id"
+              bindValue="name"
               bindLabel="name"
               formControlName="amenities"
               placeholder="Please select amenities"

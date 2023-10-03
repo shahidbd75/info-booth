@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { ToletService } from '../../services/tolet.service';
@@ -12,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
   templateUrl: './tolets.component.html',
   styleUrls: ['./tolets.component.scss']
 })
-export class ToletsComponent {
+export class ToletsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['village','title', 'rent', 'availableFrom','accomodation','rentType','area', 'postedBy','isActive', 'actions'];
   dataSource = new MatTableDataSource<ToLetTableResponseModel>();
   isLoading = false;
@@ -24,18 +24,46 @@ export class ToletsComponent {
   keyword = '';
   sortField = 'name';
   sortOrder = 'asc';
+  toLets: ToLetTableResponseModel[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private toletService: ToletService, private router: Router) {
 
   }
+  
+  ngOnInit(): void {
+    this.loadData();
+  }
 
-  loadData() {}
+  ngOnDestroy(): void {
+    this.subscription$?.unsubscribe();
+  }
+
+  loadData() {
+    this.isLoading = true;
+    this.subscription$ = this.toletService.getToLets().subscribe((_items: ToLetTableResponseModel[]) => {
+      this.toLets = _items;
+      this.dataSource = new MatTableDataSource(_items);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.isLoading = false;
+      this.sortChange();
+    });
+  }
 
   onPageChange(event: PageEvent): void {
     this.page = event.pageIndex;
     this.pageSize = event.pageSize;
+  }
+
+  onFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   sortChange() {
