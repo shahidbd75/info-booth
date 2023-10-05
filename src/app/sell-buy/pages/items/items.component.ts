@@ -15,7 +15,7 @@ import { ItemTransactionType } from '../../enums/transaction-type';
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.scss']
 })
-export class ItemsComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ItemsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'subCategoryName', 'transactionType','postedBy', 'actions'];
   dataSource: MatTableDataSource<ItemResponseModel>;
   selection = new SelectionModel<ItemResponseModel>(true, []);
@@ -41,16 +41,13 @@ export class ItemsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.loadData();
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
   loadData() {
       this.isLoading = true;
       this.subscription$ = this.itemService.getItems().subscribe(_items => {
       this.dataSource = new MatTableDataSource(_items);
       this.isLoading = false;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       this.sortChange();
     });
   }

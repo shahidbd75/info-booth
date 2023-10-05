@@ -15,6 +15,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { MaterialModule } from '../lib/material/material.module';
 import { SharedModule } from '../shared/shared.module';
 import { BookCategoryService } from './services/book-category.service';
+import { EditionService } from './services/edition.service';
+import { BookService } from './services/book.service';
 
 
 @NgModule({
@@ -37,6 +39,6 @@ import { BookCategoryService } from './services/book-category.service';
     HttpClientModule,
     NgSelectModule,
   ],
-  providers: [BookCategoryService]
+  providers: [BookCategoryService, EditionService, BookService]
 })
 export class BookModule { }
