@@ -9,6 +9,7 @@ import { VillageComponent } from './pages/village/village.component';
 import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { VillageService } from './services/village.service';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -25,6 +26,7 @@ import { VillageService } from './services/village.service';
     ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
+    NgSelectModule,
     RouterModule.forChild([
       {
         path:'', component: LayoutComponent,

@@ -43,7 +43,7 @@ export class VillageComponent implements OnInit{
     this.villageForm = this.fb.group({
       id: [null],
       districtId:[null],
-      upazilaId: [null],
+      upazilaId: [null, [Validators.required]],
       name: ['',[Validators.required]],
       banglaName:['']
     });

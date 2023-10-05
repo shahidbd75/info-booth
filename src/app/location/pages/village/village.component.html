@@ -9,17 +9,27 @@
       <div class="row g-3 pt-2">
         <div class="col-md-4">
           <label for="district" class="form-label">District</label>
-          <select class="form-select" formControlName="districtId" aria-label="Please select district" id="district" (change)="loadUpazilas()">
-            <option selected value="null">Please select district</option>
-            <option *ngFor="let item of districts$ | async" value={{item.id}}>{{item.name}}</option>
-          </select>
+          <ng-select [items]="districts$ | async"
+              id="district"
+              [searchable]="true"
+              bindValue="id" 
+              bindLabel="name"
+              formControlName="districtId"
+              placeholder="Please select district"
+              (change)="loadUpazilas()"
+              >
+          </ng-select>
         </div>
         <div class="col-md-4">
           <label for="upazila" class="form-label">Upazila</label>
-          <select class="form-select" formControlName="upazilaId" aria-label="Please select upazila" id="upazila">
-            <option selected value="null">Please select upazila</option>
-            <option *ngFor="let item of upazilas$ | async" value={{item.id}}>{{item.name}}</option>
-          </select>
+          <ng-select [items]="upazilas$ | async"
+              id="upazila"
+              [searchable]="true"
+              bindValue="id" 
+              bindLabel="name"
+              formControlName="upazilaId"
+              placeholder="Please select upazila"
+              />
         </div>
         <div class="col-md-4 col-xs-12">
           <label for="name" class="form-label">Name</label>

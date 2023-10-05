@@ -30,6 +30,11 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     FLAT_TYPE_OPTIONS: `${BASE_URL}ToLetsOptions/rent-types`,
     FLAT_VIEW_OPTIONS: `${BASE_URL}ToLetsOptions/flat-views`,
     LANDMARK_OPTIONS: `${BASE_URL}ToLetsOptions/land-marks`,
+  },
+  BOOK: {
+    BOOK_CATEGORIES_BASE:`${BASE_URL}BookCategory`,
+    BOOK_BASE: `${BASE_URL}Books`,
+    EDITION_BASE: `${BASE_URL}Edition`,
   }
 }
 
@@ -40,6 +45,7 @@ export interface APIEndPoints {
   LOCATION: Location;
   WORKER: Worker;
   TOLET: Tolet;
+  BOOK: Book;
 }
 
 export interface BuySell {
@@ -74,4 +80,10 @@ export interface Tolet {
   FLAT_VIEW_OPTIONS: string;
   LANDMARK_OPTIONS: string;
   FLAT_TYPE_OPTIONS: string;
+}
+
+export interface Book {
+  BOOK_BASE: string;
+  BOOK_CATEGORIES_BASE: string;
+  EDITION_BASE: string;
 }

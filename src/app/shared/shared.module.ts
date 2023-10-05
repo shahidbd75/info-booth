@@ -12,6 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+import { BaseHttpService } from './services/base.service';
 
 
 
@@ -35,6 +36,6 @@ import { HttpClientModule } from '@angular/common/http';
         MatMenuModule,
         MatIconModule,
         MatButtonModule,
-    ]
+    ], providers: [BaseHttpService]
 })
 export class SharedModule { }
