@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class BaseHttpService {
   protected BASE_URL: string;
-  constructor(private http: HttpClient) { 
+  constructor(protected http: HttpClient) { 
   }
 
   setBaseUrl(baseUrl: string): void {
