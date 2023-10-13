@@ -17,6 +17,7 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
   OPTIONS: {
     OPTION_BASE: `${BASE_URL}Options`,
     RELIGIONS: `${BASE_URL}Options/religions`,
+    CONDITIONS: `${BASE_URL}Options/conditions`
   },
   LOCATION: {
     VILLAGE_BASE: `${BASE_URL}Villages`
@@ -35,6 +36,9 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     BOOK_CATEGORIES_BASE:`${BASE_URL}BookCategory`,
     BOOK_BASE: `${BASE_URL}Books`,
     EDITION_BASE: `${BASE_URL}Edition`,
+  },
+  COMMON: {
+    LANGUAGE_BASE: `${BASE_URL}Language`
   }
 }
 
@@ -46,6 +50,7 @@ export interface APIEndPoints {
   WORKER: Worker;
   TOLET: Tolet;
   BOOK: Book;
+  COMMON:Common;
 }
 
 export interface BuySell {
@@ -64,6 +69,7 @@ export interface Personnel {
 export interface Options {
   OPTION_BASE: string;
   RELIGIONS:string;
+  CONDITIONS:string;
 }
 
 export interface Location {
@@ -86,4 +92,8 @@ export interface Book {
   BOOK_BASE: string;
   BOOK_CATEGORIES_BASE: string;
   EDITION_BASE: string;
+}
+
+export interface Common {
+  LANGUAGE_BASE: string;
 }

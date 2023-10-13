@@ -9,9 +9,9 @@ export type BookResponseModel = {
     availability:      boolean;
     detail:            string;
     condition:         number;
-    editionId:         number;
-    languageId:        number;
-    categoryId:        number;
+    editionId:         string;
+    languageId:        string;
+    categoryId:        string;
     categoryName:      string;
     edition:           string;
     language:          string;
@@ -28,16 +28,16 @@ export type BookRequestModel = {
     title:             string;
     author:            string;
     publisher:         string;
-    publicationDate:   string;
+    publicationDate?:   string;
     coverPhoto:        string;
     price:             number;
     quantity:          number;
     availability:      boolean;
     detail:            string;
     condition:         number;
-    editionId:         number;
-    languageId:        number;
-    categoryId:        number;
+    editionId:         string;
+    languageId:        string;
+    categoryId:        string;
     isPriceNegotiable: boolean;
     personId:          string;
 }

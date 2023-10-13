@@ -5,6 +5,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { BookCreateRequestModel, BookResponseModel, BookUpdateRequestModel } from '../../types/book-model';
 import { OptionsModel } from 'src/app/shared/models/options-model';
+import { OptionsService } from 'src/app/shared/services/options.service';
+import { BookCategoryCreateRequestModel, BookCategoryUpdateRequestModel } from '../../types/book-category-model';
 
 @Component({
   selector: 'app-book',
@@ -18,8 +20,10 @@ export class BookComponent implements OnInit, OnDestroy{
   categories$: Observable<Array<OptionsModel>> = this.bookService.getBookCategories();
   editions$: Observable<Array<OptionsModel>> = this.bookService.getBookEditions();
   persons$: Observable<Array<OptionsModel>> = this.bookService.getPersonOptions();
+  languages$: Observable<Array<OptionsModel>> = this.bookService.getLanguageOptions();
+  conditions$: Observable<Array<OptionsModel>> = this.optionService.getConditions();
   constructor(private formBuilder: FormBuilder, private bookService: BookService, private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute, private optionService: OptionsService) {
 
   } 
 
@@ -47,7 +51,7 @@ export class BookComponent implements OnInit, OnDestroy{
   }
 
   onSave() {
-    const requestModel: BookCreateRequestModel = this.formGroup.value;
+    const requestModel: BookCreateRequestModel = this.getRequestData();
 
     this.subscription.add(this.bookService.save(requestModel).subscribe(()=> {
       this.router.navigate(['book/books']);
@@ -55,7 +59,7 @@ export class BookComponent implements OnInit, OnDestroy{
   }
 
   onUpdate() {
-    const requestModel: BookUpdateRequestModel = this.formGroup.value;
+    const requestModel= this.getRequestData();
 
     this.subscription.add(this.bookService.update(requestModel).subscribe(()=> {
       this.router.navigate(['book/books']);
@@ -80,14 +84,22 @@ export class BookComponent implements OnInit, OnDestroy{
       const id: string = params['id'];
       if(id) {
         this.subscription.add(this.bookService.getById<BookResponseModel>(id).subscribe((data: BookResponseModel) => {
-          const {isActive, ...restValue} = data;
+          console.log(data);
+          const {isActive, categoryName,personName,villageId,villageName,language,edition, ...restValue} = data;
           this.formGroup.setValue({
-            ...restValue
+            ...restValue,
           });
         }));
 
         this.isEditMode = true;
       }
     })
+  }
+
+  private getRequestData(): (BookCreateRequestModel | BookUpdateRequestModel) {
+    const {condition,publicationDate, ...restValue}: (BookCreateRequestModel | BookUpdateRequestModel) 
+    = this.formGroup.value;
+
+    return {...restValue, condition: +condition, publicationDate};
   }
 }

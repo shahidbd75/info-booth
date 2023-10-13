@@ -24,4 +24,8 @@ export class BookService extends BaseHttpService{
   getPersonOptions(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(`${API_ENDPOINT_CONST.PERSONNEL.PERSON_BASE}/options`);
   }
+
+  getLanguageOptions(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(`${API_ENDPOINT_CONST.COMMON.LANGUAGE_BASE}/options`);
+  }
 }

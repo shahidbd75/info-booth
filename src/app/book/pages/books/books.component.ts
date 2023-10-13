@@ -66,7 +66,6 @@ export class BooksComponent implements OnInit, OnDestroy {
 
   sortChange() {
     this.sort.sortChange.subscribe((_sort: Sort)=> {
-      console.log(_sort);
       this.page = 0;
       this.sortField = _sort.active;
       this.sortOrder = _sort.direction;

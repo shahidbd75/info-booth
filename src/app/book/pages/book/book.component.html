@@ -51,32 +51,30 @@
               </div>
               <div class="col-md-4 col-xs-12">
                 <label for="condition" class="form-label">Condition</label>
-                <select class="form-select" formControlName="condition" aria-label="Please select condition" id="condition">
-                  <option selected value="null">Please select condition</option>
-                  <option value="1">New</option>
-                  <option value="2">Used</option>
-                  <option value="3">Intake</option>
-                  <option value="4">Like New</option>
-                  <option value="5">Running</option>
-                  <option value="6">Not Working</option>
-                </select>
+                <ng-select formControlName="condition"
+                [items]="conditions$ | async"
+                id="condition"
+                [searchable]="false"
+                bindValue="id" 
+                bindLabel="name"
+                placeholder="Please select condition"
+              ></ng-select>
               </div>
               <div class="col-md-12 col-xs-12">
                 <label for="detail" class="form-label">Detail</label>
                 <input type="text" formControlName="detail" class="form-control" id="detail" />
               </div>
               <div class="col-md-4 col-xs-12">
-                <label for="publisher" class="form-label">Edition</label>
+                <label for="editionId" class="form-label">Edition</label>
                 <ng-select formControlName="editionId"
                   [items]="editions$ | async"
-                  id="personId"
+                  id="editionId"
                   [searchable]="true"
                   bindValue="id" 
                   bindLabel="name"
                   placeholder="Please select edition"
                 ></ng-select>
-              </div>
-             
+              </div>             
               <div class="col-md-4 col-xs-12">
                 <label for="categoryId" class="form-label">Category</label>
                 <ng-select [items]="categories$ | async"
@@ -86,6 +84,17 @@
                       bindLabel="name"
                       placeholder="Please select book category"
                       formControlName="categoryId">
+                  </ng-select>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <label for="language" class="form-label">Language</label>
+                <ng-select [items]="languages$ | async"
+                      id="language"
+                      [searchable]="true"
+                      bindValue="id" 
+                      bindLabel="name"
+                      placeholder="Please select language"
+                      formControlName="languageId">
                   </ng-select>
               </div>
             </div>

@@ -30,4 +30,7 @@ export class OptionsService {
     return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.RELIGIONS}`);
   }
 
+  getConditions(): Observable<OptionsModel[]> {
+    return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.CONDITIONS}`);
+  }
 }
