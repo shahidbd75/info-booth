@@ -84,7 +84,6 @@ export class BookComponent implements OnInit, OnDestroy{
       const id: string = params['id'];
       if(id) {
         this.subscription.add(this.bookService.getById<BookResponseModel>(id).subscribe((data: BookResponseModel) => {
-          console.log(data);
           const {isActive, categoryName,personName,villageId,villageName,language,edition, ...restValue} = data;
           this.formGroup.setValue({
             ...restValue,
@@ -99,7 +98,6 @@ export class BookComponent implements OnInit, OnDestroy{
   private getRequestData(): (BookCreateRequestModel | BookUpdateRequestModel) {
     const {condition,publicationDate, ...restValue}: (BookCreateRequestModel | BookUpdateRequestModel) 
     = this.formGroup.value;
-
     return {...restValue, condition: +condition, publicationDate};
   }
 }

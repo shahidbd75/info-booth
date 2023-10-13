@@ -28,7 +28,7 @@ export type BookRequestModel = {
     title:             string;
     author:            string;
     publisher:         string;
-    publicationDate?:   string;
+    publicationDate?:   Date;
     coverPhoto:        string;
     price:             number;
     quantity:          number;
