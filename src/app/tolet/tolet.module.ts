@@ -33,6 +33,10 @@ import { VillageModule } from '../shared/modules/village-select/village.module';
     NgSelectModule,
     VillageModule
   ],
-  providers: [PersonService, ToletService, ToletOptionsService]
+  providers: [PersonService, ToletService, ToletOptionsService,
+    {
+      provide: 'MENU_ITEMS', useValue: null
+    
+  }]
 })
 export class ToletModule { }

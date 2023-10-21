@@ -16,8 +16,8 @@ export type WorkerResponseModel = {
     workAbilities:    OptionsModel[];
     preferableDays:   OptionsModel[];
     village:          string;
-    upazila:          string;
-    district:         string;
+    workerPhone:      string;
+    occupation:       string;
     isActive:         boolean;
 };
 
@@ -25,8 +25,8 @@ export type WorkerTableModel = {
     id:               string;
     name:             string;
     village:          string;
-    upazila:          string;
-    district:         string;
+    occupation:       string;
+    phone:            string;
     isActive:         boolean;
     goodAts:          string;
     workGroups:       string;

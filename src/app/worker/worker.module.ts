@@ -37,6 +37,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NgSelectModule
   ],
-  providers: [WorkerService, PersonService]
+  providers: [WorkerService, PersonService, {
+    provide: 'MENU_ITEMS', useValue: null
+  }]
 })
 export class WorkerModule { }

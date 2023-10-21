@@ -46,10 +46,10 @@ export class WorkerComponent implements OnInit {
   initializeFormGroup() {
     this.workerForm = this.fb.group({
       personId: [null, [Validators.required]],
-      teamLeaderName: ['', [Validators.required,Validators.maxLength(100)]],
-      teamLeaderMobile: ['', [Validators.required,Validators.maxLength(30)]],
-      totalTeamMember: [0, [Validators.required]],
-      expectedWages: [0, [Validators.required, Validators.maxLength(10)]],
+      teamLeaderName: ['', [Validators.maxLength(100)]],
+      teamLeaderMobile: ['', [Validators.maxLength(30)]],
+      totalTeamMember: [0],
+      expectedWages: ['', [Validators.required, Validators.maxLength(10)]],
       goodAts: [null],
       workGroups:[null],
       workAbilities:[null],

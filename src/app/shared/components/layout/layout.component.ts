@@ -1,9 +1,10 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, Inject, inject, OnInit} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Observable} from "rxjs";
 import {map, shareReplay} from "rxjs/operators";
 import { GlobalDataContextService } from '../../services/global-data-context.service';
 import { MenuType } from '../../models/menu-model';
+
 
 @Component({
   selector: 'app-layout',
@@ -27,14 +28,15 @@ export class LayoutComponent implements OnInit{
   ngOnInit(): void {
     this.navigation = [
       {text: 'Sub Categories', link:'buy-sell/sub-categories'},
+      {text: 'Items', link: 'buy-sell'},
       {text: 'Occupations', link: 'personnel/occupations'},
       {text: 'Persons', link: 'personnel/persons'},
-      {text: 'Items', link: 'buy-sell'},
       {text: 'Villages', link: 'location/villages'},
       {text: 'Workers', link: 'worker/workers'},
       {text: 'ToLets', link: 'tolet/to-lets'},
       {text: 'Book Categories', link: 'book/book-categories'},
       {text: 'Editions', link: 'book/editions'},
+      {text: 'Languages', link: 'settings/languages'},
       {text: 'Books', link: 'book/books'},
     ];
 

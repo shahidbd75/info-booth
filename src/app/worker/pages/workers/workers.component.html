@@ -21,22 +21,23 @@
   
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
-          <ng-container matColumnDef="district">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>District</th>
-            <td mat-cell *matCellDef="let row"> {{row.district}} </td>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
           </ng-container>
-          <ng-container matColumnDef="upazila">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Upazila</th>
-            <td mat-cell *matCellDef="let row"> {{row.upazila}} </td>
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+            <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
+          </ng-container>
+          <ng-container matColumnDef="occupation">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Occupation</th>
+            <td mat-cell *matCellDef="let row"> {{row.occupation}} </td>
           </ng-container>
           <ng-container matColumnDef="village">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Village</th>
             <td mat-cell *matCellDef="let row"> {{row.village}} </td>
           </ng-container>
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-          </ng-container>
+
           <ng-container matColumnDef="expectedWages">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Expected Wages</th>
             <td mat-cell *matCellDef="let row"> {{row.expectedWages}} </td>

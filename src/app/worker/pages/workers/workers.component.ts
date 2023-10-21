@@ -14,7 +14,7 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
   styleUrls: ['./workers.component.scss']
 })
 export class WorkersComponent implements OnInit, OnDestroy{
-  displayedColumns: string[] = ['district','upazila', 'village', 'name','expectedWages','goodAts','actions'];
+  displayedColumns: string[] = ['name','phone','occupation', 'village','expectedWages','goodAts','actions'];
   dataSource:MatTableDataSource<WorkerTableModel>;
   isLoading = false;
   subscription$: Subscription;
@@ -46,11 +46,11 @@ export class WorkersComponent implements OnInit, OnDestroy{
         return {
           id: _item.id,
           name: _item.workerName,
-          district: _item.district,
+          phone: _item.workerPhone,
           expectedWages: _item.expectedWages,
           isActive: _item.isActive,
           village: _item.village,
-          upazila: _item.upazila,
+          occupation: _item.occupation,
           goodAts: _item.goodAts?.map(g=>g.name).join(','),
           preferableDays: _item.preferableDays?.map(g=>g.name).join(','),
           workAbilities: _item.workAbilities?.map(g=>g.name).join(','),
