@@ -7,7 +7,7 @@
       <span [routerLink]="['.']" class="home">Dashboard</span>
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item *ngFor="let nav of navigation" routerLink={{nav.link}}>{{nav.text}}</a>
+      <a mat-list-item *ngFor="let nav of contextService.menus$ | async" routerLink={{nav.link}}>{{nav.text}}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

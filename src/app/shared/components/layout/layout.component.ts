@@ -1,9 +1,8 @@
-import {Component, Inject, inject, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Observable} from "rxjs";
 import {map, shareReplay} from "rxjs/operators";
 import { GlobalDataContextService } from '../../services/global-data-context.service';
-import { MenuType } from '../../models/menu-model';
 
 
 @Component({
@@ -11,41 +10,14 @@ import { MenuType } from '../../models/menu-model';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit{
-  navigation: Array<MenuType>;
+export class LayoutComponent {
   private breakpointObserver = inject(BreakpointObserver);
 
-  constructor(private globalDataContextService: GlobalDataContextService){}
+  constructor(public contextService: GlobalDataContextService){}
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
-    
-    
-    
-  ngOnInit(): void {
-    this.navigation = [
-      {text: 'Sub Categories', link:'buy-sell/sub-categories'},
-      {text: 'Items', link: 'buy-sell'},
-      {text: 'Occupations', link: 'personnel/occupations'},
-      {text: 'Persons', link: 'personnel/persons'},
-      {text: 'Villages', link: 'location/villages'},
-      {text: 'Workers', link: 'worker/workers'},
-      {text: 'ToLets', link: 'tolet/to-lets'},
-      {text: 'Book Categories', link: 'book/book-categories'},
-      {text: 'Editions', link: 'book/editions'},
-      {text: 'Languages', link: 'settings/languages'},
-      {text: 'Books', link: 'book/books'},
-    ];
-
-    // this.globalDataContextService.menus$.subscribe((newMenus:MenuType[]) => {
-    //   if(newMenus.length > 0) {
-    //     this.navigation = [...newMenus];
-    //   }
-    // });
-  }
-
-
 }

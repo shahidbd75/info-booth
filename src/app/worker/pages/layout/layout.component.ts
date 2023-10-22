@@ -9,10 +9,7 @@ import { GlobalDataContextService } from 'src/app/shared/services/global-data-co
 })
 export class LayoutComponent {
   bookMenus: MenuType[] = [
-    {text: 'Book Categories', link: 'book/book-categories'},
-    {text: 'Editions', link: 'book/editions'},
-    {text: 'Languages', link: 'settings/languages'},
-    {text: 'Books', link: 'book/books'},
+    {text: 'Workers', link: 'worker/workers'},
   ];
   constructor(private globalDataContextService: GlobalDataContextService) {
     this.globalDataContextService.menus$.next(this.bookMenus);

@@ -14,6 +14,7 @@ import { PersonService } from '../personnel/services/person.service';
 import { ToletService } from './services/tolet.service';
 import { ToletOptionsService } from './services/tolet-options.service';
 import { VillageModule } from '../shared/modules/village-select/village.module';
+import { GlobalDataContextService } from '../shared/services/global-data-context.service';
 
 
 @NgModule({
@@ -33,10 +34,6 @@ import { VillageModule } from '../shared/modules/village-select/village.module';
     NgSelectModule,
     VillageModule
   ],
-  providers: [PersonService, ToletService, ToletOptionsService,
-    {
-      provide: 'MENU_ITEMS', useValue: null
-    
-  }]
+  providers: [PersonService, ToletService, ToletOptionsService ]
 })
 export class ToletModule { }

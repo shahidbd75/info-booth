@@ -15,6 +15,7 @@ const routes: Routes = [
     {path: 'worker', loadChildren: () => import('./worker/worker.module').then(m => m.WorkerModule)},
     {path: 'tolet', loadChildren: () => import('./tolet/tolet.module').then(m => m.ToletModule)},
     {path: 'book', loadChildren: () => import('./book/book.module').then(m => m.BookModule)},
+    {path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)},
     {path: '', component: DashboardComponent}
   ]},
   {path: 'not-authorize', component: NotAuthorizeComponent},

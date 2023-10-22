@@ -23,7 +23,6 @@ import { ItemDataService } from './services/item-data.service';
 import { SharedModule } from '../shared/shared.module';
 import { GlobalDataContextService } from '../shared/services/global-data-context.service';
 import { VillageModule } from '../shared/modules/village-select/village.module';
-import { VillageSelectComponent } from '../shared/modules/village-select/village-select.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +48,7 @@ import { VillageSelectComponent } from '../shared/modules/village-select/village
         PersonnelModule,
         VillageModule
     ],
-  providers: [CategoryService,SubCategoryService, ItemService, ItemDataService, GlobalDataContextService],
+  providers: [CategoryService,SubCategoryService, ItemService, ItemDataService],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class SellBuyModule { }

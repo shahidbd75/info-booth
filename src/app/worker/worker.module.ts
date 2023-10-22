@@ -6,11 +6,12 @@ import { MaterialModule } from '../lib/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
+import { LayoutComponent } from './pages/layout/layout.component';
 import { WorkerService } from './services/worker.service';
 import { WorkersComponent } from './pages/workers/workers.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PersonService } from '../personnel/services/person.service';
+import { GlobalDataContextService } from '../shared/services/global-data-context.service';
 
 const routes: Routes = [
   { path: '', component: LayoutComponent, children: [
@@ -37,8 +38,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     NgSelectModule
   ],
-  providers: [WorkerService, PersonService, {
-    provide: 'MENU_ITEMS', useValue: null
-  }]
+  providers: [WorkerService, PersonService]
 })
 export class WorkerModule { }

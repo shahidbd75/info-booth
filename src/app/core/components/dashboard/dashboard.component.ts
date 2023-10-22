@@ -1,8 +1,8 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit, inject } from '@angular/core';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
-import { GlobalDataContextService } from '../../services/global-data-context.service';
-import { BaseMenus } from '../../constants/base-menus';
+import { map } from 'rxjs';
+import { BaseMenus } from 'src/app/shared/constants/base-menus';
+import { GlobalDataContextService } from 'src/app/shared/services/global-data-context.service';
 
 @Component({
   selector: 'app-dashboard',
