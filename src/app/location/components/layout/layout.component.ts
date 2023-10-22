@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-setting-layout',
+  selector: 'app-location-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })

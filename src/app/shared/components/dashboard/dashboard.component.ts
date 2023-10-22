@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
   );
 
   ngOnInit(): void {
-    this.contextService.menus$.next(BaseMenus);
+    setTimeout(() => 
+    this.contextService.menus$.next(BaseMenus), 0);
   }
 }

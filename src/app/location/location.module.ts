@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../lib/material/material.module';
 import { VillageComponent } from './pages/village/village.component';
 import { RouterModule } from '@angular/router';
-import { LayoutComponent } from './pages/layout/layout.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { VillageService } from './services/village.service';
 import { NgSelectModule } from '@ng-select/ng-select';
 

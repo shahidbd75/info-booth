@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ItemsComponent } from './pages/items/items.component';
-import { LayoutComponent } from './pages/layout/layout.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { ItemComponent } from './pages/item/item.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';

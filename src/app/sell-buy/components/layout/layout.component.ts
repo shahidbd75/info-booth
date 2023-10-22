@@ -3,7 +3,7 @@ import { MenuType } from 'src/app/shared/models/menu-model';
 import { GlobalDataContextService } from 'src/app/shared/services/global-data-context.service';
 
 @Component({
-  selector: 'app-layout',
+  selector: 'app-sellbuy-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
