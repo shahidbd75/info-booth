@@ -1,21 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DegreeService } from '../../services/degree.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CreateRequestModel, UpdateRequestModel } from '../../types/common-request-type';
 import { CommonResponseModel } from '../../types/common-response-type';
+import { DesignationService } from '../../services/designation.service';
 
 @Component({
-  selector: 'app-degree',
-  templateUrl: './degree.component.html',
-  styleUrls: ['./degree.component.scss']
+  selector: 'app-designation',
+  templateUrl: './designation.component.html',
+  styleUrls: ['./designation.component.scss']
 })
-export class DegreeComponent implements OnInit, OnDestroy {
+export class DesignationComponent implements OnInit, OnDestroy {
   isEditMode = false;
   formGroup: FormGroup;
   subscription: Subscription = new Subscription();
-  constructor(private formBuilder: FormBuilder, private degreeService: DegreeService, private router: Router,
+  constructor(private formBuilder: FormBuilder, private designationService: DesignationService, private router: Router,
               private activatedRoute: ActivatedRoute) {
 
   } 
@@ -33,7 +33,7 @@ export class DegreeComponent implements OnInit, OnDestroy {
   onSave() {
     const requestModel: CreateRequestModel = this.formGroup.value;
 
-    this.subscription.add(this.degreeService.save(requestModel).subscribe(()=> {
+    this.subscription.add(this.designationService.save(requestModel).subscribe(()=> {
       this.router.navigate(['cv/degrees']);
     },()=> console.log('Not saved')));
   }
@@ -41,7 +41,7 @@ export class DegreeComponent implements OnInit, OnDestroy {
   onUpdate() {
     const requestModel: UpdateRequestModel = this.formGroup.value;
 
-    this.subscription.add(this.degreeService.update(requestModel).subscribe(()=> {
+    this.subscription.add(this.designationService.update(requestModel).subscribe(()=> {
       this.router.navigate(['cv/degrees']);
     },()=> console.log('Not updated')));
   }
@@ -58,7 +58,7 @@ export class DegreeComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe((params: Params) => {
       const id: string = params['id'];
       if(id) {
-        this.subscription.add(this.degreeService.getById<CommonResponseModel>(id).subscribe((data: CommonResponseModel) => {
+        this.subscription.add(this.designationService.getById<CommonResponseModel>(id).subscribe((data: CommonResponseModel) => {
           const {createdDate, isActive, ...restValue} = data;
           this.formGroup.setValue({
             ...restValue

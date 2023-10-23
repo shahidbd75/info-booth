@@ -1,18 +1,18 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, ViewChild } from '@angular/core';
 import { CommonResponseModel } from '../../types/common-response-type';
-import { Subscription } from 'rxjs';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { DesignationService } from '../../services/designation.service';
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { DegreeService } from '../../services/degree.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-degrees',
-  templateUrl: './degrees.component.html',
-  styleUrls: ['./degrees.component.scss']
+  selector: 'app-designations',
+  templateUrl: './designations.component.html',
+  styleUrls: ['./designations.component.scss']
 })
-export class DegreesComponent implements OnInit, OnDestroy {
+export class DesignationsComponent {
   displayedColumns: string[] = ['name','banglaName','createdDate', 'actions'];
   dataSource = new MatTableDataSource<CommonResponseModel>();
   isLoading = false;
@@ -28,7 +28,7 @@ export class DegreesComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private degreeService: DegreeService, private router: Router){}
+  constructor(private designationService: DesignationService, private router: Router){}
 
   ngOnInit(): void {
     this.loadData();
@@ -40,7 +40,7 @@ export class DegreesComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.isLoading = true;
-    this.subscription$ = this.degreeService.getAll<CommonResponseModel>().subscribe((_items: CommonResponseModel[]) => {
+    this.subscription$ = this.designationService.getAll<CommonResponseModel>().subscribe((_items: CommonResponseModel[]) => {
       this.bookCategories = _items;
       this.dataSource = new MatTableDataSource(_items);
       this.dataSource.paginator = this.paginator;
@@ -74,13 +74,13 @@ export class DegreesComponent implements OnInit, OnDestroy {
   }
 
   onEdit(model: CommonResponseModel) {
-    this.router.navigate([`cv/degree/${model.id}`]);
+    this.router.navigate([`cv/designation/${model.id}`]);
   }
 
   onDelete(element: CommonResponseModel) {
     const { id }= element;
     if(confirm('Do you want to delete?') && id) {
-      this.degreeService.remove(id).subscribe(()=> {
+      this.designationService.remove(id).subscribe(()=> {
         this.loadData();
       })
     }

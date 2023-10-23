@@ -39,10 +39,15 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
   },
   COMMON: {
     LANGUAGE_BASE: `${BASE_URL}Language`
+  },
+  CV: {
+    DEGREE_BASE: `${BASE_URL}Degrees`,
+    DESIGNATION_BASE: `${BASE_URL}Designations`,
   }
 }
 
 export interface APIEndPoints {
+  CV: Cv;
   BUY_SELL: BuySell;
   PERSONNEL: Personnel;
   OPTIONS: Options;
@@ -96,4 +101,9 @@ export interface Book {
 
 export interface Common {
   LANGUAGE_BASE: string;
+}
+
+export interface Cv {
+  DEGREE_BASE: string;
+  DESIGNATION_BASE: string;
 }
