@@ -76,6 +76,20 @@
             </ng-select>
           </div>
           <div class="col-md-4">
+            <label for="degreeId" class="form-label">Education Level</label>
+              <ng-select
+              [items]="degrees$ | async"
+              id="degreeId"
+              [searchable]="true"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="degreeId"
+              placeholder="Please select last degree"
+            >
+            </ng-select>
+          </div>
+          <div class="col-md-4">
             <label for="age" class="form-label">Age</label>
             <input type="text" formControlName="age" class="form-control" id="age">
           </div>

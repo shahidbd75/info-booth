@@ -13,10 +13,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { DesignationComponent } from './pages/designation/designation.component';
 import { DesignationsComponent } from './pages/designations/designations.component';
 import { DesignationService } from './services/designation.service';
+import { SubjectComponent } from './pages/subject/subject.component';
+import { SubjectsComponent } from './pages/subjects/subjects.component';
+import { SubjectService } from './services/subject.service';
 
 
 @NgModule({
-  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent],
+  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent, SubjectComponent, SubjectsComponent],
   imports: [
     CommonModule,
     CvRoutingModule,
@@ -26,6 +29,6 @@ import { DesignationService } from './services/designation.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [DegreeService, DesignationService]
+  providers: [DegreeService, DesignationService, SubjectService]
 })
 export class CvModule { }

@@ -17,6 +17,7 @@ export class PersonComponent implements OnInit{
   personForm: FormGroup;
   isEditMode = false;
   religions$: Observable<OptionsModel[]> = this.optionsService.getReligions();
+  degrees$: Observable<OptionsModel[]> = this.optionsService.getDegrees();
   villages$: Observable<OptionsModel[]>;
   occupations$: Observable<OptionsModel[]>;
   selectedDistrictId: number;
@@ -35,7 +36,7 @@ export class PersonComponent implements OnInit{
 
   private loadPerson() {
     if (this.personService.selectedPerson) {
-      const { districtId, upazilaId, villageId,occupationId,occupationName,districtName,upazilaName,villageName, ...person } = this.personService.selectedPerson;
+      const { districtId, upazilaId, villageId,occupationId,occupationName,districtName,upazilaName,villageName, degreeName, ...person } = this.personService.selectedPerson;
       this.personForm.setValue({ ...person, villageId, occupation:occupationId});
       this.isEditMode = true;
 
@@ -57,6 +58,7 @@ export class PersonComponent implements OnInit{
       this.router.navigate(['/personnel/persons']);
     });
   }
+
   onPersonUpdate() {
     const {gender,occupation, religion,... restValue} = this.personForm.value;
     const requestModel: PersonUpdateRequestModel = {...restValue,  gender: +gender, occupationId: +occupation,
@@ -99,6 +101,7 @@ export class PersonComponent implements OnInit{
       nId: [''],
       dateOfBirth:[null],
       postalCode: [''],
+      degreeId: [null],
       villageId:[null, Validators.required]
     });
   }

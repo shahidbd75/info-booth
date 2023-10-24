@@ -43,6 +43,13 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
   CV: {
     DEGREE_BASE: `${BASE_URL}Degrees`,
     DESIGNATION_BASE: `${BASE_URL}Designations`,
+    AWARD_BASE: `${BASE_URL}Awards`,
+    EDUCATION_BASE: `${BASE_URL}Education`,
+    SUBJECT_BASE: `${BASE_URL}Subjects`,
+    EXPERIENCE_BASE: `${BASE_URL}Experience`,
+  },
+  CV_OPTIONS : {
+    GET_DEGREES: `${BASE_URL}CvOptions/degrees`,
   }
 }
 
@@ -56,6 +63,7 @@ export interface APIEndPoints {
   TOLET: Tolet;
   BOOK: Book;
   COMMON:Common;
+  CV_OPTIONS: CvOptions;
 }
 
 export interface BuySell {
@@ -106,4 +114,12 @@ export interface Common {
 export interface Cv {
   DEGREE_BASE: string;
   DESIGNATION_BASE: string;
+  SUBJECT_BASE: string;
+  AWARD_BASE: string;
+  EDUCATION_BASE: string;
+  EXPERIENCE_BASE: string;
+}
+
+export interface CvOptions {
+  GET_DEGREES: string;
 }

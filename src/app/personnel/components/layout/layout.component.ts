@@ -14,6 +14,6 @@ export class LayoutComponent {
     {text: 'Villages', link: 'location/villages'},
   ];
   constructor(private globalDataContextService: GlobalDataContextService) {
-    this.globalDataContextService.menus$.next(this.personnelMenus);
+    setTimeout(()=>this.globalDataContextService.menus$.next(this.personnelMenus),0);
   }
 }

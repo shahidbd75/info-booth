@@ -1,21 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { SubjectService } from '../../services/subject.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CreateRequestModel, UpdateRequestModel } from '../../types/common-request-type';
 import { CommonResponseModel } from '../../types/common-response-type';
-import { DesignationService } from '../../services/designation.service';
 
 @Component({
-  selector: 'app-designation',
-  templateUrl: './designation.component.html',
-  styleUrls: ['./designation.component.scss']
+  selector: 'app-subject',
+  templateUrl: './subject.component.html',
+  styleUrls: ['./subject.component.scss']
 })
-export class DesignationComponent implements OnInit, OnDestroy {
+export class SubjectComponent implements OnInit, OnDestroy {
   isEditMode = false;
   formGroup: FormGroup;
   subscription: Subscription = new Subscription();
-  constructor(private formBuilder: FormBuilder, private designationService: DesignationService, private router: Router,
+  constructor(private formBuilder: FormBuilder, private subjectService: SubjectService, private router: Router,
               private activatedRoute: ActivatedRoute) {
 
   } 
@@ -33,16 +33,16 @@ export class DesignationComponent implements OnInit, OnDestroy {
   onSave() {
     const requestModel: CreateRequestModel = this.formGroup.value;
 
-    this.subscription.add(this.designationService.save(requestModel).subscribe(()=> {
-      this.router.navigate(['cv/designations']);
+    this.subscription.add(this.subjectService.save(requestModel).subscribe(()=> {
+      this.router.navigate(['cv/subjects']);
     },()=> console.log('Not saved')));
   }
 
   onUpdate() {
     const requestModel: UpdateRequestModel = this.formGroup.value;
 
-    this.subscription.add(this.designationService.update(requestModel).subscribe(()=> {
-      this.router.navigate(['cv/designations']);
+    this.subscription.add(this.subjectService.update(requestModel).subscribe(()=> {
+      this.router.navigate(['cv/subjects']);
     },()=> console.log('Not updated')));
   }
 
@@ -58,7 +58,7 @@ export class DesignationComponent implements OnInit, OnDestroy {
     this.activatedRoute.params.subscribe((params: Params) => {
       const id: string = params['id'];
       if(id) {
-        this.subscription.add(this.designationService.getById<CommonResponseModel>(id).subscribe((data: CommonResponseModel) => {
+        this.subscription.add(this.subjectService.getById<CommonResponseModel>(id).subscribe((data: CommonResponseModel) => {
           const {createdDate, isActive, ...restValue} = data;
           this.formGroup.setValue({
             ...restValue

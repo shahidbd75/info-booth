@@ -33,4 +33,7 @@ export class OptionsService {
   getConditions(): Observable<OptionsModel[]> {
     return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.CONDITIONS}`);
   }
+  getDegrees(): Observable<OptionsModel[]> {
+    return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.CV_OPTIONS.GET_DEGREES}`);
+  }
 }

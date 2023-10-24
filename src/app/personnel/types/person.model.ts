@@ -23,6 +23,7 @@ export type PersonResponseModel = {
   upazilaId:          number;
   districtId:         number;
   districtName:       string;
+  degreeName:         string;
 };
 
 export type PersonCreateRequestModel = PersonResponseModel;

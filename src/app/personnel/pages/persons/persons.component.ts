@@ -15,7 +15,7 @@ import { Gender } from '../../enums/gender.enum';
   styleUrls: ['./persons.component.scss']
 })
 export class PersonsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name', 'phone', 'gender', 'address', 'actions'];
+  displayedColumns: string[] = ['name', 'phone', 'gender','degreeName', 'address', 'actions'];
   dataSource = new MatTableDataSource<PersonResponseModel>();
   selection = new SelectionModel<PersonResponseModel>(true, []);
   isLoading = false;
