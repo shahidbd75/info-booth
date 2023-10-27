@@ -16,10 +16,22 @@ import { DesignationService } from './services/designation.service';
 import { SubjectComponent } from './pages/subject/subject.component';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { SubjectService } from './services/subject.service';
+import { ProfessionalComponent } from './pages/professional/professional.component';
+import { ProfessionalsComponent } from './pages/professionals/professionals.component';
+import { MatrimonialsComponent } from './pages/matrimonials/matrimonials.component';
+import { MatrimonialComponent } from './pages/matrimonial/matrimonial.component';
+import { ProfessionalBasicComponent } from './components/professional-basic/professional-basic.component';
+import { MatrimonialBasicComponent } from './components/matrimonial-basic/matrimonial-basic.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { PersonService } from '../personnel/services/person.service';
+import { EducationComponent } from './components/education/education.component';
+import { ExperienceComponent } from './components/experience/experience.component';
+import { TrainingComponent } from './components/training/training.component';
+import { JobReferenceComponent } from './components/job-reference/job-reference.component';
 
 
 @NgModule({
-  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent, SubjectComponent, SubjectsComponent],
+  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent, SubjectComponent, SubjectsComponent, ProfessionalComponent, ProfessionalsComponent, MatrimonialsComponent, MatrimonialComponent, ProfessionalBasicComponent, MatrimonialBasicComponent, EducationComponent, ExperienceComponent, TrainingComponent, JobReferenceComponent],
   imports: [
     CommonModule,
     CvRoutingModule,
@@ -28,7 +40,8 @@ import { SubjectService } from './services/subject.service';
     SharedModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgSelectModule
   ],
-  providers: [DegreeService, DesignationService, SubjectService]
+  providers: [DegreeService, DesignationService, SubjectService, PersonService]
 })
 export class CvModule { }

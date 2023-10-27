@@ -1,0 +1,67 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Professional CV</mat-card-title>
+      <mat-card-subtitle>CV</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+     
+      <mat-stepper linear orientation="horizontal" (selectionChange)="OnSelectedChange($event.selectedIndex)">
+        <mat-step>
+            <ng-template matStepLabel>Basic</ng-template>
+            <ng-template matStepContent>
+              <app-professional-basic *ngIf="currentIndex === 0"></app-professional-basic>
+              <button color="primary" mat-button matStepperNext>Next</button>
+            </ng-template>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Education</ng-template>
+            <ng-template matStepContent>
+            <app-education *ngIf="currentIndex === 1"/>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+            </ng-template>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Experience</ng-template>
+            <app-experience *ngIf="currentIndex === 2"/>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Training</ng-template>
+            <app-training *ngIf="currentIndex === 3"/>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Job Reference</ng-template>
+            <app-job-reference *ngIf="currentIndex === 4"/>
+            <button mat-button matStepperPrevious>Back</button>
+        </mat-step>
+      </mat-stepper>
+
+
+    </mat-card-content>
+    <mat-card-actions class="action-button-container">
+      <!-- <button
+        mat-raised-button
+        color="primary"
+        (click)="onSave()"
+        [disabled]="!formGroup.valid"
+        *ngIf="!isEditMode"
+      >
+        Add
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onUpdate()"
+        [disabled]="!formGroup.valid"
+        *ngIf="isEditMode"
+      >
+        Update
+      </button>
+      <button mat-raised-button (click)="resetForm()">Cancel</button> -->
+    </mat-card-actions>
+  </mat-card>

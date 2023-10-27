@@ -7,6 +7,8 @@ import { DesignationsComponent } from './pages/designations/designations.compone
 import { DesignationComponent } from './pages/designation/designation.component';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { SubjectComponent } from './pages/subject/subject.component';
+import { ProfessionalComponent } from './pages/professional/professional.component';
+import { MatrimonialComponent } from './pages/matrimonial/matrimonial.component';
 
 const routes: Routes = [
   { path: '', component: LayoutComponent, children: [
@@ -19,6 +21,8 @@ const routes: Routes = [
     { path: 'subjects', component: SubjectsComponent },
     { path: 'subject/:id', component: SubjectComponent },
     { path: 'subject', component: SubjectComponent },
+    { path: 'professional', component: ProfessionalComponent },
+    { path: 'matrimonial', component: MatrimonialComponent },
   ]}
 ];
 
