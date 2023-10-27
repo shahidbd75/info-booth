@@ -6,6 +6,24 @@
     <mat-card-content>
       <mat-divider></mat-divider>
      
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12" *ngIf="!personId">
+          <label for="personId" class="form-label">Person</label>
+          <ng-select [items]="persons$ | async"
+              id="personId"
+              [searchable]="true"
+              bindValue="id" 
+              bindLabel="name"
+              placeholder="Please select a person"
+              [formControl]="personControl"
+              (change)="onPersonSelect()">
+          </ng-select>
+        </div>
+        <div class="col-md-2 col-sm-6 pt-3 mt-3" *ngIf="personId">
+          <button mat-raised-button color="accent">Change Person</button>
+        </div>
+      </div>
+
       <mat-stepper linear orientation="horizontal" (selectionChange)="OnSelectedChange($event.selectedIndex)">
         <mat-step>
             <ng-template matStepLabel>Basic</ng-template>

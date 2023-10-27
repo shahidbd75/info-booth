@@ -1,41 +1,111 @@
-<form [formGroup]="formGroup">
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="degreeId" class="form-label">Degree</label>
-            <input type="text" formControlName="degreeId" class="form-control" id="degreeId" />
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Experience</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="formGroup">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="degreeId" class="form-label">Degree</label>
+                    <ng-select [items]="degrees$ | async" id="degreeId" [searchable]="true" bindValue="id"
+                        bindLabel="name" formControlName="degreeId">
+                    </ng-select>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="subjectId" class="form-label">Subject</label>
+                    <ng-select [items]="subjects$ | async" id="subjectId" [searchable]="true" bindValue="id"
+                        bindLabel="name" formControlName="subjectId">
+                    </ng-select>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="instituteName" class="form-label">Institute Name</label>
+                    <input type="text" formControlName="instituteName" class="form-control" id="instituteName" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="group" class="form-label">group</label>
+                    <input type="text" formControlName="group" class="form-control" id="group" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="startDate" class="form-label">Start Date</label>
+                    <input type="date" formControlName="startDate" class="form-control" id="startDate" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="endDate" class="form-label">End Date</label>
+                    <input type="date" formControlName="endDate" class="form-control" id="endDate" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="result" class="form-label">Result</label>
+                    <input type="text" formControlName="result" class="form-control" id="result" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="gpa" class="form-label">GPA</label>
+                            <input type="number" formControlName="gpa" class="form-control" id="gpa" />
+                        </div>
+                        <div class="col-6">
+                            <label for="gpa" class="form-label">Out Of</label>
+                            <input type="number" formControlName="gpaOutOf" class="form-control" id="gpaOutOf" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="passingYear" class="form-label">Passing Year</label>
+                    <input type="text" formControlName="passingYear" class="form-control" id="passingYear" />
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions  class="action-button-container">
+        <button mat-raised-button (click)="onSave()" color="primary">Save</button>
+        <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
+    </mat-card-actions>
+</mat-card>
+<mat-card>
+    <mat-card-content>
+        <div class="mat-elevation-z8">
+            <table mat-table #table [dataSource]="dataSource">
+                <ng-container matColumnDef="degreeName">
+                    <th mat-header-cell *matHeaderCellDef> Degree </th>
+                    <td mat-cell *matCellDef="let row"> {{row.degreeName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="subjectName">
+                    <th mat-header-cell *matHeaderCellDef> Subject </th>
+                    <td mat-cell *matCellDef="let row"> {{row.subjectName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="instituteName">
+                    <th mat-header-cell *matHeaderCellDef> Institute </th>
+                    <td mat-cell *matCellDef="let row"> {{row.instituteName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="group">
+                    <th mat-header-cell *matHeaderCellDef> Group </th>
+                    <td mat-cell *matCellDef="let row"> {{row.group}} </td>
+                </ng-container>
+                <ng-container matColumnDef="result">
+                    <th mat-header-cell *matHeaderCellDef> Result </th>
+                    <td mat-cell *matCellDef="let row"> {{row.result}} </td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let element">
+                      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Exit and delete menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item color="primary" (click)="onEdit(element)">
+                          <mat-icon aria-label="Edit">edit</mat-icon>
+                          <span>Edit</span>
+                        </button>
+                        <button mat-menu-item color="warn" (click)="onDelete(element)">
+                          <mat-icon aria-label="Delete">delete</mat-icon>
+                          <span>Delete</span>
+                        </button>
+                      </mat-menu>
+                    </td>
+                  </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columns"></tr>
+                <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+            </table>
         </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="subjectId" class="form-label">Subject</label>
-            <input type="text" formControlName="subjectId" class="form-control" id="subjectId" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="instituteName" class="form-label">Institute Name</label>
-            <input type="text" formControlName="instituteName" class="form-control" id="instituteName" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="startDate" class="form-label">Start Date</label>
-            <input type="date" formControlName="startDate" class="form-control" id="startDate" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="endDate" class="form-label">End Date</label>
-            <input type="date" formControlName="endDate" class="form-control" id="endDate" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="group" class="form-label">group</label>
-            <input type="text" formControlName="group" class="form-control" id="group" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="result" class="form-label">Result</label>
-            <input type="text" formControlName="result" class="form-control" id="result" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="gpa" class="form-label">GPA</label>
-            <input type="number" formControlName="gpa" class="form-control" id="gpa" />
-            <input type="number" formControlName="gpaOutOf" class="form-control" id="gpaOutOf" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="passingYear" class="form-label">Passing Year</label>
-            <input type="text" formControlName="passingYear" class="form-control" id="passingYear" />
-        </div>
-    </div>
-</form>
+    </mat-card-content>
+</mat-card>

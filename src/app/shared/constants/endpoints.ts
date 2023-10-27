@@ -50,6 +50,8 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
   },
   CV_OPTIONS : {
     GET_DEGREES: `${BASE_URL}CvOptions/degrees`,
+    GET_DESIGNATIONS: `${BASE_URL}CvOptions/designations`,
+    GET_SUBJECTS: `${BASE_URL}CvOptions/subjects`,
   }
 }
 
@@ -121,5 +123,7 @@ export interface Cv {
 }
 
 export interface CvOptions {
+  GET_DESIGNATIONS: string;
   GET_DEGREES: string;
+  GET_SUBJECTS: string;
 }

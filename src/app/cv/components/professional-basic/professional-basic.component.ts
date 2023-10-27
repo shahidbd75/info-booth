@@ -1,8 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { PersonService } from 'src/app/personnel/services/person.service';
-import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Component({
   selector: 'app-professional-basic',
@@ -12,9 +9,8 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 export class ProfessionalBasicComponent implements OnInit, OnDestroy {
 
   professionalFormGroup: FormGroup;
-  persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();
 
-  constructor(private fb: FormBuilder, private personService: PersonService){}
+  constructor(private fb: FormBuilder){}
 
   ngOnInit(): void {
     this.professionalFormGroup = this.fb.group({
