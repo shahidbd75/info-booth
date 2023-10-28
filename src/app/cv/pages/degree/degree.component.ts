@@ -24,7 +24,8 @@ export class DegreeComponent implements OnInit, OnDestroy {
     this.formGroup = this.formBuilder.group({
       id: [null],
       name: ['', [Validators.required]],
-      banglaName: ['']
+      banglaName: [''],
+      order: [0, [Validators.required]]
     });
     
     this.loadData();

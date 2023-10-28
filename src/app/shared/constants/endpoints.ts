@@ -47,6 +47,7 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     EDUCATION_BASE: `${BASE_URL}Education`,
     SUBJECT_BASE: `${BASE_URL}Subjects`,
     EXPERIENCE_BASE: `${BASE_URL}Experience`,
+    PROFESSIONAL_BASIC: `${BASE_URL}ProfessionalCVs`
   },
   CV_OPTIONS : {
     GET_DEGREES: `${BASE_URL}CvOptions/degrees`,
@@ -114,6 +115,7 @@ export interface Common {
 }
 
 export interface Cv {
+  PROFESSIONAL_BASIC: string;
   DEGREE_BASE: string;
   DESIGNATION_BASE: string;
   SUBJECT_BASE: string;

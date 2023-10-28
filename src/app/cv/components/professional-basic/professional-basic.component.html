@@ -1,36 +1,49 @@
 <form [formGroup]="professionalFormGroup">
-    <div class="row">
-        <div class="col-lg-9 col-md-8 col-xs-12">
-            <label for="careerObjective" class="form-label">Career Objective</label>
-            <input type="text" formControlName="careerObjective" class="form-control" id="careerObjective" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="strength" class="form-label">Strength</label>
-            <input type="text" formControlName="strength" class="form-control" id="strength" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="linkedInProfileLink" class="form-label">LinkedIn Profile Link</label>
-            <input type="text" formControlName="linkedInProfileLink" class="form-control" id="linkedInProfileLink" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="extraCurriculumActivities" class="form-label">Extra Curriculum Activities</label>
-            <input type="text" formControlName="extraCurriculumActivities" class="form-control" id="extraCurriculumActivities" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="personalCapabilities" class="form-label">Personal Capabilities</label>
-            <input type="text" formControlName="personalCapabilities" class="form-control" id="personalCapabilities" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="hobby" class="form-label">Hobby</label>
-            <input type="text" formControlName="hobby" class="form-control" id="hobby" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="certification" class="form-label">Certification</label>
-            <input type="text" formControlName="certification" class="form-control" id="certification" />
-        </div>
-        <div class="col-lg-3 col-md-4 col-xs-12">
-            <label for="otherSkills" class="form-label">Other Skills</label>
-            <input type="text" formControlName="otherSkills" class="form-control" id="otherSkills" />
-        </div>
-    </div>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Basic Information</mat-card-title>
+        <mat-card-subtitle>professional cv</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-xs-12">
+                    <label for="careerObjective" class="form-label">Career Objective</label>
+                    <input type="text" formControlName="careerObjective" class="form-control" id="careerObjective" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="strength" class="form-label">Strength</label>
+                    <input type="text" formControlName="strength" class="form-control" id="strength" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="linkedInProfileLink" class="form-label">LinkedIn Profile Link</label>
+                    <input type="text" formControlName="linkedInProfileLink" class="form-control" id="linkedInProfileLink" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="extraCurriculumActivities" class="form-label">Extra Curriculum Activities</label>
+                    <input type="text" formControlName="extraCurriculumActivities" class="form-control" id="extraCurriculumActivities" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="personalCapabilities" class="form-label">Personal Capabilities</label>
+                    <input type="text" formControlName="personalCapabilities" class="form-control" id="personalCapabilities" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="hobby" class="form-label">Hobby</label>
+                    <input type="text" formControlName="hobby" class="form-control" id="hobby" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="certification" class="form-label">Certification</label>
+                    <input type="text" formControlName="certification" class="form-control" id="certification" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-xs-12">
+                    <label for="otherSkills" class="form-label">Other Skills</label>
+                    <input type="text" formControlName="otherSkills" class="form-control" id="otherSkills" />
+                </div>
+            </div>        
+    </mat-card-content>
+    <mat-card-actions  class="action-button-container">
+        <button mat-raised-button (click)="onSave()" color="primary">Save</button>
+        <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
+    </mat-card-actions>
+</mat-card>
 </form>

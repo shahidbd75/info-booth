@@ -1,5 +1,5 @@
 export type EducationRequestType = {
-    cvId:          number;
+    personId:          number;
     degreeId:      number;
     subjectId:     number;
     instituteName: string;
@@ -14,7 +14,7 @@ export type EducationRequestType = {
 
 export type EducationalResponseType = {
     id:            string;
-    cvId:          number;
+    personId:          number;
     degreeId:      number;
     subjectId:     number;
     instituteName: string;

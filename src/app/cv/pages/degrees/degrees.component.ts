@@ -13,7 +13,7 @@ import { DegreeService } from '../../services/degree.service';
   styleUrls: ['./degrees.component.scss']
 })
 export class DegreesComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name','banglaName','createdDate', 'actions'];
+  displayedColumns: string[] = ['name','banglaName','order','createdDate', 'actions'];
   dataSource = new MatTableDataSource<CommonResponseModel>();
   isLoading = false;
   subscription$: Subscription;

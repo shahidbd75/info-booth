@@ -7,7 +7,7 @@
       <mat-divider></mat-divider>
      
       <div class="row">
-        <div class="col-md-4 col-sm-6 col-xs-12" *ngIf="!personId">
+        <div class="col-md-4 col-sm-6 col-xs-12">
           <label for="personId" class="form-label">Person</label>
           <ng-select [items]="persons$ | async"
               id="personId"
@@ -28,33 +28,33 @@
         <mat-step>
             <ng-template matStepLabel>Basic</ng-template>
             <ng-template matStepContent>
-              <app-professional-basic *ngIf="currentIndex === 0"></app-professional-basic>
+              <app-professional-basic *ngIf="currentIndex === 0" ></app-professional-basic>
               <button color="primary" mat-button matStepperNext>Next</button>
             </ng-template>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Education</ng-template>
             <ng-template matStepContent>
-            <app-education *ngIf="currentIndex === 1"/>
+            <app-education *ngIf="currentIndex === 1" [PersonId]="personId"/>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
             </ng-template>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Experience</ng-template>
-            <app-experience *ngIf="currentIndex === 2"/>
+            <app-experience *ngIf="currentIndex === 2" [PersonId]="personId"/>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Training</ng-template>
-            <app-training *ngIf="currentIndex === 3"/>
+            <app-training *ngIf="currentIndex === 3" [PersonId]="personId"/>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Job Reference</ng-template>
-            <app-job-reference *ngIf="currentIndex === 4"/>
+            <app-job-reference *ngIf="currentIndex === 4" [PersonId]="personId"/>
             <button mat-button matStepperPrevious>Back</button>
         </mat-step>
       </mat-stepper>

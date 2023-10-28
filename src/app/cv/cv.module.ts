@@ -30,6 +30,8 @@ import { TrainingComponent } from './components/training/training.component';
 import { JobReferenceComponent } from './components/job-reference/job-reference.component';
 import { CvOptionsService } from './services/cv-options.service';
 import { EducationService } from './services/education.service';
+import { ProfessionalBasicService } from './services/professional-basic.service';
+import { ProfessionalCvDataService } from './services/professional-cv-data.service';
 
 
 @NgModule({
@@ -44,6 +46,13 @@ import { EducationService } from './services/education.service';
     HttpClientModule,
     NgSelectModule
   ],
-  providers: [DegreeService, DesignationService, SubjectService, PersonService, CvOptionsService, EducationService]
+  providers: [DegreeService, 
+    DesignationService, 
+    SubjectService, 
+    PersonService, 
+    CvOptionsService, 
+    EducationService, 
+    ProfessionalBasicService,
+    ProfessionalCvDataService]
 })
 export class CvModule { }

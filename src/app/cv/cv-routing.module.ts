@@ -21,6 +21,7 @@ const routes: Routes = [
     { path: 'subjects', component: SubjectsComponent },
     { path: 'subject/:id', component: SubjectComponent },
     { path: 'subject', component: SubjectComponent },
+    { path: 'professional/:id', component: ProfessionalComponent },
     { path: 'professional', component: ProfessionalComponent },
     { path: 'matrimonial', component: MatrimonialComponent },
   ]}

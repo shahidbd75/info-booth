@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ProfessionalCvDataService } from '../../services/professional-cv-data.service';
 
 @Component({
   selector: 'app-job-reference',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./job-reference.component.scss']
 })
 export class JobReferenceComponent {
-
+  @Input({required: true}) PersonId: string | null;
+  constructor(private dataService: ProfessionalCvDataService) {
+    
+  }
 }

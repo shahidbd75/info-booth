@@ -31,6 +31,10 @@
           <ng-container matColumnDef="banglaName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Bangla Name</th>
             <td mat-cell *matCellDef="let row">{{ row.banglaName }}</td>
+          </ng-container>
+          <ng-container matColumnDef="order">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Order</th>
+            <td mat-cell *matCellDef="let row">{{ row.order }}</td>
           </ng-container>      
           <ng-container matColumnDef="createdDate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Creadted Date</th>
