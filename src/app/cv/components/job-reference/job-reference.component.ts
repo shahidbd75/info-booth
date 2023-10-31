@@ -7,7 +7,7 @@ import { ProfessionalCvDataService } from '../../services/professional-cv-data.s
   styleUrls: ['./job-reference.component.scss']
 })
 export class JobReferenceComponent {
-  @Input({required: true}) PersonId: string | null;
+  personId: string | null;
   constructor(private dataService: ProfessionalCvDataService) {
     
   }

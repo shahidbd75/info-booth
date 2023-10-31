@@ -32,6 +32,7 @@ import { CvOptionsService } from './services/cv-options.service';
 import { EducationService } from './services/education.service';
 import { ProfessionalBasicService } from './services/professional-basic.service';
 import { ProfessionalCvDataService } from './services/professional-cv-data.service';
+import { ExperienceService } from './services/experience.service';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { ProfessionalCvDataService } from './services/professional-cv-data.servi
     CvOptionsService, 
     EducationService, 
     ProfessionalBasicService,
-    ProfessionalCvDataService]
+    ProfessionalCvDataService,
+    ExperienceService]
 })
 export class CvModule { }

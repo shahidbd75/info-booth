@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CvOptionsService } from '../../services/cv-options.service';
 import { Observable, Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { ProfessionalCvDataService } from '../../services/professional-cv-data.s
 })
 export class EducationComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
-  @Input({required: true}) PersonId: string | null;
+  personId: string | null;
   columns: string[] = ['degreeName','subjectName','instituteName','group','result', 'actions'];
   dataSource: MatTableDataSource<EducationalResponseType>;
   subscription: Subscription = new Subscription();

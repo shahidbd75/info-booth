@@ -47,12 +47,14 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     EDUCATION_BASE: `${BASE_URL}Education`,
     SUBJECT_BASE: `${BASE_URL}Subjects`,
     EXPERIENCE_BASE: `${BASE_URL}Experience`,
-    PROFESSIONAL_BASIC: `${BASE_URL}ProfessionalCVs`
+    PROFESSIONAL_BASIC: `${BASE_URL}ProfessionalCVs`,
+    GET_EXPERIENCE_BY_PERSON:(personId: string) =>  `${BASE_URL}Experience/${personId}/get-list`,
   },
   CV_OPTIONS : {
     GET_DEGREES: `${BASE_URL}CvOptions/degrees`,
     GET_DESIGNATIONS: `${BASE_URL}CvOptions/designations`,
     GET_SUBJECTS: `${BASE_URL}CvOptions/subjects`,
+    GET_JOB_NATURES: `${BASE_URL}CvOptions/job-natures`,
   }
 }
 
@@ -122,10 +124,12 @@ export interface Cv {
   AWARD_BASE: string;
   EDUCATION_BASE: string;
   EXPERIENCE_BASE: string;
+  GET_EXPERIENCE_BY_PERSON:(personId: string) => string;
 }
 
 export interface CvOptions {
   GET_DESIGNATIONS: string;
   GET_DEGREES: string;
   GET_SUBJECTS: string;
+  GET_JOB_NATURES: string;
 }

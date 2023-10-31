@@ -35,26 +35,26 @@
         <mat-step>
             <ng-template matStepLabel>Education</ng-template>
             <ng-template matStepContent>
-            <app-education *ngIf="currentIndex === 1" [PersonId]="personId"/>
+            <app-education *ngIf="currentIndex === 1" />
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
             </ng-template>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Experience</ng-template>
-            <app-experience *ngIf="currentIndex === 2" [PersonId]="personId"/>
+            <app-experience *ngIf="currentIndex === 2" />
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Training</ng-template>
-            <app-training *ngIf="currentIndex === 3" [PersonId]="personId"/>
+            <app-training *ngIf="currentIndex === 3"/>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Job Reference</ng-template>
-            <app-job-reference *ngIf="currentIndex === 4" [PersonId]="personId"/>
+            <app-job-reference *ngIf="currentIndex === 4" />
             <button mat-button matStepperPrevious>Back</button>
         </mat-step>
       </mat-stepper>
