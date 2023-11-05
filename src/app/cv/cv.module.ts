@@ -33,10 +33,12 @@ import { EducationService } from './services/education.service';
 import { ProfessionalBasicService } from './services/professional-basic.service';
 import { ProfessionalCvDataService } from './services/professional-cv-data.service';
 import { ExperienceService } from './services/experience.service';
+import { CvEnumOptionsService } from './services/cv-enum-options.service';
+import { TrainingService } from './services/training.service';
 
 
 @NgModule({
-  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent, SubjectComponent, SubjectsComponent, ProfessionalComponent, ProfessionalsComponent, MatrimonialsComponent, MatrimonialComponent, ProfessionalBasicComponent, MatrimonialBasicComponent, EducationComponent, ExperienceComponent, TrainingComponent, JobReferenceComponent],
+  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent, SubjectComponent, SubjectsComponent, ProfessionalComponent, ProfessionalsComponent, MatrimonialsComponent, MatrimonialComponent, ProfessionalBasicComponent, MatrimonialBasicComponent, EducationComponent, ExperienceComponent, TrainingComponent, JobReferenceComponent,],
   imports: [
     CommonModule,
     CvRoutingModule,
@@ -55,6 +57,8 @@ import { ExperienceService } from './services/experience.service';
     EducationService, 
     ProfessionalBasicService,
     ProfessionalCvDataService,
-    ExperienceService]
+    ExperienceService,
+    CvEnumOptionsService,
+    TrainingService]
 })
 export class CvModule { }

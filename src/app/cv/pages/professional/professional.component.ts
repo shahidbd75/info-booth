@@ -1,21 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { PersonService } from 'src/app/personnel/services/person.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
-import { ProfessionalCvDataService } from '../../services/professional-cv-data.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-professional',
   templateUrl: './professional.component.html',
   styleUrls: ['./professional.component.scss']
 })
-export class ProfessionalComponent {
+export class ProfessionalComponent implements OnInit {
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();
-  personId: string | null;
+  personId: string;
   personControl = new FormControl(null, [Validators.required]);
-  constructor(private personService: PersonService, private dataService: ProfessionalCvDataService) {}
+  constructor(private personService: PersonService, private activatedRoute: ActivatedRoute, private router: Router) {}
   currentIndex = 0;
+
+  ngOnInit(): void {
+      this.activatedRoute.params.subscribe((params: Params) => {
+        if(params['id']) {
+          this.personId = params['id'];
+          this.personControl.setValue(params['id']);
+          this.personControl.disable();
+        } else {
+          this.personId = '';
+          this.personControl.enable();
+        }
+      })
+  }
 
   OnSelectedChange(index: number) {
     this.currentIndex = index;
@@ -23,9 +36,12 @@ export class ProfessionalComponent {
 
   onPersonSelect() {
     if(this.personControl.valid) {
-      this.personId = this.personControl.value;
-      this.dataService.selectedPersonId = this.personControl.value;
+      this.router.navigate([`cv/professional/${this.personControl.value}`]);
       this.personControl.disable();
     }
+  }
+
+  onClearPerson() {
+    this.router.navigate([`cv/professional`]);
   }
 }

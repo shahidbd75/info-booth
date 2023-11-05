@@ -1,9 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ProfessionalBasicService } from '../../services/professional-basic.service';
-import { ProfessionalBasicRequestModel } from '../../types/professional-basic-types';
-import { ProfessionalCvDataService } from '../../services/professional-cv-data.service';
+import { ProfessionalBasicRequestModel, ProfessionalBasicResponseModel } from '../../types/professional-basic-types';
+import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
+import { OptionsModel } from 'src/app/shared/models/options-model';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-professional-basic',
@@ -11,35 +13,40 @@ import { ProfessionalCvDataService } from '../../services/professional-cv-data.s
   styleUrls: ['./professional-basic.component.scss']
 })
 export class ProfessionalBasicComponent implements OnInit, OnDestroy {
-
-  @Input() PersonId: string | null;
   professionalFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
-
+  isEditMode = false;
+  personId: string;
+  strengths$: Observable<OptionsModel[]> = this.enumOptionsService.getStrengths();
+  skills$: Observable<OptionsModel[]> = this.enumOptionsService.getSkills();
   constructor(private fb: FormBuilder, private professionalBasicService: ProfessionalBasicService, 
-    private dataService: ProfessionalCvDataService){}
+    private activatedRoute: ActivatedRoute, private enumOptionsService: CvEnumOptionsService){}
 
   ngOnInit(): void {
-    this.professionalFormGroup = this.fb.group({
-      personId: [this.dataService.selectedPersonId, [Validators.required]],
-      careerObjective: [''],
-      strength:[''],
-      linkedInProfileLink:[''],
-      extraCurriculumActivities: [''],
-      personalCapabilities:[''],
-      hobby: [''],
-      certification: [''],
-      passportSizePhotoUrl: [''],
-      signatureUrl: [''],
-      otherSkills: ['']
-    });
+    this.initializeForm();
+
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.personId = params['id'];
+      if(this.personId) {
+        this.professionalBasicService.getById<ProfessionalBasicResponseModel>(this.personId).subscribe({next:(response: ProfessionalBasicResponseModel) => {
+          this.setFormData(response);
+        },error: () => console.log('Failed')});
+      }
+    })
+    
   }
 
   onSave() {
     const requestModel: ProfessionalBasicRequestModel = this.professionalFormGroup.value;
-    this.subscription.add(this.professionalBasicService.save<ProfessionalBasicRequestModel,unknown>(requestModel).subscribe(()=> {
-      console.log('Saved')
-    }, (err)=> console.log(err)))
+    if(this.isEditMode) {
+      this.subscription.add(this.professionalBasicService.update<ProfessionalBasicRequestModel,unknown>(requestModel).subscribe({next:()=> {
+        console.log('Saved')
+      }, error: (err)=> console.log(err)}));
+    } else {
+      this.subscription.add(this.professionalBasicService.save<ProfessionalBasicRequestModel,unknown>(requestModel).subscribe({next:()=> {
+        console.log('Saved')
+      }, error: (err)=> console.log(err)}));
+    }    
   }
 
   onClear() {
@@ -51,4 +58,31 @@ export class ProfessionalBasicComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
   }
 
+  private setFormData(response: ProfessionalBasicResponseModel) {
+    if(response) {
+      this.isEditMode = true;
+      const {strength,otherSkills, ...restValue} = response;
+      this.professionalFormGroup.patchValue({
+        ...restValue,
+        strength: strength.split(','),
+        otherSkills: otherSkills.split(',')
+      });
+    }
+  }
+
+  private initializeForm() {
+    this.professionalFormGroup = this.fb.group({
+      personId: ['', [Validators.required]],
+      careerObjective: [''],
+      strength: [''],
+      linkedInProfileLink: [''],
+      extraCurriculumActivities: [''],
+      personalCapabilities: [''],
+      hobby: [''],
+      certification: [''],
+      passportSizePhotoUrl: [''],
+      signatureUrl: [''],
+      otherSkills: ['']
+    });
+  }
 }

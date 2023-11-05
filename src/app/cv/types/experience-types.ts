@@ -4,8 +4,8 @@ export type ExperienceRequestModel = {
     companyName:      string;
     companyAddress:   string;
     companyUrl:       string;
-    startDate:        string;
-    endDate:          string;
+    startDate?:       string;
+    endDate?:         string;
     designationId:    string;
     responsibilities: string;
     jobNature:        number;
@@ -19,8 +19,8 @@ export type ExperienceResponseType = {
     companyName:      string;
     companyAddress:   string;
     companyUrl:       string;
-    startDate:        string;
-    endDate:          string;
+    startDate?:       string;
+    endDate?:         string;
     designationId:    string;
     designationName:  string;
     responsibilities: string;

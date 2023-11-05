@@ -6,7 +6,7 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 import { MatTableDataSource } from '@angular/material/table';
 import { EducationService } from '../../services/education.service';
 import { EducationRequestType, EducationalResponseType } from '../../types/educational-types';
-import { ProfessionalCvDataService } from '../../services/professional-cv-data.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-education',
@@ -15,14 +15,14 @@ import { ProfessionalCvDataService } from '../../services/professional-cv-data.s
 })
 export class EducationComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
-  personId: string | null;
+  personId: string;
   columns: string[] = ['degreeName','subjectName','instituteName','group','result', 'actions'];
   dataSource: MatTableDataSource<EducationalResponseType>;
   subscription: Subscription = new Subscription();
   degrees$ : Observable<OptionsModel[]> = this.cvOptionsService.getDegrees();
   subjects$ : Observable<OptionsModel[]> = this.cvOptionsService.getSubjects();
   constructor(private fb: FormBuilder, private cvOptionsService: CvOptionsService, private educationService: EducationService,
-    private dataService: ProfessionalCvDataService) {}
+    private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -40,12 +40,25 @@ export class EducationComponent implements OnInit, OnDestroy {
     const {...restValue} = this.formGroup.value;
 
     const requestModel: EducationRequestType = {...restValue };
-    this.subscription.add(
-      this.educationService.save<EducationRequestType, unknown>(requestModel).subscribe(()=> {
-        this.loadAllEducation();
-        this.formGroup.reset();
-      }, () => console.log('Failed'))
-    );
+    if(requestModel.id) {
+      this.subscription.add(
+        this.educationService.update<EducationRequestType, unknown>(requestModel).subscribe({
+          next: ()=> {
+            this.loadAllEducation();
+            this.formGroup.reset();
+          }, error: () => console.log('Failed')
+        })
+      );
+    } else {
+      this.subscription.add(
+        this.educationService.save<EducationRequestType, unknown>(requestModel).subscribe({
+          next: ()=> {
+            this.loadAllEducation();
+            this.formGroup.reset();
+          }, error: () => console.log('Failed')
+        })
+      );
+    }
   }
 
   onClear() {
@@ -53,30 +66,40 @@ export class EducationComponent implements OnInit, OnDestroy {
   }
 
   loadAllEducation() : void {
-    if(this.dataService.selectedPersonId) {
-      this.subscription.add(this.educationService.getAllByPersonId(this.dataService.selectedPersonId)
-      .subscribe((response: EducationalResponseType[]) => {
-        this.dataSource = new MatTableDataSource(response);
-      }, err => console.log(err))
-      );
-    }  
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.personId = params['id'];
+      if(this.personId !== '') {
+        this.subscription.add(
+          this.educationService.getAllByPersonId(this.personId)
+          .subscribe({ next: (response: EducationalResponseType[]) => {
+            this.dataSource = new MatTableDataSource(response);
+          },error: err => console.log(err)
+        })
+        );
+      }
+    });
+     
   }
 
   onEdit(data: EducationalResponseType) {
-    this.formGroup.setValue(data);
+    const {createdDate, degreeName, subjectName, isActive,startDate, endDate,...restValue} = data;
+    this.formGroup.setValue({
+      ...restValue, startDate: new Date(startDate).toDateString(),endDate: new Date(endDate).toString()
+    });
   }
 
   onDelete(data:EducationalResponseType) {
     if(confirm('Do you want to delete') && data.id !== '') {
-      this.subscription.add(this.educationService.remove(data.id).subscribe(() => {
+      this.subscription.add(this.educationService.remove(data.id).subscribe({ next: () => {
         this.loadAllEducation();
-      }, (err) => console.log(err)));
+      }, error: (err) => console.log(err)}));
     }
   }
 
   private initializeForm() {
     this.formGroup = this.fb.group({
-      personId: [this.dataService.selectedPersonId, [Validators.required]],
+      id: [null],
+      personId: [this.personId, [Validators.required]],
       degreeId: ['', [Validators.required]],
       subjectId: ['', [Validators.required]],
       instituteName: [''],

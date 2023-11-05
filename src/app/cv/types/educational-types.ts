@@ -1,7 +1,8 @@
 export type EducationRequestType = {
-    personId:          number;
-    degreeId:      number;
-    subjectId:     number;
+    id?:            string;
+    personId:      string;
+    degreeId:      string;
+    subjectId:     string;
     instituteName: string;
     startDate:     string;
     endDate:       string;
@@ -14,9 +15,9 @@ export type EducationRequestType = {
 
 export type EducationalResponseType = {
     id:            string;
-    personId:          number;
-    degreeId:      number;
-    subjectId:     number;
+    personId:      string;
+    degreeId:      string;
+    subjectId:     string;
     instituteName: string;
     startDate:     string;
     endDate:       string;
@@ -24,7 +25,7 @@ export type EducationalResponseType = {
     result:        string;
     gpa:           string;
     gpaOutOf:      string;
-    passing:       string;
+    passingYear:   string;
     isActive:      boolean;
     createdDate:   string;
     degreeName:    string;

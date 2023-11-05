@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProfessionalCvDataService } from '../../services/professional-cv-data.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription, Observable } from 'rxjs';
@@ -7,6 +6,7 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 import { CvOptionsService } from '../../services/cv-options.service';
 import { ExperienceService } from '../../services/experience.service';
 import { ExperienceRequestModel, ExperienceResponseType } from '../../types/experience-types';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-experience',
@@ -15,14 +15,15 @@ import { ExperienceRequestModel, ExperienceResponseType } from '../../types/expe
 })
 export class ExperienceComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
-  personId: string | null;
+  personId: string;
+  IsEditMode = false;
   columns: string[] = ['companyName','designation','jobNature','startDate','endDate', 'actions'];
   dataSource: MatTableDataSource<ExperienceResponseType>;
   subscription: Subscription = new Subscription();
   designations$ : Observable<OptionsModel[]> = this.cvOptionsService.getDesignations();
   jobNatures$ : Observable<OptionsModel[]> = this.cvOptionsService.getJobNatures();
   constructor(private fb: FormBuilder, private cvOptionsService: CvOptionsService, private experienceService: ExperienceService,
-    private dataService: ProfessionalCvDataService) {}
+    private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -44,7 +45,8 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       this.subscription.add(
         this.experienceService.update<ExperienceRequestModel, unknown>(requestModel).subscribe(()=> {
           this.loadAllEducation();
-          this.formGroup.reset({personId: this.dataService.selectedPersonId});
+          this.formGroup.reset({personId: this.personId});
+          this.IsEditMode = false;
           console.log('Updated');
         }, () => console.log('Failed'))
       );
@@ -52,7 +54,8 @@ export class ExperienceComponent implements OnInit, OnDestroy {
       this.subscription.add(
         this.experienceService.save<ExperienceRequestModel, unknown>(requestModel).subscribe(()=> {
           this.loadAllEducation();
-          this.formGroup.reset({personId: this.dataService.selectedPersonId});
+          this.IsEditMode = false;
+          this.formGroup.reset({personId: this.personId});
         }, () => console.log('Failed'))
       );
     }    
@@ -63,17 +66,24 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   }
 
   loadAllEducation() : void {
-    if(this.dataService.selectedPersonId) {
-      this.subscription.add(this.experienceService.getExperiencesByPersonId(this.dataService.selectedPersonId)
-      .subscribe((response: ExperienceResponseType[]) => {
-        this.dataSource = new MatTableDataSource(response);
-      }, err => console.log(err))
-      );
-    }  
+    this.activatedRoute.params.subscribe({ next: (params: Params) => {
+      this.personId = params['id'];
+
+      if(this.personId) {
+        this.subscription.add(this.experienceService.getExperiencesByPersonId(this.personId)
+        .subscribe((response: ExperienceResponseType[]) => {
+          this.dataSource = new MatTableDataSource(response);
+        }, err => console.log(err))
+        );
+      }
+    }, error: (err) => {
+      console.log(err);
+    }})
   }
 
   onEdit(data: ExperienceResponseType) {
     const { designationName, isActive,createdDate,jobNatureName, ...restValue} = data;
+    this.IsEditMode = true;
     this.formGroup.setValue(restValue);
   }
 
@@ -88,7 +98,7 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   private initializeForm() {
     this.formGroup = this.fb.group({
       id: [null],
-      personId: [this.dataService.selectedPersonId, [Validators.required]],
+      personId: [this.personId, [Validators.required]],
       designationId: ['', [Validators.required]],
       companyName: ['', [Validators.required]],
       companyAddress: [''],

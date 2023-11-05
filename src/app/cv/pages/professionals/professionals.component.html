@@ -1,0 +1,87 @@
+<div *ngIf="isLoading" class="spinner">
+    <mat-spinner color="primary" diameter="30"></mat-spinner>
+  </div>
+  
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Professional CV's</mat-card-title>
+      <mat-card-subtitle>Cv</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row pt-2">
+        <div class="col-md-3 col-sm-12">
+          <button mat-fab extended color="primary" [routerLink]="['../professional']">
+            <mat-icon fontIcon="add"></mat-icon>Create CV
+          </button>
+        </div>
+        <div class="col-md-9 col-sm-12">
+          <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput placeholder="Search" #input (input)="onFilter($event)" />
+          </mat-form-field>
+        </div>
+      </div>
+  
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let row">{{ row.personName }}</td>
+          </ng-container>
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+            <td mat-cell *matCellDef="let row">{{ row.phone }}</td>
+          </ng-container>  
+          <ng-container matColumnDef="villageName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Village</th>
+            <td mat-cell *matCellDef="let row">{{ row.villageName }}</td>
+          </ng-container> 
+          <ng-container matColumnDef="percentComplete">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>% Complete</th>
+            <td mat-cell *matCellDef="let row">50%</td>
+          </ng-container>     
+          <ng-container matColumnDef="createdDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Creadted Date</th>
+            <td mat-cell *matCellDef="let row">{{ row.createdDate | date}}</td>
+          </ng-container>
+         
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Exit and delete menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item color="primary" (click)="onEdit(element)">
+                  <mat-icon aria-label="Edit">edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item color="warn" (click)="onDelete(element)">
+                  <mat-icon aria-label="Delete">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5">
+              <p class="text-info-emphasis p-2">No data found</p>
+            </td>
+          </tr>
+        </table>
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          showFirstLastButtons
+          [length]="count"
+          [pageSize]="pageSize"
+          (page)="pageEvent = $event; onPageChange($event)"
+          aria-label="Select page of users"
+        ></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
