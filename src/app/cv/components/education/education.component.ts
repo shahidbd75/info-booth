@@ -15,8 +15,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class EducationComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
-  personId: string;
-  columns: string[] = ['degreeName','subjectName','instituteName','group','result', 'actions'];
+  columns: string[] = ['degreeName','subjectName','instituteName','group','passingYear', 'actions'];
   dataSource: MatTableDataSource<EducationalResponseType>;
   subscription: Subscription = new Subscription();
   degrees$ : Observable<OptionsModel[]> = this.cvOptionsService.getDegrees();
@@ -37,9 +36,14 @@ export class EducationComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-    const {...restValue} = this.formGroup.value;
+    const personId = this.activatedRoute.snapshot.paramMap.get('id')?.toString();
 
-    const requestModel: EducationRequestType = {...restValue };
+    if(!personId) {
+      return;
+    }
+
+    const requestModel: EducationRequestType = this.mapRequestData(personId);
+
     if(requestModel.id) {
       this.subscription.add(
         this.educationService.update<EducationRequestType, unknown>(requestModel).subscribe({
@@ -67,10 +71,10 @@ export class EducationComponent implements OnInit, OnDestroy {
 
   loadAllEducation() : void {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.personId = params['id'];
-      if(this.personId !== '') {
+      const personId = params['id'];
+      if(personId !== '') {
         this.subscription.add(
-          this.educationService.getAllByPersonId(this.personId)
+          this.educationService.getAllByPersonId(personId)
           .subscribe({ next: (response: EducationalResponseType[]) => {
             this.dataSource = new MatTableDataSource(response);
           },error: err => console.log(err)
@@ -99,17 +103,40 @@ export class EducationComponent implements OnInit, OnDestroy {
   private initializeForm() {
     this.formGroup = this.fb.group({
       id: [null],
-      personId: [this.personId, [Validators.required]],
-      degreeId: ['', [Validators.required]],
-      subjectId: ['', [Validators.required]],
-      instituteName: [''],
-      startDate: [''],
-      endDate: [''],
+      personId: [null],
+      degreeId: [null, [Validators.required]],
+      subjectId: [null],
+      instituteName: ['',[Validators.required]],
+      startDate: [null],
+      endDate: [null],
       group: [''],
       result: [''],
-      gpa: [''],
-      gpaOutOf: [''],
-      passingYear: [''],
+      gpa: [null],
+      gpaOutOf: [null],
+      passingYear: [null,[Validators.required]],
     });
+  }
+
+  private mapRequestData(personId: string) : EducationRequestType {
+    const formData = this.formGroup.value;
+
+    return {
+      degreeId: formData.degreeId,
+      personId: personId,
+      subjectId: formData.subjectId ?? null,
+      instituteName: formData.instituteName,
+      passingYear: +formData.passingYear,
+      group: formData.group,
+      startDate: !this.isNullOrEmpty(formData.startDate) ? new Date(formData.startDate): null,
+      endDate : !this.isNullOrEmpty(formData.endDate) ? new Date(formData.endDate): null,
+      gpa: +formData.gpa ?? null,
+      gpaOutOf: +formData.gpaOutOf ?? null,
+      id: formData.id,
+      result: formData.result,
+    }
+  }
+
+  private isNullOrEmpty(str: string | null | undefined): boolean {
+    return str == null || str.trim().length === 0;
   }
 }

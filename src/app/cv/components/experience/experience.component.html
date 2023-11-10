@@ -6,19 +6,19 @@
         <form [formGroup]="formGroup">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="designationId" class="form-label">Designation</label>
+                    <label for="designationId" class="form-label">Designation</label><span class="text-danger">*</span>
                     <ng-select [items]="designations$ | async" id="designationId" [searchable]="true" bindValue="id"
                         bindLabel="name" formControlName="designationId">
                     </ng-select>
                 </div>
                 <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="jobNature" class="form-label">Job Nature</label>
+                    <label for="jobNature" class="form-label">Job Nature</label><span class="text-danger">*</span>
                     <ng-select [items]="jobNatures$ | async" id="jobNature" [searchable]="false" bindValue="id"
                         bindLabel="name" formControlName="jobNature">
                     </ng-select>
                 </div>
                 <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="compnayName" class="form-label">Company Name</label>
+                    <label for="compnayName" class="form-label">Company Name</label><span class="text-danger">*</span>
                     <input type="text" formControlName="companyName" class="form-control" id="compnayName" />
                 </div>
                 <div class="col-lg-3 col-md-4 col-xs-12">
@@ -49,7 +49,7 @@
         </form>
     </mat-card-content>
     <mat-card-actions  class="action-button-container">
-        <button mat-raised-button (click)="onSave()" color="primary">Save</button>
+        <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!formGroup.valid">Save</button>
         <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
     </mat-card-actions>
 </mat-card>

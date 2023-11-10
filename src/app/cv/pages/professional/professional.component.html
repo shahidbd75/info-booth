@@ -29,33 +29,43 @@
             <ng-template matStepLabel>Basic</ng-template>
             <ng-template matStepContent>
               <app-professional-basic *ngIf="currentIndex === 0" ></app-professional-basic>
-              <button color="primary" mat-button matStepperNext>Next</button>
+              <div class="stepper-button">
+                <button color="primary" mat-button matStepperNext>Next</button>
+              </div>
             </ng-template>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Education</ng-template>
             <ng-template matStepContent>
             <app-education *ngIf="currentIndex === 1" />
-            <button mat-button color="primary" matStepperPrevious>Previous</button>
-            <button mat-button color="primary" matStepperNext>Next</button>
+            <div class="stepper-button">
+              <button mat-button color="primary" matStepperPrevious>Previous</button>
+              <button mat-button color="primary" matStepperNext>Next</button>
+            </div>
             </ng-template>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Experience</ng-template>
             <app-experience *ngIf="currentIndex === 2" />
-            <button mat-button color="primary" matStepperPrevious>Previous</button>
-            <button mat-button color="primary" matStepperNext>Next</button>
+            <div class="stepper-button">
+              <button mat-button color="primary" matStepperPrevious>Previous</button>
+              <button mat-button color="primary" matStepperNext>Next</button>
+            </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Training</ng-template>
             <app-training *ngIf="currentIndex === 3"/>
-            <button mat-button color="primary" matStepperPrevious>Previous</button>
-            <button mat-button color="primary" matStepperNext>Next</button>
+            <div class="stepper-button">
+              <button mat-button color="primary" matStepperPrevious>Previous</button>
+              <button mat-button color="primary" matStepperNext>Next</button>
+            </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Job Reference</ng-template>
             <app-job-reference *ngIf="currentIndex === 4" />
-            <button mat-button color="primary" matStepperPrevious>Previous</button>
+            <div class="stepper-button">
+              <button mat-button color="primary" matStepperPrevious>Previous</button>
+            </div>
         </mat-step>
       </mat-stepper>
     </mat-card-content>

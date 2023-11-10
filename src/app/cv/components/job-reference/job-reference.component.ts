@@ -41,7 +41,7 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
 
   onSave() {
     const {...restValue} = this.formGroup.value;
-    const requestModel: JobReferenceUpdateRequestType = {...restValue, personId: this.personId };
+    const requestModel: JobReferenceUpdateRequestType = {...restValue, personId: this.activatedRoute.snapshot.params['id'] };
 
     if(requestModel.id && requestModel.id !== '') {
       this.subscription.add(

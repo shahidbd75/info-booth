@@ -40,7 +40,12 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   onSave() {
     const {...restValue} = this.formGroup.value;
 
-    const requestModel: ExperienceRequestModel = {...restValue };
+    const personId: string = this.activatedRoute.snapshot.params['id'];
+
+    if(!personId) {
+      return;
+    }
+    const requestModel: ExperienceRequestModel = {...restValue, personId };
     if(requestModel.id && requestModel.id !== '') {
       this.subscription.add(
         this.experienceService.update<ExperienceRequestModel, unknown>(requestModel).subscribe(()=> {
@@ -98,15 +103,15 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   private initializeForm() {
     this.formGroup = this.fb.group({
       id: [null],
-      personId: [this.personId, [Validators.required]],
-      designationId: ['', [Validators.required]],
+      personId: [null],
+      designationId: [null, [Validators.required]],
       companyName: ['', [Validators.required]],
       companyAddress: [''],
       startDate: [null],
       endDate: [null],
       companyUrl: [''],
       responsibilities: [''],
-      jobNature: [''],
+      jobNature: [null,[Validators.required]],
       description: [''],
     });
   }

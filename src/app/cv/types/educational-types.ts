@@ -1,16 +1,16 @@
 export type EducationRequestType = {
-    id?:            string;
+    id?:           string | null;
     personId:      string;
     degreeId:      string;
-    subjectId:     string;
+    subjectId?:    string | null;
     instituteName: string;
-    startDate:     string;
-    endDate:       string;
-    group:         string;
-    result:        string;
-    gpa:           string;
-    gpaOutOf:      string;
-    passingYear:   string;
+    startDate?:    Date | null;
+    endDate?:      Date | null;
+    group?:        string | null;
+    result?:       string | null;
+    gpa:           number | null;
+    gpaOutOf:      number | null;
+    passingYear:   number;
 }
 
 export type EducationalResponseType = {
@@ -23,9 +23,9 @@ export type EducationalResponseType = {
     endDate:       string;
     group:         string;
     result:        string;
-    gpa:           string;
-    gpaOutOf:      string;
-    passingYear:   string;
+    gpa:           number;
+    gpaOutOf:      number;
+    passingYear:   number;
     isActive:      boolean;
     createdDate:   string;
     degreeName:    string;

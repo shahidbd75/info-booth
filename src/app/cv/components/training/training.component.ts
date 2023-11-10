@@ -98,9 +98,9 @@ export class TrainingComponent implements OnInit, OnDestroy{
   private initializeForm() {
     this.formGroup = this.fb.group({
       id: [null],
-      personId: [null, [Validators.required]],
+      personId: [null],
       topic: ['', [Validators.required]],
-      organization: ['', [Validators.required]],
+      organization: [null],
       startDate: [null],
       endDate: [null],
       duration: [''],

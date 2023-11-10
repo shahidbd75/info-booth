@@ -12,10 +12,10 @@ export type TrainingResponseTypes = {
 
 export type TrainingCreateRequestTypes = {
     personId:	 string;
-    topic?:	     string;
-    organization?:string;
-    startDate?:   Date;
-    endDate?:     Date;
+    topic:	     string;
+    organization:string | null;
+    startDate?:  Date | null;
+    endDate?:    Date | null;
     duration?:   string;
 };
 

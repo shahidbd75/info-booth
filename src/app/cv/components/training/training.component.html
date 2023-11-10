@@ -6,31 +6,33 @@
         <form [formGroup]="formGroup">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="topic" class="form-label">Topic</label>
+                    <label for="topic" class="form-label">Topic</label><span class="text-danger">*</span>
                     <input type="text" formControlName="topic" class="form-control" id="topic" />
                 </div>
                 <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="orgnization" class="form-label">Organization</label>
+                    <label for="orgnization" class="form-label">Organization</label><span class="text-danger">*</span>
                     <input type="text" formControlName="organization" class="form-control" id="orgnization" />
                 </div>
                 
-                <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="col-lg-3 col-md-4 col-xs-12">
                     <label for="duration" class="form-label">Duration</label>
                     <input type="text" formControlName="duration" class="form-control" id="duration" />
                 </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="startDate" class="form-label">Start Date</label>
-                    <input type="date" formControlName="startDate" class="form-control" id="startDate" />
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="endDate" class="form-label">End Date</label>
-                    <input type="date" formControlName="endDate" class="form-control" id="endDate" />
+                <div class="col-lg-3 col-md-4 col-xs-12 row">
+                    <div class="col-6">
+                        <label for="startDate" class="form-label">Start Date</label>
+                        <input type="date" formControlName="startDate" class="form-control" id="startDate" />
+                    </div>
+                    <div class="col-6">
+                        <label for="endDate" class="form-label">End Date</label>
+                        <input type="date" formControlName="endDate" class="form-control" id="endDate" />
+                    </div>
                 </div>
             </div>
         </form>
     </mat-card-content>
     <mat-card-actions  class="action-button-container">
-        <button mat-raised-button (click)="onSave()" color="primary">Save</button>
+        <button mat-raised-button (click)="onSave()" color="primary" [disabled]="formGroup.invalid">Save</button>
         <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
     </mat-card-actions>
 </mat-card>

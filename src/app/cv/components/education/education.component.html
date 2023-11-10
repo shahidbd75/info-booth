@@ -6,7 +6,7 @@
         <form [formGroup]="formGroup">
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="degreeId" class="form-label">Degree</label>
+                    <label for="degreeId" class="form-label">Degree</label><span class="text-danger">*</span>
                     <ng-select [items]="degrees$ | async" id="degreeId" [searchable]="true" bindValue="id"
                         bindLabel="name" formControlName="degreeId">
                     </ng-select>
@@ -17,9 +17,10 @@
                         bindLabel="name" formControlName="subjectId">
                     </ng-select>
                 </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="instituteName" class="form-label">Institute Name</label>
+                <div class="col-lg-3 col-md-4 col-xs-12" controlName="formGroup.controls['instituteName']">
+                    <label for="instituteName" class="form-label">Institute Name</label><span class="text-danger">*</span>
                     <input type="text" formControlName="instituteName" class="form-control" id="instituteName" />
+                   
                 </div>
                 <div class="col-lg-3 col-md-4 col-xs-12">
                     <label for="group" class="form-label">group</label>
@@ -50,14 +51,14 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="passingYear" class="form-label">Passing Year</label>
+                    <label for="passingYear" class="form-label">Passing Year</label><span class="text-danger">*</span>
                     <input type="text" formControlName="passingYear" class="form-control" id="passingYear" />
                 </div>
             </div>
         </form>
     </mat-card-content>
     <mat-card-actions  class="action-button-container">
-        <button mat-raised-button (click)="onSave()" color="primary">Save</button>
+        <button mat-raised-button (click)="onSave()" color="primary" [disabled]="!formGroup.valid">Save</button>
         <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
     </mat-card-actions>
 </mat-card>
@@ -81,9 +82,9 @@
                     <th mat-header-cell *matHeaderCellDef> Group </th>
                     <td mat-cell *matCellDef="let row"> {{row.group}} </td>
                 </ng-container>
-                <ng-container matColumnDef="result">
-                    <th mat-header-cell *matHeaderCellDef> Result </th>
-                    <td mat-cell *matCellDef="let row"> {{row.result}} </td>
+                <ng-container matColumnDef="passingYear">
+                    <th mat-header-cell *matHeaderCellDef>Passing Year </th>
+                    <td mat-cell *matCellDef="let row"> {{row.passingYear}} </td>
                 </ng-container>
                 <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef> Action </th>
