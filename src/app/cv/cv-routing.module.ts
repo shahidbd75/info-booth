@@ -10,6 +10,7 @@ import { SubjectComponent } from './pages/subject/subject.component';
 import { ProfessionalComponent } from './pages/professional/professional.component';
 import { MatrimonialComponent } from './pages/matrimonial/matrimonial.component';
 import { ProfessionalsComponent } from './pages/professionals/professionals.component';
+import { MatrimonialsComponent } from './pages/matrimonials/matrimonials.component';
 
 const routes: Routes = [
   { path: '', component: LayoutComponent, children: [
@@ -25,6 +26,8 @@ const routes: Routes = [
     { path: 'professionals', component: ProfessionalsComponent },
     { path: 'professional/:id', component: ProfessionalComponent },
     { path: 'professional', component: ProfessionalComponent },
+    { path: 'matrimonial/:id', component: MatrimonialComponent },
+    { path: 'matrimonials', component: MatrimonialsComponent },
     { path: 'matrimonial', component: MatrimonialComponent },
   ]}
 ];

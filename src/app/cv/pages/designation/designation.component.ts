@@ -24,7 +24,7 @@ export class DesignationComponent implements OnInit, OnDestroy {
     this.formGroup = this.formBuilder.group({
       id: [null],
       name: ['', [Validators.required]],
-      banglaName: ['']
+      banglaName: ['', [Validators.required]]
     });
     
     this.loadData();

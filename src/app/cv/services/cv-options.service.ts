@@ -25,4 +25,8 @@ export class CvOptionsService {
    getJobNatures(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_OPTIONS.GET_JOB_NATURES);
   }
+
+  getHobbies(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_OPTIONS.GET_JOB_HOBBIES);
+  }
 }

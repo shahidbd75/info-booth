@@ -13,6 +13,7 @@ export class LayoutComponent {
     { text: 'Designations', link: 'cv/designations'},
     { text: 'Subjects', link: 'cv/subjects'},
     {text: 'Professional CVs', link: 'cv/professionals'},
+    {text: 'Matrimonial CVs', link: 'cv/matrimonials'},
   ];
 
   constructor(private globalDataContextService: GlobalDataContextService) {

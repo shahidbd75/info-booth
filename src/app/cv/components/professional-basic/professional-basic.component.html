@@ -36,7 +36,14 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-xs-12">
                     <label for="hobby" class="form-label">Hobby</label>
-                    <input type="text" formControlName="hobby" class="form-control" id="hobby" />
+                    <ng-select [items]="hobbies$ | async"
+                        id="strength"
+                        [searchable]="true"
+                        [multiple]="true"
+                        bindValue="name" 
+                        bindLabel="name"
+                        formControlName="hobby">
+                    </ng-select>
                 </div>
                 <div class="col-lg-3 col-md-4 col-xs-12">
                     <label for="certification" class="form-label">Certification</label>

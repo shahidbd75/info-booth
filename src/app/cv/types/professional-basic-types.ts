@@ -5,7 +5,7 @@ export type ProfessionalBasicRequestModel = {
     linkedInProfileLink: string;
     extraCurriculumActivities: string;
     personalCapabilities: string;
-    hobby: string;
+    hobby: string[];
     certification: string;
     passportSizePhotoUrl: string;
     signatureUrl: string;

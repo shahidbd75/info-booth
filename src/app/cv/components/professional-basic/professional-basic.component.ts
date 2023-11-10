@@ -6,6 +6,7 @@ import { ProfessionalBasicRequestModel, ProfessionalBasicResponseModel } from '.
 import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { ActivatedRoute, Params } from '@angular/router';
+import { CvOptionsService } from '../../services/cv-options.service';
 
 @Component({
   selector: 'app-professional-basic',
@@ -19,8 +20,9 @@ export class ProfessionalBasicComponent implements OnInit, OnDestroy {
   personId: string;
   strengths$: Observable<OptionsModel[]> = this.enumOptionsService.getStrengths();
   skills$: Observable<OptionsModel[]> = this.enumOptionsService.getSkills();
+  hobbies$: Observable<OptionsModel[]> = this.cvOptionsService.getHobbies();
   constructor(private fb: FormBuilder, private professionalBasicService: ProfessionalBasicService, 
-    private activatedRoute: ActivatedRoute, private enumOptionsService: CvEnumOptionsService){}
+    private activatedRoute: ActivatedRoute, private enumOptionsService: CvEnumOptionsService, private cvOptionsService: CvOptionsService){}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -38,6 +40,7 @@ export class ProfessionalBasicComponent implements OnInit, OnDestroy {
 
   onSave() {
     const requestModel: ProfessionalBasicRequestModel = this.professionalFormGroup.value;
+    requestModel.personId = this.activatedRoute.snapshot.params['id'];
     if(this.isEditMode) {
       this.subscription.add(this.professionalBasicService.update<ProfessionalBasicRequestModel,unknown>(requestModel).subscribe({next:()=> {
         console.log('Saved')
@@ -72,9 +75,9 @@ export class ProfessionalBasicComponent implements OnInit, OnDestroy {
 
   private initializeForm() {
     this.professionalFormGroup = this.fb.group({
-      personId: ['', [Validators.required]],
+      personId: [null],
       careerObjective: [''],
-      strength: [''],
+      strength: [null],
       linkedInProfileLink: [''],
       extraCurriculumActivities: [''],
       personalCapabilities: [''],
