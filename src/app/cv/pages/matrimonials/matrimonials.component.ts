@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ProfessionalTableResponseModel } from '../../types/professional-basic-types';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ProfessionalBasicService } from '../../services/professional-basic.service';
+import { MatrimonialBasicCvService } from '../../services/matrimonial-basic.service';
+import { MatrimonialReponseType } from '../../types/matrimonial-basic-types';
 
 @Component({
   selector: 'app-matrimonials',
@@ -14,7 +14,7 @@ import { ProfessionalBasicService } from '../../services/professional-basic.serv
 })
 export class MatrimonialsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name','phone','villageName','percentComplete','createdDate', 'actions'];
-  dataSource = new MatTableDataSource<ProfessionalTableResponseModel>();
+  dataSource = new MatTableDataSource<MatrimonialReponseType>();
   isLoading = false;
   subscription$: Subscription;
   pageSize = 10;
@@ -24,11 +24,11 @@ export class MatrimonialsComponent implements OnInit, OnDestroy {
   keyword = '';
   sortField = 'name';
   sortOrder = 'asc';
-  cvList: ProfessionalTableResponseModel[];
+  cvList: MatrimonialReponseType[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private professionalCvService: ProfessionalBasicService, private router: Router){}
+  constructor(private matrimonialBasicService: MatrimonialBasicCvService, private router: Router){}
 
   ngOnInit(): void {
     this.loadData();
@@ -40,7 +40,7 @@ export class MatrimonialsComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.isLoading = true;
-    this.subscription$ = this.professionalCvService.getAll<ProfessionalTableResponseModel>().subscribe((_items: ProfessionalTableResponseModel[]) => {
+    this.subscription$ = this.matrimonialBasicService.getAll<MatrimonialReponseType>().subscribe((_items: MatrimonialReponseType[]) => {
       this.cvList = _items;
       this.dataSource = new MatTableDataSource(_items);
       this.dataSource.paginator = this.paginator;
@@ -72,14 +72,14 @@ export class MatrimonialsComponent implements OnInit, OnDestroy {
     });
   }
 
-  onEdit(model: ProfessionalTableResponseModel) {
-    this.router.navigate([`cv/matrimonial/${model.personId}`]);
+  onEdit(model: MatrimonialReponseType) {
+    this.router.navigate([`cv/matrimonial/${model.id}`]);
   }
 
-  onDelete(element: ProfessionalTableResponseModel) {
-    const { personId }= element;
-    if(confirm('Do you want to delete?') && personId) {
-      this.professionalCvService.remove(personId).subscribe(()=> {
+  onDelete(element: MatrimonialReponseType) {
+    const { id }= element;
+    if(confirm('Do you want to delete?') && id) {
+      this.matrimonialBasicService.remove(id).subscribe(()=> {
         this.loadData();
       })
     }

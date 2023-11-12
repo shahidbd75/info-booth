@@ -31,7 +31,7 @@ import { JobReferenceComponent } from './components/job-reference/job-reference.
 import { CvOptionsService } from './services/cv-options.service';
 import { EducationService } from './services/education.service';
 import { ProfessionalBasicService } from './services/professional-basic.service';
-import { ProfessionalCvDataService } from './services/matrimonial-basic.service';
+import { MatrimonialBasicCvService } from './services/matrimonial-basic.service';
 import { ExperienceService } from './services/experience.service';
 import { CvEnumOptionsService } from './services/cv-enum-options.service';
 import { TrainingService } from './services/training.service';
@@ -57,10 +57,10 @@ import { JobReferenceService } from './services/job-reference.service';
     CvOptionsService, 
     EducationService, 
     ProfessionalBasicService,
-    ProfessionalCvDataService,
     ExperienceService,
     CvEnumOptionsService,
     TrainingService,
-    JobReferenceService]
+    JobReferenceService,
+    MatrimonialBasicCvService]
 })
 export class CvModule { }
