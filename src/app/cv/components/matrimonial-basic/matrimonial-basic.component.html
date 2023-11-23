@@ -1,1 +1,275 @@
 
+
+<form [formGroup]="matrimonialFormGroup">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Basic Information</mat-card-title>
+            <mat-card-subtitle>Matrimonial cv</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+    
+                <div class="row">
+                    <div class="col-lg-9 col-md-8 col-xs-12">
+                        <label for="careerObjective" class="form-label">Career Objective</label>
+                        <input type="text" formControlName="careerObjective" class="form-control" id="careerObjective" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="strength" class="form-label">Strength</label>
+                        <ng-select [items]="strengths$ | async"
+                            id="strength"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="guardianRelation">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="height" class="form-label">Height</label>
+                        <input type="number" maxlength="5" formControlName="height" class="form-control" id="height" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="weight" class="form-label">Weight</label>
+                        <input type="number" maxlength="5" formControlName="weight" class="form-control" id="weight" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="chest" class="form-label">Chest</label>
+                        <input type="number" maxlength="5" formControlName="chest" class="form-control" id="chest" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="passport" class="form-label">Passport</label>
+                        <input type="text" formControlName="passport" class="form-control" id="passport" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="annualIncome" class="form-label">AnnualIncome</label>
+                        <input type="text" formControlName="annualIncome" class="form-control" id="annualIncome" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="familyWealthDetail" class="form-label">Family Wealth Detail</label>
+                        <input type="text" formControlName="familyWealthDetail" class="form-control" id="familyWealthDetail" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="selfWealthDetail" class="form-label">Self Wealth Detail</label>
+                        <input type="text" formControlName="selfWealthDetail" class="form-control" id="selfWealthDetail" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="shortTimeAmbition" class="form-label">Short Time Ambition</label>
+                        <input type="text" formControlName="shortTimeAmbition" class="form-control" id="shortTimeAmbition" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="longTimeAmbition" class="form-label">Long Time Ambition</label>
+                        <input type="text" formControlName="longTimeAmbition" class="form-control" id="longTimeAmbition" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="handiCrafts" class="form-label">Handi Crafts</label>
+                        <input type="text" formControlName="handiCrafts" class="form-control" id="handiCrafts" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="facebookProfileLink" class="form-label">Long Time Ambition</label>
+                        <input type="url" formControlName="facebookProfileLink" class="form-control" id="facebookProfileLink" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="presentAddress" class="form-label">Present Address</label>
+                        <input type="text" formControlName="presentAddress" class="form-control" id="presentAddress" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="presentAddress" class="form-label">Work Address</label>
+                        <input type="text" formControlName="presentAddress" class="form-control" id="presentAddress" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="expectations" class="form-label">Expectations</label>
+                        <input type="text" formControlName="expectations" class="form-control" id="expectations" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="skill" class="form-label">Skill</label>
+                        <ng-select [items]="skills$ | async"
+                            id="skill"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="skill">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="otherSkills" class="form-label">Other Skills</label>
+                        <ng-select [items]="skills$ | async"
+                            id="otherSkills"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="otherSkills">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="dressStyle" class="form-label">Dress Style</label>
+                        <ng-select [items]="dressStyle$ | async"
+                            id="dressStyle"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="dressStyle">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="bodyType" class="form-label">Body Type</label>
+                        <ng-select [items]="bodyTypes$ | async"
+                            id="bodyType"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="bodyType">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="hairColor" class="form-label">Hair Color</label>
+                        <ng-select [items]="hairColors$ | async"
+                            id="hairColor"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="hairColor">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="eyeColor" class="form-label">Eye Color</label>
+                        <ng-select [items]="eyeColors$ | async"
+                            id="eyeColor"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="eyeColor">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="complexion" class="form-label">Complexion</label>
+                        <ng-select [items]="complexions$ | async"
+                            id="complexion"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="complexion">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="diet" class="form-label">diet</label>
+                        <ng-select [items]="diets$ | async"
+                            id="diet"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="diet">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="disability" class="form-label">disability</label>
+                        <ng-select [items]="disabilities$ | async"
+                            id="disability"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="disability">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="familyValue" class="form-label">Family Value</label>
+                        <ng-select [items]="familyvalues$ | async"
+                            id="familyValue"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="familyValue">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="personalValue" class="form-label">Personal Value</label>
+                        <ng-select [items]="personalValues$ | async"
+                            id="personalValue"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="personalValue">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="residencyStatus" class="form-label">Residency Status</label>
+                        <ng-select [items]="residencyStatus$ | async"
+                            id="residencyStatus"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="residencyStatus">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="caste" class="form-label">Caste</label>
+                        <ng-select [items]="castes$ | async"
+                            id="caste"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="caste">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="noOfBrother" class="form-label">No Of Brother</label>
+                        <ng-select [items]="numbers$ | async"
+                            id="noOfBrother"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="noOfBrother">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="noOfMarriedBrother" class="form-label">No Of Married Brother</label>
+                        <ng-select [items]="numbers$ | async"
+                            id="noOfMarriedBrother"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="noOfMarriedBrother">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="noOfSister" class="form-label">No Of Sister</label>
+                        <ng-select [items]="numbers$ | async"
+                            id="noOfSister"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="noOfSister">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="noOfMarriedSister" class="form-label">No Of Married Sister</label>
+                        <ng-select [items]="numbers$ | async"
+                            id="noOfMarriedSister"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="noOfMarriedSister">
+                        </ng-select>
+                    </div>
+                </div>        
+        </mat-card-content>
+        <mat-card-actions  class="action-button-container">
+            <button mat-raised-button (click)="onSave()" color="primary">Save</button>
+            <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
+        </mat-card-actions>
+    </mat-card>
+    </form>

@@ -1,5 +1,5 @@
 export const environment = {
   applicationName: 'Info Booth',
-  baseUrl: 'https://localhost:7197/api/',
+  baseUrl: 'https://infoboothbd.azurewebsites.net/api/',
   production: false,
 };
