@@ -74,3 +74,24 @@ export type MatrimonialReponseType = {
     noOfMarriedSister:   number; 
     createdDate:         Date;
 }
+
+export type MatrimonialTableResponse = {
+  id: string
+  personName: string
+  phone: string
+  villageName: string
+  guardianRelation: string
+  height: string
+  weight: string
+  chest: string
+  passport: string
+  annualIncome: number
+  familyWealthDetail: string
+  selfWealthDetail: string
+  shortTimeAmbition: string
+  longTimeAmbition: string
+  handiCrafts: string
+  facebookProfileLink: string
+  presentAddress: string
+  expectations: string
+}

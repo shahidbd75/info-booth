@@ -16,5 +16,5 @@ export class CvEnumOptionsComponent {
     familyvalues$ = this.service.getFamilyValues();
     personalValues$ = this.service.getPersonalValues();
     residencyStatus$ = this.service.getResidencyStatus();
-
+    guardianAs$ = this.service.getRelations();
 }

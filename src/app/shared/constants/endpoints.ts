@@ -53,6 +53,7 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_TRAININGS_BY_PERSON:(personId: string) => `${BASE_URL}Training/${personId}/list`,
     JOB_REFERENCE_BASE: `${BASE_URL}JobReferences`,
     JOB_REFERENCES_BY_PERSON:(personId: string) => `${BASE_URL}JobReferences/${personId}`,
+    MATRIMONIAL_BASIC_BASE: `${BASE_URL}MatrimonialCv`
   },
   CV_OPTIONS : {
     GET_DEGREES: `${BASE_URL}CvOptions/degrees`,
@@ -156,6 +157,7 @@ export interface Common {
 }
 
 export interface Cv {
+  MATRIMONIAL_BASIC_BASE: string;
   JOB_REFERENCE_BASE: string;
   PROFESSIONAL_BASIC: string;
   DEGREE_BASE: string;

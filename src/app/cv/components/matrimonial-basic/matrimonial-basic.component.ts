@@ -1,10 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component,OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription, range } from 'rxjs';
 import { MatrimonialBasicCvService } from '../../services/matrimonial-basic.service';
 import { ActivatedRoute } from '@angular/router';
 import { CvEnumOptionsComponent } from './matrimonial-basic-options.component';
-import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Component({
@@ -40,11 +39,11 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
   }
 
   onSave() {
-
+    console.log(this.matrimonialFormGroup.value);
   }
 
   onClear() {
-
+    this.matrimonialFormGroup.reset();
   }
 
   private initializeFormGroup() {

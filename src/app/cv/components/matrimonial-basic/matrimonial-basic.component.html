@@ -9,16 +9,10 @@
         <mat-card-content>
     
                 <div class="row">
-                    <div class="col-lg-9 col-md-8 col-xs-12">
-                        <label for="careerObjective" class="form-label">Career Objective</label>
-                        <input type="text" formControlName="careerObjective" class="form-control" id="careerObjective" />
-                    </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
-                        <label for="strength" class="form-label">Strength</label>
-                        <ng-select [items]="strengths$ | async"
-                            id="strength"
-                            [searchable]="true"
-                            [multiple]="true"
+                        <label for="guardianRelation" class="form-label">Guardian Relation</label>
+                        <ng-select [items]="guardianAs$ | async"
+                            id="guardianRelation"
                             bindValue="id" 
                             bindLabel="name"
                             formControlName="guardianRelation">
@@ -129,7 +123,6 @@
                         <ng-select [items]="hairColors$ | async"
                             id="hairColor"
                             [searchable]="true"
-                            [multiple]="true"
                             bindValue="id" 
                             bindLabel="name"
                             formControlName="hairColor">
@@ -140,7 +133,6 @@
                         <ng-select [items]="eyeColors$ | async"
                             id="eyeColor"
                             [searchable]="true"
-                            [multiple]="true"
                             bindValue="id" 
                             bindLabel="name"
                             formControlName="eyeColor">
@@ -151,14 +143,13 @@
                         <ng-select [items]="complexions$ | async"
                             id="complexion"
                             [searchable]="true"
-                            [multiple]="true"
                             bindValue="id" 
                             bindLabel="name"
                             formControlName="complexion">
                         </ng-select>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
-                        <label for="diet" class="form-label">diet</label>
+                        <label for="diet" class="form-label">Diet</label>
                         <ng-select [items]="diets$ | async"
                             id="diet"
                             [searchable]="true"
@@ -169,7 +160,7 @@
                         </ng-select>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
-                        <label for="disability" class="form-label">disability</label>
+                        <label for="disability" class="form-label">Disability</label>
                         <ng-select [items]="disabilities$ | async"
                             id="disability"
                             [searchable]="true"
@@ -206,7 +197,6 @@
                         <ng-select [items]="residencyStatus$ | async"
                             id="residencyStatus"
                             [searchable]="true"
-                            [multiple]="true"
                             bindValue="id" 
                             bindLabel="name"
                             formControlName="residencyStatus">
@@ -217,7 +207,6 @@
                         <ng-select [items]="castes$ | async"
                             id="caste"
                             [searchable]="true"
-                            [multiple]="true"
                             bindValue="id" 
                             bindLabel="name"
                             formControlName="caste">
@@ -236,8 +225,6 @@
                         <label for="noOfMarriedBrother" class="form-label">No Of Married Brother</label>
                         <ng-select [items]="numbers$ | async"
                             id="noOfMarriedBrother"
-                            [searchable]="true"
-                            [multiple]="true"
                             bindValue="id" 
                             bindLabel="name"
                             formControlName="noOfMarriedBrother">
@@ -247,8 +234,6 @@
                         <label for="noOfSister" class="form-label">No Of Sister</label>
                         <ng-select [items]="numbers$ | async"
                             id="noOfSister"
-                            [searchable]="true"
-                            [multiple]="true"
                             bindValue="id" 
                             bindLabel="name"
                             formControlName="noOfSister">
@@ -258,8 +243,6 @@
                         <label for="noOfMarriedSister" class="form-label">No Of Married Sister</label>
                         <ng-select [items]="numbers$ | async"
                             id="noOfMarriedSister"
-                            [searchable]="true"
-                            [multiple]="true"
                             bindValue="id" 
                             bindLabel="name"
                             formControlName="noOfMarriedSister">

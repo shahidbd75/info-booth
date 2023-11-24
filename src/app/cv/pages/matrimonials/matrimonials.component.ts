@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatrimonialBasicCvService } from '../../services/matrimonial-basic.service';
-import { MatrimonialReponseType } from '../../types/matrimonial-basic-types';
+import { MatrimonialReponseType, MatrimonialTableResponse } from '../../types/matrimonial-basic-types';
 
 @Component({
   selector: 'app-matrimonials',
@@ -14,7 +14,7 @@ import { MatrimonialReponseType } from '../../types/matrimonial-basic-types';
 })
 export class MatrimonialsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name','phone','villageName','percentComplete','createdDate', 'actions'];
-  dataSource = new MatTableDataSource<MatrimonialReponseType>();
+  dataSource = new MatTableDataSource<MatrimonialTableResponse>();
   isLoading = false;
   subscription$: Subscription;
   pageSize = 10;
@@ -24,7 +24,7 @@ export class MatrimonialsComponent implements OnInit, OnDestroy {
   keyword = '';
   sortField = 'name';
   sortOrder = 'asc';
-  cvList: MatrimonialReponseType[];
+  cvList: MatrimonialTableResponse[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -40,7 +40,8 @@ export class MatrimonialsComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.isLoading = true;
-    this.subscription$ = this.matrimonialBasicService.getAll<MatrimonialReponseType>().subscribe((_items: MatrimonialReponseType[]) => {
+    this.subscription$ = this.matrimonialBasicService.getSummeries()
+    .subscribe((_items: MatrimonialTableResponse[]) => {
       this.cvList = _items;
       this.dataSource = new MatTableDataSource(_items);
       this.dataSource.paginator = this.paginator;
@@ -72,11 +73,11 @@ export class MatrimonialsComponent implements OnInit, OnDestroy {
     });
   }
 
-  onEdit(model: MatrimonialReponseType) {
+  onEdit(model: MatrimonialTableResponse) {
     this.router.navigate([`cv/matrimonial/${model.id}`]);
   }
 
-  onDelete(element: MatrimonialReponseType) {
+  onDelete(element: MatrimonialTableResponse) {
     const { id }= element;
     if(confirm('Do you want to delete?') && id) {
       this.matrimonialBasicService.remove(id).subscribe(()=> {
