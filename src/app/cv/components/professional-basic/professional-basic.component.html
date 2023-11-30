@@ -7,11 +7,11 @@
     <mat-card-content>
 
             <div class="row">
-                <div class="col-lg-9 col-md-8 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-xs-12">
                     <label for="careerObjective" class="form-label">Career Objective</label>
                     <input type="text" formControlName="careerObjective" class="form-control" id="careerObjective" />
                 </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-xs-12">
                     <label for="strength" class="form-label">Strength</label>
                     <ng-select [items]="strengths$ | async"
                         id="strength"
@@ -22,19 +22,7 @@
                         formControlName="strength">
                     </ng-select>
                 </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="linkedInProfileLink" class="form-label">LinkedIn Profile Link</label>
-                    <input type="text" formControlName="linkedInProfileLink" class="form-control" id="linkedInProfileLink" />
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="extraCurriculumActivities" class="form-label">Extra Curriculum Activities</label>
-                    <input type="text" formControlName="extraCurriculumActivities" class="form-control" id="extraCurriculumActivities" />
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="personalCapabilities" class="form-label">Personal Capabilities</label>
-                    <input type="text" formControlName="personalCapabilities" class="form-control" id="personalCapabilities" />
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-xs-12">
                     <label for="hobby" class="form-label">Hobby</label>
                     <ng-select [items]="hobbies$ | async"
                         id="strength"
@@ -45,11 +33,11 @@
                         formControlName="hobby">
                     </ng-select>
                 </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="certification" class="form-label">Certification</label>
-                    <input type="text" formControlName="certification" class="form-control" id="certification" />
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <label for="personalCapabilities" class="form-label">Personal Capabilities</label>
+                    <input type="text" formControlName="personalCapabilities" class="form-control" id="personalCapabilities" />
                 </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-xs-12">
                     <label for="otherSkills" class="form-label">Other Skills</label>
                     <ng-select [items]="skills$ | async"
                         id="otherSkills"
@@ -59,6 +47,18 @@
                         bindLabel="name"
                         formControlName="otherSkills">
                     </ng-select>
+                </div>                
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <label for="extraCurriculumActivities" class="form-label">Extra Curriculum Activities</label>
+                    <input type="text" formControlName="extraCurriculumActivities" class="form-control" id="extraCurriculumActivities" />
+                </div>       
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <label for="certification" class="form-label">Certification</label>
+                    <input type="text" formControlName="certification" class="form-control" id="certification" />
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <label for="linkedInProfileLink" class="form-label">LinkedIn Profile Link</label>
+                    <input type="text" formControlName="linkedInProfileLink" class="form-control" id="linkedInProfileLink" />
                 </div>
             </div>        
     </mat-card-content>

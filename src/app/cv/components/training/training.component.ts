@@ -17,7 +17,7 @@ export class TrainingComponent implements OnInit, OnDestroy{
   formGroup: FormGroup;
   personId: string;
   IsEditMode = false;
-  columns: string[] = ['topic','organization','startDate','endDate','duration', 'actions'];
+  columns: string[] = ['topic','organization','duration','startDate','endDate', 'actions'];
   dataSource: MatTableDataSource<TrainingResponseTypes>;
   subscription: Subscription = new Subscription();
   designations$ : Observable<OptionsModel[]> = this.cvOptionsService.getDesignations();

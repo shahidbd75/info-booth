@@ -5,25 +5,25 @@
     <mat-card-content>
         <form [formGroup]="formGroup">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="degreeId" class="form-label">Degree</label><span class="text-danger">*</span>
                     <ng-select [items]="degrees$ | async" id="degreeId" [searchable]="true" bindValue="id"
                         bindLabel="name" formControlName="degreeId">
                     </ng-select>
                 </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="subjectId" class="form-label">Subject</label>
                     <ng-select [items]="subjects$ | async" id="subjectId" [searchable]="true" bindValue="id"
                         bindLabel="name" formControlName="subjectId">
                     </ng-select>
                 </div>
-                <div class="col-lg-3 col-md-4 col-xs-12" controlName="formGroup.controls['instituteName']">
+                <div class="col-lg-4 col-md-4 col-xs-12" controlName="formGroup.controls['instituteName']">
                     <label for="instituteName" class="form-label">Institute Name</label><span class="text-danger">*</span>
                     <input type="text" formControlName="instituteName" class="form-control" id="instituteName" />
                    
                 </div>
                 <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="group" class="form-label">group</label>
+                    <label for="group" class="form-label">Group</label>
                     <input type="text" formControlName="group" class="form-control" id="group" />
                 </div>
                 <div class="col-lg-3 col-md-4 col-xs-12">

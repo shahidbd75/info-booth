@@ -36,10 +36,16 @@ import { ExperienceService } from './services/experience.service';
 import { CvEnumOptionsService } from './services/cv-enum-options.service';
 import { TrainingService } from './services/training.service';
 import { JobReferenceService } from './services/job-reference.service';
+import { FamilyMemberComponent } from './components/family-member/family-member.component';
+import { FavoriteComponent } from './components/favorite/favorite.component';
+import { PreferableComponent } from './components/preferable/preferable.component';
+import { PreferableOccupationComponent } from './components/preferable-occupation/preferable-occupation.component';
+import { OccupationService } from '../personnel/services/occupation.service';
+import { FamilyMerberService } from './services/family-merber.service';
 
 
 @NgModule({
-  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent, SubjectComponent, SubjectsComponent, ProfessionalComponent, ProfessionalsComponent, MatrimonialsComponent, MatrimonialComponent, ProfessionalBasicComponent, MatrimonialBasicComponent, EducationComponent, ExperienceComponent, TrainingComponent, JobReferenceComponent,],
+  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent, SubjectComponent, SubjectsComponent, ProfessionalComponent, ProfessionalsComponent, MatrimonialsComponent, MatrimonialComponent, ProfessionalBasicComponent, MatrimonialBasicComponent, EducationComponent, ExperienceComponent, TrainingComponent, JobReferenceComponent, FamilyMemberComponent, FavoriteComponent, PreferableComponent, PreferableOccupationComponent,],
   imports: [
     CommonModule,
     CvRoutingModule,
@@ -61,6 +67,8 @@ import { JobReferenceService } from './services/job-reference.service';
     CvEnumOptionsService,
     TrainingService,
     JobReferenceService,
-    MatrimonialBasicCvService]
+    MatrimonialBasicCvService,
+    OccupationService,
+    FamilyMerberService]
 })
 export class CvModule { }

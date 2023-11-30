@@ -53,7 +53,9 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_TRAININGS_BY_PERSON:(personId: string) => `${BASE_URL}Training/${personId}/list`,
     JOB_REFERENCE_BASE: `${BASE_URL}JobReferences`,
     JOB_REFERENCES_BY_PERSON:(personId: string) => `${BASE_URL}JobReferences/${personId}`,
-    MATRIMONIAL_BASIC_BASE: `${BASE_URL}MatrimonialCv`
+    MATRIMONIAL_BASIC_BASE: `${BASE_URL}MatrimonialCv`,
+    FAMILY_MEMBER_BASE: `${BASE_URL}FamilyMember`,
+    GET_FAMILY_MEMBERS_BY_PERSON:(personId: string) =>  `${BASE_URL}/FamilyMember/getByPersonId/${personId}`
   },
   CV_OPTIONS : {
     GET_DEGREES: `${BASE_URL}CvOptions/degrees`,
@@ -94,6 +96,7 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_SMOKES: `${BASE_URL}CvEnumOptions/smokes`,
     GET_STRENGTHS: `${BASE_URL}CvEnumOptions/strengths`,
     GET_ZODIAC_SIGNS: `${BASE_URL}CvEnumOptions/zodiac-signs`,
+    GET_HANDICRAFTS: `${BASE_URL}CvEnumOptions/handicrafts`
   }
 }
 
@@ -170,6 +173,8 @@ export interface Cv {
   TRAINING_BASE: string;
   GET_TRAININGS_BY_PERSON:(personId: string) => string;
   JOB_REFERENCES_BY_PERSON:(personId: string) => string;
+  FAMILY_MEMBER_BASE: string;
+  GET_FAMILY_MEMBERS_BY_PERSON:(personId: string) => string;
 }
 
 export interface CvOptions {
@@ -212,4 +217,5 @@ export interface CvEnumOptions {
   GET_SMOKES: string;
   GET_STRENGTHS: string;
   GET_ZODIAC_SIGNS: string;
+  GET_HANDICRAFTS: string;
 }

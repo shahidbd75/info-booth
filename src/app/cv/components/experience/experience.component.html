@@ -5,35 +5,36 @@
     <mat-card-content>
         <form [formGroup]="formGroup">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    <label for="compnayName" class="form-label">Company Name</label><span class="text-danger">*</span>
+                    <input type="text" formControlName="companyName" class="form-control" id="compnayName" />
+                </div>                
+                <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="designationId" class="form-label">Designation</label><span class="text-danger">*</span>
                     <ng-select [items]="designations$ | async" id="designationId" [searchable]="true" bindValue="id"
                         bindLabel="name" formControlName="designationId">
                     </ng-select>
                 </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="jobNature" class="form-label">Job Nature</label><span class="text-danger">*</span>
                     <ng-select [items]="jobNatures$ | async" id="jobNature" [searchable]="false" bindValue="id"
                         bindLabel="name" formControlName="jobNature">
                     </ng-select>
                 </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="compnayName" class="form-label">Company Name</label><span class="text-danger">*</span>
-                    <input type="text" formControlName="companyName" class="form-control" id="compnayName" />
-                </div>
-                <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="companyUrl" class="form-label">Company Url</label>
+                <div class="col-lg-8 col-md-8 col-xs-12">
+                    <label for="compnayAddress" class="form-label">Company Address</label>
+                    <input formControlName="companyAddress" class="form-control" id="compnayAddress"/>
+                </div>  
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    <label for="companyUrl" class="form-label">Company Website</label>
                     <input type="url" formControlName="companyUrl" class="form-control" id="companyUrl" />
                 </div>
-                <div class="col-lg-4 col-md-4 col-xs-12">
-                    <label for="compnayAddress" class="form-label">Company Address</label>
-                    <textarea formControlName="companyAddress" class="form-control" id="compnayAddress"></textarea>
-                </div>               
-                <div class="col-lg-4 col-md-4 col-xs-12">
+                             
+                <div class="col-lg-6 col-md-6 col-xs-12">
                     <label for="responsibilities" class="form-label">Responsibilities</label>
                     <textarea formControlName="responsibilities" class="form-control" id="responsibilities"></textarea>
                 </div>
-                <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="col-lg-6 col-md-6 col-xs-12">
                     <label for="description" class="form-label">Description</label>
                     <textarea formControlName="description" class="form-control" id="description"></textarea>
                 </div>

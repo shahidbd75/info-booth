@@ -35,9 +35,9 @@
             </ng-template>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Education</ng-template>
+            <ng-template matStepLabel>Family Members</ng-template>
             <ng-template matStepContent>
-            <app-education *ngIf="currentIndex === 1" />
+            <app-family-member *ngIf="currentIndex === 1" />
             <div class="stepper-button">
               <button mat-button color="primary" matStepperPrevious>Previous</button>
               <button mat-button color="primary" matStepperNext>Next</button>
@@ -45,24 +45,24 @@
             </ng-template>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Experience</ng-template>
-            <app-experience *ngIf="currentIndex === 2" />
+            <ng-template matStepLabel>Your Favorite</ng-template>
+            <app-favorite *ngIf="currentIndex === 2" />
             <div class="stepper-button">
               <button mat-button color="primary" matStepperPrevious>Previous</button>
               <button mat-button color="primary" matStepperNext>Next</button>
             </div>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Training</ng-template>
-            <app-training *ngIf="currentIndex === 3"/>
+            <ng-template matStepLabel>Preferable</ng-template>
+            <app-preferable *ngIf="currentIndex === 3"/>
             <div class="stepper-button">
               <button mat-button color="primary" matStepperPrevious>Previous</button>
               <button mat-button color="primary" matStepperNext>Next</button>
             </div>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Job Reference</ng-template>
-            <app-job-reference *ngIf="currentIndex === 4" />
+            <ng-template matStepLabel>Partner Occupation</ng-template>
+            <app-preferable-occupation *ngIf="currentIndex === 4" />
             <div class="stepper-button">
               <button mat-button color="primary" matStepperPrevious>Previous</button>
             </div>

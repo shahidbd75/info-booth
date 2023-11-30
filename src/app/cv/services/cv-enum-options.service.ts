@@ -130,4 +130,8 @@ export class CvEnumOptionsService {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_ZODIAC_SIGNS);
   }
 
+  getHandicrafts(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_HANDICRAFTS);
+  }
+
 }

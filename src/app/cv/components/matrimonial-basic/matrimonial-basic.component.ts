@@ -1,6 +1,6 @@
 import { Component,OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subscription, range } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MatrimonialBasicCvService } from '../../services/matrimonial-basic.service';
 import { ActivatedRoute } from '@angular/router';
 import { CvEnumOptionsComponent } from './matrimonial-basic-options.component';
@@ -14,7 +14,7 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   matrimonialFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
-  numbers$: Observable<OptionsModel[]>;
+  numbers: OptionsModel[];
 
   constructor(private fb: FormBuilder, private matrimonialService: MatrimonialBasicCvService,
     private activatedRoute: ActivatedRoute) {
@@ -24,14 +24,8 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
 
   ngOnInit(): void {
     this.initializeFormGroup();
-    this.loadNumbers();
   }
 
-  loadNumbers() {
-    range(1,15).subscribe(each => {
-      console.log(each);
-    })
-  }
   ngOnDestroy(): void {
     if(this.subscription) {
       this.subscription.unsubscribe();
