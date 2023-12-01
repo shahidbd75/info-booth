@@ -30,7 +30,7 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initializeForm();
 
-    this.loadAllEducation();
+    this.LoadListData();
   }
 
   ngOnDestroy(): void {
@@ -40,33 +40,31 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-    const personId = this.activatedRoute.snapshot.paramMap.get('id')?.toString();
+    const personId = this.activatedRoute.snapshot.paramMap.get('id');
 
-    if(!personId) {
-      return;
-    }
-    console.log(this.formGroup.value);
+    if(personId && personId !== '') {
+      const requestModel: FamilyMemberUpdateRequestModel = this.mapRequestData(personId);
+      console.log(requestModel);
 
-    const requestModel: FamilyMemberUpdateRequestModel = this.mapRequestData(personId);
-
-    if(requestModel.id) {
-      this.subscription.add(
-        this.familyMemberService.update<FamilyMemberUpdateRequestModel, unknown>(requestModel).subscribe({
-          next: ()=> {
-            this.loadAllEducation();
-            this.formGroup.reset();
-          }, error: () => console.log('Failed')
-        })
-      );
-    } else {
-      this.subscription.add(
-        this.familyMemberService.save<FamilyMemberCreateRequestModel, unknown>(requestModel).subscribe({
-          next: ()=> {
-            this.loadAllEducation();
-            this.formGroup.reset();
-          }, error: () => console.log('Failed')
-        })
-      );
+      if(requestModel.id) {
+        this.subscription.add(
+          this.familyMemberService.update<FamilyMemberUpdateRequestModel, unknown>(requestModel).subscribe({
+            next: ()=> {
+              this.LoadListData();
+              this.formGroup.reset();
+            }, error: () => console.log('Failed')
+          })
+        );
+      } else {
+        this.subscription.add(
+          this.familyMemberService.save<FamilyMemberCreateRequestModel, unknown>(requestModel).subscribe({
+            next: ()=> {
+              this.LoadListData();
+              this.formGroup.reset();
+            }, error: () => console.log('Failed')
+          })
+        );
+      }
     }
   }
 
@@ -74,7 +72,7 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
     this.formGroup.reset();
   }
 
-  loadAllEducation() : void {
+  LoadListData() : void {
     this.activatedRoute.params.subscribe((params: Params) => {
       const personId = params['id'];
       if(personId !== '') {
@@ -100,7 +98,7 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
   onDelete(data:FamilyMemberTableResponseType) {
     if(confirm('Do you want to delete') && data.id !== '') {
       this.subscription.add(this.familyMemberService.remove(data.id).subscribe({ next: () => {
-        this.loadAllEducation();
+        this.LoadListData();
       }, error: (err) => console.log(err)}));
     }
   }

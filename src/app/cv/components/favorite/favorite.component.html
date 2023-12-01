@@ -1,1 +1,86 @@
-<p>favorite works!</p>
+
+
+<form [formGroup]="favoriteFormGroup">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Your Favorite</mat-card-title>
+            <mat-card-subtitle>Matrimonial cv</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>    
+                <div class="row">                  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="cloth" class="form-label">Cloth</label>
+                        <input type="text" formControlName="cloth" class="form-control" id="cloth" />
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="bird" class="form-label">Bird</label>
+                        <input type="text" formControlName="bird" class="form-control" id="bird" />
+                    </div>              
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="animal" class="form-label">Animal</label>
+                        <input type="text" formControlName="animal" class="form-control" id="animal" />
+                    </div>  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="food" class="form-label">Food</label>
+                        <input type="text" formControlName="food" class="form-control" id="food" />
+                    </div>  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="pet" class="form-label">Pet</label>
+                        <input type="text" formControlName="pet" class="form-control" id="pet" />
+                    </div>  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="fish" class="form-label">fish</label>
+                        <input type="text" formControlName="fish" class="form-control" id="fish" />
+                    </div>  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="fruit" class="form-label">fruit</label>
+                        <input type="text" formControlName="fruit" class="form-control" id="fruit" />
+                    </div>  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="vehicle" class="form-label">Vehicle</label>
+                        <input type="text" formControlName="vehicle" class="form-control" id="vehicle" />
+                    </div>  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="book" class="form-label">Book</label>
+                        <input type="text" formControlName="book" class="form-control" id="book" />
+                    </div>  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="sport" class="form-label">Sport</label>
+                        <input type="text" formControlName="sport" class="form-control" id="sport" />
+                    </div>  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="movie" class="form-label">Movie</label>
+                        <input type="text" formControlName="movie" class="form-control" id="movie" />
+                    </div>  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="cooking" class="form-label">Cooking</label>
+                        <input type="text" formControlName="cooking" class="form-control" id="cooking" />
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="game" class="form-label">Game</label>
+                        <input type="text" formControlName="game" class="form-control" id="game" />
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="music" class="form-label">Music</label>
+                        <input type="text" formControlName="music" class="form-control" id="music" />
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="read" class="form-label">Read</label>
+                        <input type="text" formControlName="read" class="form-control" id="read" />
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="tvShow" class="form-label">TV Show</label>
+                        <input type="text" formControlName="tvShow" class="form-control" id="tvShow" />
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="website" class="form-label">Website</label>
+                        <input type="text" formControlName="website" class="form-control" id="website" />
+                    </div>  
+                </div>        
+        </mat-card-content>
+        <mat-card-actions  class="action-button-container">
+            <button mat-raised-button (click)="onSave()" [disabled]="!favoriteFormGroup.valid" color="primary">Save</button>
+            <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
+        </mat-card-actions>
+    </mat-card>
+    </form>

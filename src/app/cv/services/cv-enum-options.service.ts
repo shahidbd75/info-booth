@@ -6,6 +6,7 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class CvEnumOptionsService {
+
   constructor(private http: HttpClient) { }
 
   getSkills(): Observable<OptionsModel[]> {
@@ -134,4 +135,7 @@ export class CvEnumOptionsService {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_HANDICRAFTS);
   }
 
+  getMaritialStatus(): Observable<OptionsModel[]>  {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_MARITIAL_STATUS);
+  }
 }

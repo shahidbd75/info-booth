@@ -1,8 +1,8 @@
 export type MatrimonialCreateRequestType = {
     guardianRelation:    string;
-    height:              string;
-    weight:              string;
-    chest:               string;
+    height:              number;
+    weight:              number;
+    chest:               number;
     passport:            string;
     annualIncome:        number;
     familyWealthDetail:  string;
@@ -13,24 +13,27 @@ export type MatrimonialCreateRequestType = {
     facebookProfileLink: string;
     presentAddress:      string;
     expectations:        string;
-    otherSkills:         string;
-    skill:               string;
-    dressStyle:          string;
+    otherSkills:         string[];
+    skill:               string[];
+    dressStyle:          string[];
     bodyType:            string;
     hairColor:           string;
     eyeColor:            string;
     complexion:          string;
-    diet:                string;
+    diet:                string[];
     disability:          string;
-    familyValue:         string;
-    personalValue:       string;
+    familyValue:         string[];
+    personalValue:       string[];
     residencyStatus:     string;
+    maritalStatus:       number;
     haveChildren:        boolean;
+    noOfChildren:        number;
     caste:               string;
     noOfBrother:         number;
     noOfMarriedBrother:  number;
     noOfSister:          number;
     noOfMarriedSister:   number;
+    maritialDescription: string;
 };
 
 export type MatrimonialUpdateRequestType = MatrimonialCreateRequestType & 
@@ -41,9 +44,9 @@ export type MatrimonialUpdateRequestType = MatrimonialCreateRequestType &
 export type MatrimonialReponseType = {
     id: string;
     guardianRelation:    string;
-    height:              string;
-    weight:              string;
-    chest:               string;
+    height:              number;
+    weight:              number;
+    chest:               number;
     passport:            string;
     annualIncome:        number;
     familyWealthDetail:  string;
@@ -54,24 +57,27 @@ export type MatrimonialReponseType = {
     facebookProfileLink: string;
     presentAddress:      string;
     expectations:        string;
-    otherSkills:         string;
-    skill:               string;
-    dressStyle:          string;
+    otherSkills:         string[];
+    skill:               string[];
+    dressStyle:          string[];
     bodyType:            string;
     hairColor:           string;
     eyeColor:            string;
     complexion:          string;
-    diet:                string;
+    diet:                string[];
     disability:          string;
-    familyValue:         string;
-    personalValue:       string;
+    familyValue:         string[];
+    personalValue:       string[];
     residencyStatus:     string;
+    maritalStatus:       number;
     haveChildren:        boolean;
+    noOfChildren:        number;
     caste:               string;
     noOfBrother:         number;
     noOfMarriedBrother:  number;
     noOfSister:          number;
-    noOfMarriedSister:   number; 
+    noOfMarriedSister:   number;
+    maritialDescription: string;
     createdDate:         Date;
 }
 

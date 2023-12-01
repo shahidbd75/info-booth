@@ -10,12 +10,22 @@
     
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-xs-12">
-                        <label for="guardianRelation" class="form-label">Guardian Relation</label>
+                        <label for="guardianRelation" class="form-label">Profile Created By</label>
                         <ng-select [items]="guardianAs$ | async"
                             id="guardianRelation"
                             bindValue="id" 
                             bindLabel="name"
                             formControlName="guardianRelation">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="maritalStatus" class="form-label">Maritial Status</label>
+                        <ng-select [items]="maritialStatus$ | async"
+                            id="maritalStatus"
+                            [searchable]="false"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="maritalStatus">
                         </ng-select>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
@@ -237,10 +247,22 @@
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <mat-checkbox formControlName="haveChildren" class="mt-3 pt-2">Have Children</mat-checkbox>
                     </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="noOfChildren" class="form-label">No Of Children</label>
+                        <input type="number" class="form-control"
+                        name="noOfChildren" id="noOfChildren" 
+                        formControlName="noOfChildren" />
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <label for="maritialDescription" class="form-label">Maritial Description</label>
+                        <input type="text" class="form-control"
+                        name="maritialDescription" id="noOfChildren" 
+                        formControlName="maritialDescription" />
+                    </div>
                 </div>        
         </mat-card-content>
         <mat-card-actions  class="action-button-container">
-            <button mat-raised-button (click)="onSave()" color="primary">Save</button>
+            <button mat-raised-button (click)="onSave()" [disabled]="!matrimonialFormGroup.valid" color="primary">Save</button>
             <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
         </mat-card-actions>
     </mat-card>

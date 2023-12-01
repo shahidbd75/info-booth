@@ -2,9 +2,10 @@ import { Component,OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MatrimonialBasicCvService } from '../../services/matrimonial-basic.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { CvEnumOptionsComponent } from './matrimonial-basic-options.component';
 import { OptionsModel } from 'src/app/shared/models/options-model';
+import { MatrimonialReponseType, MatrimonialUpdateRequestType } from '../../types/matrimonial-basic-types';
 
 @Component({
   selector: 'app-matrimonial-basic',
@@ -24,6 +25,15 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
 
   ngOnInit(): void {
     this.initializeFormGroup();
+
+    this.activatedRoute.params.subscribe({
+      next: (params:Params) => {
+        const id = params['id'];
+        if(id) {
+          this.loadData(id);
+        }
+      }
+    })
   }
 
   ngOnDestroy(): void {
@@ -33,15 +43,37 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
   }
 
   onSave() {
-    console.log(this.matrimonialFormGroup.value);
+    const requestModel: MatrimonialUpdateRequestType = this.matrimonialFormGroup.value;
+
+    requestModel.id = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
+
+    this.matrimonialService.update<MatrimonialUpdateRequestType, unknown>(requestModel).subscribe({
+      next: () => {
+        console.log('Saved');
+      },
+      error: () => console.log('NotSaved')
+    });
   }
 
   onClear() {
     this.matrimonialFormGroup.reset();
   }
 
+  private loadData(personId: string) {
+    this.matrimonialService.getById<MatrimonialReponseType>(personId).subscribe({
+      next: (response: MatrimonialReponseType) => {
+        if(response) {
+          const { ...restValue } = response;
+          this.matrimonialFormGroup.setValue({...restValue});
+        }
+      }
+    , error: (error) => console.log(error)
+    })
+  }
+
   private initializeFormGroup() {
     this.matrimonialFormGroup = this.fb.group({
+      id:                 [null],
       guardianRelation:   [null, [Validators.required]],
       height:             [null],
       weight:             [null],
@@ -74,6 +106,9 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
       noOfMarriedBrother: [null],
       noOfSister:         [null],
       noOfMarriedSister:  [null],
+      maritalStatus:      [null, [Validators.required]],
+      noOfChildren:       [null],
+      maritialDescription:['', [Validators.maxLength(150)]]
     });
   }
 }
