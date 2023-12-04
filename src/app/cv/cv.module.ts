@@ -43,6 +43,8 @@ import { PreferableOccupationComponent } from './components/preferable-occupatio
 import { OccupationService } from '../personnel/services/occupation.service';
 import { FamilyMerberService } from './services/family-merber.service';
 import { FavoriteService } from './services/favorite.service';
+import { PreferableService } from './services/preferable.service';
+import { PreferableOccupationService } from './services/preferable-occupation.service';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import { FavoriteService } from './services/favorite.service';
     MatrimonialBasicCvService,
     OccupationService,
     FamilyMerberService,
-    FavoriteService]
+    FavoriteService,
+    PreferableService,
+    PreferableOccupationService]
 })
 export class CvModule { }

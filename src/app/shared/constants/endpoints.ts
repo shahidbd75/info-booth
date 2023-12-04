@@ -57,6 +57,9 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     FAMILY_MEMBER_BASE: `${BASE_URL}FamilyMember`,
     GET_FAMILY_MEMBERS_BY_PERSON:(personId: string) =>  `${BASE_URL}FamilyMember/getByPersonId/${personId}`,
     FAVORITE_BASE:`${BASE_URL}Favorite`,
+    PREFERABLE_BASE: `${BASE_URL}Preferable`,
+    PREFERABLE_OCCUPATIONS_BY_PERSON: (personId: string) => `${BASE_URL}PreferableOccupation/${personId}`,
+    PREFERABLE_OCCUPATION_BASE: `${BASE_URL}PreferableOccupation`,
   },
   CV_OPTIONS : {
     GET_DEGREES: `${BASE_URL}CvOptions/degrees`,
@@ -178,6 +181,9 @@ export interface Cv {
   FAMILY_MEMBER_BASE: string;
   GET_FAMILY_MEMBERS_BY_PERSON:(personId: string) => string;
   FAVORITE_BASE: string;
+  PREFERABLE_BASE: string;
+  PREFERABLE_OCCUPATION_BASE: string;
+  PREFERABLE_OCCUPATIONS_BY_PERSON:(personId: string) => string;
 }
 
 export interface CvOptions {

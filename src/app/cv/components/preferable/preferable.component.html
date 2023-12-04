@@ -1,1 +1,25 @@
-<p>preferable works!</p>
+<form [formGroup]="preferableFormGroup">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Preferable</mat-card-title>
+            <mat-card-subtitle>Matrimonial cv</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>    
+                <div class="row">                  
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="height" class="form-label">Height</label>
+                        <input type="text" formControlName="height" class="form-control" id="height" />
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="complexion" class="form-label">Complexion</label>
+                        <input type="text" formControlName="complexion" class="form-control" id="complexion" />
+                    </div>              
+                  
+                </div>        
+        </mat-card-content>
+        <mat-card-actions  class="action-button-container">
+            <button mat-raised-button (click)="onSave()" [disabled]="!preferableFormGroup.valid" color="primary">Save</button>
+            <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
+        </mat-card-actions>
+    </mat-card>
+    </form>
