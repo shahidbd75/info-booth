@@ -1,5 +1,5 @@
 import { Component,OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MatrimonialBasicCvService } from '../../services/matrimonial-basic.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -16,6 +16,7 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
   matrimonialFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
   numbers: OptionsModel[];
+  haveChildren = false;
 
   constructor(private fb: FormBuilder, private matrimonialService: MatrimonialBasicCvService,
     private activatedRoute: ActivatedRoute) {
@@ -33,7 +34,9 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
           this.loadData(id);
         }
       }
-    })
+    });
+
+    this.onFormValueChange();
   }
 
   ngOnDestroy(): void {
@@ -100,15 +103,28 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
       familyValue:        [null],
       personalValue:      [null],
       residencyStatus:    [null],
-      haveChildren:       [null],
+      haveChildren:       [false],
       caste:              [null],
       noOfBrother:        [null],
       noOfMarriedBrother: [null],
       noOfSister:         [null],
       noOfMarriedSister:  [null],
       maritalStatus:      [null, [Validators.required]],
-      noOfChildren:       [null],
+      noOfChildren:       new FormControl({value: null, disabled: true},[Validators.max(10), Validators.maxLength(2)]),
       maritialDescription:['', [Validators.maxLength(150)]]
     });
+  }
+
+  private onFormValueChange() {
+    this.matrimonialFormGroup.controls['haveChildren'].valueChanges.subscribe({
+      next: (val) => {
+        if(val) {
+          this.matrimonialFormGroup.controls['noOfChildren'].enable();
+        } else {
+          this.matrimonialFormGroup.controls['noOfChildren'].reset();
+          this.matrimonialFormGroup.controls['noOfChildren'].disable();
+        }
+      }
+    })
   }
 }

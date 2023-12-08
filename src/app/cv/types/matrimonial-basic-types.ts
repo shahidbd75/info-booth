@@ -9,7 +9,7 @@ export type MatrimonialCreateRequestType = {
     selfWealthDetail:    string;
     shortTimeAmbition:   string;
     longTimeAmbition:    string;
-    handiCrafts:         string;
+    handiCrafts:         string[];
     facebookProfileLink: string;
     presentAddress:      string;
     expectations:        string;
@@ -53,7 +53,7 @@ export type MatrimonialReponseType = {
     selfWealthDetail:    string;
     shortTimeAmbition:   string;
     longTimeAmbition:    string;
-    handiCrafts:         string;
+    handiCrafts:         string[];
     facebookProfileLink: string;
     presentAddress:      string;
     expectations:        string;

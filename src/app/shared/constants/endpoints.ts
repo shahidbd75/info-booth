@@ -102,6 +102,7 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_ZODIAC_SIGNS: `${BASE_URL}CvEnumOptions/zodiac-signs`,
     GET_HANDICRAFTS: `${BASE_URL}CvEnumOptions/handicrafts`,
     GET_MARITIAL_STATUS: `${BASE_URL}CvEnumOptions/maritial-status`,
+    GET_BODY_HEIGHTS: `${BASE_URL}CvEnumOptions/body-heights`,
   }
 }
 
@@ -228,4 +229,5 @@ export interface CvEnumOptions {
   GET_ZODIAC_SIGNS: string;
   GET_HANDICRAFTS: string;
   GET_MARITIAL_STATUS: string;
+  GET_BODY_HEIGHTS: string;
 }

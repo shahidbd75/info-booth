@@ -10,7 +10,7 @@
     
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-xs-12">
-                        <label for="guardianRelation" class="form-label">Profile Created By</label>
+                        <label for="guardianRelation" class="form-label">Concern Person</label><span class="text-danger">*</span>
                         <ng-select [items]="guardianAs$ | async"
                             id="guardianRelation"
                             bindValue="id" 
@@ -19,7 +19,7 @@
                         </ng-select>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
-                        <label for="maritalStatus" class="form-label">Maritial Status</label>
+                        <label for="maritalStatus" class="form-label">Maritial Status</label><span class="text-danger">*</span>
                         <ng-select [items]="maritialStatus$ | async"
                             id="maritalStatus"
                             [searchable]="false"
@@ -30,14 +30,20 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <label for="height" class="form-label">Height(cm)</label>
-                        <input type="number" maxlength="5" formControlName="height" class="form-control" id="height" />
+                        <ng-select [items]="bodyHeights$ | async"
+                            id="height"
+                            [searchable]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="height">
+                    </ng-select>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <label for="weight" class="form-label">Weight(kg)</label>
                         <input type="number" maxlength="5" formControlName="weight" class="form-control" id="weight" />
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
-                        <label for="chest" class="form-label">Chest</label>
+                        <label for="chest" class="form-label">Chest(cm)</label>
                         <input type="number" maxlength="5" formControlName="chest" class="form-control" id="chest" />
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
@@ -66,7 +72,14 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <label for="handiCrafts" class="form-label">Handicrafts</label>
-                        <input type="text" formControlName="handiCrafts" class="form-control" id="handiCrafts" />
+                        <ng-select [items]="handicrafts$ | async"
+                            id="handiCrafts"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="name" 
+                            bindLabel="name"
+                            formControlName="handiCrafts">
+                        </ng-select>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <label for="facebookProfileLink" class="form-label">Facebook Profile Link</label>
@@ -250,8 +263,8 @@
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <label for="noOfChildren" class="form-label">No Of Children</label>
                         <input type="number" class="form-control"
-                        name="noOfChildren" id="noOfChildren" 
-                        formControlName="noOfChildren" />
+                            name="noOfChildren" id="noOfChildren"
+                            formControlName="noOfChildren" />
                     </div>
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         <label for="maritialDescription" class="form-label">Maritial Description</label>

@@ -19,4 +19,5 @@ export class CvEnumOptionsComponent {
     guardianAs$ = this.service.getRelations();
     handicrafts$ = this.service.getHandicrafts();
     maritialStatus$ = this.service.getMaritialStatus();
+    bodyHeights$ = this.service.getBodyHeights();
 }
