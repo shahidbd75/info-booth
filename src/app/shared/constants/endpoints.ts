@@ -104,6 +104,14 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_MARITIAL_STATUS: `${BASE_URL}CvEnumOptions/maritial-status`,
     GET_BODY_HEIGHTS: `${BASE_URL}CvEnumOptions/body-heights`,
     GET_BIRDS: `${BASE_URL}CvEnumOptions/birds`,
+    GET_BEARD_TYPES:`${BASE_URL}CvEnumOptions/beard-types`,
+    GET_OCCUPATION_GROUPS:`${BASE_URL}CvEnumOptions/occupation-groups`,
+    GET_PRAYERS: `${BASE_URL}CvEnumOptions/prayers`,
+    GET_PRAYERS_IN_MOSQUE: `${BASE_URL}CvEnumOptions/prayers`,
+    GET_READING_QURANS: `${BASE_URL}CvEnumOptions/reading-qurans`,
+    GET_RELIGIOUS_BELIEFS: `${BASE_URL}CvEnumOptions/religious-beliefs`,
+    GET_HIJAB_TYPES: `${BASE_URL}CvEnumOptions/hijab-types`,
+    GET_TABLIGUE_FREQUENCIES: `${BASE_URL}CvEnumOptions/tablig-frequencies`,
   }
 }
 
@@ -232,4 +240,12 @@ export interface CvEnumOptions {
   GET_HANDICRAFTS: string;
   GET_MARITIAL_STATUS: string;
   GET_BODY_HEIGHTS: string;
+  GET_BEARD_TYPES: string;
+  GET_OCCUPATION_GROUPS: string;
+  GET_PRAYERS: string;
+  GET_PRAYERS_IN_MOSQUE: string;
+  GET_READING_QURANS: string;
+  GET_RELIGIOUS_BELIEFS: string;
+  GET_TABLIGUE_FREQUENCIES: string;
+  GET_HIJAB_TYPES: string;
 }

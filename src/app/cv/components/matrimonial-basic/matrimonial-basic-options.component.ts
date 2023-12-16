@@ -27,4 +27,10 @@ export class CvEnumOptionsComponent {
     tvShows$ =  this.service.getTvShows();
     cookings$ =  this.service.getCookings();
     movies$ =  this.service.getMovies();
+    religiousBelieves$ = this.service.getReligiousBelieves();
+    hijabTypes$ = this.service.getHijabTypes();
+    prayers$ = this.service.getPrayers();
+    prayerInMosque$ = this.service.getPrayerInMosque();
+    quranRecitations$ = this.service.getQuranRecitations();
+    tabligFrequencies$ = this.service.getTabligueFrequencies();
 }

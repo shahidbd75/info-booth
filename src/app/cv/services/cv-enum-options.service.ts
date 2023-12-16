@@ -6,7 +6,6 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class CvEnumOptionsService {
-
   constructor(private http: HttpClient) { }
 
   getSkills(): Observable<OptionsModel[]> {
@@ -111,8 +110,8 @@ export class CvEnumOptionsService {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_READS);
   }
 
-  getReligiousViews(): Observable<OptionsModel[]> {
-    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_RELIGIOUS_VIEWS);
+  getReligiousBelieves(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_RELIGIOUS_BELIEFS);
   }
 
   getResidencyStatus(): Observable<OptionsModel[]> {
@@ -147,5 +146,23 @@ export class CvEnumOptionsService {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_BIRDS);
   }
   
+  getPrayerInMosque() : Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_PRAYERS_IN_MOSQUE);
+  }
 
+  getQuranRecitations(): Observable<OptionsModel[]>  {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_READING_QURANS);
+  }
+
+  getTabligueFrequencies(): Observable<OptionsModel[]>  {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_TABLIGUE_FREQUENCIES);
+  }
+
+  getPrayers(): Observable<OptionsModel[]>  {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_PRAYERS);
+  }
+
+  getHijabTypes(): Observable<OptionsModel[]>  {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_HIJAB_TYPES);
+  }
 }

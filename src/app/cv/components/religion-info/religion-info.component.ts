@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PreferableService } from '../../services/preferable.service';
 import { PreferableCreateRequestType, PreferableReponseType } from '../../types/preferable-types';
+import { CvEnumOptionsComponent } from '../matrimonial-basic/matrimonial-basic-options.component';
 
 @Component({
   selector: 'app-religion-info',
   templateUrl: './religion-info.component.html',
   styleUrls: ['./religion-info.component.scss']
 })
-export class ReligionInfoComponent {
+export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   religionFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private preferableService: PreferableService) {
-
+    super();
   }
   ngOnInit(): void {
     this.initializeFormGroup();
