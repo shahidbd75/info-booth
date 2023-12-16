@@ -20,4 +20,11 @@ export class CvEnumOptionsComponent {
     handicrafts$ = this.service.getHandicrafts();
     maritialStatus$ = this.service.getMaritialStatus();
     bodyHeights$ = this.service.getBodyHeights();
+    birds$ = this.service.getBirds();
+    games$ = this.service.getGames();
+    musics$ = this.service.getMusics();
+    reads$ =  this.service.getReads();
+    tvShows$ =  this.service.getTvShows();
+    cookings$ =  this.service.getCookings();
+    movies$ =  this.service.getMovies();
 }

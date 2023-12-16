@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>Person Entry</mat-card-title>
-      <mat-card-subtitle>Buy & Sell</mat-card-subtitle>
+      <mat-card-subtitle>Personnel</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <mat-divider></mat-divider>
@@ -76,7 +76,7 @@
             </ng-select>
           </div>
           <div class="col-md-4">
-            <label for="degreeId" class="form-label">Education Level</label>
+            <label for="degreeId" class="form-label">Highest Degree</label>
               <ng-select
               [items]="degrees$ | async"
               id="degreeId"
@@ -90,14 +90,17 @@
             </ng-select>
           </div>
           <div class="col-md-4">
-            <label for="age" class="form-label">Age</label>
-            <input type="text" formControlName="age" class="form-control" id="age">
+            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+            <input type="date" formControlName="dateOfBirth" class="form-control" id="dateOfBirth">
           </div>
           <div class="col-md-4">
             <label for="postalCode" class="form-label">Postal Code</label>
             <input type="text" formControlName="postalCode" class="form-control" id="postalCode">
           </div>
-  
+          <div class="col-md-4">
+            <label for="bloodGroup" class="form-label">Blood Group</label>
+            <input type="text" formControlName="bloodGroup" class="form-control" maxlength="3" id="bloodGroup">
+          </div>
           <div class="col-md-8">
             <label for="address" class="form-label">Address</label>
             <textarea class="form-control" formControlName="address" id="address" rows="3"></textarea>

@@ -37,6 +37,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
+import { NotificationService } from './notification/services/notification.service';
+import { ToastService } from './notification/services/toast.service';
+
 
 
 
@@ -79,6 +82,7 @@ import { MatTableModule } from '@angular/material/table';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule
-  ]
+  ],
+  providers: [NotificationService, ToastService]
 })
 export class MaterialModule { }

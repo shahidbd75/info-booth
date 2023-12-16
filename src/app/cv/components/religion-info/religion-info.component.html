@@ -1,0 +1,58 @@
+<form [formGroup]="religionFormGroup">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Religion Information</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>    
+                <div class="row">   
+                    <div class="col-lg-8 col-md-12 col-xs-12">
+                        <mat-card>
+                            <mat-card-content>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <label for="height" class="form-label">Religious Belief</label>
+                                        <input type="text" formControlName="height" class="form-control" id="height" />
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <label for="complexion" class="form-label">Caste</label>
+                                        <input type="text" formControlName="complexion" class="form-control" id="complexion" />
+                                    </div>     
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <label for="height" class="form-label">Hijab Type</label>
+                                        <input type="text" formControlName="height" class="form-control" id="height" />
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <label for="complexion" class="form-label">Prayer</label>
+                                        <input type="text" formControlName="complexion" class="form-control" id="complexion" />
+                                    </div> 
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <label for="height" class="form-label">Prayer In Mosque</label>
+                                        <input type="text" formControlName="height" class="form-control" id="height" />
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <label for="complexion" class="form-label">Quran Recitation</label>
+                                        <input type="text" formControlName="complexion" class="form-control" id="complexion" />
+                                    </div> 
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <label for="height" class="form-label">Tabligue</label>
+                                        <input type="text" formControlName="height" class="form-control" id="height" />
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                        
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-xs-12">
+                        <mat-selection-list #shoes>
+                            <mat-list-option>shoe1</mat-list-option>
+                              <mat-list-option>shoe</mat-list-option>
+                          </mat-selection-list>
+                    </div>                  
+                </div>        
+        </mat-card-content>
+        <mat-card-actions  class="action-button-container">
+            <button mat-raised-button (click)="onSave()" [disabled]="!religionFormGroup.valid" color="primary">Save</button>
+            <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
+        </mat-card-actions>
+    </mat-card>
+    </form>

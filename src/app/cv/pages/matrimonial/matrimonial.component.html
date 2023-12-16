@@ -45,16 +45,16 @@
             </ng-template>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Your Favorite</ng-template>
-            <app-favorite *ngIf="currentIndex === 2" />
-            <div class="stepper-button">
-              <button mat-button color="primary" matStepperPrevious>Previous</button>
-              <button mat-button color="primary" matStepperNext>Next</button>
-            </div>
-        </mat-step>
+          <ng-template matStepLabel>Religion Information</ng-template>
+          <app-religion-info *ngIf="currentIndex === 2"/>
+          <div class="stepper-button">
+            <button mat-button color="primary" matStepperPrevious>Previous</button>
+            <button mat-button color="primary" matStepperNext>Next</button>
+          </div>
+      </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Preferable</ng-template>
-            <app-preferable *ngIf="currentIndex === 3"/>
+            <ng-template matStepLabel>Your Favorite</ng-template>
+            <app-favorite *ngIf="currentIndex === 3" />
             <div class="stepper-button">
               <button mat-button color="primary" matStepperPrevious>Previous</button>
               <button mat-button color="primary" matStepperNext>Next</button>

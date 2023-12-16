@@ -45,10 +45,11 @@ import { FamilyMerberService } from './services/family-merber.service';
 import { FavoriteService } from './services/favorite.service';
 import { PreferableService } from './services/preferable.service';
 import { PreferableOccupationService } from './services/preferable-occupation.service';
+import { ReligionInfoComponent } from './components/religion-info/religion-info.component';
 
 
 @NgModule({
-  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent, SubjectComponent, SubjectsComponent, ProfessionalComponent, ProfessionalsComponent, MatrimonialsComponent, MatrimonialComponent, ProfessionalBasicComponent, MatrimonialBasicComponent, EducationComponent, ExperienceComponent, TrainingComponent, JobReferenceComponent, FamilyMemberComponent, FavoriteComponent, PreferableComponent, PreferableOccupationComponent,],
+  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent, SubjectComponent, SubjectsComponent, ProfessionalComponent, ProfessionalsComponent, MatrimonialsComponent, MatrimonialComponent, ProfessionalBasicComponent, MatrimonialBasicComponent, EducationComponent, ExperienceComponent, TrainingComponent, JobReferenceComponent, FamilyMemberComponent, FavoriteComponent, PreferableComponent, PreferableOccupationComponent, ReligionInfoComponent,],
   imports: [
     CommonModule,
     CvRoutingModule,

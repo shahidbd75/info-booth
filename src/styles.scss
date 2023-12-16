@@ -51,3 +51,7 @@ table {
 .form-control.ng-invalid:not(form) {
   border-left: 5px solid #a94442;
 }
+.bg-success {
+  background: rgba(65, 252, 134, 0.534);
+  color: white;
+}

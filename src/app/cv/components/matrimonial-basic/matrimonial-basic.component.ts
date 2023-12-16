@@ -6,6 +6,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CvEnumOptionsComponent } from './matrimonial-basic-options.component';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { MatrimonialReponseType, MatrimonialUpdateRequestType } from '../../types/matrimonial-basic-types';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
   selector: 'app-matrimonial-basic',
@@ -19,7 +21,7 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
   haveChildren = false;
 
   constructor(private fb: FormBuilder, private matrimonialService: MatrimonialBasicCvService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute, private notificationService: NotificationService) {
     super();
   }
 
@@ -52,9 +54,9 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
 
     this.matrimonialService.update<MatrimonialUpdateRequestType, unknown>(requestModel).subscribe({
       next: () => {
-        console.log('Saved');
+        this.notificationService.success(NotificationMessage.SavedSuccessfully);
       },
-      error: () => console.log('NotSaved')
+      error: () => this.notificationService.error(NotificationMessage.SavedFailure)
     });
   }
 
@@ -70,7 +72,9 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
           this.matrimonialFormGroup.setValue({...restValue});
         }
       }
-    , error: (error) => console.log(error)
+    , error: () => {
+      this.notificationService.error(NotificationMessage.SavedFailure);
+    }
     })
   }
 

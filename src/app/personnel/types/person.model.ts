@@ -14,7 +14,7 @@ export type PersonResponseModel = {
   dateOfBirth:        string;
   nId:                string;
   gender:             number;
-  age:                string;
+  bloodGroup:         string;
   occupationId:       number;
   occupationName:     string;
   villageId:          string;

@@ -4,7 +4,6 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>Your Favorite</mat-card-title>
-            <mat-card-subtitle>Matrimonial cv</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>    
                 <div class="row">                  
@@ -13,7 +12,7 @@
                         <input type="text" formControlName="cloth" class="form-control" id="cloth" />
                     </div>
                     <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label for="bird" class="form-label">Bird</label>
+                        <label for="bird" class="form-label">Bird</label>                       
                         <input type="text" formControlName="bird" class="form-control" id="bird" />
                     </div>              
                     <div class="col-lg-4 col-md-6 col-xs-12">
@@ -29,11 +28,11 @@
                         <input type="text" formControlName="pet" class="form-control" id="pet" />
                     </div>  
                     <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label for="fish" class="form-label">fish</label>
+                        <label for="fish" class="form-label">Fish</label>
                         <input type="text" formControlName="fish" class="form-control" id="fish" />
                     </div>  
                     <div class="col-lg-4 col-md-6 col-xs-12">
-                        <label for="fruit" class="form-label">fruit</label>
+                        <label for="fruit" class="form-label">Fruit</label>
                         <input type="text" formControlName="fruit" class="form-control" id="fruit" />
                     </div>  
                     <div class="col-lg-4 col-md-6 col-xs-12">
@@ -50,27 +49,69 @@
                     </div>  
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <label for="movie" class="form-label">Movie</label>
-                        <input type="text" formControlName="movie" class="form-control" id="movie" />
+                        <ng-select [items]="movies$ | async"
+                            id="movie"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="name" 
+                            bindLabel="name"
+                            formControlName="movie">
+                        </ng-select>
                     </div>  
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <label for="cooking" class="form-label">Cooking</label>
-                        <input type="text" formControlName="cooking" class="form-control" id="cooking" />
+                        <ng-select [items]="cookings$ | async"
+                            id="cooking"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="name" 
+                            bindLabel="name"
+                            formControlName="cooking">
+                        </ng-select>
                     </div>
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <label for="game" class="form-label">Game</label>
-                        <input type="text" formControlName="game" class="form-control" id="game" />
+                        <ng-select [items]="games$ | async"
+                            id="game"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="name" 
+                            bindLabel="name"
+                            formControlName="game">
+                        </ng-select>
                     </div>
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <label for="music" class="form-label">Music</label>
-                        <input type="text" formControlName="music" class="form-control" id="music" />
+                        <ng-select [items]="musics$ | async"
+                            id="music"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="name" 
+                            bindLabel="name"
+                            formControlName="music">
+                        </ng-select>
                     </div>
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <label for="read" class="form-label">Read</label>
-                        <input type="text" formControlName="read" class="form-control" id="read" />
+                        <ng-select [items]="reads$ | async"
+                            id="read"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="name" 
+                            bindLabel="name"
+                            formControlName="read">
+                        </ng-select>
                     </div>
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <label for="tvShow" class="form-label">TV Show</label>
-                        <input type="text" formControlName="tvShow" class="form-control" id="tvShow" />
+                        <ng-select [items]="tvShows$ | async"
+                            id="tvShow"
+                            [searchable]="true"
+                            [multiple]="true"
+                            bindValue="name" 
+                            bindLabel="name"
+                            formControlName="tvShow">
+                        </ng-select>
                     </div>
                     <div class="col-lg-4 col-md-6 col-xs-12">
                         <label for="website" class="form-label">Website</label>

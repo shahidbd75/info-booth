@@ -2,6 +2,10 @@
     margin-top: 5px;
 
     button {
-        margin-right: 5px;;
+        margin-right: 5px;
     }
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 0px !important;
 }

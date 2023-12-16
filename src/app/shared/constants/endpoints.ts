@@ -103,6 +103,7 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_HANDICRAFTS: `${BASE_URL}CvEnumOptions/handicrafts`,
     GET_MARITIAL_STATUS: `${BASE_URL}CvEnumOptions/maritial-status`,
     GET_BODY_HEIGHTS: `${BASE_URL}CvEnumOptions/body-heights`,
+    GET_BIRDS: `${BASE_URL}CvEnumOptions/birds`,
   }
 }
 
@@ -196,6 +197,7 @@ export interface CvOptions {
 }
 
 export interface CvEnumOptions {
+  GET_BIRDS: string;
   GET_ACCEPTANCES: string;
   GET_BODY_TYPES: string;
   GET_CASTE: string;

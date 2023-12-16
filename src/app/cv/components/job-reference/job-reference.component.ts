@@ -105,11 +105,11 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
     this.formGroup = this.fb.group({
       id: [null],
       personId: [''],
-      designationId: ['', [Validators.required]],
-      referencePersonId: ['', [Validators.required]],
-      relation: ['',[Validators.required]],
+      designationId: [null, [Validators.required]],
+      referencePersonId: [null, [Validators.required]],
+      relation: [null,[Validators.required]],
       institute: [''],
-      isActive: [''],
+      isActive: [null],
     });
   }
 }

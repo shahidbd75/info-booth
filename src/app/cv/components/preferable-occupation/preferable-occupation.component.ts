@@ -43,4 +43,7 @@ export class PreferableOccupationComponent implements OnInit, OnDestroy {
     
   }
 
+  onClear() {
+    
+  }
 }

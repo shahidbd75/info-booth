@@ -1,22 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatrimonialReponseType } from '../../types/matrimonial-basic-types';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FavoriteRequestType } from '../../types/matrimonial-favorite-types';
 import { FavoriteService } from '../../services/favorite.service';
+import { CvEnumOptionsComponent } from '../matrimonial-basic/matrimonial-basic-options.component';
 
 @Component({
   selector: 'app-favorite',
   templateUrl: './favorite.component.html',
   styleUrls: ['./favorite.component.scss']
 })
-export class FavoriteComponent implements OnInit, OnDestroy {
+export class FavoriteComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   favoriteFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder, private favoriteService: FavoriteService,
     private activatedRoute: ActivatedRoute) {
+      super();
   }
 
 
@@ -25,12 +27,12 @@ export class FavoriteComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.params.subscribe({
       next: (params:Params) => {
-        const id = params['id'];
+        const id: string = params['id'];
         if(id) {
           this.loadData(id);
         }
       }
-    })
+    });
   }
 
   ngOnDestroy(): void {
@@ -60,8 +62,8 @@ export class FavoriteComponent implements OnInit, OnDestroy {
     this.favoriteService.getById<MatrimonialReponseType>(personId).subscribe({
       next: (response: MatrimonialReponseType) => {
         if(response) {
-          const { ...restValue } = response;
-          this.favoriteFormGroup.setValue({...restValue});
+          const {id: personId, ...restValue } = response;
+          this.favoriteFormGroup.setValue({personId, ...restValue});
         }
       }
     , error: (error) => console.log(error)

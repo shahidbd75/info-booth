@@ -22,9 +22,16 @@
         <div class="col-md-2 col-sm-6 pt-3 mt-3" *ngIf="personId">
           <button mat-raised-button color="accent" (click)="onClearPerson()">Change Person</button>
         </div>
+        <div class="col-md-6 col-sm-6 pt-3 mt-2">
+          <label for="orientation" class="px-2"><em>Stepper Orientation</em></label>
+          <mat-button-toggle-group name="fontStyle" id="orientation" #stepperOrientation="ngModel" ngModel aria-label="orientation">
+            <mat-button-toggle value="horizontal" selected>Horizontal</mat-button-toggle>
+            <mat-button-toggle value="vertical">Vertical</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
       </div>
 
-      <mat-stepper linear orientation="horizontal" (selectionChange)="OnSelectedChange($event.selectedIndex)">
+      <mat-stepper linear [orientation]="stepperOrientation.value ? stepperOrientation.value: orientation" (selectionChange)="OnSelectedChange($event.selectedIndex)">
         <mat-step>
             <ng-template matStepLabel>Basic</ng-template>
             <ng-template matStepContent>

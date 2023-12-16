@@ -5,43 +5,52 @@
     <mat-card-content>
         <form [formGroup]="formGroup">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-xs-12">
-                    <label for="personReferenceId" class="form-label">Reference Person</label>
-                    <ng-select [items]="persons$ | async"
-                        id="personReferenceId"
-                        [searchable]="true"
-                        bindValue="id" 
-                        bindLabel="name"
-                        placeholder="Please select a person"
-                        formControlName="referencePersonId">
-                    </ng-select>
+                <div class="col-md-8 col-sm-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <label for="personReferenceId" class="form-label">Reference Person</label>
+                            <ng-select [items]="persons$ | async"
+                                id="personReferenceId"
+                                [searchable]="true"
+                                bindValue="id" 
+                                bindLabel="name"
+                                placeholder="Please select a person"
+                                formControlName="referencePersonId">
+                            </ng-select>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <label for="designationId" class="form-label">Designation</label>
+                            <ng-select [items]="designations$ | async" id="designationId" bindValue="id"
+                                bindLabel="name" formControlName="designationId">
+                            </ng-select>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <label for="instituteName" class="form-label">Institute/Organization</label>
+                            <input class="form-control" type="text" formControlName="institute">
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <label for="relation" class="form-label">Relation</label>
+                            <ng-select [items]="relations$ | async" id="relation" bindValue="id"
+                                bindLabel="name" formControlName="relation">
+                            </ng-select>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <div class="mt-4">
+                                <mat-checkbox formControlName="isActive" id="isActive">Is Active</mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-9 col-md-8 col-xs-12">
+                <div class="col-md-2 col-sm-12">
                     <mat-card>
                         <mat-card-header>
-                            
+                            <mat-list>
+                                <mat-list-item>Phone: </mat-list-item>
+                                <mat-list-item>Occupation: </mat-list-item>
+                                <mat-list-item>Village: </mat-list-item>
+                            </mat-list>
                         </mat-card-header>
                     </mat-card>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <label for="designationId" class="form-label">Designation</label>
-                    <ng-select [items]="designations$ | async" id="designationId" bindValue="id"
-                        bindLabel="name" formControlName="designationId">
-                    </ng-select>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <label for="instituteName" class="form-label">Institute/Organization</label>
-                    <input class="form-control" type="text" formControlName="institute">
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <label for="relation" class="form-label">Relation</label>
-                    <ng-select [items]="relations$ | async" id="relation" bindValue="id"
-                        bindLabel="name" formControlName="relation">
-                    </ng-select>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                    <label for="isActive" class="form-label"></label>
-                    <mat-checkbox formControlName="isActive" id="isActive">Is Active</mat-checkbox>
                 </div>
             </div>
         </form>

@@ -9,13 +9,13 @@ export type FavoriteRequestType = {
     vehicle:  string;
     book:     string;
     sport:    string;
-    movie:    string;
+    movie:    string[];
     website:  string;
-    cooking:  string;
-    game:     string;
-    music:    string;
-    read:     string;
-    tvShow:   string;
+    cooking:  string[];
+    game:     string[];
+    music:    string[];
+    read:     string[];
+    tvShow:   string[];
     personId: string;
 }
 
@@ -30,12 +30,12 @@ export type FavoriteResponseType = {
     vehicle:  string;
     book:     string;
     sport:    string;
-    movie:    string;
+    movie:    string[];
     website:  string;
-    cooking:  string;
-    game:     string;
-    music:    string;
-    read:     string;
-    tvShow:   string;
+    cooking:  string[];
+    game:     string[];
+    music:    string[];
+    read:     string[];
+    tvShow:   string[];
     personId: string;
 }

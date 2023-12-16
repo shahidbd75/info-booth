@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { PersonService } from 'src/app/personnel/services/person.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { StepperOrientation } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-professional',
@@ -14,6 +15,8 @@ export class ProfessionalComponent implements OnInit {
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();
   personId: string;
   personControl = new FormControl(null, [Validators.required]);
+  orientation: StepperOrientation = 'horizontal';
+  stepperOrientation = new FormControl('horizontal');
   constructor(private personService: PersonService, private activatedRoute: ActivatedRoute, private router: Router) {}
   currentIndex = 0;
 
