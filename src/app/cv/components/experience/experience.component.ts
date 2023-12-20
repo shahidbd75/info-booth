@@ -7,6 +7,8 @@ import { CvOptionsService } from '../../services/cv-options.service';
 import { ExperienceService } from '../../services/experience.service';
 import { ExperienceRequestModel, ExperienceResponseType } from '../../types/experience-types';
 import { ActivatedRoute, Params } from '@angular/router';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 
 @Component({
   selector: 'app-experience',
@@ -23,12 +25,12 @@ export class ExperienceComponent implements OnInit, OnDestroy {
   designations$ : Observable<OptionsModel[]> = this.cvOptionsService.getDesignations();
   jobNatures$ : Observable<OptionsModel[]> = this.cvOptionsService.getJobNatures();
   constructor(private fb: FormBuilder, private cvOptionsService: CvOptionsService, private experienceService: ExperienceService,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute, private notificationService: NotificationService,) {}
 
   ngOnInit(): void {
     this.initializeForm();
 
-    this.loadAllEducation();
+    this.loadExperiences();
   }
 
   ngOnDestroy(): void {
@@ -48,20 +50,28 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     const requestModel: ExperienceRequestModel = {...restValue, personId };
     if(requestModel.id && requestModel.id !== '') {
       this.subscription.add(
-        this.experienceService.update<ExperienceRequestModel, unknown>(requestModel).subscribe(()=> {
-          this.loadAllEducation();
+        this.experienceService.update<ExperienceRequestModel, unknown>(requestModel).subscribe({ next: ()=> {
+          this.notificationService.success(NotificationMessage.UpdatedSuccessfully);
+          this.loadExperiences();
           this.formGroup.reset({personId: this.personId});
           this.IsEditMode = false;
-          console.log('Updated');
-        }, () => console.log('Failed'))
+        }, error: (error) => {
+          console.log(error);
+          
+          this.notificationService.error(NotificationMessage.UpdatedFailure);
+        }})
       );
     } else {
       this.subscription.add(
-        this.experienceService.save<ExperienceRequestModel, unknown>(requestModel).subscribe(()=> {
-          this.loadAllEducation();
+        this.experienceService.save<ExperienceRequestModel, unknown>(requestModel).subscribe({next: ()=> {
+          this.notificationService.success(NotificationMessage.SavedSuccessfully);
+          this.loadExperiences();
           this.IsEditMode = false;
           this.formGroup.reset({personId: this.personId});
-        }, () => console.log('Failed'))
+        }, error: (err) => {
+          this.notificationService.error(NotificationMessage.SavedFailure);
+          console.log(err)
+        }})
       );
     }    
   }
@@ -70,19 +80,19 @@ export class ExperienceComponent implements OnInit, OnDestroy {
     this.formGroup.reset();
   }
 
-  loadAllEducation() : void {
+  loadExperiences() : void {
     this.activatedRoute.params.subscribe({ next: (params: Params) => {
       this.personId = params['id'];
 
       if(this.personId) {
         this.subscription.add(this.experienceService.getExperiencesByPersonId(this.personId)
-        .subscribe((response: ExperienceResponseType[]) => {
+        .subscribe({ next: (response: ExperienceResponseType[]) => {
           this.dataSource = new MatTableDataSource(response);
-        }, err => console.log(err))
+        }, error: err => console.log(err)})
         );
       }
     }, error: (err) => {
-      console.log(err);
+      this.notificationService.error(NotificationMessage.ServerError);
     }})
   }
 
@@ -94,9 +104,13 @@ export class ExperienceComponent implements OnInit, OnDestroy {
 
   onDelete(data:ExperienceResponseType) {
     if(confirm('Do you want to delete') && data.id !== '') {
-      this.subscription.add(this.experienceService.remove(data.id).subscribe(() => {
-        this.loadAllEducation();
-      }, (err) => console.log(err)));
+      this.subscription.add(this.experienceService.remove(data.id).subscribe({next:() => {
+        this.notificationService.success(NotificationMessage.DeletedSuccessfully);
+        this.loadExperiences();
+      }, error: (err) => {
+        this.notificationService.error(NotificationMessage.DeleteFailure);
+        console.log(err);
+      }}));
     }
   }
 

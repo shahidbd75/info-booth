@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatrimonialReponseType } from '../../types/matrimonial-basic-types';
-import { Subscription, switchMap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FavoriteRequestType } from '../../types/matrimonial-favorite-types';
 import { FavoriteService } from '../../services/favorite.service';
 import { CvEnumOptionsComponent } from '../matrimonial-basic/matrimonial-basic-options.component';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
   selector: 'app-favorite',
@@ -17,7 +19,7 @@ export class FavoriteComponent extends CvEnumOptionsComponent implements OnInit,
   subscription: Subscription = new Subscription();
 
   constructor(private fb: FormBuilder, private favoriteService: FavoriteService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute, private notificationService: NotificationService,) {
       super();
   }
 
@@ -48,9 +50,12 @@ export class FavoriteComponent extends CvEnumOptionsComponent implements OnInit,
 
     this.favoriteService.update<FavoriteRequestType, unknown>(requestModel).subscribe({
       next: () => {
-        console.log('Saved');
+        this.notificationService.success(NotificationMessage.SavedSuccessfully);
       },
-      error: () => console.log('NotSaved')
+      error: (error) => {
+        console.log('NotSaved', error);
+        this.notificationService.error(NotificationMessage.SavedFailure);
+      }
     });
   }
 

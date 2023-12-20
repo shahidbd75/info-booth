@@ -7,6 +7,8 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 import { CvOptionsService } from '../../services/cv-options.service';
 import { TrainingService } from '../../services/training.service';
 import { TrainingCreateRequestTypes, TrainingResponseTypes, TrainingUpdateRequestTypes } from '../../types/training-types';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
   selector: 'app-training',
@@ -23,7 +25,7 @@ export class TrainingComponent implements OnInit, OnDestroy{
   designations$ : Observable<OptionsModel[]> = this.cvOptionsService.getDesignations();
   jobNatures$ : Observable<OptionsModel[]> = this.cvOptionsService.getJobNatures();
   constructor(private fb: FormBuilder, private cvOptionsService: CvOptionsService, private trainingService: TrainingService,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute, private notificationService: NotificationService,) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -47,16 +49,23 @@ export class TrainingComponent implements OnInit, OnDestroy{
           this.loadAllTrainings();
           this.formGroup.reset({personId: this.personId});
           this.IsEditMode = false;
-          console.log('Updated');
-        }, error: () => console.log('Failed')})
+          this.notificationService.success(NotificationMessage.UpdatedSuccessfully);
+        }, error: (err) => {
+          console.log('Failed', err);
+          this.notificationService.error(NotificationMessage.UpdatedFailure);
+      }})
       );
     } else {
       this.subscription.add(
         this.trainingService.save<TrainingCreateRequestTypes, unknown>(requestModel).subscribe({ next:()=> {
           this.loadAllTrainings();
           this.IsEditMode = false;
+          this.notificationService.success(NotificationMessage.SavedSuccessfully);
           this.formGroup.reset({personId: this.personId});
-        }, error: () => console.log('Failed')})
+        }, error: (err) => {
+          this.notificationService.error(NotificationMessage.SavedFailure);
+          console.log('Failed',err)
+        }})
       );
     }    
   }
@@ -90,8 +99,12 @@ export class TrainingComponent implements OnInit, OnDestroy{
   onDelete(data:TrainingResponseTypes) {
     if(confirm('Do you want to delete') && data.id !== '') {
       this.subscription.add(this.trainingService.remove(data.id).subscribe({ next: () => {
+        this.notificationService.success(NotificationMessage.DeletedSuccessfully);
         this.loadAllTrainings();
-      }, error: (err) => console.log(err)}));
+      }, error: (err) => {
+        this.notificationService.error(NotificationMessage.DeleteFailure);
+        console.log(err)
+      }}));
     }
   }
 

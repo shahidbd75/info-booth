@@ -9,6 +9,8 @@ import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
 import { OccupationService } from 'src/app/personnel/services/occupation.service';
 import { FamilyMemberCreateRequestModel, FamilyMemberResponseType, FamilyMemberTableResponseType, FamilyMemberUpdateRequestModel } from '../../types/family-member-type';
 import { FamilyMerberService } from '../../services/family-merber.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 
 @Component({
   selector: 'app-family-member',
@@ -25,7 +27,7 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
   relations$ : Observable<OptionsModel[]> = this.enumOptionService.getRelations();
   constructor(private fb: FormBuilder, private cvOptionsService: CvOptionsService, private familyMemberService: FamilyMerberService,
     private enumOptionService: CvEnumOptionsService, private occupationService: OccupationService,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute,  private notificationService: NotificationService,) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -50,18 +52,26 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
         this.subscription.add(
           this.familyMemberService.update<FamilyMemberUpdateRequestModel, unknown>(requestModel).subscribe({
             next: ()=> {
+              this.notificationService.success(NotificationMessage.UpdatedSuccessfully);
               this.LoadListData();
               this.formGroup.reset();
-            }, error: () => console.log('Failed')
+            }, error: (err) => {
+              this.notificationService.error(NotificationMessage.UpdatedFailure);
+              console.log('Failed',err)
+            }
           })
         );
       } else {
         this.subscription.add(
           this.familyMemberService.save<FamilyMemberCreateRequestModel, unknown>(requestModel).subscribe({
             next: ()=> {
+              this.notificationService.success(NotificationMessage.SavedSuccessfully);
               this.LoadListData();
               this.formGroup.reset();
-            }, error: () => console.log('Failed')
+            }, error: (err) => {
+              this.notificationService.error(NotificationMessage.SavedFailure);
+              console.log('Failed',err)
+            }
           })
         );
       }
@@ -98,8 +108,12 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
   onDelete(data:FamilyMemberTableResponseType) {
     if(confirm('Do you want to delete') && data.id !== '') {
       this.subscription.add(this.familyMemberService.remove(data.id).subscribe({ next: () => {
+        this.notificationService.success(NotificationMessage.DeletedSuccessfully);
         this.LoadListData();
-      }, error: (err) => console.log(err)}));
+      }, error: (err) => {
+        this.notificationService.error(NotificationMessage.DeleteFailure);
+        console.log(err);
+      }}));
     }
   }
 

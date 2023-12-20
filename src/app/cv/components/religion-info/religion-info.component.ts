@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { PreferableService } from '../../services/preferable.service';
 import { PreferableCreateRequestType, PreferableReponseType } from '../../types/preferable-types';
 import { CvEnumOptionsComponent } from '../matrimonial-basic/matrimonial-basic-options.component';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
   selector: 'app-religion-info',
@@ -14,7 +16,8 @@ import { CvEnumOptionsComponent } from '../matrimonial-basic/matrimonial-basic-o
 export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   religionFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private preferableService: PreferableService) {
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private preferableService: PreferableService,
+    private notificationService: NotificationService,) {
     super();
   }
   ngOnInit(): void {
@@ -44,9 +47,12 @@ export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnI
 
     this.preferableService.update<PreferableCreateRequestType, unknown>(requestModel).subscribe({
       next: () => {
-        console.log('Saved');
+        this.notificationService.success(NotificationMessage.SavedSuccessfully);
       },
-      error: () => console.log('NotSaved')
+      error: (err) => {
+        console.log('NotSaved',err);
+        this.notificationService.error(NotificationMessage.SavedFailure);
+      }
     });
   }
 

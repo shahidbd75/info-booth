@@ -9,6 +9,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Subscription, Observable } from 'rxjs';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { PersonService } from 'src/app/personnel/services/person.service';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
   selector: 'app-job-reference',
@@ -26,7 +28,8 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();
   relations$: Observable<OptionsModel[]> = this.cvEnumOptionsService.getRelations();
   constructor(private fb: FormBuilder, private cvOptionsService: CvOptionsService,private cvEnumOptionsService: CvEnumOptionsService, 
-    private jobReferenceService: JobReferenceService, private activatedRoute: ActivatedRoute, private personService: PersonService, ) {}
+    private jobReferenceService: JobReferenceService, private activatedRoute: ActivatedRoute, 
+    private personService: PersonService,  private notificationService: NotificationService,) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -47,10 +50,10 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
       this.subscription.add(
         this.jobReferenceService.update<JobReferenceUpdateRequestType, unknown>(requestModel).subscribe({ next:
           ()=> {
+            this.notificationService.success(NotificationMessage.UpdatedSuccessfully);
             this.loadAllJobReferences();
             this.formGroup.reset({personId: this.personId});
             this.IsEditMode = false;
-            console.log('Updated');
           }, error: () => console.log('Failed')
         })
       );
@@ -58,10 +61,14 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
       this.subscription.add(
         this.jobReferenceService.save<JobReferenceCreateRequestType, unknown>(requestModel).subscribe({
           next: ()=> {
+            this.notificationService.success(NotificationMessage.SavedSuccessfully);
             this.loadAllJobReferences();
             this.IsEditMode = false;
             this.formGroup.reset({personId: this.personId});
-          }, error: () => console.log('Failed')
+          }, error: (err) => {
+            console.log(err);
+            this.notificationService.error(NotificationMessage.SavedFailure);
+          }
         })
       );
     }    
@@ -95,9 +102,10 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
 
   onDelete(data:JobReferenceResponseType) {
     if(confirm('Do you want to delete') && data.id !== '') {
-      this.subscription.add(this.jobReferenceService.remove(data.id).subscribe(() => {
+      this.subscription.add(this.jobReferenceService.remove(data.id).subscribe({ next:() => {
+        this.notificationService.error(NotificationMessage.DeleteFailure);
         this.loadAllJobReferences();
-      }, (err) => console.log(err)));
+      }, error: (err) => console.log(err)}));
     }
   }
 

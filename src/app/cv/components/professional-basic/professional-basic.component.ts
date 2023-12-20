@@ -7,6 +7,8 @@ import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CvOptionsService } from '../../services/cv-options.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 
 @Component({
   selector: 'app-professional-basic',
@@ -22,7 +24,8 @@ export class ProfessionalBasicComponent implements OnInit, OnDestroy {
   skills$: Observable<OptionsModel[]> = this.enumOptionsService.getSkills();
   hobbies$: Observable<OptionsModel[]> = this.cvOptionsService.getHobbies();
   constructor(private fb: FormBuilder, private professionalBasicService: ProfessionalBasicService, 
-    private activatedRoute: ActivatedRoute, private enumOptionsService: CvEnumOptionsService, private cvOptionsService: CvOptionsService){}
+    private activatedRoute: ActivatedRoute, private enumOptionsService: CvEnumOptionsService, 
+    private cvOptionsService: CvOptionsService, private notificationService: NotificationService,){}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -43,12 +46,18 @@ export class ProfessionalBasicComponent implements OnInit, OnDestroy {
     requestModel.personId = this.activatedRoute.snapshot.params['id'];
     if(this.isEditMode) {
       this.subscription.add(this.professionalBasicService.update<ProfessionalBasicRequestModel,unknown>(requestModel).subscribe({next:()=> {
-        console.log('Saved')
-      }, error: (err)=> console.log(err)}));
+        this.notificationService.success(NotificationMessage.UpdatedSuccessfully);
+      }, error: (err)=> {
+        console.log(err);
+        this.notificationService.error(NotificationMessage.UpdatedFailure);
+      }}));
     } else {
       this.subscription.add(this.professionalBasicService.save<ProfessionalBasicRequestModel,unknown>(requestModel).subscribe({next:()=> {
-        console.log('Saved')
-      }, error: (err)=> console.log(err)}));
+        this.notificationService.success(NotificationMessage.SavedSuccessfully);
+      }, error: (err)=> {
+        console.log(err);
+        this.notificationService.error(NotificationMessage.SavedFailure);
+      }}));
     }    
   }
 

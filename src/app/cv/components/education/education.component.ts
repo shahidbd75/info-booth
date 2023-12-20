@@ -7,6 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { EducationService } from '../../services/education.service';
 import { EducationRequestType, EducationalResponseType } from '../../types/educational-types';
 import { ActivatedRoute, Params } from '@angular/router';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
   selector: 'app-education',
@@ -21,7 +23,7 @@ export class EducationComponent implements OnInit, OnDestroy {
   degrees$ : Observable<OptionsModel[]> = this.cvOptionsService.getDegrees();
   subjects$ : Observable<OptionsModel[]> = this.cvOptionsService.getSubjects();
   constructor(private fb: FormBuilder, private cvOptionsService: CvOptionsService, private educationService: EducationService,
-    private activatedRoute: ActivatedRoute) {}
+    private activatedRoute: ActivatedRoute, private notificationService: NotificationService,) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -48,18 +50,24 @@ export class EducationComponent implements OnInit, OnDestroy {
       this.subscription.add(
         this.educationService.update<EducationRequestType, unknown>(requestModel).subscribe({
           next: ()=> {
+            this.notificationService.success(NotificationMessage.UpdatedSuccessfully);
             this.loadAllEducation();
             this.formGroup.reset();
-          }, error: () => console.log('Failed')
+          }, error: () => {
+            this.notificationService.error(NotificationMessage.UpdatedFailure);
+          }
         })
       );
     } else {
       this.subscription.add(
         this.educationService.save<EducationRequestType, unknown>(requestModel).subscribe({
           next: ()=> {
+            this.notificationService.success(NotificationMessage.SavedSuccessfully);
             this.loadAllEducation();
             this.formGroup.reset();
-          }, error: () => console.log('Failed')
+          }, error: () => {
+            this.notificationService.error(NotificationMessage.SavedFailure);
+          }
         })
       );
     }
@@ -95,8 +103,12 @@ export class EducationComponent implements OnInit, OnDestroy {
   onDelete(data:EducationalResponseType) {
     if(confirm('Do you want to delete') && data.id !== '') {
       this.subscription.add(this.educationService.remove(data.id).subscribe({ next: () => {
+        this.notificationService.success(NotificationMessage.DeletedSuccessfully);
         this.loadAllEducation();
-      }, error: (err) => console.log(err)}));
+      }, error: (err) => {
+        console.log(err);
+        this.notificationService.error(NotificationMessage.DeleteFailure);
+      }}));
     }
   }
 

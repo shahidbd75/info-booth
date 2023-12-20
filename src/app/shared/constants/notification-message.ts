@@ -4,4 +4,6 @@ export const NotificationMessage = {
     SavedFailure: 'Unable to save',
     UpdatedFailure: 'Updated to update',
     ServerError: 'Server error occured',
+    DeletedSuccessfully: 'Deleted Successfully',
+    DeleteFailure: 'Unavle to delete',
 }
