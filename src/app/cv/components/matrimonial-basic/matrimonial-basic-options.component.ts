@@ -4,7 +4,7 @@ import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
 export class CvEnumOptionsComponent {
     protected service = inject(CvEnumOptionsService);
     skills$ = this.service.getSkills();
-    castes$ = this.service.getCastes();
+    smokingStatus$ = this.service.getSmokes();
     strengths$ = this.service.getStrengths();
     dressStyle$ = this.service.getDessStyles();
     bodyTypes$ = this.service.getBodyTypes();

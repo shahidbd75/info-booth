@@ -115,7 +115,15 @@ export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements
       noOfMarriedSister:  [null],
       maritalStatus:      [null, [Validators.required]],
       noOfChildren:       new FormControl({value: null, disabled: true},[Validators.max(10), Validators.maxLength(2)]),
-      maritialDescription:['', [Validators.maxLength(150)]]
+      maritialDescription:['', [Validators.maxLength(150)]],
+      workAddress:         [null],
+      smokingStatusId:     [null],
+      drinkingStatus:      [null],
+      beardTypeId:         [null],
+      otherAddiction:      [null],
+      familyTypeId:        [null],
+      sleepingDuration:    [0],
+      startSleep:          [null],
     });
   }
 

@@ -27,8 +27,9 @@ export class CvEnumOptionsService {
   getBodyTypes(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_BODY_TYPES);
   }
-  getCastes(): Observable<OptionsModel[]> {
-    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_CASTE);
+  
+  getCastes(personId: string): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_CASTES(personId));
   }
 
   getColors(): Observable<OptionsModel[]> {
@@ -164,5 +165,9 @@ export class CvEnumOptionsService {
 
   getHijabTypes(): Observable<OptionsModel[]>  {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_HIJAB_TYPES);
+  }
+
+  getOccupationGroups(): Observable<OptionsModel[]>  {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_OCCUPATION_GROUPS);
   }
 }

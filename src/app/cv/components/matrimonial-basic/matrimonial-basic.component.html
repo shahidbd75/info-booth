@@ -14,6 +14,7 @@
                             id="guardianRelation"
                             bindValue="id" 
                             bindLabel="name"
+                            [dropdownPosition]="'bottom'"
                             formControlName="guardianRelation">
                         </ng-select>
                     </div>
@@ -21,6 +22,7 @@
                         <label for="maritalStatus" class="form-label">Maritial Status</label><span class="text-danger">*</span>
                         <ng-select [items]="maritialStatus$ | async"
                             id="maritalStatus"
+                            [dropdownPosition]="'bottom'"
                             [searchable]="false"
                             bindValue="id" 
                             bindLabel="name"
@@ -34,6 +36,7 @@
                             [searchable]="true"
                             bindValue="id" 
                             bindLabel="name"
+                            [dropdownPosition]="'bottom'"
                             formControlName="height">
                     </ng-select>
                     </div>
@@ -77,6 +80,7 @@
                             [multiple]="true"
                             bindValue="name" 
                             bindLabel="name"
+                            [dropdownPosition]="'bottom'"
                             formControlName="handiCrafts">
                         </ng-select>
                     </div>
@@ -93,8 +97,8 @@
                         <input type="text" formControlName="presentAddress" class="form-control" id="presentAddress" />
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12">
-                        <label for="presentAddress" class="form-label">Work Address</label>
-                        <input type="text" formControlName="presentAddress" class="form-control" id="presentAddress" />
+                        <label for="workAddress" class="form-label">Work Address</label>
+                        <input type="text" formControlName="workAddress" class="form-control" id="workAddress" />
                     </div>                    
                     <div class="col-lg-6 col-md-6 col-xs-12">
                         <label for="skill" class="form-label">Skill</label>
@@ -224,7 +228,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <label for="caste" class="form-label">Caste</label>
-                        <ng-select [items]="castes$ | async"
+                        <ng-select [items]="smokingStatus$ | async"
                             id="caste"
                             [searchable]="true"
                             bindValue="id" 
@@ -270,6 +274,68 @@
                         <input type="text" class="form-control"
                         name="maritialDescription" id="noOfChildren" 
                         formControlName="maritialDescription" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="smokingStatusId" class="form-label">Smoking Status</label>
+                        <ng-select [items]="smokingStatus$ | async"
+                            id="smokingStatusId"
+                            [searchable]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="smokingStatusId">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="drinkingStatus" class="form-label">Drinking Status</label>
+                        <ng-select [items]="smokingStatus$ | async"
+                            id="drinkingStatus"
+                            [searchable]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="drinkingStatus">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="otherAddiction" class="form-label">Other Addiction</label>
+                        <input type="text" class="form-control"
+                        name="otherAddiction" id="otherAddiction" 
+                        formControlName="otherAddiction" />
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="beardTypeId" class="form-label">Beard Type</label>
+                        <ng-select [items]="smokingStatus$ | async"
+                            id="beardTypeId"
+                            [searchable]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="beardTypeId">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="familyTypeId" class="form-label">Family Type</label>
+                        <ng-select [items]="smokingStatus$ | async"
+                            id="familyTypeId"
+                            [searchable]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="familyTypeId">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="startSleep" class="form-label">Start Sleep</label>
+                        <ng-select [items]="smokingStatus$ | async"
+                            id="startSleep"
+                            [searchable]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="startSleep">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-xs-12">
+                        <label for="sleepingDuration" class="form-label">Sleeping Duration</label>
+                        <input type="number" class="form-control"
+                            name="sleepingDuration" id="sleepingDuration"
+                            formControlName="sleepingDuration" />
                     </div>
                 </div>        
         </mat-card-content>

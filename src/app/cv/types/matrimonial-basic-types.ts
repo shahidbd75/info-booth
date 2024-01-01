@@ -34,6 +34,14 @@ export type MatrimonialCreateRequestType = {
     noOfSister:          number;
     noOfMarriedSister:   number;
     maritialDescription: string;
+    workAddress:         string;
+    smokingStatusId:     number;
+    drinkingStatus:      string;
+    beardTypeId:         number;
+    otherAddiction:      string;
+    familyTypeId:        number;
+    sleepingDuration:    number;
+    startSleep:          string;
 };
 
 export type MatrimonialUpdateRequestType = MatrimonialCreateRequestType & 
@@ -78,6 +86,14 @@ export type MatrimonialReponseType = {
     noOfSister:          number;
     noOfMarriedSister:   number;
     maritialDescription: string;
+    workAddress:         string;
+    smokingStatusId:     number;
+    drinkingStatus:      string;
+    beardTypeId:         number;
+    otherAddiction:      string;
+    familyTypeId:        number;
+    sleepingDuration:    number;
+    startSleep:          string;
     createdDate:         Date;
 }
 

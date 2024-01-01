@@ -60,6 +60,7 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     PREFERABLE_BASE: `${BASE_URL}Preferable`,
     PREFERABLE_OCCUPATIONS_BY_PERSON: (personId: string) => `${BASE_URL}PreferableOccupation/${personId}`,
     PREFERABLE_OCCUPATION_BASE: `${BASE_URL}PreferableOccupation`,
+    RELIGION_INFO_BASE:`${BASE_URL}ReligiousInformation`,
   },
   CV_OPTIONS : {
     GET_DEGREES: `${BASE_URL}CvOptions/degrees`,
@@ -67,11 +68,12 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_SUBJECTS: `${BASE_URL}CvOptions/subjects`,
     GET_JOB_NATURES: `${BASE_URL}CvOptions/job-natures`,
     GET_JOB_HOBBIES: `${BASE_URL}CvOptions/hobbies`,
+    GET_RELIGION_PARAMETERS: (personId: string) => `${BASE_URL}ReligiousInformation/get-parameters-by-person/${personId}`,
   },
   CV_ENUM_OPTIONS: {
     GET_ACCEPTANCES:`${BASE_URL}CvEnumOptions/acceptances`,
     GET_BODY_TYPES:`${BASE_URL}CvEnumOptions/body-types`,
-    GET_CASTE:`${BASE_URL}CvEnumOptions/castes`,
+    GET_CASTES: (personId: string) =>`${BASE_URL}CvEnumOptions/castes/${personId}`,
     GET_COLORS:`${BASE_URL}CvEnumOptions/colors`,
     GET_COMPLEXIONS:`${BASE_URL}CvEnumOptions/complexions`,
     GET_DIETS:`${BASE_URL}CvEnumOptions/diets`,
@@ -194,9 +196,11 @@ export interface Cv {
   PREFERABLE_BASE: string;
   PREFERABLE_OCCUPATION_BASE: string;
   PREFERABLE_OCCUPATIONS_BY_PERSON:(personId: string) => string;
+  RELIGION_INFO_BASE:string;
 }
 
 export interface CvOptions {
+  GET_RELIGION_PARAMETERS:(personId: string) => string;
   GET_JOB_HOBBIES: string;
   GET_DESIGNATIONS: string;
   GET_DEGREES: string;
@@ -208,7 +212,7 @@ export interface CvEnumOptions {
   GET_BIRDS: string;
   GET_ACCEPTANCES: string;
   GET_BODY_TYPES: string;
-  GET_CASTE: string;
+  GET_CASTES:(personId: string) => string;
   GET_COLORS: string;
   GET_COMPLEXIONS: string;
   GET_DIETS: string;

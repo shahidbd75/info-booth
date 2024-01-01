@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { PreferableCreateRequestType, PreferableReponseType } from '../../types/preferable-types';
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
+import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
 
 @Component({
   selector: 'app-preferable',
@@ -16,7 +17,8 @@ export class PreferableComponent implements OnInit, OnDestroy {
   preferableFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, 
-    private preferableService: PreferableService, private notificationService: NotificationService) {
+    private preferableService: PreferableService, private notificationService: NotificationService,
+    public optionsService: CvEnumOptionsService) {
 
   }
   ngOnInit(): void {
@@ -73,6 +75,7 @@ export class PreferableComponent implements OnInit, OnDestroy {
       personId:  [null],
       height:    [null],
       complexion:[null],
+      preferableOccupation: [null],
     });
   }
 

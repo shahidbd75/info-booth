@@ -46,6 +46,7 @@ import { FavoriteService } from './services/favorite.service';
 import { PreferableService } from './services/preferable.service';
 import { PreferableOccupationService } from './services/preferable-occupation.service';
 import { ReligionInfoComponent } from './components/religion-info/religion-info.component';
+import { ReligionInformationService } from './services/religion-information.service';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { ReligionInfoComponent } from './components/religion-info/religion-info.
     FamilyMerberService,
     FavoriteService,
     PreferableService,
-    PreferableOccupationService]
+    PreferableOccupationService,
+    ReligionInformationService]
 })
 export class CvModule { }

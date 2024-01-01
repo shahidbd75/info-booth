@@ -1,12 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { PreferableService } from '../../services/preferable.service';
+import { Observable, Subscription } from 'rxjs';
 import { PreferableCreateRequestType, PreferableReponseType } from '../../types/preferable-types';
 import { CvEnumOptionsComponent } from '../matrimonial-basic/matrimonial-basic-options.component';
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
+import { ReligionParametersType } from '../../types/religion-parameter-type';
+import { ReligionInformationService } from '../../services/religion-information.service';
+import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Component({
   selector: 'app-religion-info',
@@ -16,7 +18,9 @@ import { NotificationMessage } from 'src/app/shared/constants/notification-messa
 export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   religionFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private preferableService: PreferableService,
+  religionParams$: Observable<ReligionParametersType[]>;
+  castes$: Observable<Array<OptionsModel>>;
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private religionService: ReligionInformationService,
     private notificationService: NotificationService,) {
     super();
   }
@@ -26,9 +30,10 @@ export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnI
     this.activatedRoute.params.subscribe({
       next: (params:Params) => {
         const id = params['id'];
-        console.log(id);
         if(id) {
           this.loadData(id);
+          this.getParametersByPersonId(id);
+          this.getCastesByPersonId(id);
         }
       }
     })
@@ -44,8 +49,7 @@ export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnI
     const requestModel: PreferableCreateRequestType = this.religionFormGroup.value;
 
     requestModel.personId = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
-
-    this.preferableService.update<PreferableCreateRequestType, unknown>(requestModel).subscribe({
+    this.religionService.update<PreferableCreateRequestType, unknown>(requestModel).subscribe({
       next: () => {
         this.notificationService.success(NotificationMessage.SavedSuccessfully);
       },
@@ -61,7 +65,7 @@ export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnI
   }
 
   private loadData(personId: string) {
-    this.preferableService.getById<PreferableReponseType>(personId).subscribe({
+    this.religionService.getById<PreferableReponseType>(personId).subscribe({
       next: (response: PreferableReponseType) => {
         if(response) {
           const { ...restValue } = response;
@@ -75,8 +79,26 @@ export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnI
   private initializeFormGroup() {
     this.religionFormGroup = this.fb.group({
       personId:  [null],
-      height:    [null],
-      complexion:[null],
+      religiousBeliefId: [null],
+      casteId: [null],
+      prayerId: [null],
+      prayerInMosqueId: [null],
+      hijabTypeId: [null],
+      quranRecitationId: [null],
+      tabligueFrequencyId: [null],
+      religionParameters: [null],
     });
   }
+
+  private getParametersByPersonId(personId: string) {
+    if(personId) {
+      this.religionParams$ = this.religionService.getReligionParameters(personId);
+    }
+  }
+
+  private getCastesByPersonId(personId: string) {
+    if(personId) {
+      this.castes$ = this.service.getCastes(personId);
+    }
+  }  
 }
