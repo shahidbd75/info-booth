@@ -9,6 +9,7 @@ import { NotificationMessage } from 'src/app/shared/constants/notification-messa
 import { ReligionParametersType } from '../../types/religion-parameter-type';
 import { ReligionInformationService } from '../../services/religion-information.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
+import { ReligionInformationRequest } from '../../types/religion-information-type';
 
 @Component({
   selector: 'app-religion-info',
@@ -65,11 +66,11 @@ export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnI
   }
 
   private loadData(personId: string) {
-    this.religionService.getById<PreferableReponseType>(personId).subscribe({
-      next: (response: PreferableReponseType) => {
+    this.religionService.getById<ReligionInformationRequest>(personId).subscribe({
+      next: (response: ReligionInformationRequest) => {
         if(response) {
-          const { ...restValue } = response;
-          this.religionFormGroup.setValue({...restValue});
+          const {religionParameters, ...restValue } = response;
+          this.religionFormGroup.patchValue({...restValue});
         }
       }
     , error: (error) => console.log(error)

@@ -109,7 +109,7 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_BEARD_TYPES:`${BASE_URL}CvEnumOptions/beard-types`,
     GET_OCCUPATION_GROUPS:`${BASE_URL}CvEnumOptions/occupation-groups`,
     GET_PRAYERS: `${BASE_URL}CvEnumOptions/prayers`,
-    GET_PRAYERS_IN_MOSQUE: `${BASE_URL}CvEnumOptions/prayers`,
+    GET_PRAYERS_IN_MOSQUE: `${BASE_URL}CvEnumOptions/prayer-in-mosques`,
     GET_READING_QURANS: `${BASE_URL}CvEnumOptions/reading-qurans`,
     GET_RELIGIOUS_BELIEFS: `${BASE_URL}CvEnumOptions/religious-beliefs`,
     GET_HIJAB_TYPES: `${BASE_URL}CvEnumOptions/hijab-types`,
