@@ -33,4 +33,8 @@ export class CvEnumOptionsComponent {
     prayerInMosque$ = this.service.getPrayerInMosque();
     quranRecitations$ = this.service.getQuranRecitations();
     tabligFrequencies$ = this.service.getTabligueFrequencies();
+    familyTypes$ = this.service.getFamilyTypes();
+    beardTypes$ = this.service.getBeardTypes();
+    startSleepStatus$ = this.service.getStartSleeps();
+    drinkingStatus$ = this.service.getDrinks();
 }

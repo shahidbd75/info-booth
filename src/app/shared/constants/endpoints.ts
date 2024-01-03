@@ -114,6 +114,7 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_RELIGIOUS_BELIEFS: `${BASE_URL}CvEnumOptions/religious-beliefs`,
     GET_HIJAB_TYPES: `${BASE_URL}CvEnumOptions/hijab-types`,
     GET_TABLIGUE_FREQUENCIES: `${BASE_URL}CvEnumOptions/tablig-frequencies`,
+    GET_START_SLEEPING: `${BASE_URL}CvEnumOptions/sleeping-status`,
   }
 }
 
@@ -252,4 +253,5 @@ export interface CvEnumOptions {
   GET_RELIGIOUS_BELIEFS: string;
   GET_TABLIGUE_FREQUENCIES: string;
   GET_HIJAB_TYPES: string;
+  GET_START_SLEEPING: string;
 }

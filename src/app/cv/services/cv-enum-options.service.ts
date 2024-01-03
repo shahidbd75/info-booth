@@ -170,4 +170,12 @@ export class CvEnumOptionsService {
   getOccupationGroups(): Observable<OptionsModel[]>  {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_OCCUPATION_GROUPS);
   }
+
+  getBeardTypes(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_BEARD_TYPES);
+  }
+
+  getStartSleeps(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_START_SLEEPING);
+  }
 }

@@ -287,7 +287,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <label for="drinkingStatus" class="form-label">Drinking Status</label>
-                        <ng-select [items]="smokingStatus$ | async"
+                        <ng-select [items]="drinkingStatus$ | async"
                             id="drinkingStatus"
                             [searchable]="true"
                             bindValue="id" 
@@ -303,7 +303,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <label for="beardTypeId" class="form-label">Beard Type</label>
-                        <ng-select [items]="smokingStatus$ | async"
+                        <ng-select [items]="beardTypes$ | async"
                             id="beardTypeId"
                             [searchable]="true"
                             bindValue="id" 
@@ -313,7 +313,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <label for="familyTypeId" class="form-label">Family Type</label>
-                        <ng-select [items]="smokingStatus$ | async"
+                        <ng-select [items]="familyTypes$ | async"
                             id="familyTypeId"
                             [searchable]="true"
                             bindValue="id" 
@@ -323,7 +323,7 @@
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-12">
                         <label for="startSleep" class="form-label">Start Sleep</label>
-                        <ng-select [items]="smokingStatus$ | async"
+                        <ng-select [items]="startSleepStatus$ | async"
                             id="startSleep"
                             [searchable]="true"
                             bindValue="id" 
