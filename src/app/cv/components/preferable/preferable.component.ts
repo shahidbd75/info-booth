@@ -2,11 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PreferableService } from '../../services/preferable.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { PreferableCreateRequestType, PreferableReponseType } from '../../types/preferable-types';
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
+import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Component({
   selector: 'app-preferable',
@@ -16,9 +17,10 @@ import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
 export class PreferableComponent implements OnInit, OnDestroy {
   preferableFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
+  occupations$:Observable<Array<OptionsModel>> = this.optionsService.getOccupationGroups();
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, 
     private preferableService: PreferableService, private notificationService: NotificationService,
-    public optionsService: CvEnumOptionsService) {
+    private optionsService: CvEnumOptionsService) {
 
   }
   ngOnInit(): void {

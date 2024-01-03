@@ -23,11 +23,10 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
   dataSource: MatTableDataSource<FamilyMemberTableResponseType>;
   subscription: Subscription = new Subscription();
   designations$ : Observable<OptionsModel[]> = this.cvOptionsService.getDesignations();
-  occupations$ : Observable<OptionsModel[]> = this.occupationService.getOccupationsOption();
+  occupations$ : Observable<OptionsModel[]> = this.enumOptionService.getOccupationGroups();
   relations$ : Observable<OptionsModel[]> = this.enumOptionService.getRelations();
   constructor(private fb: FormBuilder, private cvOptionsService: CvOptionsService, private familyMemberService: FamilyMerberService,
-    private enumOptionService: CvEnumOptionsService, private occupationService: OccupationService,
-    private activatedRoute: ActivatedRoute,  private notificationService: NotificationService,) {}
+    private enumOptionService: CvEnumOptionsService, private activatedRoute: ActivatedRoute,  private notificationService: NotificationService,) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -125,6 +124,8 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
       occupationId: [null],
       designationId: [null],
       relation: [''],
+      spouseName: [''],
+      spouseOccupationId: [null],
       contactNumber: ['',[Validators.maxLength(15)]],
       email: ['',[Validators.email]],
       address: ['',[Validators.maxLength(500)]],
@@ -146,6 +147,8 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
       designationId: formData.designationId,
       occupationId: formData.occupationId,
       otherDetail: formData.otherDetail,
+      spouseName: formData.spouseName,
+      spouseOccupationId: formData.spouseOccupationId,
     }
   }
 

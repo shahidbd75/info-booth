@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-lg-6 col-md-12 col-xs-12">
                         <label for="preferableOccupation" class="form-label">Occupations</label>
-                        <ng-select [items]="optionsService.getOccupationGroups() | async"
+                        <ng-select [items]="occupations$ | async"
                             id="preferableOccupation"
                             bindValue="id" 
                             bindLabel="name"

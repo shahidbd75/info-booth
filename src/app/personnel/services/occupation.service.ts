@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 import { EnumTableCreateModel, EnumTableResponseModel, EnumTableUpdateModel } from 'src/app/shared/models/enum-table-model';
 import { OptionsModel } from 'src/app/shared/models/options-model';
@@ -36,6 +36,7 @@ export class OccupationService {
   }
 
   getOccupationsOption(): Observable<OptionsModel[]> {
-    return this.http.get<OptionsModel[]>(`${this.Occupation_URL}/options`);
+    return this.http.get<OptionsModel[]>(`${this.Occupation_URL}/options`)
+    .pipe(shareReplay());
   }
 }

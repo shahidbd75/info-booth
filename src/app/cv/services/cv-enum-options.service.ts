@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 
@@ -168,7 +168,7 @@ export class CvEnumOptionsService {
   }
 
   getOccupationGroups(): Observable<OptionsModel[]>  {
-    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_OCCUPATION_GROUPS);
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_OCCUPATION_GROUPS).pipe(shareReplay());
   }
 
   getBeardTypes(): Observable<OptionsModel[]> {

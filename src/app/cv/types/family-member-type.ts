@@ -8,6 +8,8 @@ export type FamilyMemberRequestModel = {
     email: string;
     address: string;
     otherDetail: string;
+    spouseName: string;
+    spouseOccupationId: number;
   };
 
 
@@ -30,6 +32,8 @@ export type FamilyMemberRequestModel = {
     otherDetail: string;
     isActive: boolean;
     createdDate: string;
+    spouseName: string;
+    spouseOccupationId: number;
   };
 
   export type FamilyMemberTableResponseType = {

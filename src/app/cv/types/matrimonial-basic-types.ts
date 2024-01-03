@@ -12,6 +12,7 @@ export type MatrimonialCreateRequestType = {
     handiCrafts:         string[];
     facebookProfileLink: string;
     presentAddress:      string;
+    workAddress:         string;
     expectations:        string;
     otherSkills:         string[];
     skill:               string[];
@@ -28,13 +29,12 @@ export type MatrimonialCreateRequestType = {
     maritalStatus:       number;
     haveChildren:        boolean;
     noOfChildren:        number;
-    caste:               string;
+    presentCountry:      string;
     noOfBrother:         number;
     noOfMarriedBrother:  number;
     noOfSister:          number;
     noOfMarriedSister:   number;
     maritialDescription: string;
-    workAddress:         string;
     smokingStatusId:     number;
     drinkingStatus:      string;
     beardTypeId:         number;
@@ -42,6 +42,8 @@ export type MatrimonialCreateRequestType = {
     familyTypeId:        number;
     sleepingDuration:    number;
     startSleep:          string;
+    aboutMyself:         string;
+    aboutDrowry:         string;
 };
 
 export type MatrimonialUpdateRequestType = MatrimonialCreateRequestType & 
@@ -64,6 +66,7 @@ export type MatrimonialReponseType = {
     handiCrafts:         string[];
     facebookProfileLink: string;
     presentAddress:      string;
+    workAddress:         string;
     expectations:        string;
     otherSkills:         string[];
     skill:               string[];
@@ -80,13 +83,12 @@ export type MatrimonialReponseType = {
     maritalStatus:       number;
     haveChildren:        boolean;
     noOfChildren:        number;
-    caste:               string;
+    presentCountry:      string;
     noOfBrother:         number;
     noOfMarriedBrother:  number;
     noOfSister:          number;
     noOfMarriedSister:   number;
     maritialDescription: string;
-    workAddress:         string;
     smokingStatusId:     number;
     drinkingStatus:      string;
     beardTypeId:         number;
@@ -94,7 +96,8 @@ export type MatrimonialReponseType = {
     familyTypeId:        number;
     sleepingDuration:    number;
     startSleep:          string;
-    createdDate:         Date;
+    aboutMyself:         string;
+    aboutDrowry:         string;
 }
 
 export type MatrimonialTableResponse = {
