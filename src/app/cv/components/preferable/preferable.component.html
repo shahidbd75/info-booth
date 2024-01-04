@@ -4,22 +4,77 @@
             <mat-card-title>Preferable</mat-card-title>
         </mat-card-header>
         <mat-card-content>    
-                <div class="row">                  
-                    <div class="col-lg-3 col-md-6 col-xs-12">
-                        <label for="height" class="form-label">Height</label>
-                        <input type="text" formControlName="height" class="form-control" id="height" />
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-xs-12">
-                        <label for="complexion" class="form-label">Complexion</label>
-                        <input type="text" formControlName="complexion" class="form-control" id="complexion" />
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-xs-12">
-                        <label for="preferableOccupation" class="form-label">Occupations</label>
-                        <ng-select [items]="occupations$ | async"
-                            id="preferableOccupation"
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="beardTypeId" class="form-label">Beard Type</label>
+                        <ng-select [items]="beardTypes$ | async"
+                            id="beardTypeId"
+                            [searchable]="true"
                             bindValue="id" 
                             bindLabel="name"
-                            formControlName="preferableOccupation">
+                            formControlName="beardType">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="familyTypeId" class="form-label">Family Type</label>
+                        <ng-select [items]="familyTypes$ | async"
+                            id="familyTypeId"
+                            [searchable]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="familyType">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="smokingStatusId" class="form-label">Smoking Status</label>
+                        <ng-select [items]="smokingStatus$ | async"
+                            id="smokingStatusId"
+                            [searchable]="true"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="smokingStatus">
+                        </ng-select>
+                    </div> 
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="hijabTypeId" class="form-label">Hijab Type</label>
+                        <ng-select [items]="hijabTypes$ | async"
+                            id="hijabTypeId"
+                            [searchable]="false"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="hijabType">
+                        </ng-select>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="prayerId" class="form-label">Prayer</label>
+                        <ng-select [items]="prayers$ | async"
+                            id="prayerId"
+                            [searchable]="false"
+                            bindValue="id" 
+                            bindLabel="name"
+                            formControlName="prayer">
+                        </ng-select>
+                    </div>                 
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="compromisable" class="form-label">Compromisable</label>
+                        <input type="text" formControlName="compromisable" class="form-control" id="compromisable" />
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="pertiallyCompromisable" class="form-label">Pertially Compromisable</label>
+                        <input type="text" formControlName="pertiallyCompromisable" class="form-control" id="pertiallyCompromisable" />
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
+                        <label for="notCompromisable" class="form-label">Not Compromisable</label>
+                        <input type="text" formControlName="notCompromisable" class="form-control" id="notCompromisable" />
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-xs-12">
+                        <label for="occupationIds" class="form-label">Occupations</label>
+                        <ng-select [items]="occupations$ | async"
+                            id="occupationIds"
+                            bindValue="id" 
+                            bindLabel="name"
+                            [multiple]="true"
+                            formControlName="occupationIds">
                         </ng-select>
                     </div>
                 </div>        

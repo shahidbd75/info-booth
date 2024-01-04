@@ -1,17 +1,25 @@
 export type PreferableReponseType = {
-    personId: string;
-    height: string;
-    complexion: string;
+    personId:               string;
+    beardType:              number;
+    familyType:             number;
+    prayer:                 number;
+    smokingStatus:          number;
+    hijabType:              number;
+    notCompromisable:       string;
+    pertiallyCompromisable: string;
+    compromisable:          string;
+    occupationIds:          number[];
 }
 
-export type PreferableUpdateRequestType = {
-    personId: string;
-    height: string;
-    complexion: string;
-}
-
-export type PreferableCreateRequestType = {
-    personId: string;
-    height: string;
-    complexion: string;
+export type PreferableRequestType = {
+    personId:               string;
+    beardType:              number;
+    familyType:             number;
+    prayer:                 number;
+    smokingStatus:          number;
+    hijabType:              number;
+    notCompromisable:       string;
+    pertiallyCompromisable: string;
+    compromisable:          string;
+    occupationIds:          number[];
 }

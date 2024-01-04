@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { PreferableCreateRequestType, PreferableReponseType } from '../../types/preferable-types';
 import { CvEnumOptionsComponent } from '../matrimonial-basic/matrimonial-basic-options.component';
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
@@ -47,10 +46,10 @@ export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnI
   }
 
   onSave() {
-    const requestModel: PreferableCreateRequestType = this.religionFormGroup.value;
+    const requestModel: ReligionInformationRequest = this.religionFormGroup.value;
 
     requestModel.personId = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
-    this.religionService.update<PreferableCreateRequestType, unknown>(requestModel).subscribe({
+    this.religionService.update<ReligionInformationRequest, unknown>(requestModel).subscribe({
       next: () => {
         this.notificationService.success(NotificationMessage.SavedSuccessfully);
       },

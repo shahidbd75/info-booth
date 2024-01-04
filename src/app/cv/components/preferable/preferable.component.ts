@@ -2,26 +2,24 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PreferableService } from '../../services/preferable.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { PreferableCreateRequestType, PreferableReponseType } from '../../types/preferable-types';
+import { Subscription } from 'rxjs';
+import { PreferableReponseType, PreferableRequestType } from '../../types/preferable-types';
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
-import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
-import { OptionsModel } from 'src/app/shared/models/options-model';
+
+import { CvEnumOptionsComponent } from '../matrimonial-basic/matrimonial-basic-options.component';
 
 @Component({
   selector: 'app-preferable',
   templateUrl: './preferable.component.html',
   styleUrls: ['./preferable.component.scss']
 })
-export class PreferableComponent implements OnInit, OnDestroy {
+export class PreferableComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   preferableFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
-  occupations$:Observable<Array<OptionsModel>> = this.optionsService.getOccupationGroups();
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, 
-    private preferableService: PreferableService, private notificationService: NotificationService,
-    private optionsService: CvEnumOptionsService) {
-
+    private preferableService: PreferableService, private notificationService: NotificationService) {
+      super();
   }
   ngOnInit(): void {
     this.initializeFormGroup();
@@ -44,11 +42,11 @@ export class PreferableComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-    const requestModel: PreferableCreateRequestType = this.preferableFormGroup.value;
+    const requestModel: PreferableRequestType = this.preferableFormGroup.value;
 
     requestModel.personId = this.activatedRoute.snapshot.paramMap.get('id') ?? '';
 
-    this.preferableService.update<PreferableCreateRequestType, unknown>(requestModel).subscribe({
+    this.preferableService.update<PreferableRequestType, unknown>(requestModel).subscribe({
       next: () => {
         this.notificationService.success(NotificationMessage.SavedSuccessfully);
       },
@@ -74,10 +72,16 @@ export class PreferableComponent implements OnInit, OnDestroy {
 
   private initializeFormGroup() {
     this.preferableFormGroup = this.fb.group({
-      personId:  [null],
-      height:    [null],
-      complexion:[null],
-      preferableOccupation: [null],
+      personId:               [null],
+      beardType:              [null],
+      familyType:             [null],
+      prayer:                 [null],
+      smokingStatus:          [null],
+      hijabType:              [null],
+      notCompromisable:       [''],
+      pertiallyCompromisable: [''],
+      compromisable:          [''],
+      occupationIds:          [null],
     });
   }
 

@@ -37,4 +37,5 @@ export class CvEnumOptionsComponent {
     beardTypes$ = this.service.getBeardTypes();
     startSleepStatus$ = this.service.getStartSleeps();
     drinkingStatus$ = this.service.getDrinks();
+    occupations$ = this.service.getOccupationGroups();
 }
