@@ -8,13 +8,13 @@
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="degreeId" class="form-label">Degree</label><span class="text-danger">*</span>
                     <ng-select [items]="degrees$ | async" id="degreeId" [searchable]="true" bindValue="id"
-                        bindLabel="name" formControlName="degreeId">
+                        bindLabel="name" formControlName="degreeId" [dropdownPosition]="'bottom'">
                     </ng-select>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="subjectId" class="form-label">Subject</label>
                     <ng-select [items]="subjects$ | async" id="subjectId" [searchable]="true" bindValue="id"
-                        bindLabel="name" formControlName="subjectId">
+                        bindLabel="name" formControlName="subjectId" [dropdownPosition]="'bottom'">
                     </ng-select>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12" controlName="formGroup.controls['instituteName']">

@@ -12,13 +12,13 @@
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="designationId" class="form-label">Designation</label><span class="text-danger">*</span>
                     <ng-select [items]="designations$ | async" id="designationId" [searchable]="true" bindValue="id"
-                        bindLabel="name" formControlName="designationId">
+                        bindLabel="name" formControlName="designationId" [dropdownPosition]="'bottom'">
                     </ng-select>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="jobNature" class="form-label">Job Nature</label><span class="text-danger">*</span>
                     <ng-select [items]="jobNatures$ | async" id="jobNature" [searchable]="false" bindValue="id"
-                        bindLabel="name" formControlName="jobNature">
+                        bindLabel="name" formControlName="jobNature" [dropdownPosition]="'bottom'">
                     </ng-select>
                 </div>
                 <div class="col-lg-8 col-md-8 col-xs-12">

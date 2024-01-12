@@ -9,7 +9,7 @@ export class CvEnumOptionsService {
   constructor(private http: HttpClient) { }
 
   getSkills(): Observable<OptionsModel[]> {
-    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_SKILLS);
+    return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_SKILLS).pipe(shareReplay());
    }
 
    getStrengths(): Observable<OptionsModel[]> {

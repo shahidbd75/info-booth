@@ -12,19 +12,19 @@
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="occupationId" class="form-label">Occupation</label>
                     <ng-select [items]="occupations$ | async" id="occupationId" [searchable]="true" bindValue="id"
-                        bindLabel="name" formControlName="occupationId">
+                        bindLabel="name" formControlName="occupationId" [dropdownPosition]="'bottom'">
                     </ng-select>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="designationId" class="form-label">Designation</label>
                     <ng-select [items]="designations$ | async" id="designationId" [searchable]="true" bindValue="id"
-                        bindLabel="name" formControlName="designationId">
+                        bindLabel="name" formControlName="designationId" [dropdownPosition]="'bottom'">
                     </ng-select>
                 </div>
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="relation" class="form-label">Relation</label><span class="text-danger">*</span>
                     <ng-select [items]="relations$ | async" id="relation" [searchable]="true" bindValue="id"
-                        bindLabel="name" formControlName="relation">
+                        bindLabel="name" formControlName="relation" [dropdownPosition]="'bottom'">
                     </ng-select>
                 </div>   
                 <div class="col-lg-4 col-md-4 col-xs-12">
@@ -42,7 +42,7 @@
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <label for="spouseOccupationId" class="form-label">Spouse Occupation</label>
                     <ng-select [items]="occupations$ | async" id="spouseOccupationId" [searchable]="true" bindValue="id"
-                        bindLabel="name" formControlName="spouseOccupationId">
+                        bindLabel="name" formControlName="spouseOccupationId" [dropdownPosition]="'bottom'">
                     </ng-select>
                 </div> 
                 <div class="col-lg-12 col-md-12 col-xs-12">

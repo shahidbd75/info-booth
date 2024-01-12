@@ -6,7 +6,6 @@ import { Subscription, Observable } from 'rxjs';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { CvOptionsService } from '../../services/cv-options.service';
 import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
-import { OccupationService } from 'src/app/personnel/services/occupation.service';
 import { FamilyMemberCreateRequestModel, FamilyMemberResponseType, FamilyMemberTableResponseType, FamilyMemberUpdateRequestModel } from '../../types/family-member-type';
 import { FamilyMerberService } from '../../services/family-merber.service';
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
@@ -45,8 +44,7 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
 
     if(personId && personId !== '') {
       const requestModel: FamilyMemberUpdateRequestModel = this.mapRequestData(personId);
-      console.log(requestModel);
-
+      
       if(requestModel.id) {
         this.subscription.add(
           this.familyMemberService.update<FamilyMemberUpdateRequestModel, unknown>(requestModel).subscribe({
@@ -120,16 +118,16 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
     this.formGroup = this.fb.group({
       id: [null],
       personId: [null],
-      name: [null,[Validators.required]],
+      name: [null,[Validators.required, Validators.maxLength(200)]],
       occupationId: [null],
       designationId: [null],
-      relation: [''],
-      spouseName: [''],
+      relation: [null],
+      spouseName: ['', [Validators.maxLength(100)]],
       spouseOccupationId: [null],
       contactNumber: ['',[Validators.maxLength(15)]],
       email: ['',[Validators.email]],
       address: ['',[Validators.maxLength(500)]],
-      otherDetail: [''],
+      otherDetail: ['',[Validators.max(400)]],
     });
   }
 

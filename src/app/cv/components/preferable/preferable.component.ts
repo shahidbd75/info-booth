@@ -27,7 +27,6 @@ export class PreferableComponent extends CvEnumOptionsComponent implements OnIni
     this.activatedRoute.params.subscribe({
       next: (params:Params) => {
         const id = params['id'];
-        console.log(id);
         if(id) {
           this.loadData(id);
         }
