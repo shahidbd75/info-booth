@@ -90,7 +90,7 @@ export class ProfessionalBasicComponent implements OnInit, OnDestroy {
       linkedInProfileLink: [''],
       extraCurriculumActivities: [''],
       personalCapabilities: [''],
-      hobby: [''],
+      hobby: [null],
       certification: [''],
       passportSizePhotoUrl: [''],
       signatureUrl: [''],

@@ -21,7 +21,7 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   personId: string;
   IsEditMode = false;
-  columns: string[] = ['personName','designation','occupation','mobile','relation', 'actions'];
+  columns: string[] = ['personName','occupation','designation','mobile','relation', 'actions'];
   dataSource: MatTableDataSource<JobReferenceResponseType>;
   subscription: Subscription = new Subscription();
   designations$ : Observable<OptionsModel[]> = this.cvOptionsService.getDesignations();
@@ -33,7 +33,12 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.loadAllJobReferences();
+    this.activatedRoute.params.subscribe({ next: (params: Params) => {
+      this.personId = params['id'];
+      this.loadAllJobReferences();
+    }, error: (err) => {
+      console.log(err);
+    }});
   }
 
   ngOnDestroy(): void {
@@ -78,22 +83,6 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
     this.formGroup.reset();
   }
 
-  loadAllJobReferences() : void {
-    this.activatedRoute.params.subscribe({ next: (params: Params) => {
-      this.personId = params['id'];
-
-      if(this.personId) {
-        this.subscription.add(this.jobReferenceService.getJobReferenceByPersonId(this.personId)
-        .subscribe({next: (response: JobReferenceResponseType[]) => {
-          this.dataSource = new MatTableDataSource(response);
-        }, error: err => console.log(err)})
-        );
-      }
-    }, error: (err) => {
-      console.log(err);
-    }})
-  }
-
   onEdit(data: JobReferenceResponseType) {
     const { designation, isActive, mobile, personName, ...restValue} = data;
     this.IsEditMode = true;
@@ -119,5 +108,17 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
       institute: [''],
       isActive: [null],
     });
+  }
+
+  private loadAllJobReferences() : void {
+    if(this.personId) {
+      this.subscription.add(this.jobReferenceService.getJobReferenceByPersonId(this.personId)
+      .subscribe({next: (response: JobReferenceResponseType[]) => {
+        this.dataSource = new MatTableDataSource(response);
+      }, error: () => {
+        this.notificationService.error('Not found');
+      }})
+      );
+    }
   }
 }
