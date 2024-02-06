@@ -22,7 +22,13 @@
       </button>
       <span>infoBooth</span>
       <span class="spacer"></span>
-      <a href="#">Logout</a>
+      <a href="#" *ngIf="authDataService.authenticateUserSig">
+        {{authDataService.authenticateUserSig()?.name}}
+      </a>
+      <a [routerLink]="['login']" *ngIf="authDataService.authenticateUserSig() === null || undefined">
+        Login</a>
+      <a href="#" (click)="onLogOutClick()" *ngIf="authDataService.authenticateUserSig() !== null || undefined">
+          Logout</a>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

@@ -115,6 +115,10 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_HIJAB_TYPES: `${BASE_URL}CvEnumOptions/hijab-types`,
     GET_TABLIGUE_FREQUENCIES: `${BASE_URL}CvEnumOptions/tablig-frequencies`,
     GET_START_SLEEPING: `${BASE_URL}CvEnumOptions/sleeping-status`,
+  },
+  AUTH: {
+    LOGIN: `${BASE_URL}Auth/login`,
+    SIGNUP: `${BASE_URL}Auth/signup`,
   }
 }
 
@@ -130,6 +134,7 @@ export interface APIEndPoints {
   COMMON:Common;
   CV_OPTIONS: CvOptions;
   CV_ENUM_OPTIONS: CvEnumOptions;
+  AUTH: Auth;
 }
 
 export interface BuySell {
@@ -207,6 +212,11 @@ export interface CvOptions {
   GET_DEGREES: string;
   GET_SUBJECTS: string;
   GET_JOB_NATURES: string;
+}
+
+export interface Auth {
+  LOGIN: string;
+  SIGNUP: string;
 }
 
 export interface CvEnumOptions {

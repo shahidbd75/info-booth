@@ -3,6 +3,8 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {Observable} from "rxjs";
 import {map, shareReplay} from "rxjs/operators";
 import { GlobalDataContextService } from '../../services/global-data-context.service';
+import { AuthDataService } from 'src/app/core/services/auth-data.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,11 +15,17 @@ import { GlobalDataContextService } from '../../services/global-data-context.ser
 export class LayoutComponent {
   private breakpointObserver = inject(BreakpointObserver);
 
-  constructor(public contextService: GlobalDataContextService){}
+  constructor(private router: Router,public authDataService: AuthDataService, public contextService: GlobalDataContextService){}
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
+    
+    onLogOutClick() {
+      localStorage.removeItem('auth_token');
+      this.router.navigate(['login']);
+    }
+
 }
