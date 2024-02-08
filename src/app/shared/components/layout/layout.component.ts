@@ -24,7 +24,7 @@ export class LayoutComponent {
     );
     
     onLogOutClick() {
-      localStorage.removeItem('auth_token');
+      this.authDataService.logout();
       this.router.navigate(['login']);
     }
 

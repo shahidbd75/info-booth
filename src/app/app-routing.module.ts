@@ -6,10 +6,10 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import { NotAuthorizeComponent } from './shared/components/not-authorize/not-authorize.component';
 import {DashboardComponent} from "./shared/components/dashboard/dashboard.component";
 import { LoginComponent } from './core/components/login/login.component';
-import { AuthDataService } from './core/services/auth-data.service';
+import { authGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LayoutComponent, canActivate:[() => inject(AuthDataService).authenticateUserSig() !== null],
+  { path: '', component: LayoutComponent, canActivate:[authGuard],
   children: [
     {path: 'buy-sell', loadChildren: () => import('./sell-buy/sell-buy.module').then(m => m.SellBuyModule)},
     {path: 'personnel', loadChildren: () => import('./personnel/personnel.module').then(m => m.PersonnelModule)},
@@ -19,7 +19,8 @@ const routes: Routes = [
     {path: 'book', loadChildren: () => import('./book/book.module').then(m => m.BookModule)},
     {path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)},
     {path: 'cv', loadChildren: () => import('./cv/cv.module').then(m => m.CvModule)},
-    {path: '', component: DashboardComponent}
+    {path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   ]},
   { path: 'not-authorize', component: NotAuthorizeComponent},
   { path: 'login', component: LoginComponent},
