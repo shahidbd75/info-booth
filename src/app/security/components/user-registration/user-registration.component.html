@@ -1,0 +1,32 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>User Registration</mat-card-title>
+        <mat-card-subtitle>User</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="signUpFormGroup">
+            <div class="row">
+                <div class="form-group">
+                    <label for="txtUserName">User Name</label>
+                    <input type="text" class="form-control" formControlName="userName" id="txtUserName" placeholder="Please enter user name">
+                </div>
+                <div class="form-group">
+                    <label for="txtPassword">Password</label>
+                    <input type="password" class="form-control" formControlName="password" id="txtPassword" placeholder="Please enter user name">
+                </div>
+                <div class="form-group">
+                    <label for="txtName">Full Name</label>
+                    <input type="text" class="form-control" formControlName="fullName" id="txtName" placeholder="Please enter full name">
+                </div>
+                <div class="form-group">
+                    <label for="txtPhone">Phone</label>
+                    <input type="text" class="form-control" formControlName="phone" id="txtPhone" placeholder="Please enter phone number">
+                </div>                
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="onSave()" class="mx-2" color="primary" [disabled]="signUpFormGroup.invalid">Signup</button>
+        <button mat-raised-button (click)="signUpFormGroup.reset()" color="accent">Clear</button>
+    </mat-card-actions>
+</mat-card>
