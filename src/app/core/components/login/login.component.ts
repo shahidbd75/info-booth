@@ -8,42 +8,43 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginRequestModel: LoginRequestModel;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthDataService,  
-    private notificationService: NotificationService, private router: Router) {
-
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthDataService,
+    private notificationService: NotificationService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.createFormGroup();
   }
 
   onLoginClick() {
-    if(this.loginForm.valid) {
+    if (this.loginForm.valid) {
       this.loginRequestModel = this.loginForm.getRawValue();
       this.authService.login(this.loginRequestModel).subscribe({
         next: (response: LoginResponseModel) => {
-          if(response) {
-            localStorage.setItem("auth_token", response.token);
-            this.router.navigate(["/"]);
+          if (response) {
+            localStorage.setItem('auth_token', response.token);
+            this.router.navigate(['/']);
           }
-
         },
         error: () => {
           this.notificationService.error('Invalid username or password');
-        }
-      })
+        },
+      });
     }
   }
 
   private createFormGroup() {
     this.loginForm = this.formBuilder.group({
       userName: ['', [Validators.required, Validators.maxLength(50)]],
-      password: ['', [Validators.required, Validators.maxLength(50)]]
-    })
+      password: ['', [Validators.required, Validators.maxLength(50)]],
+    });
   }
 }

@@ -7,28 +7,30 @@ import { NotificationService } from 'src/app/lib/material/notification/services/
 @Component({
   selector: 'app-user-registration',
   templateUrl: './user-registration.component.html',
-  styleUrls: ['./user-registration.component.scss']
+  styleUrls: ['./user-registration.component.scss'],
 })
 export class UserRegistrationComponent implements OnInit {
   signUpFormGroup: FormGroup;
-  constructor(private fb: FormBuilder, private userService: UserService, private notificationService: NotificationService) {
-
-  }
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.createSignUpForm();
   }
 
   onSave() {
-    if(this.signUpFormGroup.invalid) {
+    if (this.signUpFormGroup.invalid) {
       return;
     }
 
-    const signUpRequestModel: SignUpRequestModel= this.signUpFormGroup.getRawValue();
+    const signUpRequestModel: SignUpRequestModel = this.signUpFormGroup.getRawValue();
 
     this.userService.signUp(signUpRequestModel).subscribe({
       next: () => this.notificationService.success('Successfully created.'),
-      error: () => this.notificationService.error('Not Saved.')
+      error: () => this.notificationService.error('Not Saved.'),
     });
   }
 
@@ -38,6 +40,6 @@ export class UserRegistrationComponent implements OnInit {
       password: ['', [Validators.required, Validators.maxLength(50)]],
       fullName: ['', [Validators.required, Validators.maxLength(50)]],
       phone: ['', [Validators.required, Validators.maxLength(50)]],
-    })
+    });
   }
 }
