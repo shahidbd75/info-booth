@@ -1,8 +1,8 @@
-import {Injectable, OnDestroy} from '@angular/core';
-import {ToastService} from "./toast.service";
+import { Injectable, OnDestroy } from '@angular/core';
+import { ToastService } from './toast.service';
 
 @Injectable()
-export class NotificationService{
+export class NotificationService {
   constructor(public toastService: ToastService) {}
 
   message(text: string) {

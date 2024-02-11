@@ -1,9 +1,9 @@
 export const NotificationMessage = {
-    SavedSuccessfully: 'Saved successfully',
-    UpdatedSuccessfully: 'Updated successfully',
-    SavedFailure: 'Unable to save',
-    UpdatedFailure: 'Updated to update',
-    ServerError: 'Server error occured',
-    DeletedSuccessfully: 'Deleted Successfully',
-    DeleteFailure: 'Unavle to delete',
-}
+  SavedSuccessfully: 'Saved successfully',
+  UpdatedSuccessfully: 'Updated successfully',
+  SavedFailure: 'Unable to save',
+  UpdatedFailure: 'Updated to update',
+  ServerError: 'Server error occured',
+  DeletedSuccessfully: 'Deleted Successfully',
+  DeleteFailure: 'Unavle to delete',
+};

@@ -15,14 +15,7 @@ describe('LayoutComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LayoutComponent],
-      imports: [
-        NoopAnimationsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatListModule,
-        MatSidenavModule,
-        MatToolbarModule,
-      ]
+      imports: [NoopAnimationsModule, MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule],
     }).compileComponents();
   }));
 

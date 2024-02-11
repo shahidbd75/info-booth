@@ -7,7 +7,6 @@ import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 
 @Injectable()
 export class JobReferenceService extends BaseHttpService {
-
   constructor(http: HttpClient) {
     super(http);
     this.setBaseUrl(API_ENDPOINT_CONST.CV.JOB_REFERENCE_BASE);

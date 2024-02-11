@@ -5,10 +5,10 @@ import { VillageSelectComponent } from 'src/app/shared/modules/village-select/vi
 @Component({
   selector: 'app-buy',
   templateUrl: './buy.component.html',
-  styleUrls: ['./buy.component.scss']
+  styleUrls: ['./buy.component.scss'],
 })
 export class BuyComponent {
-  villageId = "9754110e-c315-4d51-8a87-d856b0caabec";
+  villageId = '9754110e-c315-4d51-8a87-d856b0caabec';
   reset = false;
   onVillageChange(event: string) {
     console.log(event);

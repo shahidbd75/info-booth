@@ -12,33 +12,36 @@ import { NotificationMessage } from 'src/app/shared/constants/notification-messa
 @Component({
   selector: 'app-favorite',
   templateUrl: './favorite.component.html',
-  styleUrls: ['./favorite.component.scss']
+  styleUrls: ['./favorite.component.scss'],
 })
 export class FavoriteComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   favoriteFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private favoriteService: FavoriteService,
-    private activatedRoute: ActivatedRoute, private notificationService: NotificationService,) {
-      super();
+  constructor(
+    private fb: FormBuilder,
+    private favoriteService: FavoriteService,
+    private activatedRoute: ActivatedRoute,
+    private notificationService: NotificationService
+  ) {
+    super();
   }
-
 
   ngOnInit(): void {
     this.initializeFormGroup();
 
     this.activatedRoute.params.subscribe({
-      next: (params:Params) => {
+      next: (params: Params) => {
         const id: string = params['id'];
-        if(id) {
+        if (id) {
           this.loadData(id);
         }
-      }
+      },
     });
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
@@ -52,10 +55,10 @@ export class FavoriteComponent extends CvEnumOptionsComponent implements OnInit,
       next: () => {
         this.notificationService.success(NotificationMessage.SavedSuccessfully);
       },
-      error: (error) => {
+      error: error => {
         console.log('NotSaved', error);
         this.notificationService.error(NotificationMessage.SavedFailure);
-      }
+      },
     });
   }
 
@@ -66,35 +69,35 @@ export class FavoriteComponent extends CvEnumOptionsComponent implements OnInit,
   private loadData(personId: string) {
     this.favoriteService.getById<MatrimonialReponseType>(personId).subscribe({
       next: (response: MatrimonialReponseType) => {
-        if(response) {
-          const {id: personId, ...restValue } = response;
-          this.favoriteFormGroup.setValue({personId, ...restValue});
+        if (response) {
+          const { id: personId, ...restValue } = response;
+          this.favoriteFormGroup.setValue({ personId, ...restValue });
         }
-      }
-    , error: (error) => console.log(error)
-    })
+      },
+      error: error => console.log(error),
+    });
   }
 
   private initializeFormGroup() {
     this.favoriteFormGroup = this.fb.group({
       personId: [null],
-      cloth:    [null],
-      bird:     [null],
-      animal:   [null],
-      food:     [null],
-      pet:      [null],
-      fish:     [null],
-      fruit:    [null],
-      vehicle:  [null],
-      book:     [null],
-      sport:    [null],
-      movie:    [null],
-      website:  [null],
-      cooking:  [null],
-      game:     [null],
-      music:    [null],
-      read:     [null],
-      tvShow:   [null],
+      cloth: [null],
+      bird: [null],
+      animal: [null],
+      food: [null],
+      pet: [null],
+      fish: [null],
+      fruit: [null],
+      vehicle: [null],
+      book: [null],
+      sport: [null],
+      movie: [null],
+      website: [null],
+      cooking: [null],
+      game: [null],
+      music: [null],
+      read: [null],
+      tvShow: [null],
     });
   }
 }

@@ -6,15 +6,15 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class CvEnumOptionsService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getSkills(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_SKILLS).pipe(shareReplay());
-   }
+  }
 
-   getStrengths(): Observable<OptionsModel[]> {
+  getStrengths(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_STRENGTHS);
-   }
+  }
 
   getRelations(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_PROFILE_CREATED_BY);
@@ -27,7 +27,7 @@ export class CvEnumOptionsService {
   getBodyTypes(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_BODY_TYPES);
   }
-  
+
   getCastes(personId: string): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_CASTES(personId));
   }
@@ -135,7 +135,7 @@ export class CvEnumOptionsService {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_HANDICRAFTS);
   }
 
-  getMaritialStatus(): Observable<OptionsModel[]>  {
+  getMaritialStatus(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_MARITIAL_STATUS);
   }
 
@@ -143,31 +143,31 @@ export class CvEnumOptionsService {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_BODY_HEIGHTS);
   }
 
-  getBirds(): Observable<OptionsModel[]>  {
+  getBirds(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_BIRDS);
   }
-  
-  getPrayerInMosque() : Observable<OptionsModel[]> {
+
+  getPrayerInMosque(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_PRAYERS_IN_MOSQUE);
   }
 
-  getQuranRecitations(): Observable<OptionsModel[]>  {
+  getQuranRecitations(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_READING_QURANS);
   }
 
-  getTabligueFrequencies(): Observable<OptionsModel[]>  {
+  getTabligueFrequencies(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_TABLIGUE_FREQUENCIES);
   }
 
-  getPrayers(): Observable<OptionsModel[]>  {
+  getPrayers(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_PRAYERS);
   }
 
-  getHijabTypes(): Observable<OptionsModel[]>  {
+  getHijabTypes(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_HIJAB_TYPES);
   }
 
-  getOccupationGroups(): Observable<OptionsModel[]>  {
+  getOccupationGroups(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_ENUM_OPTIONS.GET_OCCUPATION_GROUPS).pipe(shareReplay());
   }
 

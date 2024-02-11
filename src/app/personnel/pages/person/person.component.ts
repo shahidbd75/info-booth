@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-person',
   templateUrl: './person.component.html',
-  styleUrls: ['./person.component.scss']
+  styleUrls: ['./person.component.scss'],
 })
-export class PersonComponent implements OnInit{
+export class PersonComponent implements OnInit {
   personForm: FormGroup;
   isEditMode = false;
   religions$: Observable<OptionsModel[]> = this.optionsService.getReligions();
@@ -24,20 +24,25 @@ export class PersonComponent implements OnInit{
   selectedUpazilaId: number;
   selectedVillageId: string;
 
-  constructor(private formBuilder: FormBuilder, private personService: PersonService,
-    private router: Router, public occupationService: OccupationService, private optionsService: OptionsService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private personService: PersonService,
+    private router: Router,
+    public occupationService: OccupationService,
+    private optionsService: OptionsService
+  ) {
     this.createForm();
   }
   ngOnInit(): void {
-
     this.loadPerson();
     this.loadOccupation();
   }
 
   private loadPerson() {
     if (this.personService.selectedPerson) {
-      const { districtId, upazilaId, villageId,occupationId,occupationName,districtName,upazilaName,villageName, degreeName, ...person } = this.personService.selectedPerson;
-      this.personForm.setValue({ ...person, villageId, occupation:occupationId});
+      const { districtId, upazilaId, villageId, occupationId, occupationName, districtName, upazilaName, villageName, degreeName, ...person } =
+        this.personService.selectedPerson;
+      this.personForm.setValue({ ...person, villageId, occupation: occupationId });
       this.isEditMode = true;
 
       this.selectedDistrictId = districtId;
@@ -49,9 +54,8 @@ export class PersonComponent implements OnInit{
   }
 
   onPersonAdd() {
-    const {gender,occupation, religion,... restValue} = this.personForm.value;
-    const requestModel: PersonCreateRequestModel = {...restValue, gender: +gender, occupationId: +occupation,
-    religion: +religion};
+    const { gender, occupation, religion, ...restValue } = this.personForm.value;
+    const requestModel: PersonCreateRequestModel = { ...restValue, gender: +gender, occupationId: +occupation, religion: +religion };
 
     this.personService.savePersons(requestModel).subscribe(value => {
       this.personForm.reset();
@@ -60,9 +64,8 @@ export class PersonComponent implements OnInit{
   }
 
   onPersonUpdate() {
-    const {gender,occupation, religion,... restValue} = this.personForm.value;
-    const requestModel: PersonUpdateRequestModel = {...restValue,  gender: +gender, occupationId: +occupation,
-      religion: +religion};
+    const { gender, occupation, religion, ...restValue } = this.personForm.value;
+    const requestModel: PersonUpdateRequestModel = { ...restValue, gender: +gender, occupationId: +occupation, religion: +religion };
 
     this.personService.updatePersons(requestModel).subscribe(value => {
       this.personForm.reset();
@@ -71,11 +74,11 @@ export class PersonComponent implements OnInit{
   }
 
   resetForm() {
-    this.personForm.reset({villageId: this.selectedVillageId});
+    this.personForm.reset({ villageId: this.selectedVillageId });
   }
 
   onVillageChange(villageId: string) {
-    this.personForm.patchValue({villageId});
+    this.personForm.patchValue({ villageId });
   }
 
   loadOccupation() {
@@ -85,24 +88,24 @@ export class PersonComponent implements OnInit{
   createForm() {
     this.personForm = this.formBuilder.group({
       id: [''],
-      name: ['',[Validators.required]],
-      nickName:['',Validators.maxLength(50)],
+      name: ['', [Validators.required]],
+      nickName: ['', Validators.maxLength(50)],
       fatherName: [''],
       motherName: [''],
       spouseName: [''],
       phone: ['', [Validators.required]],
       alternativeContact: [''],
-      address: ['',[Validators.required]],
+      address: ['', [Validators.required]],
       email: ['', Validators.email],
       religion: [null, Validators.required],
       gender: [null, [Validators.required]],
       occupation: [null, Validators.required],
-      bloodGroup: ['',Validators.maxLength(3)],
+      bloodGroup: ['', Validators.maxLength(3)],
       nId: [''],
-      dateOfBirth:[null],
+      dateOfBirth: [null],
       postalCode: [''],
       degreeId: [null],
-      villageId:[null, Validators.required]
+      villageId: [null, Validators.required],
     });
   }
 }

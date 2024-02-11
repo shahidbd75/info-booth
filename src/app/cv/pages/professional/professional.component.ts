@@ -9,7 +9,7 @@ import { StepperOrientation } from '@angular/material/stepper';
 @Component({
   selector: 'app-professional',
   templateUrl: './professional.component.html',
-  styleUrls: ['./professional.component.scss']
+  styleUrls: ['./professional.component.scss'],
 })
 export class ProfessionalComponent implements OnInit {
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();
@@ -17,20 +17,24 @@ export class ProfessionalComponent implements OnInit {
   personControl = new FormControl(null, [Validators.required]);
   orientation: StepperOrientation = 'horizontal';
   stepperOrientation = new FormControl('horizontal');
-  constructor(private personService: PersonService, private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(
+    private personService: PersonService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
   currentIndex = 0;
 
   ngOnInit(): void {
-      this.activatedRoute.params.subscribe((params: Params) => {
-        if(params['id']) {
-          this.personId = params['id'];
-          this.personControl.setValue(params['id']);
-          this.personControl.disable();
-        } else {
-          this.personId = '';
-          this.personControl.enable();
-        }
-      })
+    this.activatedRoute.params.subscribe((params: Params) => {
+      if (params['id']) {
+        this.personId = params['id'];
+        this.personControl.setValue(params['id']);
+        this.personControl.disable();
+      } else {
+        this.personId = '';
+        this.personControl.enable();
+      }
+    });
   }
 
   OnSelectedChange(index: number) {
@@ -38,7 +42,7 @@ export class ProfessionalComponent implements OnInit {
   }
 
   onPersonSelect() {
-    if(this.personControl.valid) {
+    if (this.personControl.valid) {
       this.router.navigate([`cv/professional/${this.personControl.value}`]);
       this.personControl.disable();
     }

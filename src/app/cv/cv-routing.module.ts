@@ -13,27 +13,31 @@ import { ProfessionalsComponent } from './pages/professionals/professionals.comp
 import { MatrimonialsComponent } from './pages/matrimonials/matrimonials.component';
 
 const routes: Routes = [
-  { path: '', component: LayoutComponent, children: [
-    { path: 'degrees', component: DegreesComponent },
-    { path: 'degree/:id', component: DegreeComponent },
-    { path: 'degree', component: DegreeComponent },
-    { path: 'designations', component: DesignationsComponent },
-    { path: 'designation/:id', component: DesignationComponent },
-    { path: 'designation', component: DesignationComponent },
-    { path: 'subjects', component: SubjectsComponent },
-    { path: 'subject/:id', component: SubjectComponent },
-    { path: 'subject', component: SubjectComponent },
-    { path: 'professionals', component: ProfessionalsComponent },
-    { path: 'professional/:id', component: ProfessionalComponent },
-    { path: 'professional', component: ProfessionalComponent },
-    { path: 'matrimonial/:id', component: MatrimonialComponent },
-    { path: 'matrimonials', component: MatrimonialsComponent },
-    { path: 'matrimonial', component: MatrimonialComponent },
-  ]}
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'degrees', component: DegreesComponent },
+      { path: 'degree/:id', component: DegreeComponent },
+      { path: 'degree', component: DegreeComponent },
+      { path: 'designations', component: DesignationsComponent },
+      { path: 'designation/:id', component: DesignationComponent },
+      { path: 'designation', component: DesignationComponent },
+      { path: 'subjects', component: SubjectsComponent },
+      { path: 'subject/:id', component: SubjectComponent },
+      { path: 'subject', component: SubjectComponent },
+      { path: 'professionals', component: ProfessionalsComponent },
+      { path: 'professional/:id', component: ProfessionalComponent },
+      { path: 'professional', component: ProfessionalComponent },
+      { path: 'matrimonial/:id', component: MatrimonialComponent },
+      { path: 'matrimonials', component: MatrimonialsComponent },
+      { path: 'matrimonial', component: MatrimonialComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class CvRoutingModule { }
+export class CvRoutingModule {}

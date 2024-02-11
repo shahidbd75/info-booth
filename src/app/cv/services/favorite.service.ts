@@ -5,7 +5,6 @@ import { BaseHttpService } from 'src/app/shared/services/base.service';
 
 @Injectable()
 export class FavoriteService extends BaseHttpService {
-
   constructor(http: HttpClient) {
     super(http);
     this.setBaseUrl(API_ENDPOINT_CONST.CV.FAVORITE_BASE);

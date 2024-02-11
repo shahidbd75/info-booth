@@ -9,8 +9,8 @@ import { GlobalDataContextService } from 'src/app/shared/services/global-data-co
 })
 export class LayoutComponent {
   personnelMenus: MenuType[] = [
-    {text: 'Sub Categories', link:'buy-sell/sub-categories'},
-    {text: 'Items', link: 'buy-sell'},
+    { text: 'Sub Categories', link: 'buy-sell/sub-categories' },
+    { text: 'Items', link: 'buy-sell' },
   ];
   constructor(private globalDataContextService: GlobalDataContextService) {
     this.globalDataContextService.menus$.next(this.personnelMenus);

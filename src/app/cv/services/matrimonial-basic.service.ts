@@ -7,12 +7,12 @@ import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 
 @Injectable()
 export class MatrimonialBasicCvService extends BaseHttpService {
-    constructor(http: HttpClient) {
-        super(http);
-        this.setBaseUrl(API_ENDPOINT_CONST.CV.MATRIMONIAL_BASIC_BASE)
-    }
+  constructor(http: HttpClient) {
+    super(http);
+    this.setBaseUrl(API_ENDPOINT_CONST.CV.MATRIMONIAL_BASIC_BASE);
+  }
 
-    getSummeries(): Observable<MatrimonialTableResponse[]> {
-        return this.http.get<MatrimonialTableResponse[]>(`${this.BASE_URL}/list`);
-    }
+  getSummeries(): Observable<MatrimonialTableResponse[]> {
+    return this.http.get<MatrimonialTableResponse[]>(`${this.BASE_URL}/list`);
+  }
 }

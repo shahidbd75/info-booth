@@ -12,9 +12,9 @@ import { ToLetDetailResponseModel } from '../../types/tolet-response-model';
 @Component({
   selector: 'app-tolet',
   templateUrl: './tolet.component.html',
-  styleUrls: ['./tolet.component.scss']
+  styleUrls: ['./tolet.component.scss'],
 })
-export class ToletComponent implements OnInit{
+export class ToletComponent implements OnInit {
   toletForm: FormGroup;
   isEditMode = false;
   selectedDistrictId: number;
@@ -28,16 +28,20 @@ export class ToletComponent implements OnInit{
   landmarks$: Observable<OptionsModel[]> = this.optionService.getLandMarks();
   religions$: Observable<OptionsModel[]> = this.optionService.getReligions();
 
-  constructor(private fb: FormBuilder, private router: Router, private toletService: ToletService, 
-    private personService: PersonService, private activatedRoute: ActivatedRoute, public optionService: ToletOptionsService,) {
-
-  }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private toletService: ToletService,
+    private personService: PersonService,
+    private activatedRoute: ActivatedRoute,
+    public optionService: ToletOptionsService
+  ) {}
 
   ngOnInit(): void {
     this.initializeFormGroup();
     this.loadFromParam();
   }
- 
+
   loadData() {
     // if(this.toletService.selectedWorker) {
     //   const {id:personId,goodAts,workGroups, workAbilities, preferableDays, ...restvalues} = this.toletService.selectedWorker;
@@ -46,7 +50,7 @@ export class ToletComponent implements OnInit{
     //   const workAbilityIds = workAbilities.map(wa => wa.id);
     //   const preferableDayIds = preferableDays.map(pd => pd.id);
     //   this.isEditMode = true;
-    //   this.toletForm.patchValue({...restvalues,personId, goodAts: goodAtIds, 
+    //   this.toletForm.patchValue({...restvalues,personId, goodAts: goodAtIds,
     //     workAbilities: workAbilityIds, perferableDays: preferableDayIds, workGroups: workGroupIds});
     //   this.toletService.selectedWorker = null;
     // }
@@ -54,28 +58,28 @@ export class ToletComponent implements OnInit{
   initializeFormGroup() {
     this.toletForm = this.fb.group({
       personId: [null, [Validators.required]],
-      title: ['', [Validators.required,Validators.maxLength(100)]],
-      rent: ['', [Validators.required,Validators.maxLength(8)]],
+      title: ['', [Validators.required, Validators.maxLength(100)]],
+      rent: ['', [Validators.required, Validators.maxLength(8)]],
       isRentNegotiable: [false, [Validators.required]],
       availableFrom: [null, [Validators.required]],
-      advanceMoney:[0],
+      advanceMoney: [0],
       floorNumber: [0],
-      totalFloor:[0],
-      numberOfBed:[0],
-      numberOfBath:[0],
+      totalFloor: [0],
+      numberOfBed: [0],
+      numberOfBath: [0],
       description: ['', [Validators.maxLength(250)]],
       areaInSqFeet: [false],
-      rentTypeId:[null],
-      viewId:[null],
-      hasGenerator:[false],
-      isBachelorAllowed:[false],
-      hasParking:[false],
-      careTakerName:[null],
-      careTakerPhone:[null],
-      landMarkIds:[null],
-      amenities:[null],
-      preferableReligion:[null],
-      villageId: [null, [Validators.required]]
+      rentTypeId: [null],
+      viewId: [null],
+      hasGenerator: [false],
+      isBachelorAllowed: [false],
+      hasParking: [false],
+      careTakerName: [null],
+      careTakerPhone: [null],
+      landMarkIds: [null],
+      amenities: [null],
+      preferableReligion: [null],
+      villageId: [null, [Validators.required]],
     });
   }
 
@@ -83,19 +87,25 @@ export class ToletComponent implements OnInit{
     console.log(this.toletForm.value);
     // const {startTime, endTime, ...restValue} = this.toletForm.value;
 
-     const requestModel: ToLetCreateRequestModel = {...this.toletForm.value};
+    const requestModel: ToLetCreateRequestModel = { ...this.toletForm.value };
 
-    this.toletService.saveToLet(requestModel).subscribe(()=> {
-      this.router.navigate(['tolet/to-lets']);
-    },(error) => console.log(error));
+    this.toletService.saveToLet(requestModel).subscribe(
+      () => {
+        this.router.navigate(['tolet/to-lets']);
+      },
+      error => console.log(error)
+    );
   }
 
   onWorkerUpdate() {
-    const requestModel: ToLetUpdateRequestModel = {...this.toletForm.value};
+    const requestModel: ToLetUpdateRequestModel = { ...this.toletForm.value };
 
-    this.toletService.updateToLet(requestModel).subscribe(()=> {
-      this.router.navigate(['tolet/to-lets']);
-    },(error) => console.log(error));
+    this.toletService.updateToLet(requestModel).subscribe(
+      () => {
+        this.router.navigate(['tolet/to-lets']);
+      },
+      error => console.log(error)
+    );
   }
 
   resetForm() {
@@ -103,17 +113,17 @@ export class ToletComponent implements OnInit{
   }
 
   onVillageChange(villageId: string) {
-    this.toletForm.patchValue({villageId});
+    this.toletForm.patchValue({ villageId });
   }
 
   private formatTime(inputTime: string): string {
     const date = new Date();
-    if(inputTime) {
+    if (inputTime) {
       date.setHours(+inputTime.split(':')[0]);
-      date.setMinutes(+inputTime.split(':')[1])
+      date.setMinutes(+inputTime.split(':')[1]);
     }
 
-    return date.toLocaleTimeString([], {timeStyle:'short'});
+    return date.toLocaleTimeString([], { timeStyle: 'short' });
   }
   private loadFromParam() {
     this.activatedRoute.params.subscribe((param: Params) => {

@@ -8,7 +8,7 @@ describe('NotAuthorizeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NotAuthorizeComponent]
+      declarations: [NotAuthorizeComponent],
     });
     fixture = TestBed.createComponent(NotAuthorizeComponent);
     component = fixture.componentInstance;

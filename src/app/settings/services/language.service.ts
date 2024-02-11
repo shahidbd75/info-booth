@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
 import { OptionsModel } from '../../shared/models/options-model';
 
 @Injectable()
-export class LanguageService extends BaseHttpService{
-
+export class LanguageService extends BaseHttpService {
   constructor(http: HttpClient) {
     super(http);
     this.setBaseUrl(API_ENDPOINT_CONST.COMMON.LANGUAGE_BASE);

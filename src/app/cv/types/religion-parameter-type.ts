@@ -1,5 +1,5 @@
-export type ReligionParametersType = { 
-    id: number;
-    name: string;
-    isSelected: boolean;
+export type ReligionParametersType = {
+  id: number;
+  name: string;
+  isSelected: boolean;
 };

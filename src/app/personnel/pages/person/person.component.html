@@ -7,28 +7,32 @@
     <mat-card-content>
       <mat-divider></mat-divider>
       <div class="g-3 pt-2">
-        <app-village-select  [districtId]="selectedDistrictId" [upazilaId]="selectedUpazilaId" [villageId]="selectedVillageId" (villageChanges)="onVillageChange($event)"></app-village-select>
+        <app-village-select
+          [districtId]="selectedDistrictId"
+          [upazilaId]="selectedUpazilaId"
+          [villageId]="selectedVillageId"
+          (villageChanges)="onVillageChange($event)"></app-village-select>
         <div class="row">
           <div class="col-md-4 col-xs-12">
             <label for="name" class="form-label">Full Name</label>
-            <input type="text" formControlName="name" class="form-control" id="name">
+            <input type="text" formControlName="name" class="form-control" id="name" />
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="nickName" class="form-label">Nick Name</label>
-            <input type="text" formControlName="nickName" class="form-control" id="nickName">
+            <input type="text" formControlName="nickName" class="form-control" id="nickName" />
           </div>
           <div class="col-md-4">
             <label for="fname" class="form-label">Father Name</label>
-            <input type="text" formControlName="fatherName" class="form-control" id="fname">
+            <input type="text" formControlName="fatherName" class="form-control" id="fname" />
           </div>
           <div class="col-md-4">
             <label for="mname" class="form-label">Mother Name</label>
-            <input type="text" formControlName="motherName" class="form-control" id="mname">
+            <input type="text" formControlName="motherName" class="form-control" id="mname" />
           </div>
           <div class="col-md-4">
             <label for="spouseName" class="form-label">Spouse Name</label>
-            <input type="text" formControlName="spouseName" class="form-control" id="spouseName">
-          </div>       
+            <input type="text" formControlName="spouseName" class="form-control" id="spouseName" />
+          </div>
           <div class="col-md-4">
             <label for="gender" class="form-label">Gender</label>
             <select class="form-select" formControlName="gender" aria-label="Please select gender" id="gender">
@@ -42,28 +46,28 @@
             <label for="religion" class="form-label">Religion</label>
             <select class="form-select" aria-label="Please select religion" id="religion" formControlName="religion">
               <option selected value="null">N/A</option>
-              <option *ngFor="let religion of religions$ | async" [value]="religion.id">{{religion.name}}</option>
+              <option *ngFor="let religion of religions$ | async" [value]="religion.id">{{ religion.name }}</option>
             </select>
           </div>
           <div class="col-md-4">
             <label for="phone" class="form-label">Phone</label>
-            <input type="text" formControlName="phone" class="form-control" id="phone">
+            <input type="text" formControlName="phone" class="form-control" id="phone" />
           </div>
           <div class="col-md-4">
             <label for="alternativeContact" class="form-label">Alternative Contact</label>
-            <input type="text" formControlName="alternativeContact" class="form-control" id="alternativeContact">
+            <input type="text" formControlName="alternativeContact" class="form-control" id="alternativeContact" />
           </div>
           <div class="col-md-4">
             <label for="email" class="form-label">Email</label>
-            <input type="text" formControlName="email" class="form-control" id="email">
+            <input type="text" formControlName="email" class="form-control" id="email" />
           </div>
           <div class="col-md-4">
             <label for="nId" class="form-label">NID/Birth Certificate</label>
-            <input type="text" formControlName="nId" class="form-control" id="nId">
+            <input type="text" formControlName="nId" class="form-control" id="nId" />
           </div>
           <div class="col-md-4">
             <label for="occupation" class="form-label">Occupation</label>
-              <ng-select
+            <ng-select
               [items]="occupations$ | async"
               id="occupation"
               [searchable]="true"
@@ -71,13 +75,11 @@
               bindValue="id"
               bindLabel="name"
               formControlName="occupation"
-              placeholder="Please select occupation"
-            >
-            </ng-select>
+              placeholder="Please select occupation"></ng-select>
           </div>
           <div class="col-md-4">
             <label for="degreeId" class="form-label">Highest Degree</label>
-              <ng-select
+            <ng-select
               [items]="degrees$ | async"
               id="degreeId"
               [searchable]="true"
@@ -85,21 +87,19 @@
               bindValue="id"
               bindLabel="name"
               formControlName="degreeId"
-              placeholder="Please select last degree"
-            >
-            </ng-select>
+              placeholder="Please select last degree"></ng-select>
           </div>
           <div class="col-md-4">
             <label for="dateOfBirth" class="form-label">Date of Birth</label>
-            <input type="date" formControlName="dateOfBirth" class="form-control" id="dateOfBirth">
+            <input type="date" formControlName="dateOfBirth" class="form-control" id="dateOfBirth" />
           </div>
           <div class="col-md-4">
             <label for="postalCode" class="form-label">Postal Code</label>
-            <input type="text" formControlName="postalCode" class="form-control" id="postalCode">
+            <input type="text" formControlName="postalCode" class="form-control" id="postalCode" />
           </div>
           <div class="col-md-4">
             <label for="bloodGroup" class="form-label">Blood Group</label>
-            <input type="text" formControlName="bloodGroup" class="form-control" maxlength="3" id="bloodGroup">
+            <input type="text" formControlName="bloodGroup" class="form-control" maxlength="3" id="bloodGroup" />
           </div>
           <div class="col-md-8">
             <label for="address" class="form-label">Address</label>

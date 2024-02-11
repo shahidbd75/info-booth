@@ -1,8 +1,8 @@
-import { environment } from "src/environments/environment";
+import { environment } from 'src/environments/environment';
 
 const BASE_URL = `${environment.baseUrl}`;
 
-export const API_ENDPOINT_CONST : APIEndPoints = {
+export const API_ENDPOINT_CONST: APIEndPoints = {
   BUY_SELL: {
     GET_CATEGORIES_OPTIONS: `${BASE_URL}ItemCategories/options`,
     GET_SUB_CATEGORY_BY_CATEGORY: (categoryId: string) => `${BASE_URL}ItemSubCategories/options/${categoryId}`,
@@ -17,13 +17,13 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
   OPTIONS: {
     OPTION_BASE: `${BASE_URL}Options`,
     RELIGIONS: `${BASE_URL}Options/religions`,
-    CONDITIONS: `${BASE_URL}Options/conditions`
+    CONDITIONS: `${BASE_URL}Options/conditions`,
   },
   LOCATION: {
-    VILLAGE_BASE: `${BASE_URL}Villages`
+    VILLAGE_BASE: `${BASE_URL}Villages`,
   },
   WORKER: {
-    WORKER_BASE: `${BASE_URL}Worker`
+    WORKER_BASE: `${BASE_URL}Worker`,
   },
   TOLET: {
     TOLET_BASE: `${BASE_URL}ToLets`,
@@ -33,12 +33,12 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     LANDMARK_OPTIONS: `${BASE_URL}ToLetsOptions/land-marks`,
   },
   BOOK: {
-    BOOK_CATEGORIES_BASE:`${BASE_URL}BookCategory`,
+    BOOK_CATEGORIES_BASE: `${BASE_URL}BookCategory`,
     BOOK_BASE: `${BASE_URL}Books`,
     EDITION_BASE: `${BASE_URL}Edition`,
   },
   COMMON: {
-    LANGUAGE_BASE: `${BASE_URL}Language`
+    LANGUAGE_BASE: `${BASE_URL}Language`,
   },
   CV: {
     DEGREE_BASE: `${BASE_URL}Degrees`,
@@ -48,21 +48,21 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     SUBJECT_BASE: `${BASE_URL}Subjects`,
     EXPERIENCE_BASE: `${BASE_URL}Experience`,
     PROFESSIONAL_BASIC: `${BASE_URL}ProfessionalCVs`,
-    GET_EXPERIENCE_BY_PERSON:(personId: string) =>  `${BASE_URL}Experience/${personId}/get-list`,
+    GET_EXPERIENCE_BY_PERSON: (personId: string) => `${BASE_URL}Experience/${personId}/get-list`,
     TRAINING_BASE: `${BASE_URL}Training`,
-    GET_TRAININGS_BY_PERSON:(personId: string) => `${BASE_URL}Training/${personId}/list`,
+    GET_TRAININGS_BY_PERSON: (personId: string) => `${BASE_URL}Training/${personId}/list`,
     JOB_REFERENCE_BASE: `${BASE_URL}JobReferences`,
-    JOB_REFERENCES_BY_PERSON:(personId: string) => `${BASE_URL}JobReferences/${personId}`,
+    JOB_REFERENCES_BY_PERSON: (personId: string) => `${BASE_URL}JobReferences/${personId}`,
     MATRIMONIAL_BASIC_BASE: `${BASE_URL}MatrimonialCv`,
     FAMILY_MEMBER_BASE: `${BASE_URL}FamilyMember`,
-    GET_FAMILY_MEMBERS_BY_PERSON:(personId: string) =>  `${BASE_URL}FamilyMember/getByPersonId/${personId}`,
-    FAVORITE_BASE:`${BASE_URL}Favorite`,
+    GET_FAMILY_MEMBERS_BY_PERSON: (personId: string) => `${BASE_URL}FamilyMember/getByPersonId/${personId}`,
+    FAVORITE_BASE: `${BASE_URL}Favorite`,
     PREFERABLE_BASE: `${BASE_URL}Preferable`,
     PREFERABLE_OCCUPATIONS_BY_PERSON: (personId: string) => `${BASE_URL}PreferableOccupation/${personId}`,
     PREFERABLE_OCCUPATION_BASE: `${BASE_URL}PreferableOccupation`,
-    RELIGION_INFO_BASE:`${BASE_URL}ReligiousInformation`,
+    RELIGION_INFO_BASE: `${BASE_URL}ReligiousInformation`,
   },
-  CV_OPTIONS : {
+  CV_OPTIONS: {
     GET_DEGREES: `${BASE_URL}CvOptions/degrees`,
     GET_DESIGNATIONS: `${BASE_URL}CvOptions/designations`,
     GET_SUBJECTS: `${BASE_URL}CvOptions/subjects`,
@@ -71,24 +71,24 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_RELIGION_PARAMETERS: (personId: string) => `${BASE_URL}ReligiousInformation/get-parameters-by-person/${personId}`,
   },
   CV_ENUM_OPTIONS: {
-    GET_ACCEPTANCES:`${BASE_URL}CvEnumOptions/acceptances`,
-    GET_BODY_TYPES:`${BASE_URL}CvEnumOptions/body-types`,
-    GET_CASTES: (personId: string) =>`${BASE_URL}CvEnumOptions/castes/${personId}`,
-    GET_COLORS:`${BASE_URL}CvEnumOptions/colors`,
-    GET_COMPLEXIONS:`${BASE_URL}CvEnumOptions/complexions`,
-    GET_DIETS:`${BASE_URL}CvEnumOptions/diets`,
-    GET_DISABILITIES:`${BASE_URL}CvEnumOptions/disabilities`,
-    GET_DREES_STYLES:`${BASE_URL}CvEnumOptions/dress-styles`,
-    GET_DRINKS:`${BASE_URL}CvEnumOptions/drinks`,
-    GET_COOKINGS:`${BASE_URL}CvEnumOptions/cookings`,
-    GET_EMPLOYEE_STATUS:`${BASE_URL}CvEnumOptions/employment-status`,
-    GET_EYE_COLORS:`${BASE_URL}CvEnumOptions/eye-colors`,
-    GET_FAMILY_TYPES:`${BASE_URL}CvEnumOptions/family-types`,
-    GET_FAMILY_VALUES:`${BASE_URL}CvEnumOptions/family-values`,
-    GET_GAMES:`${BASE_URL}CvEnumOptions/games`,
-    GET_MOVIES:`${BASE_URL}CvEnumOptions/movies`,
-    GET_MUSICS:`${BASE_URL}CvEnumOptions/musics`,
-    GET_READS:`${BASE_URL}CvEnumOptions/reads`,
+    GET_ACCEPTANCES: `${BASE_URL}CvEnumOptions/acceptances`,
+    GET_BODY_TYPES: `${BASE_URL}CvEnumOptions/body-types`,
+    GET_CASTES: (personId: string) => `${BASE_URL}CvEnumOptions/castes/${personId}`,
+    GET_COLORS: `${BASE_URL}CvEnumOptions/colors`,
+    GET_COMPLEXIONS: `${BASE_URL}CvEnumOptions/complexions`,
+    GET_DIETS: `${BASE_URL}CvEnumOptions/diets`,
+    GET_DISABILITIES: `${BASE_URL}CvEnumOptions/disabilities`,
+    GET_DREES_STYLES: `${BASE_URL}CvEnumOptions/dress-styles`,
+    GET_DRINKS: `${BASE_URL}CvEnumOptions/drinks`,
+    GET_COOKINGS: `${BASE_URL}CvEnumOptions/cookings`,
+    GET_EMPLOYEE_STATUS: `${BASE_URL}CvEnumOptions/employment-status`,
+    GET_EYE_COLORS: `${BASE_URL}CvEnumOptions/eye-colors`,
+    GET_FAMILY_TYPES: `${BASE_URL}CvEnumOptions/family-types`,
+    GET_FAMILY_VALUES: `${BASE_URL}CvEnumOptions/family-values`,
+    GET_GAMES: `${BASE_URL}CvEnumOptions/games`,
+    GET_MOVIES: `${BASE_URL}CvEnumOptions/movies`,
+    GET_MUSICS: `${BASE_URL}CvEnumOptions/musics`,
+    GET_READS: `${BASE_URL}CvEnumOptions/reads`,
     GET_HAIR_COLORS: `${BASE_URL}CvEnumOptions/hair-colors`,
     GET_TV_SHOWS: `${BASE_URL}CvEnumOptions/tv-shows`,
     GET_HAVE_CHILDRENS: `${BASE_URL}CvEnumOptions/have-childrens`,
@@ -106,8 +106,8 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
     GET_MARITIAL_STATUS: `${BASE_URL}CvEnumOptions/maritial-status`,
     GET_BODY_HEIGHTS: `${BASE_URL}CvEnumOptions/body-heights`,
     GET_BIRDS: `${BASE_URL}CvEnumOptions/birds`,
-    GET_BEARD_TYPES:`${BASE_URL}CvEnumOptions/beard-types`,
-    GET_OCCUPATION_GROUPS:`${BASE_URL}CvEnumOptions/occupation-groups`,
+    GET_BEARD_TYPES: `${BASE_URL}CvEnumOptions/beard-types`,
+    GET_OCCUPATION_GROUPS: `${BASE_URL}CvEnumOptions/occupation-groups`,
     GET_PRAYERS: `${BASE_URL}CvEnumOptions/prayers`,
     GET_PRAYERS_IN_MOSQUE: `${BASE_URL}CvEnumOptions/prayer-in-mosques`,
     GET_READING_QURANS: `${BASE_URL}CvEnumOptions/reading-qurans`,
@@ -119,8 +119,8 @@ export const API_ENDPOINT_CONST : APIEndPoints = {
   AUTH: {
     LOGIN: `${BASE_URL}Auth/login`,
     SIGNUP: `${BASE_URL}Auth/signup`,
-  }
-}
+  },
+};
 
 export interface APIEndPoints {
   CV: Cv;
@@ -131,7 +131,7 @@ export interface APIEndPoints {
   WORKER: Worker;
   TOLET: Tolet;
   BOOK: Book;
-  COMMON:Common;
+  COMMON: Common;
   CV_OPTIONS: CvOptions;
   CV_ENUM_OPTIONS: CvEnumOptions;
   AUTH: Auth;
@@ -152,8 +152,8 @@ export interface Personnel {
 
 export interface Options {
   OPTION_BASE: string;
-  RELIGIONS:string;
-  CONDITIONS:string;
+  RELIGIONS: string;
+  CONDITIONS: string;
 }
 
 export interface Location {
@@ -192,21 +192,21 @@ export interface Cv {
   AWARD_BASE: string;
   EDUCATION_BASE: string;
   EXPERIENCE_BASE: string;
-  GET_EXPERIENCE_BY_PERSON:(personId: string) => string;
+  GET_EXPERIENCE_BY_PERSON: (personId: string) => string;
   TRAINING_BASE: string;
-  GET_TRAININGS_BY_PERSON:(personId: string) => string;
-  JOB_REFERENCES_BY_PERSON:(personId: string) => string;
+  GET_TRAININGS_BY_PERSON: (personId: string) => string;
+  JOB_REFERENCES_BY_PERSON: (personId: string) => string;
   FAMILY_MEMBER_BASE: string;
-  GET_FAMILY_MEMBERS_BY_PERSON:(personId: string) => string;
+  GET_FAMILY_MEMBERS_BY_PERSON: (personId: string) => string;
   FAVORITE_BASE: string;
   PREFERABLE_BASE: string;
   PREFERABLE_OCCUPATION_BASE: string;
-  PREFERABLE_OCCUPATIONS_BY_PERSON:(personId: string) => string;
-  RELIGION_INFO_BASE:string;
+  PREFERABLE_OCCUPATIONS_BY_PERSON: (personId: string) => string;
+  RELIGION_INFO_BASE: string;
 }
 
 export interface CvOptions {
-  GET_RELIGION_PARAMETERS:(personId: string) => string;
+  GET_RELIGION_PARAMETERS: (personId: string) => string;
   GET_JOB_HOBBIES: string;
   GET_DESIGNATIONS: string;
   GET_DEGREES: string;
@@ -223,7 +223,7 @@ export interface CvEnumOptions {
   GET_BIRDS: string;
   GET_ACCEPTANCES: string;
   GET_BODY_TYPES: string;
-  GET_CASTES:(personId: string) => string;
+  GET_CASTES: (personId: string) => string;
   GET_COLORS: string;
   GET_COMPLEXIONS: string;
   GET_DIETS: string;

@@ -1,32 +1,29 @@
 <form [formGroup]="pOFormGroup">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Preferable</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>    
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="occupationForm">
-                        <mat-selection-list formControlName="occupationId">
-                            <mat-list-option *ngFor="let item of occupations$ | async" [value]="item.occupationId" [selected]="item.isSelected" [title]="item.occupationName">
-                              {{ item.occupationName }}
-                            </mat-list-option>
-                          </mat-selection-list>
-                    </div>
-                    <div>
-                        
-                    </div>
-                </div>
-            </div>       
-        </mat-card-content>
-        <mat-card-actions  class="action-button-container">
-            <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!pOFormGroup.valid">Save</button>
-            <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
-        </mat-card-actions>
-    </mat-card>
-    </form>
-
-
-
-
-
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Preferable</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <div class="occupationForm">
+            <mat-selection-list formControlName="occupationId">
+              <mat-list-option
+                *ngFor="let item of occupations$ | async"
+                [value]="item.occupationId"
+                [selected]="item.isSelected"
+                [title]="item.occupationName">
+                {{ item.occupationName }}
+              </mat-list-option>
+            </mat-selection-list>
+          </div>
+          <div></div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-button-container">
+      <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!pOFormGroup.valid">Save</button>
+      <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

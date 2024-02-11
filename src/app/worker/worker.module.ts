@@ -14,20 +14,20 @@ import { PersonService } from '../personnel/services/person.service';
 import { GlobalDataContextService } from '../shared/services/global-data-context.service';
 
 const routes: Routes = [
-  { path: '', component: LayoutComponent, children: [
-    { path: 'workers', component: WorkersComponent },
-    { path: 'worker/:id', component: WorkerComponent },
-    { path: 'worker', component: WorkerComponent },
-    { path: '', redirectTo: 'worder', pathMatch: "full"}
-  ]}
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'workers', component: WorkersComponent },
+      { path: 'worker/:id', component: WorkerComponent },
+      { path: 'worker', component: WorkerComponent },
+      { path: '', redirectTo: 'worder', pathMatch: 'full' },
+    ],
+  },
 ];
 
 @NgModule({
-  declarations: [
-    WorkerComponent,
-    LayoutComponent,
-    WorkersComponent
-  ],
+  declarations: [WorkerComponent, LayoutComponent, WorkersComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -36,8 +36,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild(routes),
-    NgSelectModule
+    NgSelectModule,
   ],
-  providers: [WorkerService, PersonService]
+  providers: [WorkerService, PersonService],
 })
-export class WorkerModule { }
+export class WorkerModule {}

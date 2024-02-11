@@ -1,30 +1,28 @@
 <div *ngIf="isLoading" class="spinner">
-    <mat-spinner color="primary" diameter="30"></mat-spinner>
-  </div>
-  
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Users</mat-card-title>
-      <mat-card-subtitle>user</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="row pt-2">
-        <div class="col-md-3 col-sm-12">
-          <button mat-fab extended color="primary" [routerLink]="['../user']">
-            <mat-icon fontIcon="add"></mat-icon>Create User
-          </button>
-        </div>
-        <div class="col-md-9 col-sm-12">
-          <!-- <mat-form-field>
+  <mat-spinner color="primary" diameter="30"></mat-spinner>
+</div>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Users</mat-card-title>
+    <mat-card-subtitle>user</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="row pt-2">
+      <div class="col-md-3 col-sm-12">
+        <button mat-fab extended color="primary" [routerLink]="['../user']">
+          <mat-icon fontIcon="add"></mat-icon>
+          Create User
+        </button>
+      </div>
+      <div class="col-md-9 col-sm-12">
+        <!-- <mat-form-field>
             <mat-label>Filter</mat-label>
             <input matInput placeholder="Search" #input (input)="onFilter($event)" />
           </mat-form-field> -->
-        </div>
       </div>
-  
-      <div class="mat-elevation-z8">
-        Under construction
-      </div>
-    </mat-card-content>
-  </mat-card>
-  
+    </div>
+
+    <div class="mat-elevation-z8">Under construction</div>
+  </mat-card-content>
+</mat-card>

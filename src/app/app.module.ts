@@ -19,9 +19,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from './shared/interceptors/auth-header.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -39,12 +37,10 @@ import { HeaderInterceptor } from './shared/interceptors/auth-header.interceptor
       config: {
         tokenGetter: tokenGetter,
         allowedDomains: ['https://localhost:7197'],
-      }
-    })
+      },
+    }),
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true}
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -11,14 +11,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { VillageService } from './services/village.service';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-
-
 @NgModule({
-  declarations: [
-    VillagesComponent,
-    VillageComponent,
-    LayoutComponent
-  ],
+  declarations: [VillagesComponent, VillageComponent, LayoutComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -29,14 +23,16 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgSelectModule,
     RouterModule.forChild([
       {
-        path:'', component: LayoutComponent,
+        path: '',
+        component: LayoutComponent,
         children: [
-          {path: 'villages', component: VillagesComponent},
-          {path: 'village/:id', component: VillageComponent},
-          {path: 'village', component: VillageComponent}
-        ]
-      }
-    ])
-  ], providers: [VillageService]
+          { path: 'villages', component: VillagesComponent },
+          { path: 'village/:id', component: VillageComponent },
+          { path: 'village', component: VillageComponent },
+        ],
+      },
+    ]),
+  ],
+  providers: [VillageService],
 })
-export class LocationModule { }
+export class LocationModule {}

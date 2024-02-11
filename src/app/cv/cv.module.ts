@@ -48,25 +48,39 @@ import { PreferableOccupationService } from './services/preferable-occupation.se
 import { ReligionInfoComponent } from './components/religion-info/religion-info.component';
 import { ReligionInformationService } from './services/religion-information.service';
 
-
 @NgModule({
-  declarations: [LayoutComponent, DegreeComponent, DegreesComponent, DesignationComponent, DesignationsComponent, SubjectComponent, SubjectsComponent, ProfessionalComponent, ProfessionalsComponent, MatrimonialsComponent, MatrimonialComponent, ProfessionalBasicComponent, MatrimonialBasicComponent, EducationComponent, ExperienceComponent, TrainingComponent, JobReferenceComponent, FamilyMemberComponent, FavoriteComponent, PreferableComponent, PreferableOccupationComponent, ReligionInfoComponent,],
-  imports: [
-    CommonModule,
-    CvRoutingModule,
-    MaterialModule,
-    FormsModule,
-    SharedModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgSelectModule
+  declarations: [
+    LayoutComponent,
+    DegreeComponent,
+    DegreesComponent,
+    DesignationComponent,
+    DesignationsComponent,
+    SubjectComponent,
+    SubjectsComponent,
+    ProfessionalComponent,
+    ProfessionalsComponent,
+    MatrimonialsComponent,
+    MatrimonialComponent,
+    ProfessionalBasicComponent,
+    MatrimonialBasicComponent,
+    EducationComponent,
+    ExperienceComponent,
+    TrainingComponent,
+    JobReferenceComponent,
+    FamilyMemberComponent,
+    FavoriteComponent,
+    PreferableComponent,
+    PreferableOccupationComponent,
+    ReligionInfoComponent,
   ],
-  providers: [DegreeService, 
-    DesignationService, 
-    SubjectService, 
-    PersonService, 
-    CvOptionsService, 
-    EducationService, 
+  imports: [CommonModule, CvRoutingModule, MaterialModule, FormsModule, SharedModule, ReactiveFormsModule, HttpClientModule, NgSelectModule],
+  providers: [
+    DegreeService,
+    DesignationService,
+    SubjectService,
+    PersonService,
+    CvOptionsService,
+    EducationService,
     ProfessionalBasicService,
     ExperienceService,
     CvEnumOptionsService,
@@ -78,6 +92,7 @@ import { ReligionInformationService } from './services/religion-information.serv
     FavoriteService,
     PreferableService,
     PreferableOccupationService,
-    ReligionInformationService]
+    ReligionInformationService,
+  ],
 })
-export class CvModule { }
+export class CvModule {}

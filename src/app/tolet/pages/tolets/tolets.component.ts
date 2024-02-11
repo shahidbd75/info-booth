@@ -10,10 +10,10 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-tolets',
   templateUrl: './tolets.component.html',
-  styleUrls: ['./tolets.component.scss']
+  styleUrls: ['./tolets.component.scss'],
 })
 export class ToletsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['village','title', 'rent', 'availableFrom','accomodation','rentType','area', 'postedBy','isActive', 'actions'];
+  displayedColumns: string[] = ['village', 'title', 'rent', 'availableFrom', 'accomodation', 'rentType', 'area', 'postedBy', 'isActive', 'actions'];
   dataSource = new MatTableDataSource<ToLetTableResponseModel>();
   isLoading = false;
   subscription$: Subscription;
@@ -28,10 +28,11 @@ export class ToletsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private toletService: ToletService, private router: Router) {
+  constructor(
+    private toletService: ToletService,
+    private router: Router
+  ) {}
 
-  }
-  
   ngOnInit(): void {
     this.loadData();
   }
@@ -67,7 +68,7 @@ export class ToletsComponent implements OnInit, OnDestroy {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       console.log(_sort);
       this.page = 0;
       this.sortField = _sort.active;
@@ -80,11 +81,11 @@ export class ToletsComponent implements OnInit, OnDestroy {
   }
 
   onDelete(element: ToLetTableResponseModel) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.toletService.removeToLetById(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.toletService.removeToLetById(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

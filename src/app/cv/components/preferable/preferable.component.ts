@@ -12,30 +12,34 @@ import { CvEnumOptionsComponent } from '../matrimonial-basic/matrimonial-basic-o
 @Component({
   selector: 'app-preferable',
   templateUrl: './preferable.component.html',
-  styleUrls: ['./preferable.component.scss']
+  styleUrls: ['./preferable.component.scss'],
 })
 export class PreferableComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   preferableFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, 
-    private preferableService: PreferableService, private notificationService: NotificationService) {
-      super();
+  constructor(
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private preferableService: PreferableService,
+    private notificationService: NotificationService
+  ) {
+    super();
   }
   ngOnInit(): void {
     this.initializeFormGroup();
 
     this.activatedRoute.params.subscribe({
-      next: (params:Params) => {
+      next: (params: Params) => {
         const id = params['id'];
-        if(id) {
+        if (id) {
           this.loadData(id);
         }
-      }
-    })
+      },
+    });
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
@@ -49,7 +53,7 @@ export class PreferableComponent extends CvEnumOptionsComponent implements OnIni
       next: () => {
         this.notificationService.success(NotificationMessage.SavedSuccessfully);
       },
-      error: () => console.log('NotSaved')
+      error: () => console.log('NotSaved'),
     });
   }
 
@@ -60,28 +64,27 @@ export class PreferableComponent extends CvEnumOptionsComponent implements OnIni
   private loadData(personId: string) {
     this.preferableService.getById<PreferableReponseType>(personId).subscribe({
       next: (response: PreferableReponseType) => {
-        if(response) {
+        if (response) {
           const { ...restValue } = response;
-          this.preferableFormGroup.setValue({...restValue});
+          this.preferableFormGroup.setValue({ ...restValue });
         }
-      }
-    , error: (error) => console.log(error)
-    })
+      },
+      error: error => console.log(error),
+    });
   }
 
   private initializeFormGroup() {
     this.preferableFormGroup = this.fb.group({
-      personId:               [null],
-      beardType:              [null],
-      familyType:             [null],
-      prayer:                 [null],
-      smokingStatus:          [null],
-      hijabType:              [null],
-      notCompromisable:       [''],
+      personId: [null],
+      beardType: [null],
+      familyType: [null],
+      prayer: [null],
+      smokingStatus: [null],
+      hijabType: [null],
+      notCompromisable: [''],
       pertiallyCompromisable: [''],
-      compromisable:          [''],
-      occupationIds:          [null],
+      compromisable: [''],
+      occupationIds: [null],
     });
   }
-
 }

@@ -9,20 +9,10 @@ import { MaterialModule } from '../lib/material/material.module';
 import { UsersComponent } from './components/users/users.component';
 import { LayoutComponent } from './components/layout/layout.component';
 
-
 @NgModule({
-  declarations: [
-    UserRegistrationComponent,
-    UsersComponent,
-    LayoutComponent,
-  ],
-  
-  imports: [
-    CommonModule,
-    SecurityRoutingModule,
-    ReactiveFormsModule,
-    MaterialModule
-  ],
-  providers:[UserService]
+  declarations: [UserRegistrationComponent, UsersComponent, LayoutComponent],
+
+  imports: [CommonModule, SecurityRoutingModule, ReactiveFormsModule, MaterialModule],
+  providers: [UserService],
 })
-export class SecurityModule { }
+export class SecurityModule {}

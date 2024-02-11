@@ -6,7 +6,12 @@ import { Subscription, Observable } from 'rxjs';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { CvOptionsService } from '../../services/cv-options.service';
 import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
-import { FamilyMemberCreateRequestModel, FamilyMemberResponseType, FamilyMemberTableResponseType, FamilyMemberUpdateRequestModel } from '../../types/family-member-type';
+import {
+  FamilyMemberCreateRequestModel,
+  FamilyMemberResponseType,
+  FamilyMemberTableResponseType,
+  FamilyMemberUpdateRequestModel,
+} from '../../types/family-member-type';
 import { FamilyMerberService } from '../../services/family-merber.service';
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
@@ -14,18 +19,24 @@ import { NotificationService } from 'src/app/lib/material/notification/services/
 @Component({
   selector: 'app-family-member',
   templateUrl: './family-member.component.html',
-  styleUrls: ['./family-member.component.scss']
+  styleUrls: ['./family-member.component.scss'],
 })
 export class FamilyMemberComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
-  columns: string[] = ['name','occupation','designation','relation','phone', 'actions'];
+  columns: string[] = ['name', 'occupation', 'designation', 'relation', 'phone', 'actions'];
   dataSource: MatTableDataSource<FamilyMemberTableResponseType>;
   subscription: Subscription = new Subscription();
-  designations$ : Observable<OptionsModel[]> = this.cvOptionsService.getDesignations();
-  occupations$ : Observable<OptionsModel[]> = this.enumOptionService.getOccupationGroups();
-  relations$ : Observable<OptionsModel[]> = this.enumOptionService.getRelations();
-  constructor(private fb: FormBuilder, private cvOptionsService: CvOptionsService, private familyMemberService: FamilyMerberService,
-    private enumOptionService: CvEnumOptionsService, private activatedRoute: ActivatedRoute,  private notificationService: NotificationService,) {}
+  designations$: Observable<OptionsModel[]> = this.cvOptionsService.getDesignations();
+  occupations$: Observable<OptionsModel[]> = this.enumOptionService.getOccupationGroups();
+  relations$: Observable<OptionsModel[]> = this.enumOptionService.getRelations();
+  constructor(
+    private fb: FormBuilder,
+    private cvOptionsService: CvOptionsService,
+    private familyMemberService: FamilyMerberService,
+    private enumOptionService: CvEnumOptionsService,
+    private activatedRoute: ActivatedRoute,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -34,7 +45,7 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
@@ -42,33 +53,35 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
   onSave() {
     const personId = this.activatedRoute.snapshot.paramMap.get('id');
 
-    if(personId && personId !== '') {
+    if (personId && personId !== '') {
       const requestModel: FamilyMemberUpdateRequestModel = this.mapRequestData(personId);
-      
-      if(requestModel.id) {
+
+      if (requestModel.id) {
         this.subscription.add(
           this.familyMemberService.update<FamilyMemberUpdateRequestModel, unknown>(requestModel).subscribe({
-            next: ()=> {
+            next: () => {
               this.notificationService.success(NotificationMessage.UpdatedSuccessfully);
               this.LoadListData();
               this.formGroup.reset();
-            }, error: (err) => {
+            },
+            error: err => {
               this.notificationService.error(NotificationMessage.UpdatedFailure);
-              console.log('Failed',err)
-            }
+              console.log('Failed', err);
+            },
           })
         );
       } else {
         this.subscription.add(
           this.familyMemberService.save<FamilyMemberCreateRequestModel, unknown>(requestModel).subscribe({
-            next: ()=> {
+            next: () => {
               this.notificationService.success(NotificationMessage.SavedSuccessfully);
               this.LoadListData();
               this.formGroup.reset();
-            }, error: (err) => {
+            },
+            error: err => {
               this.notificationService.error(NotificationMessage.SavedFailure);
-              console.log('Failed',err)
-            }
+              console.log('Failed', err);
+            },
           })
         );
       }
@@ -79,38 +92,46 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
     this.formGroup.reset();
   }
 
-  LoadListData() : void {
+  LoadListData(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
       const personId = params['id'];
-      if(personId !== '') {
+      if (personId !== '') {
         this.subscription.add(
-          this.familyMemberService.getFamilyMemerbersByPersonId(personId)
-          .subscribe({ next: (response: FamilyMemberTableResponseType[]) => {
-            this.dataSource = new MatTableDataSource(response);
-          },error: err => console.log(err)
-        })
+          this.familyMemberService.getFamilyMemerbersByPersonId(personId).subscribe({
+            next: (response: FamilyMemberTableResponseType[]) => {
+              this.dataSource = new MatTableDataSource(response);
+            },
+            error: err => console.log(err),
+          })
         );
       }
     });
-     
   }
 
   onEdit(data: FamilyMemberTableResponseType) {
     const { id } = data;
-    this.familyMemberService.getById<FamilyMemberResponseType>(id).subscribe({next:(response: FamilyMemberResponseType) => {
-      this.formGroup.setValue({ ...response});
-    }, error: (error) => console.log(error)});
+    this.familyMemberService.getById<FamilyMemberResponseType>(id).subscribe({
+      next: (response: FamilyMemberResponseType) => {
+        this.formGroup.setValue({ ...response });
+      },
+      error: error => console.log(error),
+    });
   }
 
-  onDelete(data:FamilyMemberTableResponseType) {
-    if(confirm('Do you want to delete') && data.id !== '') {
-      this.subscription.add(this.familyMemberService.remove(data.id).subscribe({ next: () => {
-        this.notificationService.success(NotificationMessage.DeletedSuccessfully);
-        this.LoadListData();
-      }, error: (err) => {
-        this.notificationService.error(NotificationMessage.DeleteFailure);
-        console.log(err);
-      }}));
+  onDelete(data: FamilyMemberTableResponseType) {
+    if (confirm('Do you want to delete') && data.id !== '') {
+      this.subscription.add(
+        this.familyMemberService.remove(data.id).subscribe({
+          next: () => {
+            this.notificationService.success(NotificationMessage.DeletedSuccessfully);
+            this.LoadListData();
+          },
+          error: err => {
+            this.notificationService.error(NotificationMessage.DeleteFailure);
+            console.log(err);
+          },
+        })
+      );
     }
   }
 
@@ -118,20 +139,20 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
     this.formGroup = this.fb.group({
       id: [null],
       personId: [null],
-      name: [null,[Validators.required, Validators.maxLength(200)]],
+      name: [null, [Validators.required, Validators.maxLength(200)]],
       occupationId: [null],
       designationId: [null],
       relation: [null],
       spouseName: ['', [Validators.maxLength(100)]],
       spouseOccupationId: [null],
-      contactNumber: ['',[Validators.maxLength(15)]],
-      email: ['',[Validators.email]],
-      address: ['',[Validators.maxLength(500)]],
-      otherDetail: ['',[Validators.max(400)]],
+      contactNumber: ['', [Validators.maxLength(15)]],
+      email: ['', [Validators.email]],
+      address: ['', [Validators.maxLength(500)]],
+      otherDetail: ['', [Validators.max(400)]],
     });
   }
 
-  private mapRequestData(personId: string) : FamilyMemberUpdateRequestModel {
+  private mapRequestData(personId: string): FamilyMemberUpdateRequestModel {
     const formData = this.formGroup.value;
 
     return {
@@ -147,7 +168,7 @@ export class FamilyMemberComponent implements OnInit, OnDestroy {
       otherDetail: formData.otherDetail,
       spouseName: formData.spouseName,
       spouseOccupationId: formData.spouseOccupationId,
-    }
+    };
   }
 
   private isNullOrEmpty(str: string | null | undefined): boolean {

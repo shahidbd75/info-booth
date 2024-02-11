@@ -13,11 +13,11 @@ import { BuyListComponent } from './pages/buy-list/buy-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryService } from './services/category.service';
 import { SubCategoryService } from './services/sub-category.service';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ItemService} from "./services/item.service";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ItemService } from './services/item.service';
 import { SubCategoryComponent } from './pages/sub-category/sub-category.component';
 import { SubCategoriesComponent } from './pages/sub-categories/sub-categories.component';
-import {NgbootstrapModule} from "../lib/ngbootstrap/ngbootstrap.module";
+import { NgbootstrapModule } from '../lib/ngbootstrap/ngbootstrap.module';
 import { PersonnelModule } from '../personnel/personnel.module';
 import { ItemDataService } from './services/item-data.service';
 import { SharedModule } from '../shared/shared.module';
@@ -36,19 +36,19 @@ import { VillageModule } from '../shared/modules/village-select/village.module';
     SubCategoryComponent,
     SubCategoriesComponent,
   ],
-    imports: [
-        CommonModule,
-        FormsModule,
-        SharedModule,
-        SellBuyRoutingModule,
-        MaterialModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        NgbootstrapModule,
-        PersonnelModule,
-        VillageModule
-    ],
-  providers: [CategoryService,SubCategoryService, ItemService, ItemDataService],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    SharedModule,
+    SellBuyRoutingModule,
+    MaterialModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgbootstrapModule,
+    PersonnelModule,
+    VillageModule,
+  ],
+  providers: [CategoryService, SubCategoryService, ItemService, ItemDataService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class SellBuyModule { }
+export class SellBuyModule {}

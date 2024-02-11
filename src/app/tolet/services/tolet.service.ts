@@ -8,7 +8,7 @@ import { ToLetDetailResponseModel, ToLetTableResponseModel } from '../types/tole
 @Injectable()
 export class ToletService {
   TOLET_BASE_URL: string = API_ENDPOINT_CONST.TOLET.TOLET_BASE;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   saveToLet(requestModel: ToLetCreateRequestModel): Observable<unknown> {
     return this.http.post(this.TOLET_BASE_URL, requestModel);

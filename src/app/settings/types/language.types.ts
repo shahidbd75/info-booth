@@ -1,16 +1,16 @@
 export type LanguageCreateRequestModel = {
-    name: string;
+  name: string;
 };
 
 export type LanguageUpdateRequestModel = {
-    id:          string;
-    name:        string;
-    isActive:    boolean;
-}
+  id: string;
+  name: string;
+  isActive: boolean;
+};
 
 export type LanguageResponseModel = {
-    id:          string;
-    name:        string;
-    createdDate: string;
-    isActive:    boolean;
-}
+  id: string;
+  name: string;
+  createdDate: string;
+  isActive: boolean;
+};

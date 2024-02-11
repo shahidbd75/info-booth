@@ -10,10 +10,10 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-designations',
   templateUrl: './designations.component.html',
-  styleUrls: ['./designations.component.scss']
+  styleUrls: ['./designations.component.scss'],
 })
 export class DesignationsComponent {
-  displayedColumns: string[] = ['name','banglaName','createdDate', 'actions'];
+  displayedColumns: string[] = ['name', 'banglaName', 'createdDate', 'actions'];
   dataSource = new MatTableDataSource<CommonResponseModel>();
   isLoading = false;
   subscription$: Subscription;
@@ -28,7 +28,10 @@ export class DesignationsComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private designationService: DesignationService, private router: Router){}
+  constructor(
+    private designationService: DesignationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -65,7 +68,7 @@ export class DesignationsComponent {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       console.log(_sort);
       this.page = 0;
       this.sortField = _sort.active;
@@ -78,11 +81,11 @@ export class DesignationsComponent {
   }
 
   onDelete(element: CommonResponseModel) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.designationService.remove(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.designationService.remove(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

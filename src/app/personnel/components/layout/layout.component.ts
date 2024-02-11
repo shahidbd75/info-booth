@@ -5,15 +5,15 @@ import { GlobalDataContextService } from 'src/app/shared/services/global-data-co
 @Component({
   selector: 'app-personnel-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
   personnelMenus: MenuType[] = [
-    {text: 'Occupations', link: 'personnel/occupations'},
-    {text: 'Persons', link: 'personnel/persons'},
-    {text: 'Villages', link: 'location/villages'},
+    { text: 'Occupations', link: 'personnel/occupations' },
+    { text: 'Persons', link: 'personnel/persons' },
+    { text: 'Villages', link: 'location/villages' },
   ];
   constructor(private globalDataContextService: GlobalDataContextService) {
-    setTimeout(()=>this.globalDataContextService.menus$.next(this.personnelMenus),0);
+    setTimeout(() => this.globalDataContextService.menus$.next(this.personnelMenus), 0);
   }
 }

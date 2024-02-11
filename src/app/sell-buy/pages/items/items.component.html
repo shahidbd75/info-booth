@@ -1,4 +1,4 @@
-<div *ngIf="isLoading" class="spinner" >
+<div *ngIf="isLoading" class="spinner">
   <mat-spinner color="primary" diameter="30"></mat-spinner>
 </div>
 <mat-card>
@@ -9,12 +9,15 @@
   <mat-card-content>
     <div class="row pt-2">
       <div class="col-md-3 col-sm-12">
-        <button mat-fab extended color="primary" [routerLink]="['../item']"><mat-icon fontIcon="add"></mat-icon>Add an Item</button>
+        <button mat-fab extended color="primary" [routerLink]="['../item']">
+          <mat-icon fontIcon="add"></mat-icon>
+          Add an Item
+        </button>
       </div>
       <div class="col-md-9 col-sm-12">
         <mat-form-field>
           <mat-label>Filter</mat-label>
-          <input matInput (input)="onFilter($event)" placeholder="put an search item" #input>
+          <input matInput (input)="onFilter($event)" placeholder="put an search item" #input />
         </mat-form-field>
       </div>
     </div>
@@ -22,27 +25,27 @@
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
         </ng-container>
 
         <ng-container matColumnDef="transactionType">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Type</th>
-          <td mat-cell *matCellDef="let row"> {{transactionType[row.transactionType]}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+          <td mat-cell *matCellDef="let row">{{ transactionType[row.transactionType] }}</td>
         </ng-container>
 
         <ng-container matColumnDef="subCategoryName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Sub Category </th>
-          <td mat-cell *matCellDef="let row"> {{row.subCategoryName}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Sub Category</th>
+          <td mat-cell *matCellDef="let row">{{ row.subCategoryName }}</td>
         </ng-container>
 
         <ng-container matColumnDef="postedBy">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Posted By </th>
-          <td mat-cell *matCellDef="let row"> {{row.personName}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Posted By</th>
+          <td mat-cell *matCellDef="let row">{{ row.personName }}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <th mat-header-cell *matHeaderCellDef>Action</th>
           <td mat-cell *matCellDef="let element">
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Exit and delete menu">
               <mat-icon>more_vert</mat-icon>
@@ -61,21 +64,22 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
         <tr class="mat-row" *matNoDataRow>
           <td class="mat-cell" colspan="5">
-            <p class="text-info-emphasis p-2">
-              No data found 
-            </p>
+            <p class="text-info-emphasis p-2">No data found</p>
           </td>
         </tr>
       </table>
 
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons
-                     [length]="count" [pageSize]="pageSize"
-                     (page)="pageEvent = $event;onPageChange($event)"
-                     aria-label="Select page of users"></mat-paginator>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        showFirstLastButtons
+        [length]="count"
+        [pageSize]="pageSize"
+        (page)="pageEvent = $event; onPageChange($event)"
+        aria-label="Select page of users"></mat-paginator>
     </div>
   </mat-card-content>
 </mat-card>

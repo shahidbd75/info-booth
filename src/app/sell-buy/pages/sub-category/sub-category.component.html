@@ -1,19 +1,17 @@
 <div class="card">
-  <div class="card-header">
-    Sub Category
-  </div>
+  <div class="card-header">Sub Category</div>
   <div class="card-body">
     <form class="row" [formGroup]="subCategoryForm">
       <div class="col-6">
         <label for="category" class="form-label">Category</label>
-        <select class="form-select"  aria-label="Please select category" formControlName="categoryId" id="category">
+        <select class="form-select" aria-label="Please select category" formControlName="categoryId" id="category">
           <option selected value="null">Please select category</option>
-          <option *ngFor="let cat of categories$ | async" value={{cat.id}}>{{cat.name}}</option>
+          <option *ngFor="let cat of categories$ | async" value="{{ cat.id }}">{{ cat.name }}</option>
         </select>
       </div>
       <div class="col-6">
         <label for="name" class="form-label">Name</label>
-        <input type="text" class="form-control" formControlName="name" id="name">
+        <input type="text" class="form-control" formControlName="name" id="name" />
       </div>
     </form>
   </div>

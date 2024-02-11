@@ -6,23 +6,21 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class CvOptionsService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {}
 
-   }
-
-   getDegrees(): Observable<OptionsModel[]> {
+  getDegrees(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_OPTIONS.GET_DEGREES);
-   }
+  }
 
-   getDesignations(): Observable<OptionsModel[]> {
+  getDesignations(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_OPTIONS.GET_DESIGNATIONS);
-   }
+  }
 
-   getSubjects(): Observable<OptionsModel[]> {
+  getSubjects(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_OPTIONS.GET_SUBJECTS);
-   }
+  }
 
-   getJobNatures(): Observable<OptionsModel[]> {
+  getJobNatures(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.CV_OPTIONS.GET_JOB_NATURES);
   }
 

@@ -8,7 +8,7 @@ describe('SubCategoriesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SubCategoriesComponent]
+      declarations: [SubCategoriesComponent],
     });
     fixture = TestBed.createComponent(SubCategoriesComponent);
     component = fixture.componentInstance;

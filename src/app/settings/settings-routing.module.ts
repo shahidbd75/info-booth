@@ -6,16 +6,18 @@ import { LanguagesComponent } from './pages/languages/languages.component';
 
 const routes: Routes = [
   {
-    path: '', component: LayoutComponent, children: [
-      {path: 'languages', component: LanguagesComponent},
-      {path: 'language/:id', component: LanguageComponent},
-      {path: 'language', component: LanguageComponent},
-    ]
-  }
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'languages', component: LanguagesComponent },
+      { path: 'language/:id', component: LanguageComponent },
+      { path: 'language', component: LanguageComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SettingsRoutingModule { }
+export class SettingsRoutingModule {}

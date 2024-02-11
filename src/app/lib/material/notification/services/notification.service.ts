@@ -3,7 +3,6 @@ import { ToastService } from './toast.service';
 
 @Injectable()
 export class NotificationService {
-
   constructor(private toastService: ToastService) {}
 
   success(message: string, action = 'Ok') {

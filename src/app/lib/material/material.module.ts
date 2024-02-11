@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core'
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
@@ -39,9 +39,6 @@ import { MatTableModule } from '@angular/material/table';
 
 import { NotificationService } from './notification/services/notification.service';
 import { ToastService } from './notification/services/toast.service';
-
-
-
 
 @NgModule({
   declarations: [],
@@ -81,8 +78,8 @@ import { ToastService } from './notification/services/toast.service';
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
   ],
-  providers: [NotificationService, ToastService]
+  providers: [NotificationService, ToastService],
 })
-export class MaterialModule { }
+export class MaterialModule {}

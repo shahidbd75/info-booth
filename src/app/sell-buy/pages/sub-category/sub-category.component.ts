@@ -1,24 +1,28 @@
-import {Component, OnInit} from '@angular/core';
-import {CategoryService} from "../../services/category.service";
-import {Observable} from "rxjs";
-import {OptionsModel} from "../../../shared/models/options-model";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SubCategoryService} from "../../services/sub-category.service";
-import {NotificationService} from "../../../lib/ngbootstrap/services/notification.service";
+import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../../services/category.service';
+import { Observable } from 'rxjs';
+import { OptionsModel } from '../../../shared/models/options-model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SubCategoryService } from '../../services/sub-category.service';
+import { NotificationService } from '../../../lib/ngbootstrap/services/notification.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sub-category',
   templateUrl: './sub-category.component.html',
-  styleUrls: ['./sub-category.component.scss']
+  styleUrls: ['./sub-category.component.scss'],
 })
-export class SubCategoryComponent implements OnInit{
+export class SubCategoryComponent implements OnInit {
   categories$: Observable<Array<OptionsModel>>;
   subCategoryForm: FormGroup;
   editMode = false;
-  constructor(private categoryService: CategoryService, private subCategoryService: SubCategoryService , private fb: FormBuilder,
-              private notificationService: NotificationService, private router: Router) {
-  }
+  constructor(
+    private categoryService: CategoryService,
+    private subCategoryService: SubCategoryService,
+    private fb: FormBuilder,
+    private notificationService: NotificationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.categories$ = this.categoryService.getCategories();
@@ -26,25 +30,23 @@ export class SubCategoryComponent implements OnInit{
   }
 
   onAdd() {
-    const {name,categoryId: itemCategoryId } = this.subCategoryForm.value;
-    this.subCategoryService.addSubcategory({name,itemCategoryId}).subscribe(()=>
-    {
+    const { name, categoryId: itemCategoryId } = this.subCategoryForm.value;
+    this.subCategoryService.addSubcategory({ name, itemCategoryId }).subscribe(() => {
       this.notificationService.success('Saved successfully');
-      this.subCategoryForm.reset({category: itemCategoryId});
+      this.subCategoryForm.reset({ category: itemCategoryId });
     });
   }
 
   onUpdate() {
-    const {name,categoryId: itemCategoryId, id } = this.subCategoryForm.value;
-    this.subCategoryService.updateSubcategory({name,itemCategoryId,id,isActive: true})
-      .subscribe(()=>console.log('updated'));
+    const { name, categoryId: itemCategoryId, id } = this.subCategoryForm.value;
+    this.subCategoryService.updateSubcategory({ name, itemCategoryId, id, isActive: true }).subscribe(() => console.log('updated'));
   }
   initializeForm() {
     this.subCategoryForm = this.fb.group({
       categoryId: [null, [Validators.required]],
       name: ['', [Validators.required]],
-      id: [null]
-    })
+      id: [null],
+    });
   }
 
   onClear() {

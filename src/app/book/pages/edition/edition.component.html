@@ -1,40 +1,24 @@
 <form [formGroup]="formGroup">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Edition Entry</mat-card-title>
-        <mat-card-subtitle>Book</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-divider></mat-divider>
-        <div class="g-3 pt-2">
-            <div class="row">
-                <div class="col-md-4 col-xs-12">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" formControlName="name" class="form-control" id="name" />
-                </div>
-            </div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Edition Entry</mat-card-title>
+      <mat-card-subtitle>Book</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <div class="g-3 pt-2">
+        <div class="row">
+          <div class="col-md-4 col-xs-12">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" formControlName="name" class="form-control" id="name" />
+          </div>
         </div>
-      </mat-card-content>
-      <mat-card-actions class="action-button-container">
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="onSave()"
-          [disabled]="!formGroup.valid"
-          *ngIf="!isEditMode"
-        >
-          Add
-        </button>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="onUpdate()"
-          [disabled]="!formGroup.valid"
-          *ngIf="isEditMode"
-        >
-          Update
-        </button>
-        <button mat-raised-button (click)="resetForm()">Cancel</button>
-      </mat-card-actions>
-    </mat-card>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-button-container">
+      <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!formGroup.valid" *ngIf="!isEditMode">Add</button>
+      <button mat-raised-button color="primary" (click)="onUpdate()" [disabled]="!formGroup.valid" *ngIf="isEditMode">Update</button>
+      <button mat-raised-button (click)="resetForm()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
 </form>

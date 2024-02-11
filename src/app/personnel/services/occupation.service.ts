@@ -8,35 +8,29 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 @Injectable()
 export class OccupationService {
   private Occupation_URL: string = API_ENDPOINT_CONST.PERSONNEL.OCCUPATION_BASE;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getOccupations(): Observable<EnumTableResponseModel[]>
-  {
+  getOccupations(): Observable<EnumTableResponseModel[]> {
     return this.http.get<EnumTableResponseModel[]>(this.Occupation_URL);
   }
 
-  saveOccupation(createModel: EnumTableCreateModel): Observable<unknown>
-  {
+  saveOccupation(createModel: EnumTableCreateModel): Observable<unknown> {
     return this.http.post(this.Occupation_URL, createModel);
   }
 
-  updateOccupation(updateModel: EnumTableUpdateModel): Observable<unknown>
-  {
+  updateOccupation(updateModel: EnumTableUpdateModel): Observable<unknown> {
     return this.http.put(this.Occupation_URL, updateModel);
   }
 
-  getOccupation(id: number): Observable<EnumTableResponseModel>
-  {
+  getOccupation(id: number): Observable<EnumTableResponseModel> {
     return this.http.get<EnumTableResponseModel>(`${this.Occupation_URL}/${id}`);
   }
 
-  deleteOccupation(id: number): Observable<unknown>
-  {
+  deleteOccupation(id: number): Observable<unknown> {
     return this.http.delete(`${this.Occupation_URL}/${id}`);
   }
 
   getOccupationsOption(): Observable<OptionsModel[]> {
-    return this.http.get<OptionsModel[]>(`${this.Occupation_URL}/options`)
-    .pipe(shareReplay());
+    return this.http.get<OptionsModel[]>(`${this.Occupation_URL}/options`).pipe(shareReplay());
   }
 }

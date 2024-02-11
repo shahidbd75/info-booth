@@ -12,21 +12,9 @@ import { LanguagesComponent } from './pages/languages/languages.component';
 import { LanguageService } from './services/language.service';
 import { LayoutComponent } from './components/layout/layout.component';
 
-
 @NgModule({
   declarations: [LayoutComponent, LanguageComponent, LanguagesComponent],
-  imports: [
-    CommonModule,
-    SettingsRoutingModule,
-    SharedModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgSelectModule
-  ],
-  providers: [
-    LanguageService
-  ]
+  imports: [CommonModule, SettingsRoutingModule, SharedModule, MaterialModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgSelectModule],
+  providers: [LanguageService],
 })
-export class SettingsModule { }
+export class SettingsModule {}

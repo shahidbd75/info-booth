@@ -13,34 +13,38 @@ import { ReligionInformationRequest } from '../../types/religion-information-typ
 @Component({
   selector: 'app-religion-info',
   templateUrl: './religion-info.component.html',
-  styleUrls: ['./religion-info.component.scss']
+  styleUrls: ['./religion-info.component.scss'],
 })
 export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   religionFormGroup: FormGroup;
   subscription: Subscription = new Subscription();
   religionParams$: Observable<ReligionParametersType[]>;
   castes$: Observable<Array<OptionsModel>>;
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private religionService: ReligionInformationService,
-    private notificationService: NotificationService,) {
+  constructor(
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private religionService: ReligionInformationService,
+    private notificationService: NotificationService
+  ) {
     super();
   }
   ngOnInit(): void {
     this.initializeFormGroup();
 
     this.activatedRoute.params.subscribe({
-      next: (params:Params) => {
+      next: (params: Params) => {
         const id = params['id'];
-        if(id) {
+        if (id) {
           this.loadData(id);
           this.getParametersByPersonId(id);
           this.getCastesByPersonId(id);
         }
-      }
-    })
+      },
+    });
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
@@ -53,10 +57,10 @@ export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnI
       next: () => {
         this.notificationService.success(NotificationMessage.SavedSuccessfully);
       },
-      error: (err) => {
-        console.log('NotSaved',err);
+      error: err => {
+        console.log('NotSaved', err);
         this.notificationService.error(NotificationMessage.SavedFailure);
-      }
+      },
     });
   }
 
@@ -67,18 +71,18 @@ export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnI
   private loadData(personId: string) {
     this.religionService.getById<ReligionInformationRequest>(personId).subscribe({
       next: (response: ReligionInformationRequest) => {
-        if(response) {
-          const {religionParameters, ...restValue } = response;
-          this.religionFormGroup.patchValue({...restValue});
+        if (response) {
+          const { religionParameters, ...restValue } = response;
+          this.religionFormGroup.patchValue({ ...restValue });
         }
-      }
-    , error: (error) => console.log(error)
-    })
+      },
+      error: error => console.log(error),
+    });
   }
 
   private initializeFormGroup() {
     this.religionFormGroup = this.fb.group({
-      personId:  [null],
+      personId: [null],
       religiousBeliefId: [null],
       casteId: [null],
       prayerId: [null],
@@ -91,14 +95,14 @@ export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnI
   }
 
   private getParametersByPersonId(personId: string) {
-    if(personId) {
+    if (personId) {
       this.religionParams$ = this.religionService.getReligionParameters(personId);
     }
   }
 
   private getCastesByPersonId(personId: string) {
-    if(personId) {
+    if (personId) {
       this.castes$ = this.service.getCastes(personId);
     }
-  }  
+  }
 }

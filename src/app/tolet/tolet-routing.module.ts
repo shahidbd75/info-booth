@@ -5,17 +5,19 @@ import { ToletsComponent } from './pages/tolets/tolets.component';
 import { ToletComponent } from './pages/tolet/tolet.component';
 
 const routes: Routes = [
-  { 
-    path: '', component: LayoutComponent, children: [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
       { path: 'to-lets', component: ToletsComponent },
       { path: 'to-let/:id', component: ToletComponent },
-      { path: 'to-let', component: ToletComponent }
-   ]
- }
+      { path: 'to-let', component: ToletComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ToletRoutingModule { }
+export class ToletRoutingModule {}

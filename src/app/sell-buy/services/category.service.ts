@@ -6,15 +6,13 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class CategoryService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getCategories(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(API_ENDPOINT_CONST.BUY_SELL.GET_CATEGORIES_OPTIONS);
   }
 
-  addcategory(requestModel:{name: string, imageUrl: string}): Observable<void> {
+  addcategory(requestModel: { name: string; imageUrl: string }): Observable<void> {
     return this.http.post<void>(API_ENDPOINT_CONST.BUY_SELL.CATEGORY_BASE, requestModel);
   }
 }
-

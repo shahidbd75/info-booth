@@ -7,7 +7,6 @@ import { ExperienceResponseType } from '../types/experience-types';
 
 @Injectable()
 export class ExperienceService extends BaseHttpService {
-
   constructor(http: HttpClient) {
     super(http);
     this.setBaseUrl(API_ENDPOINT_CONST.CV.EXPERIENCE_BASE);

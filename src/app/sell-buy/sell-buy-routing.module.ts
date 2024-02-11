@@ -12,27 +12,30 @@ import { BuyComponent } from './pages/buy/buy.component';
 import { SellComponent } from './pages/sell/sell.component';
 import { BuyListComponent } from './pages/buy-list/buy-list.component';
 import { SellListComponent } from './pages/sell-list/sell-list.component';
-import {SubCategoryComponent} from "./pages/sub-category/sub-category.component";
-import {SubCategoriesComponent} from "./pages/sub-categories/sub-categories.component";
+import { SubCategoryComponent } from './pages/sub-category/sub-category.component';
+import { SubCategoriesComponent } from './pages/sub-categories/sub-categories.component';
 
 const routes: Routes = [
-  { path:'', component: LayoutComponent, children: [
-    {path: 'items', component: ItemsComponent},
-    {path: 'item/:{id}', component: ItemComponent},
-    {path: 'item', component: ItemComponent},
-    {path: 'sub-category', component: SubCategoryComponent},
-    {path: 'sub-categories', component: SubCategoriesComponent},
-    {path: 'buy-list', component: BuyListComponent},
-    {path: 'sell-list', component: SellListComponent},
-    {path: 'buy', component: BuyComponent},
-    {path: 'sell', component: SellComponent},
-    {path: '', redirectTo: 'items', pathMatch: 'full'}
-  ]}
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'items', component: ItemsComponent },
+      { path: 'item/:{id}', component: ItemComponent },
+      { path: 'item', component: ItemComponent },
+      { path: 'sub-category', component: SubCategoryComponent },
+      { path: 'sub-categories', component: SubCategoriesComponent },
+      { path: 'buy-list', component: BuyListComponent },
+      { path: 'sell-list', component: SellListComponent },
+      { path: 'buy', component: BuyComponent },
+      { path: 'sell', component: SellComponent },
+      { path: '', redirectTo: 'items', pathMatch: 'full' },
+    ],
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),
-    MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
-  exports: [RouterModule]
+  imports: [RouterModule.forChild(routes), MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
+  exports: [RouterModule],
 })
-export class SellBuyRoutingModule { }
+export class SellBuyRoutingModule {}

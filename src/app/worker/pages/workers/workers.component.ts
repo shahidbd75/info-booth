@@ -11,11 +11,11 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 @Component({
   selector: 'app-workers',
   templateUrl: './workers.component.html',
-  styleUrls: ['./workers.component.scss']
+  styleUrls: ['./workers.component.scss'],
 })
-export class WorkersComponent implements OnInit, OnDestroy{
-  displayedColumns: string[] = ['name','phone','occupation', 'village','expectedWages','goodAts','actions'];
-  dataSource:MatTableDataSource<WorkerTableModel>;
+export class WorkersComponent implements OnInit, OnDestroy {
+  displayedColumns: string[] = ['name', 'phone', 'occupation', 'village', 'expectedWages', 'goodAts', 'actions'];
+  dataSource: MatTableDataSource<WorkerTableModel>;
   isLoading = false;
   subscription$: Subscription;
   pageSize = 10;
@@ -28,8 +28,11 @@ export class WorkersComponent implements OnInit, OnDestroy{
   workers: WorkerResponseModel[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private workerService: WorkerService, private router: Router){}
-  
+  constructor(
+    private workerService: WorkerService,
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
     this.loadData();
   }
@@ -42,21 +45,23 @@ export class WorkersComponent implements OnInit, OnDestroy{
     this.isLoading = true;
     this.subscription$ = this.workerService.getAll().subscribe((_items: WorkerResponseModel[]) => {
       this.workers = _items;
-      this.dataSource = new MatTableDataSource(_items.map((_item:WorkerResponseModel) => {
-        return {
-          id: _item.id,
-          name: _item.workerName,
-          phone: _item.workerPhone,
-          expectedWages: _item.expectedWages,
-          isActive: _item.isActive,
-          village: _item.village,
-          occupation: _item.occupation,
-          goodAts: _item.goodAts?.map(g=>g.name).join(','),
-          preferableDays: _item.preferableDays?.map(g=>g.name).join(','),
-          workAbilities: _item.workAbilities?.map(g=>g.name).join(','),
-          workGroups: _item.workGroups?.map(g=>g.name).join(','),
-        }
-      }));
+      this.dataSource = new MatTableDataSource(
+        _items.map((_item: WorkerResponseModel) => {
+          return {
+            id: _item.id,
+            name: _item.workerName,
+            phone: _item.workerPhone,
+            expectedWages: _item.expectedWages,
+            isActive: _item.isActive,
+            village: _item.village,
+            occupation: _item.occupation,
+            goodAts: _item.goodAts?.map(g => g.name).join(','),
+            preferableDays: _item.preferableDays?.map(g => g.name).join(','),
+            workAbilities: _item.workAbilities?.map(g => g.name).join(','),
+            workGroups: _item.workGroups?.map(g => g.name).join(','),
+          };
+        })
+      );
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.isLoading = false;
@@ -79,7 +84,7 @@ export class WorkersComponent implements OnInit, OnDestroy{
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       console.log(_sort);
       this.page = 0;
       this.sortField = _sort.active;
@@ -88,20 +93,20 @@ export class WorkersComponent implements OnInit, OnDestroy{
   }
 
   onEdit(worker: WorkerTableModel) {
-    this.workerService.selectedWorker = this.workers.find(x=>x.id === worker.id) ?? null;
+    this.workerService.selectedWorker = this.workers.find(x => x.id === worker.id) ?? null;
     this.router.navigate([`worker/worker`]);
   }
 
   onDelete(element: WorkerTableModel) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.workerService.deleteWorker(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.workerService.deleteWorker(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 
-  optionsToName(options: OptionsModel[]) : string {
+  optionsToName(options: OptionsModel[]): string {
     return options.map((op: OptionsModel) => op.name).join(', ');
   }
 }

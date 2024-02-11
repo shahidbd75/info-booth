@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-occupations',
   templateUrl: './occupations.component.html',
-  styleUrls: ['./occupations.component.scss']
+  styleUrls: ['./occupations.component.scss'],
 })
 export class OccupationsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name','banglaName', 'actions'];
-  dataSource:MatTableDataSource<EnumTableResponseModel>;
+  displayedColumns: string[] = ['name', 'banglaName', 'actions'];
+  dataSource: MatTableDataSource<EnumTableResponseModel>;
   selection = new SelectionModel<EnumTableResponseModel>(true, []);
   isLoading = false;
   subscription$: Subscription;
@@ -29,16 +29,17 @@ export class OccupationsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private occupationService: OccupationService, private router: Router) {
-  }
+  constructor(
+    private occupationService: OccupationService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
-    
   }
 
   ngOnDestroy(): void {
-      this.subscription$?.unsubscribe();
+    this.subscription$?.unsubscribe();
   }
 
   loadData() {
@@ -67,7 +68,7 @@ export class OccupationsComponent implements OnInit, OnDestroy {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       this.page = 0;
       this.sortField = _sort.active;
       this.sortOrder = _sort.direction;
@@ -79,11 +80,11 @@ export class OccupationsComponent implements OnInit, OnDestroy {
   }
 
   onDelete(element: EnumTableResponseModel) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.occupationService.deleteOccupation(+id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.occupationService.deleteOccupation(+id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

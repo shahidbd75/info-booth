@@ -1,4 +1,4 @@
-import {Injectable, TemplateRef} from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 
 @Injectable()
 export class ToastService {
@@ -9,7 +9,7 @@ export class ToastService {
   }
 
   remove(toast: string) {
-    this.toasts = this.toasts.filter((t) => t !== toast);
+    this.toasts = this.toasts.filter(t => t !== toast);
   }
 
   clear() {

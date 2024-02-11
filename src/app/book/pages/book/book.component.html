@@ -1,125 +1,109 @@
 <form [formGroup]="formGroup">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Edition Entry</mat-card-title>
-        <mat-card-subtitle>Book</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-divider></mat-divider>
-        <div class="g-3 pt-2">
-            <div class="row">
-              <div class="col-md-4 col-xs-12">
-                <label for="personId" class="form-label">Book Owner</label>
-                <ng-select [items]="persons$ | async"
-                      id="personId"
-                      [searchable]="true"
-                      bindValue="id" 
-                      bindLabel="name"
-                      placeholder="Please select owner"
-                      formControlName="personId">
-                  </ng-select>
-              </div>
-              <div class="col-md-4 col-xs-12">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" formControlName="title" class="form-control" id="title" />
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <label for="author" class="form-label">Author</label>
-                <input type="text" formControlName="author" class="form-control" id="author" />
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <label for="publisher" class="form-label">Publisher</label>
-                <input type="text" formControlName="publisher" class="form-control" id="publisher" />
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <label for="publicationDate" class="form-label">Publication Date</label>
-                <input type="date" formControlName="publicationDate" class="form-control" id="publicationDate" />
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <label for="price" class="form-label">Price</label>
-                <div class="input-group">
-                  <input type="number" formControlName="price" class="form-control" id="price" />
-                  <mat-checkbox formControlName="isPriceNegotiable">Negotiable?</mat-checkbox>
-                </div>                
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <label for="quantity" class="form-label">Quantity</label>
-                <div class="input-group">
-                  <input type="number" formControlName="quantity" class="form-control" id="quantity" />
-                  <mat-checkbox formControlName="availability">Is Available?</mat-checkbox>
-                </div>
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <label for="condition" class="form-label">Condition</label>
-                <ng-select formControlName="condition"
-                [items]="conditions$ | async"
-                id="condition"
-                [searchable]="false"
-                bindValue="id" 
-                bindLabel="name"
-                placeholder="Please select condition"
-              ></ng-select>
-              </div>
-              <div class="col-md-12 col-xs-12">
-                <label for="detail" class="form-label">Detail</label>
-                <input type="text" formControlName="detail" class="form-control" id="detail" />
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <label for="editionId" class="form-label">Edition</label>
-                <ng-select formControlName="editionId"
-                  [items]="editions$ | async"
-                  id="editionId"
-                  [searchable]="true"
-                  bindValue="id" 
-                  bindLabel="name"
-                  placeholder="Please select edition"
-                ></ng-select>
-              </div>             
-              <div class="col-md-4 col-xs-12">
-                <label for="categoryId" class="form-label">Category</label>
-                <ng-select [items]="categories$ | async"
-                      id="categoryId"
-                      [searchable]="true"
-                      bindValue="id" 
-                      bindLabel="name"
-                      placeholder="Please select book category"
-                      formControlName="categoryId">
-                  </ng-select>
-              </div>
-              <div class="col-md-4 col-xs-12">
-                <label for="language" class="form-label">Language</label>
-                <ng-select [items]="languages$ | async"
-                      id="language"
-                      [searchable]="true"
-                      bindValue="id" 
-                      bindLabel="name"
-                      placeholder="Please select language"
-                      formControlName="languageId">
-                  </ng-select>
-              </div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Edition Entry</mat-card-title>
+      <mat-card-subtitle>Book</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <div class="g-3 pt-2">
+        <div class="row">
+          <div class="col-md-4 col-xs-12">
+            <label for="personId" class="form-label">Book Owner</label>
+            <ng-select
+              [items]="persons$ | async"
+              id="personId"
+              [searchable]="true"
+              bindValue="id"
+              bindLabel="name"
+              placeholder="Please select owner"
+              formControlName="personId"></ng-select>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" formControlName="title" class="form-control" id="title" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" formControlName="author" class="form-control" id="author" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="publisher" class="form-label">Publisher</label>
+            <input type="text" formControlName="publisher" class="form-control" id="publisher" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="publicationDate" class="form-label">Publication Date</label>
+            <input type="date" formControlName="publicationDate" class="form-control" id="publicationDate" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="price" class="form-label">Price</label>
+            <div class="input-group">
+              <input type="number" formControlName="price" class="form-control" id="price" />
+              <mat-checkbox formControlName="isPriceNegotiable">Negotiable?</mat-checkbox>
             </div>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="quantity" class="form-label">Quantity</label>
+            <div class="input-group">
+              <input type="number" formControlName="quantity" class="form-control" id="quantity" />
+              <mat-checkbox formControlName="availability">Is Available?</mat-checkbox>
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="condition" class="form-label">Condition</label>
+            <ng-select
+              formControlName="condition"
+              [items]="conditions$ | async"
+              id="condition"
+              [searchable]="false"
+              bindValue="id"
+              bindLabel="name"
+              placeholder="Please select condition"></ng-select>
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <label for="detail" class="form-label">Detail</label>
+            <input type="text" formControlName="detail" class="form-control" id="detail" />
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="editionId" class="form-label">Edition</label>
+            <ng-select
+              formControlName="editionId"
+              [items]="editions$ | async"
+              id="editionId"
+              [searchable]="true"
+              bindValue="id"
+              bindLabel="name"
+              placeholder="Please select edition"></ng-select>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="categoryId" class="form-label">Category</label>
+            <ng-select
+              [items]="categories$ | async"
+              id="categoryId"
+              [searchable]="true"
+              bindValue="id"
+              bindLabel="name"
+              placeholder="Please select book category"
+              formControlName="categoryId"></ng-select>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <label for="language" class="form-label">Language</label>
+            <ng-select
+              [items]="languages$ | async"
+              id="language"
+              [searchable]="true"
+              bindValue="id"
+              bindLabel="name"
+              placeholder="Please select language"
+              formControlName="languageId"></ng-select>
+          </div>
         </div>
-      </mat-card-content>
-      <mat-card-actions class="action-button-container">
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="onSave()"
-          [disabled]="!formGroup.valid"
-          *ngIf="!isEditMode"
-        >
-          Add
-        </button>
-        <button
-          mat-raised-button
-          color="primary"
-          (click)="onUpdate()"
-          [disabled]="!formGroup.valid"
-          *ngIf="isEditMode"
-        >
-          Update
-        </button>
-        <button mat-raised-button (click)="resetForm()">Cancel</button>
-      </mat-card-actions>
-    </mat-card>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-button-container">
+      <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!formGroup.valid" *ngIf="!isEditMode">Add</button>
+      <button mat-raised-button color="primary" (click)="onUpdate()" [disabled]="!formGroup.valid" *ngIf="isEditMode">Update</button>
+      <button mat-raised-button (click)="resetForm()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
 </form>

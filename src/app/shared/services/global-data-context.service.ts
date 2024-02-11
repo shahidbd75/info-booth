@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MenuType } from '../models/menu-model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GlobalDataContextService {
   menus$ = new BehaviorSubject<MenuType[]>([]);

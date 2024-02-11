@@ -11,11 +11,11 @@ import { MatSort, Sort } from '@angular/material/sort';
 @Component({
   selector: 'app-villages',
   templateUrl: './villages.component.html',
-  styleUrls: ['./villages.component.scss']
+  styleUrls: ['./villages.component.scss'],
 })
 export class VillagesComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name','banglaName','upazilaName','districtName', 'actions'];
-  dataSource:MatTableDataSource<VillageResponseModel>;
+  displayedColumns: string[] = ['name', 'banglaName', 'upazilaName', 'districtName', 'actions'];
+  dataSource: MatTableDataSource<VillageResponseModel>;
   selection = new SelectionModel<VillageResponseModel>(true, []);
   isLoading = false;
   subscription$: Subscription;
@@ -29,16 +29,17 @@ export class VillagesComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private villageService: VillageService, private router: Router) {
-  }
+  constructor(
+    private villageService: VillageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
-    
   }
 
   ngOnDestroy(): void {
-      this.subscription$?.unsubscribe();
+    this.subscription$?.unsubscribe();
   }
 
   loadData() {
@@ -67,7 +68,7 @@ export class VillagesComponent implements OnInit, OnDestroy {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       this.page = 0;
       this.sortField = _sort.active;
       this.sortOrder = _sort.direction;
@@ -80,11 +81,11 @@ export class VillagesComponent implements OnInit, OnDestroy {
   }
 
   onDelete(element: VillageResponseModel) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.villageService.deleteVillage(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.villageService.deleteVillage(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

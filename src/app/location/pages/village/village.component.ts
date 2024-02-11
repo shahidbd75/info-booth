@@ -10,16 +10,20 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 @Component({
   selector: 'app-village',
   templateUrl: './village.component.html',
-  styleUrls: ['./village.component.scss']
+  styleUrls: ['./village.component.scss'],
 })
-export class VillageComponent implements OnInit{
+export class VillageComponent implements OnInit {
   villageForm: FormGroup;
   isEditMode = false;
   subscription$: Subscription;
-  upazilas$:Observable<OptionsModel[]>; 
-  districts$:Observable<OptionsModel[]> = this.optionsService.getDistricts();
-  constructor(private fb: FormBuilder, private villageService: VillageService, private router: Router,
-    private optionsService: OptionsService,){}
+  upazilas$: Observable<OptionsModel[]>;
+  districts$: Observable<OptionsModel[]> = this.optionsService.getDistricts();
+  constructor(
+    private fb: FormBuilder,
+    private villageService: VillageService,
+    private router: Router,
+    private optionsService: OptionsService
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -29,8 +33,8 @@ export class VillageComponent implements OnInit{
   loadData() {
     const village: VillageResponseModel | null = this.villageService.selectedVillage;
 
-    if(village) {
-      const {upazilaId, ...restValue} = village;
+    if (village) {
+      const { upazilaId, ...restValue } = village;
       this.villageForm.patchValue(restValue);
       this.loadUpazilas();
       this.villageForm.patchValue({ upazilaId });
@@ -42,25 +46,24 @@ export class VillageComponent implements OnInit{
   initializeForm() {
     this.villageForm = this.fb.group({
       id: [null],
-      districtId:[null],
+      districtId: [null],
       upazilaId: [null, [Validators.required]],
-      name: ['',[Validators.required]],
-      banglaName:['']
+      name: ['', [Validators.required]],
+      banglaName: [''],
     });
   }
 
   onOccupationAdd() {
     const requestModel: VillageCreateRequestModel = this.villageForm.value;
-    
-    this.villageService.saveVillage(requestModel).subscribe(() => {
 
+    this.villageService.saveVillage(requestModel).subscribe(() => {
       this.reset();
     });
   }
 
   onOccupationUpdate() {
     const updateModel: VillageUpdateRequestModel = this.villageForm.value;
-    
+
     this.villageService.updateVillage(updateModel).subscribe(() => {
       this.reset();
     });

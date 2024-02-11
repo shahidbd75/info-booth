@@ -5,9 +5,8 @@ import { BaseHttpService } from 'src/app/shared/services/base.service';
 
 @Injectable()
 export class DegreeService extends BaseHttpService {
-
   constructor(http: HttpClient) {
     super(http);
     this.setBaseUrl(API_ENDPOINT_CONST.CV.DEGREE_BASE);
-   }
+  }
 }

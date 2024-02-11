@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ItemCreateRequestModel, ItemResponseModel, ItemUpdateRequestModel} from "../models/item.model";
-import {API_ENDPOINT_CONST} from "../../shared/constants/endpoints";
-import {Observable} from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { ItemCreateRequestModel, ItemResponseModel, ItemUpdateRequestModel } from '../models/item.model';
+import { API_ENDPOINT_CONST } from '../../shared/constants/endpoints';
+import { Observable } from 'rxjs';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class ItemService {
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   addItem(requestModel: ItemCreateRequestModel): Observable<any> {
     return this.httpClient.post(API_ENDPOINT_CONST.BUY_SELL.ITEM_BASE, requestModel);

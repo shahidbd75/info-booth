@@ -5,14 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class BaseHttpService {
   protected BASE_URL: string;
-  constructor(protected http: HttpClient) { 
-  }
+  constructor(protected http: HttpClient) {}
 
   setBaseUrl(baseUrl: string): void {
     this.BASE_URL = baseUrl;
   }
 
-  getById<TDetailResponseModel>(id: (string | number)): Observable<TDetailResponseModel> {
+  getById<TDetailResponseModel>(id: string | number): Observable<TDetailResponseModel> {
     return this.http.get<TDetailResponseModel>(`${this.BASE_URL}/${id}`);
   }
 

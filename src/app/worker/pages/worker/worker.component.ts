@@ -10,7 +10,7 @@ import { WorkerRequestModel, WorkerResponseModel } from '../../types/worker-mode
 @Component({
   selector: 'app-worker',
   templateUrl: './worker.component.html',
-  styleUrls: ['./worker.component.scss']
+  styleUrls: ['./worker.component.scss'],
 })
 export class WorkerComponent implements OnInit {
   workerForm: FormGroup;
@@ -21,25 +21,34 @@ export class WorkerComponent implements OnInit {
   workAbilities$: Observable<OptionsModel[]> = this.workerService.getWorkAbilities();
   perferableDays$: Observable<OptionsModel[]> = this.workerService.getPreferableDays();
 
-  constructor(private fb: FormBuilder, private router: Router, private workerService: WorkerService, 
-    private personService: PersonService, private activatedRoute: ActivatedRoute) {
-
-  }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private workerService: WorkerService,
+    private personService: PersonService,
+    private activatedRoute: ActivatedRoute
+  ) {}
   ngOnInit(): void {
     this.initializeFormGroup();
     this.loadData();
   }
- 
+
   loadData() {
-    if(this.workerService.selectedWorker) {
-      const {id:personId,goodAts,workGroups, workAbilities, preferableDays, ...restvalues} = this.workerService.selectedWorker;
+    if (this.workerService.selectedWorker) {
+      const { id: personId, goodAts, workGroups, workAbilities, preferableDays, ...restvalues } = this.workerService.selectedWorker;
       const goodAtIds = goodAts.map(g => g.id);
       const workGroupIds = workGroups.map(wg => wg.id);
       const workAbilityIds = workAbilities.map(wa => wa.id);
       const preferableDayIds = preferableDays.map(pd => pd.id);
       this.isEditMode = true;
-      this.workerForm.patchValue({...restvalues,personId, goodAts: goodAtIds, 
-        workAbilities: workAbilityIds, perferableDays: preferableDayIds, workGroups: workGroupIds});
+      this.workerForm.patchValue({
+        ...restvalues,
+        personId,
+        goodAts: goodAtIds,
+        workAbilities: workAbilityIds,
+        perferableDays: preferableDayIds,
+        workGroups: workGroupIds,
+      });
       this.workerService.selectedWorker = null;
     }
   }
@@ -51,31 +60,37 @@ export class WorkerComponent implements OnInit {
       totalTeamMember: [0],
       expectedWages: ['', [Validators.required, Validators.maxLength(10)]],
       goodAts: [null],
-      workGroups:[null],
-      workAbilities:[null],
-      perferableDays:[null],
+      workGroups: [null],
+      workAbilities: [null],
+      perferableDays: [null],
       detail: ['', [Validators.maxLength(250)]],
       isNegotiable: [false],
-      startTime:[null],
-      endTime:[null]
+      startTime: [null],
+      endTime: [null],
     });
   }
 
   onWorkerSave() {
-    const {startTime, endTime, ...restValue} = this.workerForm.value;
+    const { startTime, endTime, ...restValue } = this.workerForm.value;
 
-    const requestModel: WorkerRequestModel = {...restValue, startTime, endTime};
+    const requestModel: WorkerRequestModel = { ...restValue, startTime, endTime };
 
-    this.workerService.saveWorker(requestModel).subscribe(()=> {
-      this.router.navigate(['worker/workers']);
-    },(error) => console.log(error));
+    this.workerService.saveWorker(requestModel).subscribe(
+      () => {
+        this.router.navigate(['worker/workers']);
+      },
+      error => console.log(error)
+    );
   }
 
   onWorkerUpdate() {
     const requestModel: WorkerRequestModel = this.workerForm.value;
-    this.workerService.updateWorker(requestModel).subscribe(()=> {
-      this.router.navigate(['worker/workers']);
-    },(error) => console.log(error));
+    this.workerService.updateWorker(requestModel).subscribe(
+      () => {
+        this.router.navigate(['worker/workers']);
+      },
+      error => console.log(error)
+    );
   }
 
   resetForm() {
@@ -84,12 +99,12 @@ export class WorkerComponent implements OnInit {
 
   private formatTime(inputTime: string): string {
     const date = new Date();
-    if(inputTime) {
+    if (inputTime) {
       date.setHours(+inputTime.split(':')[0]);
-      date.setMinutes(+inputTime.split(':')[1])
+      date.setMinutes(+inputTime.split(':')[1]);
     }
 
-    return date.toLocaleTimeString([], {timeStyle:'short'});
+    return date.toLocaleTimeString([], { timeStyle: 'short' });
   }
   private loadFromParam() {
     this.activatedRoute.params.subscribe((param: Params) => {

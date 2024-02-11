@@ -1,72 +1,72 @@
 <mat-card>
-    <mat-card-header>
-      <mat-card-title>Matrimonial CV</mat-card-title>
-      <mat-card-subtitle>CV</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-divider></mat-divider>
-     
-      <div class="row">
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <label for="personId" class="form-label">Person</label>
-          <ng-select [items]="persons$ | async"
-              id="personId"
-              [searchable]="true"
-              bindValue="id" 
-              bindLabel="name"
-              placeholder="Please select a person"
-              [formControl]="personControl"
-              (change)="onPersonSelect()">
-          </ng-select>
-        </div>
-        <div class="col-md-2 col-sm-6 pt-3 mt-3" *ngIf="personId">
-          <button mat-raised-button color="accent" (click)="onClearPerson()">Change Person</button>
-        </div>
-      </div>
+  <mat-card-header>
+    <mat-card-title>Matrimonial CV</mat-card-title>
+    <mat-card-subtitle>CV</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-divider></mat-divider>
 
-      <mat-stepper linear orientation="horizontal" (selectionChange)="OnSelectedChange($event.selectedIndex)">
-        <mat-step>
-            <ng-template matStepLabel>Basic</ng-template>
-            <ng-template matStepContent>
-              <app-matrimonial-basic *ngIf="currentIndex === 0" />
-              <div class="stepper-button">
-                <button color="primary" mat-button matStepperNext>Next</button>
-              </div>
-            </ng-template>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Family Members</ng-template>
-            <ng-template matStepContent>
-            <app-family-member *ngIf="currentIndex === 1" />
-            <div class="stepper-button">
-              <button mat-button color="primary" matStepperPrevious>Previous</button>
-              <button mat-button color="primary" matStepperNext>Next</button>
-            </div>
-            </ng-template>
-        </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Religion Information</ng-template>
-          <app-religion-info *ngIf="currentIndex === 2"/>
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <label for="personId" class="form-label">Person</label>
+        <ng-select
+          [items]="persons$ | async"
+          id="personId"
+          [searchable]="true"
+          bindValue="id"
+          bindLabel="name"
+          placeholder="Please select a person"
+          [formControl]="personControl"
+          (change)="onPersonSelect()"></ng-select>
+      </div>
+      <div class="col-md-2 col-sm-6 pt-3 mt-3" *ngIf="personId">
+        <button mat-raised-button color="accent" (click)="onClearPerson()">Change Person</button>
+      </div>
+    </div>
+
+    <mat-stepper linear orientation="horizontal" (selectionChange)="OnSelectedChange($event.selectedIndex)">
+      <mat-step>
+        <ng-template matStepLabel>Basic</ng-template>
+        <ng-template matStepContent>
+          <app-matrimonial-basic *ngIf="currentIndex === 0" />
+          <div class="stepper-button">
+            <button color="primary" mat-button matStepperNext>Next</button>
+          </div>
+        </ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Family Members</ng-template>
+        <ng-template matStepContent>
+          <app-family-member *ngIf="currentIndex === 1" />
           <div class="stepper-button">
             <button mat-button color="primary" matStepperPrevious>Previous</button>
             <button mat-button color="primary" matStepperNext>Next</button>
           </div>
+        </ng-template>
       </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Your Favorite</ng-template>
-            <app-favorite *ngIf="currentIndex === 3" />
-            <div class="stepper-button">
-              <button mat-button color="primary" matStepperPrevious>Previous</button>
-              <button mat-button color="primary" matStepperNext>Next</button>
-            </div>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Preferable</ng-template>
-            <app-preferable *ngIf="currentIndex === 4" />
-            <div class="stepper-button">
-              <button mat-button color="primary" matStepperPrevious>Previous</button>
-            </div>
-        </mat-step>
-      </mat-stepper>
-    </mat-card-content>
-  </mat-card>
+      <mat-step>
+        <ng-template matStepLabel>Religion Information</ng-template>
+        <app-religion-info *ngIf="currentIndex === 2" />
+        <div class="stepper-button">
+          <button mat-button color="primary" matStepperPrevious>Previous</button>
+          <button mat-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Your Favorite</ng-template>
+        <app-favorite *ngIf="currentIndex === 3" />
+        <div class="stepper-button">
+          <button mat-button color="primary" matStepperPrevious>Previous</button>
+          <button mat-button color="primary" matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Preferable</ng-template>
+        <app-preferable *ngIf="currentIndex === 4" />
+        <div class="stepper-button">
+          <button mat-button color="primary" matStepperPrevious>Previous</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+</mat-card>

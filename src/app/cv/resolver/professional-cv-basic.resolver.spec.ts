@@ -4,8 +4,8 @@ import { ResolveFn } from '@angular/router';
 import { professionalCvBasicResolver } from './professional-cv-basic.resolver';
 
 describe('professionalCvBasicResolver', () => {
-  const executeResolver: ResolveFn<boolean> = (...resolverParameters) => 
-      TestBed.runInInjectionContext(() => professionalCvBasicResolver(...resolverParameters));
+  const executeResolver: ResolveFn<boolean> = (...resolverParameters) =>
+    TestBed.runInInjectionContext(() => professionalCvBasicResolver(...resolverParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

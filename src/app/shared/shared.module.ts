@@ -15,25 +15,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { BaseHttpService } from './services/base.service';
 
 @NgModule({
-    declarations: [
-        LayoutComponent,
-        DashboardComponent,
-        PageNotFoundComponent,
-        NotAuthorizeComponent,
-    ],
-    exports: [
-        LayoutComponent
-    ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        HttpClientModule,
-        MaterialModule,
-        MatGridListModule,
-        MatCardModule,
-        MatMenuModule,
-        MatIconModule,
-        MatButtonModule,
-    ], providers: [BaseHttpService]
+  declarations: [LayoutComponent, DashboardComponent, PageNotFoundComponent, NotAuthorizeComponent],
+  exports: [LayoutComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    HttpClientModule,
+    MaterialModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
+  providers: [BaseHttpService],
 })
-export class SharedModule { }
+export class SharedModule {}

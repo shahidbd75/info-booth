@@ -3,7 +3,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class ToastService {
-
   constructor(private snackBar: MatSnackBar) {}
 
   showToast(message: string, action = 'Close', duration = 3000, panelClass?: string | string[]) {
@@ -11,7 +10,7 @@ export class ToastService {
       duration,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
-      panelClass
+      panelClass,
     });
   }
 }

@@ -7,7 +7,6 @@ import { EducationalResponseType } from '../types/educational-types';
 
 @Injectable()
 export class EducationService extends BaseHttpService {
-
   constructor(http: HttpClient) {
     super(http);
     this.setBaseUrl(API_ENDPOINT_CONST.CV.EDUCATION_BASE);

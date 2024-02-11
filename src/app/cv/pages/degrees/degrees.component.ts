@@ -10,10 +10,10 @@ import { DegreeService } from '../../services/degree.service';
 @Component({
   selector: 'app-degrees',
   templateUrl: './degrees.component.html',
-  styleUrls: ['./degrees.component.scss']
+  styleUrls: ['./degrees.component.scss'],
 })
 export class DegreesComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name','banglaName','order','createdDate', 'actions'];
+  displayedColumns: string[] = ['name', 'banglaName', 'order', 'createdDate', 'actions'];
   dataSource = new MatTableDataSource<CommonResponseModel>();
   isLoading = false;
   subscription$: Subscription;
@@ -28,7 +28,10 @@ export class DegreesComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private degreeService: DegreeService, private router: Router){}
+  constructor(
+    private degreeService: DegreeService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -65,7 +68,7 @@ export class DegreesComponent implements OnInit, OnDestroy {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       console.log(_sort);
       this.page = 0;
       this.sortField = _sort.active;
@@ -78,11 +81,11 @@ export class DegreesComponent implements OnInit, OnDestroy {
   }
 
   onDelete(element: CommonResponseModel) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.degreeService.remove(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.degreeService.remove(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

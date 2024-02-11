@@ -8,26 +8,30 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 @Component({
   selector: 'app-matrimonial',
   templateUrl: './matrimonial.component.html',
-  styleUrls: ['./matrimonial.component.scss']
+  styleUrls: ['./matrimonial.component.scss'],
 })
 export class MatrimonialComponent {
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();
   personId: string;
   personControl = new FormControl(null, [Validators.required]);
-  constructor(private personService: PersonService, private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(
+    private personService: PersonService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
   currentIndex = 0;
 
   ngOnInit(): void {
-      this.activatedRoute.params.subscribe((params: Params) => {
-        if(params['id']) {
-          this.personId = params['id'];
-          this.personControl.setValue(params['id']);
-          this.personControl.disable();
-        } else {
-          this.personId = '';
-          this.personControl.enable();
-        }
-      })
+    this.activatedRoute.params.subscribe((params: Params) => {
+      if (params['id']) {
+        this.personId = params['id'];
+        this.personControl.setValue(params['id']);
+        this.personControl.disable();
+      } else {
+        this.personId = '';
+        this.personControl.enable();
+      }
+    });
   }
 
   OnSelectedChange(index: number) {
@@ -35,7 +39,7 @@ export class MatrimonialComponent {
   }
 
   onPersonSelect() {
-    if(this.personControl.valid) {
+    if (this.personControl.valid) {
       this.router.navigate([`cv/matrimonial/${this.personControl.value}`]);
       this.personControl.disable();
     }

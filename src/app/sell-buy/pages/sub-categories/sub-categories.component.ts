@@ -9,7 +9,7 @@ import { MatSort, Sort } from '@angular/material/sort';
 @Component({
   selector: 'app-sub-categories',
   templateUrl: './sub-categories.component.html',
-  styleUrls: ['./sub-categories.component.scss']
+  styleUrls: ['./sub-categories.component.scss'],
 })
 export class SubCategoriesComponent implements OnInit {
   dataSource = new MatTableDataSource<SubCategoryResponse>();
@@ -24,11 +24,9 @@ export class SubCategoriesComponent implements OnInit {
   sortOrder = 'asc';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private subCategoriesService: SubCategoryService) {
-
-  }
+  constructor(private subCategoriesService: SubCategoryService) {}
   ngOnInit(): void {
-   this.loadCategories();
+    this.loadCategories();
   }
 
   loadCategories() {
@@ -57,7 +55,7 @@ export class SubCategoriesComponent implements OnInit {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       this.page = 0;
       this.sortField = _sort.active;
       this.sortOrder = _sort.direction;

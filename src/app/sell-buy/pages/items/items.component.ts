@@ -1,22 +1,22 @@
-import { Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, PageEvent} from '@angular/material/paginator';
-import {MatSort, Sort} from '@angular/material/sort';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import {ItemService} from "../../services/item.service";
-import {ItemResponseModel} from "../../models/item.model";
-import {Subscription} from "rxjs";
-import {SelectionModel} from "@angular/cdk/collections";
-import {Router} from "@angular/router";
+import { ItemService } from '../../services/item.service';
+import { ItemResponseModel } from '../../models/item.model';
+import { Subscription } from 'rxjs';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Router } from '@angular/router';
 import { ItemDataService } from '../../services/item-data.service';
 import { ItemTransactionType } from '../../enums/transaction-type';
 
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
-  styleUrls: ['./items.component.scss']
+  styleUrls: ['./items.component.scss'],
 })
 export class ItemsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name', 'subCategoryName', 'transactionType','postedBy', 'actions'];
+  displayedColumns: string[] = ['name', 'subCategoryName', 'transactionType', 'postedBy', 'actions'];
   dataSource: MatTableDataSource<ItemResponseModel>;
   selection = new SelectionModel<ItemResponseModel>(true, []);
   isLoading = false;
@@ -33,17 +33,19 @@ export class ItemsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private itemService: ItemService, private router: Router, private itemDataService: ItemDataService) {
-
-  }
+  constructor(
+    private itemService: ItemService,
+    private router: Router,
+    private itemDataService: ItemDataService
+  ) {}
 
   ngOnInit() {
     this.loadData();
   }
 
   loadData() {
-      this.isLoading = true;
-      this.subscription$ = this.itemService.getItems().subscribe(_items => {
+    this.isLoading = true;
+    this.subscription$ = this.itemService.getItems().subscribe(_items => {
       this.dataSource = new MatTableDataSource(_items);
       this.isLoading = false;
       this.dataSource.paginator = this.paginator;
@@ -67,7 +69,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       this.page = 0;
       this.sortField = _sort.active;
       this.sortOrder = _sort.direction;
@@ -75,7 +77,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription$) {
+    if (this.subscription$) {
       this.subscription$.unsubscribe();
     }
   }
@@ -86,11 +88,11 @@ export class ItemsComponent implements OnInit, OnDestroy {
   }
 
   onDelete(element: ItemResponseModel) {
-    if(confirm('Do you want to remove item?') && element.id) {
-      this.itemService.removeItem(element.id).subscribe(()=> {
+    if (confirm('Do you want to remove item?') && element.id) {
+      this.itemService.removeItem(element.id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
-    console.log('Delete:',element.name);
+    console.log('Delete:', element.name);
   }
 }

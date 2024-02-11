@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrls: ['./books.component.scss']
+  styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['title','author','publisher','language','price','quantity','availability','personName', 'actions'];
+  displayedColumns: string[] = ['title', 'author', 'publisher', 'language', 'price', 'quantity', 'availability', 'personName', 'actions'];
   dataSource = new MatTableDataSource<BookResponseModel>();
   isLoading = false;
   subscription$: Subscription;
@@ -28,7 +28,10 @@ export class BooksComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private bookService: BookService, private router: Router){}
+  constructor(
+    private bookService: BookService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -65,7 +68,7 @@ export class BooksComponent implements OnInit, OnDestroy {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       this.page = 0;
       this.sortField = _sort.active;
       this.sortOrder = _sort.direction;
@@ -77,11 +80,11 @@ export class BooksComponent implements OnInit, OnDestroy {
   }
 
   onDelete(element: BookResponseModel) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.bookService.remove(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.bookService.remove(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

@@ -7,8 +7,7 @@ import { FamilyMemberTableResponseType } from '../types/family-member-type';
 
 @Injectable()
 export class FamilyMerberService extends BaseHttpService {
-
-  constructor(http: HttpClient) { 
+  constructor(http: HttpClient) {
     super(http);
     this.setBaseUrl(API_ENDPOINT_CONST.CV.FAMILY_MEMBER_BASE);
   }

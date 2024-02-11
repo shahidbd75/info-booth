@@ -13,7 +13,7 @@ import { NotificationService } from 'src/app/lib/material/notification/services/
 @Component({
   selector: 'app-professional-basic',
   templateUrl: './professional-basic.component.html',
-  styleUrls: ['./professional-basic.component.scss']
+  styleUrls: ['./professional-basic.component.scss'],
 })
 export class ProfessionalBasicComponent implements OnInit, OnDestroy {
   professionalFormGroup: FormGroup;
@@ -23,42 +23,59 @@ export class ProfessionalBasicComponent implements OnInit, OnDestroy {
   strengths$: Observable<OptionsModel[]> = this.enumOptionsService.getStrengths();
   skills$: Observable<OptionsModel[]> = this.enumOptionsService.getSkills();
   hobbies$: Observable<OptionsModel[]> = this.cvOptionsService.getHobbies();
-  constructor(private fb: FormBuilder, private professionalBasicService: ProfessionalBasicService, 
-    private activatedRoute: ActivatedRoute, private enumOptionsService: CvEnumOptionsService, 
-    private cvOptionsService: CvOptionsService, private notificationService: NotificationService,){}
+  constructor(
+    private fb: FormBuilder,
+    private professionalBasicService: ProfessionalBasicService,
+    private activatedRoute: ActivatedRoute,
+    private enumOptionsService: CvEnumOptionsService,
+    private cvOptionsService: CvOptionsService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
 
     this.activatedRoute.params.subscribe((params: Params) => {
       this.personId = params['id'];
-      if(this.personId) {
-        this.professionalBasicService.getById<ProfessionalBasicResponseModel>(this.personId).subscribe({next:(response: ProfessionalBasicResponseModel) => {
-          this.setFormData(response);
-        },error: () => console.log('Failed')});
+      if (this.personId) {
+        this.professionalBasicService.getById<ProfessionalBasicResponseModel>(this.personId).subscribe({
+          next: (response: ProfessionalBasicResponseModel) => {
+            this.setFormData(response);
+          },
+          error: () => console.log('Failed'),
+        });
       }
-    })
-    
+    });
   }
 
   onSave() {
     const requestModel: ProfessionalBasicRequestModel = this.professionalFormGroup.value;
     requestModel.personId = this.activatedRoute.snapshot.params['id'];
-    if(this.isEditMode) {
-      this.subscription.add(this.professionalBasicService.update<ProfessionalBasicRequestModel,unknown>(requestModel).subscribe({next:()=> {
-        this.notificationService.success(NotificationMessage.UpdatedSuccessfully);
-      }, error: (err)=> {
-        console.log(err);
-        this.notificationService.error(NotificationMessage.UpdatedFailure);
-      }}));
+    if (this.isEditMode) {
+      this.subscription.add(
+        this.professionalBasicService.update<ProfessionalBasicRequestModel, unknown>(requestModel).subscribe({
+          next: () => {
+            this.notificationService.success(NotificationMessage.UpdatedSuccessfully);
+          },
+          error: err => {
+            console.log(err);
+            this.notificationService.error(NotificationMessage.UpdatedFailure);
+          },
+        })
+      );
     } else {
-      this.subscription.add(this.professionalBasicService.save<ProfessionalBasicRequestModel,unknown>(requestModel).subscribe({next:()=> {
-        this.notificationService.success(NotificationMessage.SavedSuccessfully);
-      }, error: (err)=> {
-        console.log(err);
-        this.notificationService.error(NotificationMessage.SavedFailure);
-      }}));
-    }    
+      this.subscription.add(
+        this.professionalBasicService.save<ProfessionalBasicRequestModel, unknown>(requestModel).subscribe({
+          next: () => {
+            this.notificationService.success(NotificationMessage.SavedSuccessfully);
+          },
+          error: err => {
+            console.log(err);
+            this.notificationService.error(NotificationMessage.SavedFailure);
+          },
+        })
+      );
+    }
   }
 
   onClear() {
@@ -66,18 +83,17 @@ export class ProfessionalBasicComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription)
-      this.subscription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
   }
 
   private setFormData(response: ProfessionalBasicResponseModel) {
-    if(response) {
+    if (response) {
       this.isEditMode = true;
-      const {strength,otherSkills, ...restValue} = response;
+      const { strength, otherSkills, ...restValue } = response;
       this.professionalFormGroup.patchValue({
         ...restValue,
         strength: strength.split(','),
-        otherSkills: otherSkills.split(',')
+        otherSkills: otherSkills.split(','),
       });
     }
   }
@@ -94,7 +110,7 @@ export class ProfessionalBasicComponent implements OnInit, OnDestroy {
       certification: [''],
       passportSizePhotoUrl: [''],
       signatureUrl: [''],
-      otherSkills: ['']
+      otherSkills: [''],
     });
   }
 }

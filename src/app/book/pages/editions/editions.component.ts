@@ -10,10 +10,10 @@ import { EditionService } from '../../services/edition.service';
 @Component({
   selector: 'app-editions',
   templateUrl: './editions.component.html',
-  styleUrls: ['./editions.component.scss']
+  styleUrls: ['./editions.component.scss'],
 })
 export class EditionsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name','createdDate', 'actions'];
+  displayedColumns: string[] = ['name', 'createdDate', 'actions'];
   dataSource = new MatTableDataSource<EditionResponseModel>();
   isLoading = false;
   subscription$: Subscription;
@@ -28,7 +28,10 @@ export class EditionsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private editionService: EditionService, private router: Router){}
+  constructor(
+    private editionService: EditionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -65,7 +68,7 @@ export class EditionsComponent implements OnInit, OnDestroy {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       console.log(_sort);
       this.page = 0;
       this.sortField = _sort.active;
@@ -78,11 +81,11 @@ export class EditionsComponent implements OnInit, OnDestroy {
   }
 
   onDelete(element: EditionResponseModel) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.editionService.remove(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.editionService.remove(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

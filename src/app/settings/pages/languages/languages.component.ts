@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-languages',
   templateUrl: './languages.component.html',
-  styleUrls: ['./languages.component.scss']
+  styleUrls: ['./languages.component.scss'],
 })
-export class LanguagesComponent implements OnInit, OnDestroy{
-  displayedColumns: string[] = ['name','createdDate', 'actions'];
+export class LanguagesComponent implements OnInit, OnDestroy {
+  displayedColumns: string[] = ['name', 'createdDate', 'actions'];
   dataSource = new MatTableDataSource<LanguageResponseModel>();
   isLoading = false;
   subscription$: Subscription;
@@ -28,7 +28,10 @@ export class LanguagesComponent implements OnInit, OnDestroy{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private languageService: LanguageService, private router: Router){}
+  constructor(
+    private languageService: LanguageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -65,7 +68,7 @@ export class LanguagesComponent implements OnInit, OnDestroy{
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       console.log(_sort);
       this.page = 0;
       this.sortField = _sort.active;
@@ -78,11 +81,11 @@ export class LanguagesComponent implements OnInit, OnDestroy{
   }
 
   onDelete(element: LanguageResponseModel) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.languageService.remove(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.languageService.remove(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

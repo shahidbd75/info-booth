@@ -16,12 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { AuthDataService } from './services/auth-data.service';
 
-
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    LoginComponent,
-  ],
+  declarations: [DashboardComponent, LoginComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -36,6 +32,6 @@ import { AuthDataService } from './services/auth-data.service';
     MatIconModule,
     MatButtonModule,
   ],
-  providers: [AuthService, AuthDataService ]
+  providers: [AuthService, AuthDataService],
 })
-export class CoreModule { }
+export class CoreModule {}

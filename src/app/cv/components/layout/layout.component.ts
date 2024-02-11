@@ -5,15 +5,15 @@ import { GlobalDataContextService } from 'src/app/shared/services/global-data-co
 @Component({
   selector: 'app-cv-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
   cvMenus: MenuType[] = [
-    { text: 'Degrees', link: 'cv/degrees'},
-    { text: 'Designations', link: 'cv/designations'},
-    { text: 'Subjects', link: 'cv/subjects'},
-    {text: 'Professional CVs', link: 'cv/professionals'},
-    {text: 'Matrimonial CVs', link: 'cv/matrimonials'},
+    { text: 'Degrees', link: 'cv/degrees' },
+    { text: 'Designations', link: 'cv/designations' },
+    { text: 'Subjects', link: 'cv/subjects' },
+    { text: 'Professional CVs', link: 'cv/professionals' },
+    { text: 'Matrimonial CVs', link: 'cv/matrimonials' },
   ];
 
   constructor(private globalDataContextService: GlobalDataContextService) {

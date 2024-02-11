@@ -10,10 +10,10 @@ import { ProfessionalBasicService } from '../../services/professional-basic.serv
 @Component({
   selector: 'app-professionals',
   templateUrl: './professionals.component.html',
-  styleUrls: ['./professionals.component.scss']
+  styleUrls: ['./professionals.component.scss'],
 })
 export class ProfessionalsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name','phone','villageName','percentComplete','createdDate', 'actions'];
+  displayedColumns: string[] = ['name', 'phone', 'villageName', 'percentComplete', 'createdDate', 'actions'];
   dataSource = new MatTableDataSource<ProfessionalTableResponseModel>();
   isLoading = false;
   subscription$: Subscription;
@@ -28,7 +28,10 @@ export class ProfessionalsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private professionalCvService: ProfessionalBasicService, private router: Router){}
+  constructor(
+    private professionalCvService: ProfessionalBasicService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -65,7 +68,7 @@ export class ProfessionalsComponent implements OnInit, OnDestroy {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       this.page = 0;
       this.sortField = _sort.active;
       this.sortOrder = _sort.direction;
@@ -77,11 +80,11 @@ export class ProfessionalsComponent implements OnInit, OnDestroy {
   }
 
   onDelete(element: ProfessionalTableResponseModel) {
-    const { personId }= element;
-    if(confirm('Do you want to delete?') && personId) {
-      this.professionalCvService.remove(personId).subscribe(()=> {
+    const { personId } = element;
+    if (confirm('Do you want to delete?') && personId) {
+      this.professionalCvService.remove(personId).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

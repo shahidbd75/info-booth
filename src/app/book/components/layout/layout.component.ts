@@ -5,14 +5,14 @@ import { GlobalDataContextService } from 'src/app/shared/services/global-data-co
 @Component({
   selector: 'app-book-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
   bookMenus: MenuType[] = [
-    {text: 'Book Categories', link: 'book/book-categories'},
-    {text: 'Editions', link: 'book/editions'},
-    {text: 'Languages', link: 'settings/languages'},
-    {text: 'Books', link: 'book/books'},
+    { text: 'Book Categories', link: 'book/book-categories' },
+    { text: 'Editions', link: 'book/editions' },
+    { text: 'Languages', link: 'settings/languages' },
+    { text: 'Books', link: 'book/books' },
   ];
   constructor(private globalDataContextService: GlobalDataContextService) {
     this.globalDataContextService.menus$.next(this.bookMenus);

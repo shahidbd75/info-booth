@@ -9,18 +9,18 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 export class WorkerService {
   selectedWorker: WorkerResponseModel | null;
   worker_url = API_ENDPOINT_CONST.WORKER.WORKER_BASE;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getAll():Observable<WorkerResponseModel[]> {
+  getAll(): Observable<WorkerResponseModel[]> {
     return this.http.get<WorkerResponseModel[]>(this.worker_url);
   }
 
   saveWorker(createRequestModel: WorkerRequestModel): Observable<unknown> {
-    return this.http.post<unknown>(this.worker_url, createRequestModel)
+    return this.http.post<unknown>(this.worker_url, createRequestModel);
   }
 
   updateWorker(updateRequestModel: WorkerRequestModel): Observable<unknown> {
-    return this.http.put<unknown>(this.worker_url, updateRequestModel)
+    return this.http.put<unknown>(this.worker_url, updateRequestModel);
   }
 
   deleteWorker(id: string): Observable<unknown> {

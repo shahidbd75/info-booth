@@ -7,18 +7,21 @@ import { OccupationsComponent } from './pages/occupations/occupations.component'
 import { OccupationComponent } from './pages/occupation/occupation.component';
 
 const routes: Routes = [
-  { path: '', component: LayoutComponent, children: [
-    { path: 'persons', component: PersonsComponent},
-    { path: 'person', component: PersonComponent},
-    { path: 'occupations', component: OccupationsComponent},
-    { path: 'occupation/:id', component: OccupationComponent},
-    { path: 'occupation', component: OccupationComponent},    
-    ]
-  }
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'persons', component: PersonsComponent },
+      { path: 'person', component: PersonComponent },
+      { path: 'occupations', component: OccupationsComponent },
+      { path: 'occupation/:id', component: OccupationComponent },
+      { path: 'occupation', component: OccupationComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PersonnelRoutingModule { }
+export class PersonnelRoutingModule {}

@@ -5,12 +5,10 @@ import { GlobalDataContextService } from 'src/app/shared/services/global-data-co
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
-  toletMenus: MenuType[] = [
-    {text: 'ToLets', link: 'tolet/to-lets'},
-  ];
+  toletMenus: MenuType[] = [{ text: 'ToLets', link: 'tolet/to-lets' }];
   constructor(private globalDataContextService: GlobalDataContextService) {
     this.globalDataContextService.menus$.next(this.toletMenus);
   }

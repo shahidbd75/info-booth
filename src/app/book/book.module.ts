@@ -19,27 +19,9 @@ import { EditionService } from './services/edition.service';
 import { BookService } from './services/book.service';
 import { GlobalDataContextService } from '../shared/services/global-data-context.service';
 
-
 @NgModule({
-  declarations: [
-    BookCategoriesComponent,
-    BookCategoryComponent,
-    EditionsComponent,
-    EditionComponent,
-    BooksComponent,
-    BookComponent,
-    LayoutComponent
-  ],
-  imports: [
-    CommonModule,
-    BookRoutingModule,
-    SharedModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgSelectModule,
-  ],
-  providers: [BookCategoryService, EditionService, BookService]
+  declarations: [BookCategoriesComponent, BookCategoryComponent, EditionsComponent, EditionComponent, BooksComponent, BookComponent, LayoutComponent],
+  imports: [CommonModule, BookRoutingModule, SharedModule, MaterialModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgSelectModule],
+  providers: [BookCategoryService, EditionService, BookService],
 })
-export class BookModule { }
+export class BookModule {}

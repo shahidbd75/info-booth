@@ -1,6 +1,6 @@
 export interface SubCategoryRequestModel {
-  name: string
-  itemCategoryId: string
+  name: string;
+  itemCategoryId: string;
 }
 
 export interface SubCategoryUpdateModel extends SubCategoryRequestModel {
@@ -12,4 +12,4 @@ export type SubCategoryResponse = {
   id: string;
   name: string;
   categoryName: string;
-}
+};

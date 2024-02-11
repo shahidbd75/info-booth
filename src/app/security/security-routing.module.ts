@@ -5,16 +5,20 @@ import { UserRegistrationComponent } from './components/user-registration/user-r
 import { LayoutComponent } from './components/layout/layout.component';
 
 const routes: Routes = [
-  { path: '', component: LayoutComponent, children: [
-    { path: 'users', component: UsersComponent },
-    { path: 'user/:id', component: UserRegistrationComponent },
-    { path: 'user', component: UserRegistrationComponent },
-    { path: '', redirectTo: 'users', pathMatch: 'full' },
-  ]}
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'users', component: UsersComponent },
+      { path: 'user/:id', component: UserRegistrationComponent },
+      { path: 'user', component: UserRegistrationComponent },
+      { path: '', redirectTo: 'users', pathMatch: 'full' },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SecurityRoutingModule { }
+export class SecurityRoutingModule {}

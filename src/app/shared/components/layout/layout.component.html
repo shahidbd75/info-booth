@@ -1,34 +1,30 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="(isHandset$ | async) === false">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
       <span [routerLink]="['.']" class="home">Dashboard</span>
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item *ngFor="let nav of contextService.menus$ | async" routerLink={{nav.link}}>{{nav.text}}</a>
+      <a mat-list-item *ngFor="let nav of contextService.menus$ | async" routerLink="{{ nav.link }}">{{ nav.text }}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>infoBooth</span>
       <span class="spacer"></span>
       <a href="#" *ngIf="authDataService.authenticateUserSig">
-        {{authDataService.authenticateUserSig()?.name}}
+        {{ authDataService.authenticateUserSig()?.name }}
       </a>
-      <a [routerLink]="['login']" *ngIf="authDataService.authenticateUserSig() === null || undefined">
-        Login</a>
-      <a href="#" (click)="onLogOutClick()" *ngIf="authDataService.authenticateUserSig() !== null || undefined">
-          Logout</a>
+      <a [routerLink]="['login']" *ngIf="authDataService.authenticateUserSig() === null || undefined">Login</a>
+      <a href="#" (click)="onLogOutClick()" *ngIf="authDataService.authenticateUserSig() !== null || undefined">Logout</a>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

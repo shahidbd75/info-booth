@@ -7,7 +7,11 @@
     <mat-card-content>
       <mat-divider></mat-divider>
       <div class="g-3 pt-2">
-        <app-village-select [districtId]="selectedDistrictId" [upazilaId]="selectedUpazilaId" villageId="selectedVillageId" (villageChanges)="onVillageChange($event)"/>
+        <app-village-select
+          [districtId]="selectedDistrictId"
+          [upazilaId]="selectedUpazilaId"
+          villageId="selectedVillageId"
+          (villageChanges)="onVillageChange($event)" />
         <div class="row">
           <div class="col-md-4 col-xs-12">
             <label for="personId" class="form-label">Owner</label>
@@ -18,9 +22,7 @@
               bindValue="id"
               bindLabel="name"
               formControlName="personId"
-              placeholder="Please select owner"
-            >
-            </ng-select>
+              placeholder="Please select owner"></ng-select>
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="title" class="form-label">Title</label>
@@ -74,9 +76,7 @@
               bindValue="id"
               bindLabel="name"
               formControlName="rentTypeId"
-              placeholder="Please select type"
-            >
-            </ng-select>
+              placeholder="Please select type"></ng-select>
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="View" class="form-label">View</label>
@@ -87,9 +87,7 @@
               bindValue="id"
               bindLabel="name"
               formControlName="viewId"
-              placeholder="Please select flat view"
-            >
-            </ng-select>
+              placeholder="Please select flat view"></ng-select>
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="LandMarkIds" class="form-label">Land Marks</label>
@@ -101,9 +99,7 @@
               bindValue="id"
               bindLabel="name"
               formControlName="landMarkIds"
-              placeholder="Please select land marks"
-            >
-            </ng-select>
+              placeholder="Please select land marks"></ng-select>
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="Amenities" class="form-label">Amenities</label>
@@ -115,9 +111,7 @@
               bindValue="name"
               bindLabel="name"
               formControlName="amenities"
-              placeholder="Please select amenities"
-            >
-            </ng-select>
+              placeholder="Please select amenities"></ng-select>
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="preferableReligion" class="form-label">Preferable Religion</label>
@@ -129,9 +123,7 @@
               bindValue="id"
               bindLabel="name"
               formControlName="preferableReligion"
-              placeholder="Please select preferable religion"
-            >
-            </ng-select>
+              placeholder="Please select preferable religion"></ng-select>
           </div>
           <div class="col-md-12 col-xs-12">
             <label for="Description" class="form-label">Description</label>
@@ -154,24 +146,8 @@
       </div>
     </mat-card-content>
     <mat-card-actions class="action-button-container">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="onWorkerSave()"
-        [disabled]="!toletForm.valid"
-        *ngIf="!isEditMode"
-      >
-        Add
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="onWorkerUpdate()"
-        [disabled]="!toletForm.valid"
-        *ngIf="isEditMode"
-      >
-        Update
-      </button>
+      <button mat-raised-button color="primary" (click)="onWorkerSave()" [disabled]="!toletForm.valid" *ngIf="!isEditMode">Add</button>
+      <button mat-raised-button color="primary" (click)="onWorkerUpdate()" [disabled]="!toletForm.valid" *ngIf="isEditMode">Update</button>
       <button mat-raised-button (click)="resetForm()">Cancel</button>
     </mat-card-actions>
   </mat-card>

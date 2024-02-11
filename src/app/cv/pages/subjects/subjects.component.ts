@@ -10,10 +10,10 @@ import { CommonResponseModel } from '../../types/common-response-type';
 @Component({
   selector: 'app-subjects',
   templateUrl: './subjects.component.html',
-  styleUrls: ['./subjects.component.scss']
+  styleUrls: ['./subjects.component.scss'],
 })
 export class SubjectsComponent {
-  displayedColumns: string[] = ['name','banglaName','createdDate', 'actions'];
+  displayedColumns: string[] = ['name', 'banglaName', 'createdDate', 'actions'];
   dataSource = new MatTableDataSource<CommonResponseModel>();
   isLoading = false;
   subscription$: Subscription;
@@ -28,7 +28,10 @@ export class SubjectsComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private subjectService: SubjectService, private router: Router){}
+  constructor(
+    private subjectService: SubjectService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -65,7 +68,7 @@ export class SubjectsComponent {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       console.log(_sort);
       this.page = 0;
       this.sortField = _sort.active;
@@ -78,11 +81,11 @@ export class SubjectsComponent {
   }
 
   onDelete(element: CommonResponseModel) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.subjectService.remove(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.subjectService.remove(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

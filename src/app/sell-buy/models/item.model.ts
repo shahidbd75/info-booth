@@ -12,28 +12,27 @@ export interface ItemRequestModel {
   personId: number;
 }
 
-export type ItemCreateRequestModel = ItemRequestModel
+export type ItemCreateRequestModel = ItemRequestModel;
 
 export interface ItemUpdateRequestModel extends ItemRequestModel {
-  id: string
+  id: string;
 }
 
 export interface ItemResponseModel {
-  id:                  string;
-  name:                string;
-  localName:           string;
-  imageUrl:            string;
-  banglaName:          string;
-  shortDescription:    string;
-  description:         string;
-  condition:           number;
-  measurementTypeId:   number;
-  transactionType:     number;
-  subCategoryId:       string;
-  personId:            string;
-  personName:          string;
+  id: string;
+  name: string;
+  localName: string;
+  imageUrl: string;
+  banglaName: string;
+  shortDescription: string;
+  description: string;
+  condition: number;
+  measurementTypeId: number;
+  transactionType: number;
+  subCategoryId: string;
+  personId: string;
+  personName: string;
   measurementTypeName: string;
-  subCategoryName:     string;
-  categoryId:          string;
+  subCategoryName: string;
+  categoryId: string;
 }
-

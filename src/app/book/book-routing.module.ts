@@ -9,22 +9,26 @@ import { BooksComponent } from './pages/books/books.component';
 import { BookComponent } from './pages/book/book.component';
 
 const routes: Routes = [
-  { path: '', component: LayoutComponent, children: [
-    { path: 'book-categories', component: BookCategoriesComponent },
-    { path: 'book-category/:id', component: BookCategoryComponent },
-    { path: 'book-category', component: BookCategoryComponent },
-    { path: 'editions', component: EditionsComponent },
-    { path: 'edition/:id', component: EditionComponent },
-    { path: 'edition', component: EditionComponent },
-    { path: 'books', component: BooksComponent },
-    { path: 'book/:id', component: BookComponent },
-    { path: 'book', component: BookComponent },
-    { path: '', redirectTo: 'books', pathMatch: 'full'}
-  ]}
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'book-categories', component: BookCategoriesComponent },
+      { path: 'book-category/:id', component: BookCategoryComponent },
+      { path: 'book-category', component: BookCategoryComponent },
+      { path: 'editions', component: EditionsComponent },
+      { path: 'edition/:id', component: EditionComponent },
+      { path: 'edition', component: EditionComponent },
+      { path: 'books', component: BooksComponent },
+      { path: 'book/:id', component: BookComponent },
+      { path: 'book', component: BookComponent },
+      { path: '', redirectTo: 'books', pathMatch: 'full' },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BookRoutingModule { }
+export class BookRoutingModule {}

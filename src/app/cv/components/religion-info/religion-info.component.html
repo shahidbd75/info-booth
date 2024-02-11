@@ -1,113 +1,114 @@
 <form [formGroup]="religionFormGroup">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Religion Information</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>    
-                <div class="row">   
-                    <div class="col-lg-8 col-md-12 col-xs-12">
-                        <mat-card class="mt-1">
-                            <mat-card-content>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-xs-12">
-                                        <label for="religiousBeliefId" class="form-label">Religious Belief</label>
-                                        <ng-select [items]="religiousBelieves$ | async"
-                                            id="religiousBeliefId"
-                                            [searchable]="false"
-                                            bindValue="id" 
-                                            bindLabel="name"
-                                            formControlName="religiousBeliefId">
-                                        </ng-select>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-xs-12">
-                                        <label for="casteId" class="form-label">Caste</label>
-                                        <ng-select [items]="castes$ | async"
-                                            id="casteId"
-                                            [searchable]="false"
-                                            bindValue="id" 
-                                            bindLabel="name"
-                                            formControlName="casteId">
-                                        </ng-select>
-                                    </div>     
-                                    <div class="col-lg-6 col-md-6 col-xs-12">
-                                        <label for="hijabTypeId" class="form-label">Hijab Type</label>
-                                        <ng-select [items]="hijabTypes$ | async"
-                                            id="hijabTypeId"
-                                            [searchable]="false"
-                                            bindValue="id" 
-                                            bindLabel="name"
-                                            formControlName="hijabTypeId">
-                                        </ng-select>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-xs-12">
-                                        <label for="prayerId" class="form-label">Prayer</label>
-                                        <ng-select [items]="prayers$ | async"
-                                            id="prayerId"
-                                            [searchable]="false"
-                                            bindValue="id" 
-                                            bindLabel="name"
-                                            formControlName="prayerId">
-                                        </ng-select>
-                                    </div> 
-                                    <div class="col-lg-6 col-md-6 col-xs-12">
-                                        <label for="prayerInMosqueId" class="form-label">Prayer In Mosque</label>
-                                        <ng-select [items]="prayerInMosque$ | async"
-                                            id="prayerInMosqueId"
-                                            [searchable]="false"
-                                            bindValue="id" 
-                                            bindLabel="name"
-                                            formControlName="prayerInMosqueId">
-                                        </ng-select>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-xs-12">
-                                        <label for="quranRecitationId" class="form-label">Quran Recitation</label>
-                                        <ng-select [items]="quranRecitations$ | async"
-                                            id="quranRecitationId"
-                                            [searchable]="false"
-                                            bindValue="id" 
-                                            bindLabel="name"
-                                            formControlName="quranRecitationId">
-                                        </ng-select>
-                                    </div> 
-                                    <div class="col-lg-6 col-md-6 col-xs-12">
-                                        <label for="height" class="form-label">Tabligue</label>
-                                        <ng-select [items]="tabligFrequencies$ | async"
-                                            id="tabligueFrequencyId"
-                                            [searchable]="false"
-                                            bindValue="id" 
-                                            bindLabel="name"
-                                            formControlName="tabligueFrequencyId">
-                                        </ng-select>
-                                    </div>
-                                </div>
-                            </mat-card-content>
-                        </mat-card>
-                        
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-xs-12">
-                        <mat-card class="mt-1">
-                            <mat-card-header>
-                                <mat-card-subtitle><b>Do you? /আপনি কি?</b></mat-card-subtitle>
-                            </mat-card-header>
-                            <mat-card-content>
-                                <mat-selection-list formControlName="religionParameters">    
-                                    <mat-list-option *ngFor="let item of religionParams$ | async" [value]="item.id" [selected]="item.isSelected">{{item.name}}</mat-list-option>                                
-                                    <!-- <mat-list-option>হজ্জ করেছেন?</mat-list-option>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Religion Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-lg-8 col-md-12 col-xs-12">
+          <mat-card class="mt-1">
+            <mat-card-content>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                  <label for="religiousBeliefId" class="form-label">Religious Belief</label>
+                  <ng-select
+                    [items]="religiousBelieves$ | async"
+                    id="religiousBeliefId"
+                    [searchable]="false"
+                    bindValue="id"
+                    bindLabel="name"
+                    formControlName="religiousBeliefId"></ng-select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                  <label for="casteId" class="form-label">Caste</label>
+                  <ng-select
+                    [items]="castes$ | async"
+                    id="casteId"
+                    [searchable]="false"
+                    bindValue="id"
+                    bindLabel="name"
+                    formControlName="casteId"></ng-select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                  <label for="hijabTypeId" class="form-label">Hijab Type</label>
+                  <ng-select
+                    [items]="hijabTypes$ | async"
+                    id="hijabTypeId"
+                    [searchable]="false"
+                    bindValue="id"
+                    bindLabel="name"
+                    formControlName="hijabTypeId"></ng-select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                  <label for="prayerId" class="form-label">Prayer</label>
+                  <ng-select
+                    [items]="prayers$ | async"
+                    id="prayerId"
+                    [searchable]="false"
+                    bindValue="id"
+                    bindLabel="name"
+                    formControlName="prayerId"></ng-select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                  <label for="prayerInMosqueId" class="form-label">Prayer In Mosque</label>
+                  <ng-select
+                    [items]="prayerInMosque$ | async"
+                    id="prayerInMosqueId"
+                    [searchable]="false"
+                    bindValue="id"
+                    bindLabel="name"
+                    formControlName="prayerInMosqueId"></ng-select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                  <label for="quranRecitationId" class="form-label">Quran Recitation</label>
+                  <ng-select
+                    [items]="quranRecitations$ | async"
+                    id="quranRecitationId"
+                    [searchable]="false"
+                    bindValue="id"
+                    bindLabel="name"
+                    formControlName="quranRecitationId"></ng-select>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                  <label for="height" class="form-label">Tabligue</label>
+                  <ng-select
+                    [items]="tabligFrequencies$ | async"
+                    id="tabligueFrequencyId"
+                    [searchable]="false"
+                    bindValue="id"
+                    bindLabel="name"
+                    formControlName="tabligueFrequencyId"></ng-select>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-lg-4 col-md-12 col-xs-12">
+          <mat-card class="mt-1">
+            <mat-card-header>
+              <mat-card-subtitle><b>Do you? /আপনি কি?</b></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-selection-list formControlName="religionParameters">
+                <mat-list-option *ngFor="let item of religionParams$ | async" [value]="item.id" [selected]="item.isSelected">
+                  {{ item.name }}
+                </mat-list-option>
+                <!-- <mat-list-option>হজ্জ করেছেন?</mat-list-option>
                                     <mat-list-option>নিয়মিত যাকাত বা দান/সাদকা দেন?</mat-list-option>
                                     <mat-list-option>দাওয়াতি কাজে জড়িত?</mat-list-option>
                                     <mat-list-option>মাহরাম/নন মাহরাম মেনে চলেন?</mat-list-option>
                                     <mat-list-option>তাহাজ্জুদ পড়েন?</mat-list-option>
                                     <mat-list-option>পীর/মাজার মানেন?</mat-list-option>
                                     <mat-list-option>গনক/রাশিচক্র বিশ্বাস করেন?</mat-list-option> -->
-                                  </mat-selection-list>
-                            </mat-card-content>
-                        </mat-card>                        
-                    </div>                  
-                </div>        
-        </mat-card-content>
-        <mat-card-actions  class="action-button-container">
-            <button mat-raised-button (click)="onSave()" [disabled]="!religionFormGroup.valid" color="primary">Save</button>
-            <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
-        </mat-card-actions>
-    </mat-card>
-    </form>
+              </mat-selection-list>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-button-container">
+      <button mat-raised-button (click)="onSave()" [disabled]="!religionFormGroup.valid" color="primary">Save</button>
+      <button mat-raised-button (click)="onClear()" color="accent">Clear</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

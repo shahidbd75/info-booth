@@ -11,20 +11,21 @@ import { OptionsModel } from '../../models/options-model';
 })
 export class VillageSelectComponent implements OnInit, OnChanges {
   public formGroup: FormGroup;
-  @Input({required:true}) districtId: number;
-  @Input({required:true}) upazilaId: number;
-  @Input({required:true}) villageId: string;
+  @Input({ required: true }) districtId: number;
+  @Input({ required: true }) upazilaId: number;
+  @Input({ required: true }) villageId: string;
   @Input() reset = false;
   @Output() villageChanges = new EventEmitter<string>();
   districts$: Observable<OptionsModel[]> = this.optionService.getDistricts().pipe(delay(4));
   upazilas$: Observable<OptionsModel[]>;
   villages$: Observable<OptionsModel[]>;
 
-  constructor(private fb: FormBuilder, private optionService: OptionsService) {
-
-  }
+  constructor(
+    private fb: FormBuilder,
+    private optionService: OptionsService
+  ) {}
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.reset) {
+    if (this.reset) {
       this.formGroup.reset();
     }
   }
@@ -33,35 +34,35 @@ export class VillageSelectComponent implements OnInit, OnChanges {
     this.formGroup = this.fb.group({
       district: [this.districtId, [Validators.required]],
       upazila: [this.upazilaId, [Validators.required]],
-      village: [this.villageId, [Validators.required]]
+      village: [this.villageId, [Validators.required]],
     });
 
     this.loadData();
 
-    if(this.formGroup.dirty || this.formGroup.pristine) {
+    if (this.formGroup.dirty || this.formGroup.pristine) {
       this.reset = false;
     }
   }
 
   onVillageChange() {
-    const {village} =this.formGroup.value;
+    const { village } = this.formGroup.value;
     this.villageChanges.emit(village);
   }
 
   loadData() {
-    if(this.districtId) {
+    if (this.districtId) {
       this.formGroup.patchValue({
-        district: this.districtId
+        district: this.districtId,
       });
       this.loadUpazilas();
-      if(this.upazilaId) {
+      if (this.upazilaId) {
         this.formGroup.patchValue({
-          upazila: this.upazilaId
+          upazila: this.upazilaId,
         });
         this.loadVillages();
-        if(this.villageId) {
+        if (this.villageId) {
           this.formGroup.patchValue({
-            village: this.villageId
+            village: this.villageId,
           });
         }
       }
@@ -69,14 +70,14 @@ export class VillageSelectComponent implements OnInit, OnChanges {
   }
 
   loadUpazilas() {
-    const {district} = this.formGroup.value;
+    const { district } = this.formGroup.value;
 
     this.formGroup.controls['upazila'].reset();
-    this.upazilas$ = this.optionService.getUpazilas(district).pipe((delay(5)));
+    this.upazilas$ = this.optionService.getUpazilas(district).pipe(delay(5));
   }
 
   loadVillages() {
-    const {upazila} = this.formGroup.value;
+    const { upazila } = this.formGroup.value;
     this.formGroup.controls['village'].reset();
     this.villages$ = this.optionService.getVillages(upazila);
   }

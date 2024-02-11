@@ -8,24 +8,28 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-occupation',
   templateUrl: './occupation.component.html',
-  styleUrls: ['./occupation.component.scss']
+  styleUrls: ['./occupation.component.scss'],
 })
-export class OccupationComponent implements OnInit{
+export class OccupationComponent implements OnInit {
   occupationForm: FormGroup;
   isEditMode = false;
   subscription$: Subscription;
-  constructor(private fb: FormBuilder, private occupationService: OccupationService, private router: Router,
-    private activatedRoute: ActivatedRoute){}
+  constructor(
+    private fb: FormBuilder,
+    private occupationService: OccupationService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
     this.subscription$ = this.activatedRoute.params.subscribe((params: Params) => {
-      const id = params['id']; 
-      if(id) {
+      const id = params['id'];
+      if (id) {
         this.isEditMode = true;
-        this.occupationService.getOccupation(+id).subscribe((occupation:EnumTableResponseModel) => {
+        this.occupationService.getOccupation(+id).subscribe((occupation: EnumTableResponseModel) => {
           this.occupationForm.setValue(occupation);
-        });        
+        });
       }
     });
   }
@@ -33,24 +37,24 @@ export class OccupationComponent implements OnInit{
   initializeForm() {
     this.occupationForm = this.fb.group({
       id: [null],
-      name: ['',[Validators.required]],
-      banglaName:['']
+      name: ['', [Validators.required]],
+      banglaName: [''],
     });
   }
 
   onOccupationAdd() {
-    const {name, banglaName }: EnumTableCreateModel = this.occupationForm.value;
-    
-    this.occupationService.saveOccupation({name,banglaName}).subscribe(() => {
+    const { name, banglaName }: EnumTableCreateModel = this.occupationForm.value;
+
+    this.occupationService.saveOccupation({ name, banglaName }).subscribe(() => {
       this.router.navigate(['personnel/occupations']);
       this.resetSelected();
     });
   }
 
   onOccupationUpdate() {
-    const {id, name, banglaName }: EnumTableUpdateModel = this.occupationForm.value;
-    
-    this.occupationService.updateOccupation({id: +id, name,banglaName}).subscribe(() => {
+    const { id, name, banglaName }: EnumTableUpdateModel = this.occupationForm.value;
+
+    this.occupationService.updateOccupation({ id: +id, name, banglaName }).subscribe(() => {
       this.router.navigate(['personnel/occupations']);
       this.resetSelected();
     });

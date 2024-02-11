@@ -10,10 +10,10 @@ import { MatrimonialReponseType, MatrimonialTableResponse } from '../../types/ma
 @Component({
   selector: 'app-matrimonials',
   templateUrl: './matrimonials.component.html',
-  styleUrls: ['./matrimonials.component.scss']
+  styleUrls: ['./matrimonials.component.scss'],
 })
 export class MatrimonialsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name','phone','villageName','percentComplete','createdDate', 'actions'];
+  displayedColumns: string[] = ['name', 'phone', 'villageName', 'percentComplete', 'createdDate', 'actions'];
   dataSource = new MatTableDataSource<MatrimonialTableResponse>();
   isLoading = false;
   subscription$: Subscription;
@@ -28,7 +28,10 @@ export class MatrimonialsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private matrimonialBasicService: MatrimonialBasicCvService, private router: Router){}
+  constructor(
+    private matrimonialBasicService: MatrimonialBasicCvService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -40,8 +43,7 @@ export class MatrimonialsComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.isLoading = true;
-    this.subscription$ = this.matrimonialBasicService.getSummeries()
-    .subscribe((_items: MatrimonialTableResponse[]) => {
+    this.subscription$ = this.matrimonialBasicService.getSummeries().subscribe((_items: MatrimonialTableResponse[]) => {
       this.cvList = _items;
       this.dataSource = new MatTableDataSource(_items);
       this.dataSource.paginator = this.paginator;
@@ -66,7 +68,7 @@ export class MatrimonialsComponent implements OnInit, OnDestroy {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       this.page = 0;
       this.sortField = _sort.active;
       this.sortOrder = _sort.direction;
@@ -78,11 +80,11 @@ export class MatrimonialsComponent implements OnInit, OnDestroy {
   }
 
   onDelete(element: MatrimonialTableResponse) {
-    const { id }= element;
-    if(confirm('Do you want to delete?') && id) {
-      this.matrimonialBasicService.remove(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.matrimonialBasicService.remove(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }

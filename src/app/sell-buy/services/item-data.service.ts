@@ -3,5 +3,5 @@ import { ItemResponseModel } from '../models/item.model';
 
 @Injectable()
 export class ItemDataService {
-  selectedItem:ItemResponseModel;  
+  selectedItem: ItemResponseModel;
 }

@@ -6,8 +6,7 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Injectable()
 export class ToletOptionsService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAmenities(): Observable<Array<OptionsModel>> {
     return this.http.get<Array<OptionsModel>>(API_ENDPOINT_CONST.TOLET.AMENITY_OPTIONS);

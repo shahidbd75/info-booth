@@ -16,13 +16,8 @@ import { ToletOptionsService } from './services/tolet-options.service';
 import { VillageModule } from '../shared/modules/village-select/village.module';
 import { GlobalDataContextService } from '../shared/services/global-data-context.service';
 
-
 @NgModule({
-  declarations: [
-    ToletsComponent,
-    LayoutComponent,
-    ToletComponent
-  ],
+  declarations: [ToletsComponent, LayoutComponent, ToletComponent],
   imports: [
     CommonModule,
     ToletRoutingModule,
@@ -32,8 +27,8 @@ import { GlobalDataContextService } from '../shared/services/global-data-context
     ReactiveFormsModule,
     HttpClientModule,
     NgSelectModule,
-    VillageModule
+    VillageModule,
   ],
-  providers: [PersonService, ToletService, ToletOptionsService ]
+  providers: [PersonService, ToletService, ToletOptionsService],
 })
-export class ToletModule { }
+export class ToletModule {}

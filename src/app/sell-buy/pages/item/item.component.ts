@@ -3,9 +3,9 @@ import { CategoryService } from '../../services/category.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { Observable } from 'rxjs';
 import { SubCategoryService } from '../../services/sub-category.service';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ItemService} from "../../services/item.service";
-import {ItemCreateRequestModel, ItemUpdateRequestModel} from "../../models/item.model";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ItemService } from '../../services/item.service';
+import { ItemCreateRequestModel, ItemUpdateRequestModel } from '../../models/item.model';
 import { PersonService } from 'src/app/personnel/services/person.service';
 import { Router } from '@angular/router';
 import { ItemDataService } from '../../services/item-data.service';
@@ -13,9 +13,9 @@ import { ItemDataService } from '../../services/item-data.service';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss']
+  styleUrls: ['./item.component.scss'],
 })
-export class ItemComponent implements OnInit{
+export class ItemComponent implements OnInit {
   categories$: Observable<OptionsModel[]> | undefined;
   subCategories$: Observable<OptionsModel[]> | undefined;
   persons$: Observable<OptionsModel[]> | undefined;
@@ -23,9 +23,15 @@ export class ItemComponent implements OnInit{
   itemForm: FormGroup;
   isEditMode = false;
 
-  constructor(private categoryService: CategoryService, private subCategoryService: SubCategoryService,
-              private formBuilder: FormBuilder, private itemService: ItemService, private personService: PersonService,
-              private router: Router, private itemDataService: ItemDataService) {
+  constructor(
+    private categoryService: CategoryService,
+    private subCategoryService: SubCategoryService,
+    private formBuilder: FormBuilder,
+    private itemService: ItemService,
+    private personService: PersonService,
+    private router: Router,
+    private itemDataService: ItemDataService
+  ) {
     this.createForm();
   }
   ngOnInit(): void {
@@ -33,43 +39,57 @@ export class ItemComponent implements OnInit{
     this.persons$ = this.personService.getPersonOptions();
     this.measurementTypes$ = this.itemService.getMeasurementTypes();
 
-    if(this.itemDataService.selectedItem) {
-      const { categoryId: category,subCategoryId,...restValue} = this.itemDataService.selectedItem;
+    if (this.itemDataService.selectedItem) {
+      const { categoryId: category, subCategoryId, ...restValue } = this.itemDataService.selectedItem;
       this.itemForm.patchValue({
-        ...restValue, category
+        ...restValue,
+        category,
       });
       this.onCategoryChange();
-      this.itemForm.patchValue({subCategoryId});
+      this.itemForm.patchValue({ subCategoryId });
       this.isEditMode = true;
     }
-
   }
 
   onCategoryChange() {
-    const {category} = this.itemForm.value;
+    const { category } = this.itemForm.value;
     this.itemForm.controls['subCategoryId'].reset();
     this.subCategories$ = this.subCategoryService.getByCategoryId(category);
   }
 
   onItemAdd() {
-    const { condition,measurementTypeId,transactionType, ...restValue } = this.itemForm.value;
-    const requestModel: ItemCreateRequestModel = {...restValue,condition: +condition, measurementTypeId: +measurementTypeId
-    ,transactionType: +transactionType};
-    this.itemService.addItem(requestModel).subscribe(_value => {
-      this.itemForm.reset();
-      this.goToListPage();
-    }, (error) => console.log(error));
+    const { condition, measurementTypeId, transactionType, ...restValue } = this.itemForm.value;
+    const requestModel: ItemCreateRequestModel = {
+      ...restValue,
+      condition: +condition,
+      measurementTypeId: +measurementTypeId,
+      transactionType: +transactionType,
+    };
+    this.itemService.addItem(requestModel).subscribe(
+      _value => {
+        this.itemForm.reset();
+        this.goToListPage();
+      },
+      error => console.log(error)
+    );
   }
 
   onItemUpdate() {
-    const { condition,measurementTypeId,transactionType, ...restValue } = this.itemForm.value;
-    const requestModel: ItemUpdateRequestModel = {...restValue,condition: +condition, measurementTypeId: +measurementTypeId
-    ,transactionType: +transactionType};
+    const { condition, measurementTypeId, transactionType, ...restValue } = this.itemForm.value;
+    const requestModel: ItemUpdateRequestModel = {
+      ...restValue,
+      condition: +condition,
+      measurementTypeId: +measurementTypeId,
+      transactionType: +transactionType,
+    };
 
-    this.itemService.updateItem(requestModel).subscribe(() => {
-      this.itemForm.reset();
-      this.goToListPage();
-    }, (error) => console.log(error));
+    this.itemService.updateItem(requestModel).subscribe(
+      () => {
+        this.itemForm.reset();
+        this.goToListPage();
+      },
+      error => console.log(error)
+    );
   }
 
   loadCategories() {
@@ -79,7 +99,7 @@ export class ItemComponent implements OnInit{
   createForm() {
     this.itemForm = this.formBuilder.group({
       category: [null],
-      name: ['',[Validators.required]],
+      name: ['', [Validators.required]],
       localName: [''],
       imageUrl: [''],
       banglaName: [''],
@@ -88,9 +108,9 @@ export class ItemComponent implements OnInit{
       condition: [null],
       subCategoryId: [null, [Validators.required]],
       personId: [null, [Validators.required]],
-      measurementTypeId:[null],
-      transactionType: [null,[Validators.required]],
-      id: ['']
+      measurementTypeId: [null],
+      transactionType: [null, [Validators.required]],
+      id: [''],
     });
   }
 

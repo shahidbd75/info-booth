@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 export const professionalCvBasicResolver: ResolveFn<Observable<ProfessionalBasicResponseModel> | null> = (route, state) => {
   const personId = inject(ProfessionalCvDataService).selectedPersonId.value;
-  if(personId) {
+  if (personId) {
     return inject(ProfessionalBasicService).getById<ProfessionalBasicResponseModel>(personId);
   }
   return null;

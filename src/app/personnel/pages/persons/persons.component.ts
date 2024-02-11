@@ -12,10 +12,10 @@ import { Gender } from '../../enums/gender.enum';
 @Component({
   selector: 'app-persons',
   templateUrl: './persons.component.html',
-  styleUrls: ['./persons.component.scss']
+  styleUrls: ['./persons.component.scss'],
 })
 export class PersonsComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['name', 'phone', 'gender','degreeName', 'address', 'actions'];
+  displayedColumns: string[] = ['name', 'phone', 'gender', 'degreeName', 'address', 'actions'];
   dataSource = new MatTableDataSource<PersonResponseModel>();
   selection = new SelectionModel<PersonResponseModel>(true, []);
   isLoading = false;
@@ -31,11 +31,11 @@ export class PersonsComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private personService: PersonService, private router: Router) {
+  constructor(
+    private personService: PersonService,
+    private router: Router
+  ) {}
 
-  }
-
-  
   ngOnInit() {
     this.loadData();
   }
@@ -66,7 +66,7 @@ export class PersonsComponent implements OnInit, OnDestroy {
   }
 
   sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort)=> {
+    this.sort.sortChange.subscribe((_sort: Sort) => {
       this.page = 0;
       this.sortField = _sort.active;
       this.sortOrder = _sort.direction;
@@ -74,7 +74,7 @@ export class PersonsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription$) {
+    if (this.subscription$) {
       this.subscription$.unsubscribe();
     }
   }
@@ -85,11 +85,11 @@ export class PersonsComponent implements OnInit, OnDestroy {
   }
 
   onDelete(element: PersonResponseModel) {
-    const {id} = element;
-    if(confirm('Do you want to delete?') && id) {
-      this.personService.deletePerson(id).subscribe(()=> {
+    const { id } = element;
+    if (confirm('Do you want to delete?') && id) {
+      this.personService.deletePerson(id).subscribe(() => {
         this.loadData();
-      })
+      });
     }
   }
 }
