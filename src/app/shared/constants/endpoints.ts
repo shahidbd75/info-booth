@@ -39,6 +39,7 @@ export const API_ENDPOINT_CONST: APIEndPoints = {
   },
   COMMON: {
     LANGUAGE_BASE: `${BASE_URL}Language`,
+    AGENT_BASE: `${BASE_URL}Agent`,
   },
   CV: {
     DEGREE_BASE: `${BASE_URL}Degrees`,
@@ -120,6 +121,9 @@ export const API_ENDPOINT_CONST: APIEndPoints = {
     LOGIN: `${BASE_URL}Auth/login`,
     SIGNUP: `${BASE_URL}Auth/signup`,
   },
+  USERS: {
+    BASE_URL: `${BASE_URL}Users`,
+  },
 };
 
 export interface APIEndPoints {
@@ -135,6 +139,7 @@ export interface APIEndPoints {
   CV_OPTIONS: CvOptions;
   CV_ENUM_OPTIONS: CvEnumOptions;
   AUTH: Auth;
+  USERS: Users;
 }
 
 export interface BuySell {
@@ -179,6 +184,7 @@ export interface Book {
 }
 
 export interface Common {
+  AGENT_BASE: string;
   LANGUAGE_BASE: string;
 }
 
@@ -217,6 +223,10 @@ export interface CvOptions {
 export interface Auth {
   LOGIN: string;
   SIGNUP: string;
+}
+
+export interface Users {
+  BASE_URL: string;
 }
 
 export interface CvEnumOptions {

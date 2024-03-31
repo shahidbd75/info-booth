@@ -1,7 +1,8 @@
-export type SignUpRequestModel = {
+export type UserResponseModel = {
   userName: string;
-  password: string;
+  id: string;
   fullName: string;
   phone: string;
   agentId: string;
+  agentName: string;
 };

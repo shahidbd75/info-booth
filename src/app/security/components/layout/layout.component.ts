@@ -8,7 +8,10 @@ import { GlobalDataContextService } from 'src/app/shared/services/global-data-co
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
-  userMenu: MenuType[] = [{ text: 'users', link: 'user/users' }];
+  userMenu: MenuType[] = [
+    { text: 'Users', link: 'user/users' },
+    { text: 'Agents', link: 'user/agents' },
+  ];
   constructor(private globalDataContextService: GlobalDataContextService) {
     this.globalDataContextService.menus$.next(this.userMenu);
   }

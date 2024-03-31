@@ -4,8 +4,8 @@
     <mat-card-subtitle>User</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <form [formGroup]="signUpFormGroup">
-      <div class="row">
+    <form [formGroup]="signUpFormGroup" class="row">
+      <div class="col-lg-6 col-md-12">
         <div class="form-group">
           <label for="txtUserName">User Name</label>
           <input type="text" class="form-control" formControlName="userName" id="txtUserName" placeholder="Please enter user name" />
@@ -22,11 +22,24 @@
           <label for="txtPhone">Phone</label>
           <input type="text" class="form-control" formControlName="phone" id="txtPhone" placeholder="Please enter phone number" />
         </div>
+        <div class="form-group">
+          <label for="ddlAgent">Agent</label>
+          <ng-select
+            [items]="agents$ | async"
+            id="agentId"
+            [searchable]="true"
+            bindValue="id"
+            bindLabel="name"
+            formControlName="agentId"
+            placeholder="Please select agent"></ng-select>
+        </div>
       </div>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="onSave()" class="mx-2" color="primary" [disabled]="signUpFormGroup.invalid">Signup</button>
+    <button mat-raised-button (click)="onSave()" class="mx-2" color="primary" [disabled]="signUpFormGroup.invalid">Create</button>
+    <!-- <button mat-raised-button (click)="onSave()" class="mx-2" color="primary" [disabled]="signUpFormGroup.invalid">Update</button> -->
     <button mat-raised-button (click)="signUpFormGroup.reset()" color="accent">Clear</button>
+    <button mat-raised-button routerLink="../..">Back</button>
   </mat-card-actions>
 </mat-card>
