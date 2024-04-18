@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 import { PersonCreateRequestModel, PersonResponseModel, PersonUpdateRequestModel } from '../types/person.model';
 import { OptionsModel } from 'src/app/shared/models/options-model';
+import { PagedRequestModel } from 'src/app/shared/models/paged-request-model';
+import { PagedResponseModel } from 'src/app/shared/models/paged-list-response';
 
 @Injectable()
 export class PersonService {
@@ -33,5 +35,18 @@ export class PersonService {
 
   getPersonOptions(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(`${this.person_url}/options`);
+  }
+
+  search(requestModel: PagedRequestModel): Observable<PagedResponseModel<PersonResponseModel>> {
+    const httpParams = {
+      page: requestModel.page,
+      pageSize: requestModel.pageSize,
+      searchTerm: requestModel.searchTerm ?? '',
+      sortColumn: requestModel.sortColumn ?? '',
+      sortOrder: requestModel.sortOrder ?? '',
+    };
+    return this.http.get<PagedResponseModel<PersonResponseModel>>(`${this.person_url}/search`, {
+      params: httpParams,
+    });
   }
 }

@@ -1,20 +1,23 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
+import { Subscription, debounceTime, map, merge } from 'rxjs';
 import { PersonResponseModel } from '../../types/person.model';
 import { Router } from '@angular/router';
 import { PersonService } from '../../services/person.service';
 import { Gender } from '../../enums/gender.enum';
+import { PagedRequestModel } from 'src/app/shared/models/paged-request-model';
+import { PagedResponseModel } from 'src/app/shared/models/paged-list-response';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-persons',
   templateUrl: './persons.component.html',
   styleUrls: ['./persons.component.scss'],
 })
-export class PersonsComponent implements OnInit, OnDestroy {
+export class PersonsComponent implements OnInit, OnDestroy, AfterViewInit {
   displayedColumns: string[] = ['name', 'phone', 'gender', 'degreeName', 'address', 'actions'];
   dataSource = new MatTableDataSource<PersonResponseModel>();
   selection = new SelectionModel<PersonResponseModel>(true, []);
@@ -24,10 +27,10 @@ export class PersonsComponent implements OnInit, OnDestroy {
   page = 1;
   count = 100;
   pageEvent: PageEvent;
-  keyword = '';
   sortField = 'name';
   sortOrder = 'asc';
   gender = Gender;
+  searchControl = new FormControl('');
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -35,41 +38,44 @@ export class PersonsComponent implements OnInit, OnDestroy {
     private personService: PersonService,
     private router: Router
   ) {}
-
-  ngOnInit() {
-    this.loadData();
-  }
-
-  loadData() {
-    this.isLoading = true;
-    this.subscription$ = this.personService.getAllPersons().subscribe(_items => {
-      this.dataSource = new MatTableDataSource(_items);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.isLoading = false;
-      this.sortChange();
+  ngAfterViewInit(): void {
+    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+    this.subscription$ = merge(
+      this.paginator.page,
+      this.sort.sortChange,
+      this.searchControl.valueChanges.pipe(
+        debounceTime(500),
+        map(f => f?.trim())
+      )
+    ).subscribe({
+      next: () => {
+        this.load();
+      },
     });
   }
-  onFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  ngOnInit() {
+    this.load();
   }
 
-  onPageChange(event: PageEvent): void {
-    console.log(event);
-    this.page = event.pageIndex;
-    this.pageSize = event.pageSize;
-  }
+  load() {
+    this.isLoading = true;
+    this.page = this.paginator?.pageIndex > 0 ? this.paginator?.pageIndex : this.page;
+    this.pageSize = this.paginator?.pageSize ?? this.pageSize;
+    this.sortField = this.sort?.active ?? this.sortField;
+    this.sortOrder = this.sort?.direction ?? this.sortOrder;
 
-  sortChange() {
-    this.sort.sortChange.subscribe((_sort: Sort) => {
-      this.page = 0;
-      this.sortField = _sort.active;
-      this.sortOrder = _sort.direction;
+    const requestModel: PagedRequestModel = {
+      page: this.page,
+      pageSize: this.pageSize,
+      searchTerm: this.searchControl.value,
+      sortColumn: this.sortField,
+      sortOrder: this.sortOrder,
+    };
+    this.subscription$ = this.personService.search(requestModel).subscribe((response: PagedResponseModel<PersonResponseModel>) => {
+      this.dataSource = new MatTableDataSource(response.items);
+      this.count = response.totalCount;
+      this.isLoading = false;
     });
   }
 
@@ -88,7 +94,7 @@ export class PersonsComponent implements OnInit, OnDestroy {
     const { id } = element;
     if (confirm('Do you want to delete?') && id) {
       this.personService.deletePerson(id).subscribe(() => {
-        this.loadData();
+        this.load();
       });
     }
   }

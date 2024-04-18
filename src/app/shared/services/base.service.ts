@@ -1,6 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Params } from '@angular/router';
 import { Observable } from 'rxjs';
+import { PagedRequestModel } from '../models/paged-request-model';
+import { PagedResponseModel } from '../models/paged-list-response';
 
 @Injectable()
 export class BaseHttpService {
@@ -29,5 +32,31 @@ export class BaseHttpService {
 
   getAll<TResponseModel>(): Observable<TResponseModel[]> {
     return this.http.get<TResponseModel[]>(this.BASE_URL);
+  }
+
+  search<T extends PagedRequestModel, R>(requestModel: T): Observable<PagedResponseModel<R>> {
+    return this.http.get<PagedResponseModel<R>>(`${this.BASE_URL}`, {
+      params: this.setParameter(requestModel),
+    });
+  }
+
+  private setParameter<T extends PagedRequestModel>(requestModel: T): HttpParams {
+    const { page, pageSize, searchTerm, sortColumn, sortOrder, ...restParams } = requestModel;
+
+    const httpParams = new HttpParams();
+
+    httpParams.append('page', requestModel.page);
+    httpParams.append('pageSize', requestModel.pageSize);
+    httpParams.append('searchTerm', requestModel.searchTerm ?? '');
+    httpParams.append('sortColumn', requestModel.sortColumn ?? '');
+    httpParams.append('sortOrder', requestModel.sortOrder ?? '');
+
+    // Object.keys(restParams).forEach(key => {
+    //   const value = restParams[key];
+    //   if (value !== null) {
+    //     httpParams.append(key, value.toString());
+    //   }
+    // });
+    return httpParams;
   }
 }

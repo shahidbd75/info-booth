@@ -30,13 +30,20 @@ export class AuthDataService {
       return false;
     }
 
-    const userDetails = this.jwtHelper.decodeToken(token);
-    this.authenticateUserSig.set(<JwtClaimsTypes>userDetails);
+    const userDetails: JwtClaimsTypes = <JwtClaimsTypes>this.jwtHelper.decodeToken(token);
+
+    this.authenticateUserSig.set(userDetails);
     return userDetails !== undefined && userDetails !== null;
   }
 
   logout() {
     localStorage.setItem('auth_token', '');
     this.authenticateUserSig.set(null);
+  }
+
+  private isTokenExpire(tokenDetail: JwtClaimsTypes): boolean {
+    console.log(tokenDetail.exp);
+    console.log(+new Date());
+    return tokenDetail.exp < Date.now();
   }
 }
