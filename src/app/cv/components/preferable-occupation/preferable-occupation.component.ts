@@ -45,5 +45,7 @@ export class PreferableOccupationComponent implements OnInit, OnDestroy {
     console.log('destroy');
   }
 
-  onClear() {}
+  onClear() {
+    this.pOFormGroup.reset();
+  }
 }

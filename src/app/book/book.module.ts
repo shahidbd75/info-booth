@@ -17,7 +17,6 @@ import { SharedModule } from '../shared/shared.module';
 import { BookCategoryService } from './services/book-category.service';
 import { EditionService } from './services/edition.service';
 import { BookService } from './services/book.service';
-import { GlobalDataContextService } from '../shared/services/global-data-context.service';
 
 @NgModule({
   declarations: [BookCategoriesComponent, BookCategoryComponent, EditionsComponent, EditionComponent, BooksComponent, BookComponent, LayoutComponent],

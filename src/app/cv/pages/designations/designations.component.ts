@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonResponseModel } from '../../types/common-response-type';
 import { DesignationService } from '../../services/designation.service';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './designations.component.html',
   styleUrls: ['./designations.component.scss'],
 })
-export class DesignationsComponent {
+export class DesignationsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'banglaName', 'createdDate', 'actions'];
   dataSource = new MatTableDataSource<CommonResponseModel>();
   isLoading = false;

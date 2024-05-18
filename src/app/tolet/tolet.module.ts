@@ -14,7 +14,6 @@ import { PersonService } from '../personnel/services/person.service';
 import { ToletService } from './services/tolet.service';
 import { ToletOptionsService } from './services/tolet-options.service';
 import { VillageModule } from '../shared/modules/village-select/village.module';
-import { GlobalDataContextService } from '../shared/services/global-data-context.service';
 
 @NgModule({
   declarations: [ToletsComponent, LayoutComponent, ToletComponent],

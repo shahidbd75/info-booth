@@ -1,6 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PagedRequestModel } from '../models/paged-request-model';
 import { PagedResponseModel } from '../models/paged-list-response';
@@ -45,18 +44,12 @@ export class BaseHttpService {
 
     const httpParams = new HttpParams();
 
-    httpParams.append('page', requestModel.page);
-    httpParams.append('pageSize', requestModel.pageSize);
-    httpParams.append('searchTerm', requestModel.searchTerm ?? '');
-    httpParams.append('sortColumn', requestModel.sortColumn ?? '');
-    httpParams.append('sortOrder', requestModel.sortOrder ?? '');
+    httpParams.append('page', page);
+    httpParams.append('pageSize', pageSize);
+    httpParams.append('searchTerm', searchTerm ?? '');
+    httpParams.append('sortColumn', sortColumn ?? '');
+    httpParams.append('sortOrder', sortOrder ?? '');
 
-    // Object.keys(restParams).forEach(key => {
-    //   const value = restParams[key];
-    //   if (value !== null) {
-    //     httpParams.append(key, value.toString());
-    //   }
-    // });
     return httpParams;
   }
 }

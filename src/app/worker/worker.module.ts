@@ -11,7 +11,6 @@ import { WorkerService } from './services/worker.service';
 import { WorkersComponent } from './pages/workers/workers.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PersonService } from '../personnel/services/person.service';
-import { GlobalDataContextService } from '../shared/services/global-data-context.service';
 
 const routes: Routes = [
   {
