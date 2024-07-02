@@ -8,5 +8,5 @@ export const BaseMenus: MenuType[] = [
   { text: 'Books', link: 'book/books' },
   { text: 'CVs', link: 'cv/degrees' },
   { text: 'Security', link: 'user/users' },
-  { text: 'Tution', link: 'tution/posts' },
+  { text: 'Tuition', link: 'tuition/posts' },
 ];

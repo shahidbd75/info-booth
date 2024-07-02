@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
       { path: 'cv', loadChildren: () => import('./cv/cv.module').then(m => m.CvModule) },
       { path: 'user', loadChildren: () => import('./security/security.module').then(m => m.SecurityModule) },
-      { path: 'tution', loadChildren: () => import('./tution/tution.module').then(m => m.TutionModule) },
+      { path: 'tuition', loadChildren: () => import('./tuition/tuition.module').then(m => m.TuitionModule) },
       { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ],

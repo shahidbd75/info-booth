@@ -1,0 +1,64 @@
+<form [formGroup]="tutorForm">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Tutor Entry</mat-card-title>
+      <mat-card-subtitle>Tuition</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <div class="g-3 pt-2">
+        <div class="row">
+          <div class="col-md-4 col-xs-12">
+            <label for="person" class="form-label">Person</label>
+            <ng-select
+              [items]="persons$ | async"
+              id="person"
+              [searchable]="true"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="id"
+              placeholder="Please select person"></ng-select>
+          </div>
+          <div class="col-md-4">
+            <label for="subject" class="form-label">Subject</label>
+            <ng-select
+              [items]="subjects$ | async"
+              id="subject"
+              [searchable]="true"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="subjectId"
+              placeholder="Please select subject"></ng-select>
+          </div>
+          <div class="col-md-4">
+            <label for="degreeId" class="form-label">Degree</label>
+            <ng-select
+              [items]="degrees$ | async"
+              id="degreeId"
+              [searchable]="true"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="degreeId"
+              placeholder="Please select degree"></ng-select>
+          </div>
+          <div class="col-md-4">
+            <label for="institute" class="form-label">Institute</label>
+            <input type="text" formControlName="institute" class="form-control" id="institute" />
+          </div>
+          <div class="col-md-4">
+            <label for="experience" class="form-label">Experience</label>
+            <input type="text" formControlName="experience" class="form-control" id="experience" />
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-button-container">
+      <button mat-raised-button color="primary" (click)="onTutorAdd()" [disabled]="!tutorForm.valid" *ngIf="!isEditMode">Add</button>
+      <button mat-raised-button color="primary" (click)="onTutorUpdate()" [disabled]="!tutorForm.valid" *ngIf="isEditMode">Update</button>
+      <button mat-raised-button (click)="resetForm()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

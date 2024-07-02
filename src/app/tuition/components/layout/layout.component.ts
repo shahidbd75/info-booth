@@ -9,8 +9,8 @@ import { GlobalDataContextService } from 'src/app/shared/services/global-data-co
 })
 export class LayoutComponent {
   cvMenus: MenuType[] = [
-    { text: 'Posts', link: 'tution/posts' },
-    { text: 'Tutors', link: 'tution/tutors' },
+    { text: 'Posts', link: 'tuition/posts' },
+    { text: 'Tutors', link: 'tuition/tutors' },
   ];
 
   constructor(private globalDataContextService: GlobalDataContextService) {

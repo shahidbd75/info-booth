@@ -124,6 +124,10 @@ export const API_ENDPOINT_CONST: APIEndPoints = {
   USERS: {
     BASE_URL: `${BASE_URL}Users`,
   },
+  TUITIONS: {
+    TUTOR_BASE: `${BASE_URL}Tutor`,
+    TUITIONPOST_BASE: `${BASE_URL}TuitionPost`,
+  },
 };
 
 export interface APIEndPoints {
@@ -140,6 +144,7 @@ export interface APIEndPoints {
   CV_ENUM_OPTIONS: CvEnumOptions;
   AUTH: Auth;
   USERS: Users;
+  TUITIONS: Tuition;
 }
 
 export interface BuySell {
@@ -186,6 +191,11 @@ export interface Book {
 export interface Common {
   AGENT_BASE: string;
   LANGUAGE_BASE: string;
+}
+
+export interface Tuition {
+  TUTOR_BASE: string;
+  TUITIONPOST_BASE: string;
 }
 
 export interface Cv {
