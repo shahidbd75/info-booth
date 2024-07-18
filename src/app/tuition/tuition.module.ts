@@ -15,10 +15,11 @@ import { TutorService } from './services/tutor.service';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PersonService } from '../personnel/services/person.service';
 import { CvOptionsService } from '../cv/services/cv-options.service';
+import { TuitionPostService } from './services/tuition-post.service';
 
 @NgModule({
   declarations: [TutorsComponent, TutorComponent, TutionPostsComponent, TutionPostComponent, LayoutComponent],
   imports: [CommonModule, TutionRoutingModule, RouterModule, MaterialModule, FormsModule, SharedModule, ReactiveFormsModule, NgSelectModule],
-  providers: [TutorService, PersonService, CvOptionsService],
+  providers: [TutorService, PersonService, CvOptionsService, TuitionPostService],
 })
 export class TuitionModule {}
