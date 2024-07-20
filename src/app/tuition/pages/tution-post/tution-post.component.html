@@ -1,1 +1,74 @@
-<p>tution-post works!</p>
+<form [formGroup]="tuitionPostForm">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Tuition Post</mat-card-title>
+      <mat-card-subtitle>Tuition</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <div class="g-3 pt-2">
+        <div class="row">
+          <div class="col-md-4 col-xs-12">
+            <label for="person" class="form-label">Tutor</label>
+            <ng-select
+              [items]="tutors$ | async"
+              id="person"
+              [searchable]="true"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="id"
+              placeholder="Please select tutor"></ng-select>
+          </div>
+          <div class="col-md-4">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" formControlName="title" class="form-control" id="title" />
+          </div>
+          <div class="col-md-4">
+            <label for="description" class="form-label">Description</label>
+            <textarea formControlName="description" class="form-control" id="description"></textarea>
+          </div>
+          <div class="col-md-4">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" formControlName="salary" class="form-control" id="salary" />
+            <mat-checkbox color="primary" formControlName="isNegotiable">Is negotiable?</mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <label for="medium" class="form-label">Medium</label>
+            <input type="text" formControlName="medium" class="form-control" id="medium" />
+          </div>
+          <div class="col-md-4 pt-4">
+            <mat-checkbox id="availability" color="primary" [checked]="true" formControlName="availability">
+              <label for="availability">Is Availability</label>
+            </mat-checkbox>
+          </div>
+          <div class="col-md-4">
+            <label for="validityInDays" class="form-label">Available Days</label>
+            <input type="text" formControlName="validityInDays" class="form-control" id="validityInDays" />
+          </div>
+          <div class="col-md-4">
+            <label for="preferableGender" class="form-label">Preferable Gender</label>
+            <input type="text" formControlName="preferableGender" class="form-control" id="preferableGender" />
+          </div>
+          <div class="col-md-4">
+            <label for="teachingMethod" class="form-label">Teaching Method</label>
+            <input type="text" formControlName="teachingMethod" class="form-control" id="teachingMethod" />
+          </div>
+          <div class="col-md-4">
+            <label for="timeSlot" class="form-label">Time Slot</label>
+            <input type="text" formControlName="timeSlot" class="form-control" id="timeSlot" />
+          </div>
+          <div class="col-md-4">
+            <label for="address" class="form-label">Address</label>
+            <textarea formControlName="address" class="form-control" id="address"></textarea>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="action-button-container">
+      <button mat-raised-button color="primary" (click)="onTutorAdd()" [disabled]="!tuitionPostForm.valid" *ngIf="!isEditMode">Add</button>
+      <button mat-raised-button color="primary" (click)="onTutorUpdate()" [disabled]="!tuitionPostForm.valid" *ngIf="isEditMode">Update</button>
+      <button mat-raised-button (click)="resetForm()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
