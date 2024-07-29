@@ -18,6 +18,8 @@ export const API_ENDPOINT_CONST: APIEndPoints = {
     OPTION_BASE: `${BASE_URL}Options`,
     RELIGIONS: `${BASE_URL}Options/religions`,
     CONDITIONS: `${BASE_URL}Options/conditions`,
+    GET_GENDERS: `${BASE_URL}Options/genders`,
+    GET_WEEK_DAYS: `${BASE_URL}Options/daysOfWeek`,
   },
   LOCATION: {
     VILLAGE_BASE: `${BASE_URL}Villages`,
@@ -127,6 +129,8 @@ export const API_ENDPOINT_CONST: APIEndPoints = {
   TUITIONS: {
     TUTOR_BASE: `${BASE_URL}Tutor`,
     TUITIONPOST_BASE: `${BASE_URL}TuitionPost`,
+    TUITIONPOST_GET_MEDIUMS: `${BASE_URL}TuitionPost/mediums`,
+    TUITIONPOST_GET_TEACHING_METHODS: `${BASE_URL}TuitionPost/methods`,
   },
 };
 
@@ -164,6 +168,8 @@ export interface Options {
   OPTION_BASE: string;
   RELIGIONS: string;
   CONDITIONS: string;
+  GET_GENDERS: string;
+  GET_WEEK_DAYS: string;
 }
 
 export interface Location {
@@ -196,6 +202,8 @@ export interface Common {
 export interface Tuition {
   TUTOR_BASE: string;
   TUITIONPOST_BASE: string;
+  TUITIONPOST_GET_MEDIUMS: string;
+  TUITIONPOST_GET_TEACHING_METHODS: string;
 }
 
 export interface Cv {

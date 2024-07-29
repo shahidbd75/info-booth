@@ -1,3 +1,4 @@
+import { NotificationMessage } from './../../../shared/constants/notification-message';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import { VillageCreateRequestModel, VillageResponseModel, VillageUpdateRequestModel } from '../../types/village.model';
 import { OptionsService } from 'src/app/shared/services/options.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 
 @Component({
   selector: 'app-village',
@@ -22,7 +24,8 @@ export class VillageComponent implements OnInit {
     private fb: FormBuilder,
     private villageService: VillageService,
     private router: Router,
-    private optionsService: OptionsService
+    private optionsService: OptionsService,
+    private snackbarService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +60,8 @@ export class VillageComponent implements OnInit {
     const requestModel: VillageCreateRequestModel = this.villageForm.value;
 
     this.villageService.saveVillage(requestModel).subscribe(() => {
-      this.reset();
+      this.snackbarService.success(NotificationMessage.SavedSuccessfully);
+      this.villageForm.controls['name'].reset();
     });
   }
 
@@ -65,6 +69,7 @@ export class VillageComponent implements OnInit {
     const updateModel: VillageUpdateRequestModel = this.villageForm.value;
 
     this.villageService.updateVillage(updateModel).subscribe(() => {
+      this.snackbarService.success(NotificationMessage.UpdatedSuccessfully);
       this.reset();
     });
   }

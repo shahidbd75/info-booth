@@ -12,6 +12,8 @@ export type TutionPostResponseModel = {
   timeSlot: string;
   tutorId: string;
   tutorName: string;
+  preferredAreas: string[];
+  startFrom: Date;
 };
 
 export type TuitionPostCreateRequestModel = {
@@ -20,13 +22,15 @@ export type TuitionPostCreateRequestModel = {
   salary: number;
   isNegotiable: boolean;
   medium: string;
-  availability: string;
+  availability: string[];
   validityInDays: number;
   preferableGender: number;
+  preferredAreas: string[];
   address: string;
   teachingMethod: string;
   timeSlot: string;
   tutorId: string;
+  startFrom: Date;
 };
 
 export type TuitionPostUpdateRequestModel = TuitionPostCreateRequestModel;

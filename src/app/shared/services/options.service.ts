@@ -18,8 +18,12 @@ export class OptionsService {
     return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.OPTION_BASE}/upazilas/${districtId}`);
   }
 
-  getVillages(upazilaId: string): Observable<Array<OptionsModel>> {
+  getVillages(upazilaId: number): Observable<Array<OptionsModel>> {
     return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.OPTION_BASE}/vilages/${upazilaId}`);
+  }
+
+  getVillagesByDistrict(districtId: number): Observable<Array<OptionsModel>> {
+    return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.OPTION_BASE}/villagesByDistrict/${districtId}`);
   }
 
   getGoodAts(): Observable<Array<OptionsModel>> {
@@ -35,5 +39,13 @@ export class OptionsService {
   }
   getDegrees(): Observable<OptionsModel[]> {
     return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.CV_OPTIONS.GET_DEGREES}`);
+  }
+
+  getGenders(): Observable<OptionsModel[]> {
+    return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.GET_GENDERS}`);
+  }
+
+  getWeekDays(): Observable<OptionsModel[]> {
+    return this.http.get<Array<OptionsModel>>(`${API_ENDPOINT_CONST.OPTIONS.GET_WEEK_DAYS}`);
   }
 }

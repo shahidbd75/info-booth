@@ -8,59 +8,120 @@
       <mat-divider></mat-divider>
       <div class="g-3 pt-2">
         <div class="row">
-          <div class="col-md-4 col-xs-12">
-            <label for="person" class="form-label">Tutor</label>
+          <div class="col-lg-8 col-md-12 col-xs-12">
+            <label for="tutorId" class="form-label">Tutor</label>
             <ng-select
               [items]="tutors$ | async"
-              id="person"
+              id="tutorId"
               [searchable]="true"
               [multiple]="false"
               bindValue="id"
               bindLabel="name"
-              formControlName="id"
+              formControlName="tutorId"
               placeholder="Please select tutor"></ng-select>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-8 col-md-12 col-xs-12">
             <label for="title" class="form-label">Title</label>
             <input type="text" formControlName="title" class="form-control" id="title" />
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-8 col-md-12 col-xs-12">
             <label for="description" class="form-label">Description</label>
             <textarea formControlName="description" class="form-control" id="description"></textarea>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-8 col-md-12 col-xs-12">
             <label for="salary" class="form-label">Salary</label>
-            <input type="number" formControlName="salary" class="form-control" id="salary" />
-            <mat-checkbox color="primary" formControlName="isNegotiable">Is negotiable?</mat-checkbox>
+            <div class="row">
+              <div class="col-8">
+                <input type="number" formControlName="salary" class="form-control" id="salary" />
+              </div>
+              <div class="col-4">
+                <mat-checkbox color="primary" formControlName="isNegotiable">Is negotiable?</mat-checkbox>
+              </div>
+            </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-8 col-md-12 col-xs-12">
             <label for="medium" class="form-label">Medium</label>
-            <input type="text" formControlName="medium" class="form-control" id="medium" />
+            <ng-select
+              [items]="medium$ | async"
+              id="medium"
+              [searchable]="false"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="medium"
+              placeholder="Please select medium"></ng-select>
           </div>
-          <div class="col-md-4 pt-4">
-            <mat-checkbox id="availability" color="primary" [checked]="true" formControlName="availability">
-              <label for="availability">Is Availability</label>
-            </mat-checkbox>
+          <div class="col-lg-8 col-md-12 col-xs-12">
+            <label for="availability" class="form-label">Validity(Days)</label>
+            <input type="number" formControlName="validityInDays" class="form-control" id="validityInDays" />
           </div>
-          <div class="col-md-4">
-            <label for="validityInDays" class="form-label">Available Days</label>
-            <input type="text" formControlName="validityInDays" class="form-control" id="validityInDays" />
+          <div class="col-lg-8 col-md-12 col-xs-12">
+            <label for="availability" class="form-label">Available Days</label>
+            <ng-select
+              [items]="weekDays$ | async"
+              id="availability"
+              [searchable]="true"
+              [multiple]="true"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="availability"
+              placeholder="Please select available days"></ng-select>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-8 col-md-12 col-xs-12">
             <label for="preferableGender" class="form-label">Preferable Gender</label>
-            <input type="text" formControlName="preferableGender" class="form-control" id="preferableGender" />
+            <ng-select
+              [items]="genders$ | async"
+              id="preferableGender"
+              [searchable]="false"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="preferableGender"
+              placeholder="Please select gender"></ng-select>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-8 col-md-12 col-xs-12">
             <label for="teachingMethod" class="form-label">Teaching Method</label>
-            <input type="text" formControlName="teachingMethod" class="form-control" id="teachingMethod" />
+            <ng-select
+              [items]="method$ | async"
+              id="teachingMethod"
+              [searchable]="false"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="teachingMethod"
+              placeholder="Please select medium"></ng-select>
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-8 col-md-12 col-xs-12">
             <label for="timeSlot" class="form-label">Time Slot</label>
             <input type="text" formControlName="timeSlot" class="form-control" id="timeSlot" />
           </div>
-          <div class="col-md-4">
+          <div class="col-lg-8 col-md-12 col-xs-12">
             <label for="address" class="form-label">Address</label>
             <textarea formControlName="address" class="form-control" id="address"></textarea>
+          </div>
+          <div class="col-lg-8 col-md-12 col-xs-12">
+            <label for="districts" class="form-label">District</label>
+            <ng-select
+              [items]="districts$ | async"
+              id="districts"
+              [searchable]="true"
+              [multiple]="false"
+              bindValue="id"
+              bindLabel="name"
+              (change)="loadAreas($event)"
+              placeholder="Please select district"></ng-select>
+          </div>
+          <div class="col-lg-8 col-md-12 col-xs-12">
+            <label for="address" class="form-label">Areas</label>
+            <ng-select
+              [items]="areas$ | async"
+              id="preferredAreas"
+              [searchable]="true"
+              [multiple]="true"
+              bindValue="id"
+              bindLabel="name"
+              formControlName="preferredAreas"
+              placeholder="Please select area"></ng-select>
           </div>
         </div>
       </div>

@@ -85,7 +85,7 @@ export class TutionPostsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onEdit(element: TutionPostResponseModel) {
     this.tuitionPostService.selectedTuition = element;
-    this.router.navigate([`tuition/tutor`]);
+    this.router.navigate([`tuition/post`]);
   }
 
   onDelete(element: TutionPostResponseModel) {

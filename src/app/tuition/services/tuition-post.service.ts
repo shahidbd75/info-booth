@@ -37,6 +37,14 @@ export class TuitionPostService {
     return this.http.get<OptionsModel[]>(`${this.tuition_post_url}/options`);
   }
 
+  getTuitionMedium(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(`${API_ENDPOINT_CONST.TUITIONS.TUITIONPOST_GET_MEDIUMS}`);
+  }
+
+  getTuitionMethod(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(`${API_ENDPOINT_CONST.TUITIONS.TUITIONPOST_GET_TEACHING_METHODS}`);
+  }
+
   search(requestModel: PagedRequestModel): Observable<PagedResponseModel<TutionPostResponseModel>> {
     const httpParams = {
       page: requestModel.page,
