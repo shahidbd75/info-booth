@@ -14,6 +14,9 @@ export type TutionPostResponseModel = {
   tutorName: string;
   preferredAreas: string[];
   startFrom: Date;
+  methodName: string;
+  mediumName: string;
+  genderName: string;
 };
 
 export type TuitionPostCreateRequestModel = {
