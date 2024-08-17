@@ -155,8 +155,8 @@ export class EducationComponent implements OnInit, OnDestroy {
       group: formData.group,
       startDate: !this.isNullOrEmpty(formData.startDate) ? new Date(formData.startDate) : null,
       endDate: !this.isNullOrEmpty(formData.endDate) ? new Date(formData.endDate) : null,
-      gpa: +formData.gpa ?? null,
-      gpaOutOf: +formData.gpaOutOf ?? null,
+      gpa: +formData.gpa,
+      gpaOutOf: +formData.gpaOutOf,
       id: formData.id,
       result: formData.result,
     };
