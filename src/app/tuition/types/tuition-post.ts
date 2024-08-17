@@ -1,4 +1,5 @@
 export type TutionPostResponseModel = {
+  id: string;
   title: string;
   description: string;
   salary: number;
@@ -17,9 +18,11 @@ export type TutionPostResponseModel = {
   methodName: string;
   mediumName: string;
   genderName: string;
+  district: number;
 };
 
 export type TuitionPostCreateRequestModel = {
+  id: string;
   title: string;
   description: string;
   salary: number;

@@ -18,7 +18,6 @@ export class AuthDataService {
       tap((data: LoginResponseModel) => {
         const userDetails = this.jwtHelper.decodeToken(data.token);
         this.authenticateUserSig.set(<JwtClaimsTypes>userDetails);
-        console.log(userDetails);
       })
     );
   }
@@ -31,6 +30,10 @@ export class AuthDataService {
     }
 
     const userDetails: JwtClaimsTypes = <JwtClaimsTypes>this.jwtHelper.decodeToken(token);
+
+    if (userDetails.exp * 1000 < Math.floor(Date.now())) {
+      return false;
+    }
 
     this.authenticateUserSig.set(userDetails);
     return userDetails !== undefined && userDetails !== null;

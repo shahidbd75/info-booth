@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TuitionPostService } from '../../services/tuition-post.service';
-import { TuitionPostCreateRequestModel, TuitionPostUpdateRequestModel } from '../../types/tuition-post';
+import { TuitionPostCreateRequestModel, TuitionPostUpdateRequestModel, TutionPostResponseModel } from '../../types/tuition-post';
 import { TutorService } from '../../services/tutor.service';
 
 @Component({
@@ -43,7 +43,9 @@ export class TutionPostComponent implements OnInit {
     if (this.tuitionPostService.selectedTuition) {
       const tuitionPost = this.tuitionPostService.selectedTuition;
 
-      this.tuitionPostForm.setValue({ ...tuitionPost });
+      console.log(tuitionPost);
+
+      this.updateFormData(tuitionPost);
       this.isEditMode = true;
 
       this.tuitionPostService.selectedTuition = null;
@@ -90,10 +92,31 @@ export class TutionPostComponent implements OnInit {
       timeSlot: [null, [Validators.maxLength(150)]],
       tutorId: [null, [Validators.required]],
       preferredAreas: [null],
+      district: [null],
     });
   }
 
   loadAreas(district: GenericOptionsModel<number>) {
     this.areas$ = this.optionsService.getVillagesByDistrict(district.id);
+  }
+
+  private updateFormData(model: TutionPostResponseModel) {
+    this.tuitionPostForm.setValue({
+      id: model.id,
+      title: model.title,
+      description: model.description,
+      salary: model.salary,
+      isNegotiable: model.isNegotiable,
+      medium: model.medium,
+      availability: model.availability,
+      validityInDays: model.validityInDays,
+      preferableGender: model.preferableGender,
+      address: model.address,
+      teachingMethod: model.teachingMethod,
+      timeSlot: model.timeSlot,
+      tutorId: model.tutorId,
+      preferredAreas: model.preferredAreas,
+      district: model.district,
+    });
   }
 }
