@@ -7,9 +7,9 @@ import { TrainingResponseTypes } from '../types/training-types';
 
 @Injectable()
 export class TrainingService extends BaseHttpService {
+  protected override BASE_URL: string = API_ENDPOINT_CONST.CV.TRAINING_BASE;
   constructor(http: HttpClient) {
     super(http);
-    this.setBaseUrl(API_ENDPOINT_CONST.CV.TRAINING_BASE);
   }
 
   getListsByPersonId(personId: string): Observable<Array<TrainingResponseTypes>> {

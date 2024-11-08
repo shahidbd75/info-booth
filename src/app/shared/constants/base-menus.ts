@@ -9,4 +9,5 @@ export const BaseMenus: MenuType[] = [
   { text: 'CVs', link: 'cv/degrees' },
   { text: 'Security', link: 'user/users' },
   { text: 'Tuition', link: 'tuition/posts' },
+  { text: 'Doctors', link: 'health/doctors' },
 ];

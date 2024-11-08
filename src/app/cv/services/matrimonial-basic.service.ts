@@ -7,9 +7,9 @@ import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 
 @Injectable()
 export class MatrimonialBasicCvService extends BaseHttpService {
+  protected override BASE_URL: string = API_ENDPOINT_CONST.CV.MATRIMONIAL_BASIC_BASE;
   constructor(http: HttpClient) {
     super(http);
-    this.setBaseUrl(API_ENDPOINT_CONST.CV.MATRIMONIAL_BASIC_BASE);
   }
 
   getSummeries(): Observable<MatrimonialTableResponse[]> {

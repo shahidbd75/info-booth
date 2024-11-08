@@ -5,13 +5,9 @@ import { PagedRequestModel } from '../models/paged-request-model';
 import { PagedResponseModel } from '../models/paged-list-response';
 
 @Injectable()
-export class BaseHttpService {
-  protected BASE_URL: string;
+export abstract class BaseHttpService {
+  protected abstract BASE_URL: string;
   constructor(protected http: HttpClient) {}
-
-  setBaseUrl(baseUrl: string): void {
-    this.BASE_URL = baseUrl;
-  }
 
   getById<TDetailResponseModel>(id: string | number): Observable<TDetailResponseModel> {
     return this.http.get<TDetailResponseModel>(`${this.BASE_URL}/${id}`);

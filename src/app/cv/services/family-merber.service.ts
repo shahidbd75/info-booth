@@ -7,9 +7,9 @@ import { FamilyMemberTableResponseType } from '../types/family-member-type';
 
 @Injectable()
 export class FamilyMerberService extends BaseHttpService {
+  protected override BASE_URL: string = API_ENDPOINT_CONST.CV.FAMILY_MEMBER_BASE;
   constructor(http: HttpClient) {
     super(http);
-    this.setBaseUrl(API_ENDPOINT_CONST.CV.FAMILY_MEMBER_BASE);
   }
 
   getFamilyMemerbersByPersonId(personId: string): Observable<FamilyMemberTableResponseType[]> {

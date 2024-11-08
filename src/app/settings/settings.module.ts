@@ -11,10 +11,11 @@ import { LanguageComponent } from './pages/language/language.component';
 import { LanguagesComponent } from './pages/languages/languages.component';
 import { LanguageService } from './services/language.service';
 import { LayoutComponent } from './components/layout/layout.component';
+import { BaseHttpService } from '../shared/services/base.service';
 
 @NgModule({
   declarations: [LayoutComponent, LanguageComponent, LanguagesComponent],
   imports: [CommonModule, SettingsRoutingModule, SharedModule, MaterialModule, FormsModule, ReactiveFormsModule, HttpClientModule, NgSelectModule],
-  providers: [LanguageService],
+  providers: [LanguageService, {provide: BaseHttpService, useClass: LanguageService}],
 })
 export class SettingsModule {}

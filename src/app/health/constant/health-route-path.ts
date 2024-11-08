@@ -1,5 +1,7 @@
 export const HealthRoutePath = {
     Root: '',
+    Specializations: 'specializations',
+    Doctors: 'doctors',
     Specialization: 'specialization',
-    doctor: 'doctor'
+    Doctor: 'doctor'
 }

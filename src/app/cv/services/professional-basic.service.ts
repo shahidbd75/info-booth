@@ -5,8 +5,9 @@ import { BaseHttpService } from 'src/app/shared/services/base.service';
 
 @Injectable()
 export class ProfessionalBasicService extends BaseHttpService {
+  protected override BASE_URL = API_ENDPOINT_CONST.CV.PROFESSIONAL_BASIC;
+
   constructor(http: HttpClient) {
     super(http);
-    this.setBaseUrl(API_ENDPOINT_CONST.CV.PROFESSIONAL_BASIC);
   }
 }

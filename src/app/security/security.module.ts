@@ -13,11 +13,15 @@ import { AgentComponent } from './components/agent/agent.component';
 import { AgentService } from './services/agent.service';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { OptionsService } from '../shared/services/options.service';
+import { BaseHttpService } from '../shared/services/base.service';
 
 @NgModule({
   declarations: [UserRegistrationComponent, UsersComponent, LayoutComponent, AgentsComponent, AgentComponent],
 
   imports: [CommonModule, SecurityRoutingModule, ReactiveFormsModule, MaterialModule, NgSelectModule],
-  providers: [UserService, AgentService, OptionsService],
+  providers: [UserService, AgentService, OptionsService,
+    { provide: BaseHttpService, useClass: UserService },
+    { provide: BaseHttpService, useClass: AgentService },
+  ],
 })
 export class SecurityModule {}

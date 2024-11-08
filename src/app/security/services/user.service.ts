@@ -7,9 +7,9 @@ import { BaseHttpService } from 'src/app/shared/services/base.service';
 
 @Injectable()
 export class UserService extends BaseHttpService {
+  protected override BASE_URL: string = API_ENDPOINT_CONST.USERS.BASE_URL;
   constructor(private httpClient: HttpClient) {
     super(httpClient);
-    this.setBaseUrl(API_ENDPOINT_CONST.USERS.BASE_URL);
   }
 
   signUp(requestModel: SignUpRequestModel): Observable<void> {

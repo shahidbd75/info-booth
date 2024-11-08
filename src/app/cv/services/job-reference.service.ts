@@ -7,9 +7,9 @@ import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 
 @Injectable()
 export class JobReferenceService extends BaseHttpService {
+  protected override BASE_URL: string = API_ENDPOINT_CONST.CV.JOB_REFERENCE_BASE;
   constructor(http: HttpClient) {
     super(http);
-    this.setBaseUrl(API_ENDPOINT_CONST.CV.JOB_REFERENCE_BASE);
   }
 
   getJobReferenceByPersonId(personId: string): Observable<JobReferenceResponseType[]> {

@@ -7,9 +7,9 @@ import { OptionsModel } from '../../shared/models/options-model';
 
 @Injectable()
 export class LanguageService extends BaseHttpService {
+  protected override BASE_URL:string = API_ENDPOINT_CONST.COMMON.LANGUAGE_BASE;
   constructor(http: HttpClient) {
     super(http);
-    this.setBaseUrl(API_ENDPOINT_CONST.COMMON.LANGUAGE_BASE);
   }
 
   getLanguageOptions(): Observable<Array<OptionsModel>> {

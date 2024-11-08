@@ -7,9 +7,9 @@ import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 
 @Injectable()
 export class ReligionInformationService extends BaseHttpService {
+  protected override BASE_URL = API_ENDPOINT_CONST.CV.RELIGION_INFO_BASE;
   constructor(http: HttpClient) {
     super(http);
-    this.setBaseUrl(API_ENDPOINT_CONST.CV.RELIGION_INFO_BASE);
   }
 
   getReligionParameters(personId: string): Observable<ReligionParametersType[]> {

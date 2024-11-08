@@ -10,12 +10,14 @@ import { HealthRoutePath } from './constant/health-route-path';
 })
 export class HealthComponent implements OnInit {
   cvMenus: MenuType[] = [
-    { text: HealthRoutePath.Specialization, link: 'health/specialization' },
-    { text: HealthRoutePath.Root, link: 'tuition/tutors' },
+    { text: 'Specializations', link: 'health/specializations' },
+    { text: 'Doctors', link: 'health/doctors' },
+    { text: 'Hospitals', link: 'health/hospitals' },
   ];
 
   constructor(private globalDataContextService: GlobalDataContextService) {
   }
+  
   ngOnInit(): void {
     this.globalDataContextService.menus$.next(this.cvMenus)
   }

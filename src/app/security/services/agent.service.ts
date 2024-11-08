@@ -7,9 +7,9 @@ import { BaseHttpService } from 'src/app/shared/services/base.service';
 
 @Injectable()
 export class AgentService extends BaseHttpService {
+  protected override BASE_URL: string = API_ENDPOINT_CONST.COMMON.AGENT_BASE;
   constructor(public httpClient: HttpClient) {
     super(httpClient);
-    this.setBaseUrl(API_ENDPOINT_CONST.COMMON.AGENT_BASE);
   }
 
   getOptions(): Observable<OptionsModel[]> {

@@ -7,9 +7,9 @@ import { EducationalResponseType } from '../types/educational-types';
 
 @Injectable()
 export class EducationService extends BaseHttpService {
+  protected override BASE_URL: string = API_ENDPOINT_CONST.CV.EDUCATION_BASE;
   constructor(http: HttpClient) {
     super(http);
-    this.setBaseUrl(API_ENDPOINT_CONST.CV.EDUCATION_BASE);
   }
 
   getAllByPersonId(personId: string): Observable<EducationalResponseType[]> {

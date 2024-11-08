@@ -7,9 +7,9 @@ import { ExperienceResponseType } from '../types/experience-types';
 
 @Injectable()
 export class ExperienceService extends BaseHttpService {
+  protected override BASE_URL: string = API_ENDPOINT_CONST.CV.EXPERIENCE_BASE;
   constructor(http: HttpClient) {
     super(http);
-    this.setBaseUrl(API_ENDPOINT_CONST.CV.EXPERIENCE_BASE);
   }
 
   getExperiencesByPersonId(personId: string): Observable<Array<ExperienceResponseType>> {
