@@ -30,22 +30,15 @@ export abstract class BaseHttpService {
   }
 
   search<T extends PagedRequestModel, R>(requestModel: T): Observable<PagedResponseModel<R>> {
-    return this.http.get<PagedResponseModel<R>>(`${this.BASE_URL}`, {
-      params: this.setParameter(requestModel),
+    const params = {
+      page: requestModel.page,
+      pageSize: requestModel.pageSize,
+      searchTerm: requestModel.searchTerm ?? '',
+      sortColumn: requestModel.sortColumn ?? '',
+      sortOrder: requestModel.sortOrder ?? '',
+    };
+    return this.http.get<PagedResponseModel<R>>(`${this.BASE_URL}/search`, {
+      params,
     });
-  }
-
-  private setParameter<T extends PagedRequestModel>(requestModel: T): HttpParams {
-    const { page, pageSize, searchTerm, sortColumn, sortOrder, ...restParams } = requestModel;
-
-    const httpParams = new HttpParams();
-
-    httpParams.append('page', page);
-    httpParams.append('pageSize', pageSize);
-    httpParams.append('searchTerm', searchTerm ?? '');
-    httpParams.append('sortColumn', sortColumn ?? '');
-    httpParams.append('sortOrder', sortOrder ?? '');
-
-    return httpParams;
   }
 }

@@ -132,6 +132,10 @@ export const API_ENDPOINT_CONST: APIEndPoints = {
     TUITIONPOST_GET_MEDIUMS: `${BASE_URL}TuitionPost/mediums`,
     TUITIONPOST_GET_TEACHING_METHODS: `${BASE_URL}TuitionPost/methods`,
   },
+  HEALTH: {
+    SPECIALIZATION_BASE: `${BASE_URL}Specializations`,
+    DOCTOR_BASE: `${BASE_URL}Doctors`,
+  }
 };
 
 export interface APIEndPoints {
@@ -149,6 +153,7 @@ export interface APIEndPoints {
   AUTH: Auth;
   USERS: Users;
   TUITIONS: Tuition;
+  HEALTH: Health;
 }
 
 export interface BuySell {
@@ -162,6 +167,11 @@ export interface BuySell {
 export interface Personnel {
   PERSON_BASE: string;
   OCCUPATION_BASE: string;
+}
+
+export interface Health {
+  DOCTOR_BASE: string;
+  SPECIALIZATION_BASE: string;
 }
 
 export interface Options {

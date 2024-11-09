@@ -19,7 +19,7 @@ export class HealthComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.globalDataContextService.menus$.next(this.cvMenus)
+    setTimeout(()=>this.globalDataContextService.menus$.next(this.cvMenus),500);
   }
 
 }
