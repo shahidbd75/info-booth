@@ -1,1 +1,101 @@
-<p>doctor works!</p>
+<form [formGroup]="formGroup">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Doctor Entry</mat-card-title>
+        <mat-card-subtitle>Health</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <div class="g-3 pt-2">
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="name" class="form-label">Person</label>
+              <ng-select
+                [items]="persons$ | async"
+                id="person"
+                [searchable]="true"
+                [multiple]="false"
+                bindValue="id"
+                bindLabel="name"
+                formControlName="id"
+                placeholder="Please select person"></ng-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="banglaName" class="form-label">Bangla Name</label>
+              <input type="text" formControlName="banglaName" class="form-control" id="banglaName" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="bmdcRegNo" class="form-label">BMDC Reg No.</label>
+                <input type="text" formControlName="bmdcRegNo" class="form-control" id="bmdcRegNo" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="degrees" class="form-label">Degrees</label>
+                <input type="text" formControlName="degrees" class="form-control" id="degrees" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="currentInstitute" class="form-label">Current Job</label>
+              <input type="text" formControlName="currentInstitute" class="form-control" id="currentInstitute" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="doctorsType" class="form-label">Type</label>
+                <ng-select
+                [items]="types$ | async"
+                id="doctorsType"
+                [searchable]="false"
+                [multiple]="false"
+                bindValue="id"
+                bindLabel="name"
+                formControlName="doctorsType"
+                placeholder="Please select types"></ng-select>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="nationality" class="form-label">Nationality</label>
+                <input type="text" formControlName="nationality" class="form-control" id="nationality" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="facebookLink" class="form-label">Facebook Profile</label>
+              <input type="url" formControlName="facebookLink" class="form-control" id="facebookLink" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="youtubeLink" class="form-label">Youtube Channel</label>
+                <input type="url" formControlName="youtubeLink" class="form-control" id="youtubeLink" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="linkedInLink" class="form-label">Linkedin Profile</label>
+                <input type="url" formControlName="linkedInLink" class="form-control" id="linkedInLink" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="specializations" class="form-label">Specialization</label>
+              <ng-select
+                [items]="specializations$ | async"
+                id="specializations"
+                [searchable]="true"
+                [multiple]="true"
+                bindValue="id"
+                bindLabel="name"
+                formControlName="specializations"
+                placeholder="Please select specialization"></ng-select>
+            </div>
+            <div class="col-md-8 col-xs-12">
+                <label for="details" class="form-label">Details</label>
+                <textarea type="text" formControlName="details" class="form-control" id="details" cols="3" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="action-button-container">
+        <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!formGroup.valid" *ngIf="!isEditMode">Add</button>
+        <button mat-raised-button color="primary" (click)="onUpdate()" [disabled]="!formGroup.valid" *ngIf="isEditMode">Update</button>
+        <button mat-raised-button (click)="resetForm()">Cancel</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

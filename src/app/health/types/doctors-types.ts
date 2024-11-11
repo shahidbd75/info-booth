@@ -11,6 +11,8 @@ export type DoctorsResponseModel = {
     currentInstitute: string;
     details:          string;
     doctorsType:      number;
+    createdDate: Date;
+    isActive: boolean;
 }
 
 export type DoctorsUpdateRequestModel = {

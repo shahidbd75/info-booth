@@ -15,6 +15,8 @@ import { SpecializationComponent } from './pages/specialization/specialization.c
 import { DoctorsComponent } from './pages/doctors/doctors.component';
 import { DoctorComponent } from './pages/doctor/doctor.component';
 import { DoctorsClientService } from './services/doctors-client.service';
+import { PersonService } from '../personnel/services/person.service';
+import { HealthOptionsService } from './services/health-options.service';
 
 
 @NgModule({
@@ -24,6 +26,6 @@ import { DoctorsClientService } from './services/doctors-client.service';
     HealthRoutingModule,
     MaterialModule,
     RouterModule, MaterialModule, FormsModule, SharedModule, ReactiveFormsModule, NgSelectModule,],
-  providers: [SpecializationClientService, {provide:BaseHttpService, useClass: SpecializationClientService}, DoctorsClientService,]
+  providers: [SpecializationClientService, {provide:BaseHttpService, useClass: SpecializationClientService}, DoctorsClientService, PersonService, HealthOptionsService]
 })
 export class HealthModule { }

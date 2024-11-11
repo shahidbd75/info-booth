@@ -17,7 +17,7 @@ import { PagedRequestModel } from 'src/app/shared/models/paged-request-model';
   styleUrl: './doctors.component.scss'
 })
 export class DoctorsComponent implements OnInit, OnDestroy, AfterViewInit {
-  displayedColumns: string[] = ['name', 'degrees', 'actions'];
+  displayedColumns: string[] = ['name', 'degrees','bmdcRegNo','doctorsType', 'actions'];
   dataSource = new MatTableDataSource<DoctorsResponseModel>();
   selection = new SelectionModel<DoctorsResponseModel>(true, []);
   isLoading = false;
