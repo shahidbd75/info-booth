@@ -10,6 +10,7 @@
           <div class="row">
             <div class="col-md-4 col-xs-12">
               <label for="name" class="form-label">Person</label>
+              <span class="text-danger">*</span>
               <ng-select
                 [items]="persons$ | async"
                 id="person"
@@ -74,6 +75,7 @@
           <div class="row">
             <div class="col-md-4 col-xs-12">
               <label for="specializations" class="form-label">Specialization</label>
+              <span class="text-danger">*</span>
               <ng-select
                 [items]="specializations$ | async"
                 id="specializations"

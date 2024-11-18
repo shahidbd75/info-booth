@@ -1,0 +1,42 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th.mat-header-cell {
+    background-color: #1976d2; /* Header background color */
+    color: white; /* Header text color */
+    font-weight: 600; /* Semi-bold header */
+    padding: 8px; /* Reduced padding for compactness */
+    text-align: left; /* Align text to the left */
+  }
+  
+  td.mat-cell {
+    padding: 8px; /* Reduced padding for compactness */
+    border-bottom: 1px solid #e0e0e0; /* Bottom border for cells */
+    font-size: 14px; /* Smaller font size for compactness */
+  }
+  
+  tr.mat-row:hover {
+    background-color: rgba(25, 118, 210, 0.1); /* Light blue background on hover */
+  }
+  
+  .mat-elevation-z8 {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+  }
+  
+  .mat-header-row {
+    height: 40px; /* Set header row height */
+  }
+  
+  .mat-row {
+    height: 40px; /* Set row height */
+  }
+  
+  /* Optional: Add some margin and padding for the table container */
+  .compact-table {
+    margin: 16px; /* Margin around the table */
+    border-radius: 4px; /* Rounded corners */
+    overflow: hidden; /* Ensures rounded corners are visible */
+    background-color: white; /* Background color for the table */
+  }

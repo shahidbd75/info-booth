@@ -23,3 +23,8 @@ export type DoctorsCreateRequestModel = DoctorsUpdateRequestModel & {
     id: string;
 }
 
+export enum DoctorsType {
+    MBBS = 1,
+    Homeo = 2,
+    Unani = 3,
+}

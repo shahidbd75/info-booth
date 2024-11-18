@@ -3,5 +3,7 @@ export const HealthRoutePath = {
     Specializations: 'specializations',
     Doctors: 'doctors',
     Specialization: 'specialization',
-    Doctor: 'doctor'
+    Doctor: 'doctor',
+    Hospitals: 'hospitals',
+    Hospital: 'hospital',
 }

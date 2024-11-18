@@ -31,8 +31,8 @@ export class DoctorComponent {
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      id: [null],
-      bmdcRegNo: ['', [Validators.required]],
+      id: [null, [Validators.required]],
+      bmdcRegNo: ['', [Validators.required, Validators.minLength(4)]],
       banglaName: ['', ],
       degrees: [''],
       specializations: [null, [Validators.required]],
@@ -42,7 +42,7 @@ export class DoctorComponent {
       youtubeLink: [''],
       details: [''],
       nationality: [''],
-      doctorsType: [null, [Validators.required]]
+      doctorsType: [1, [Validators.required]]
     });
 
     this.loadData();
@@ -52,13 +52,12 @@ export class DoctorComponent {
     const requestModel: DoctorsCreateRequestModel = this.formGroup.value;
 
     this.subscription.add(
-      this.doctorService.save(requestModel).subscribe(
-        () => {
-          this.router.navigate(['health/specializations']);
+      this.doctorService.save(requestModel).subscribe({
+        next: () => {
+          this.router.navigate(['health/doctors']);
         },
-        () => console.log('Not saved')
-      )
-    );
+        error: () => console.log('Not saved')
+       }));
   }
 
   onUpdate() {
@@ -68,7 +67,7 @@ export class DoctorComponent {
       this.doctorService.update(requestModel).subscribe(
         {
           next:() => {
-            this.router.navigate(['health/specializations']);
+            this.router.navigate(['health/doctors']);
           },
           error:() => console.log('Not updated')
         }
@@ -78,9 +77,9 @@ export class DoctorComponent {
 
   resetForm() {
     if (this.isEditMode) {
-      this.router.navigate(['health/specializations']);
+      this.router.navigate(['health/doctors']);
     } else {
-      this.formGroup.reset();
+      this.formGroup.reset({doctorsType:1});
     }
     return false;
   }
@@ -95,7 +94,7 @@ export class DoctorComponent {
       if (id) {
         this.subscription.add(
           this.doctorService.getById<DoctorsResponseModel>(id).subscribe((data: DoctorsResponseModel) => {
-            const { createdDate, isActive, ...restValue } = data;
+            const { createdDate, isActive,name, ...restValue } = data;
             this.formGroup.setValue({
               ...restValue,
             });

@@ -2,7 +2,7 @@ import { PagedResponseModel } from './../../../shared/models/paged-list-response
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DoctorsClientService } from '../../services/doctors-client.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { DoctorsResponseModel } from '../../types/doctors-types';
+import { DoctorsResponseModel, DoctorsType } from '../../types/doctors-types';
 import { SelectionModel } from '@angular/cdk/collections';
 import { debounceTime, map, merge, Subscription } from 'rxjs';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -29,6 +29,7 @@ export class DoctorsComponent implements OnInit, OnDestroy, AfterViewInit {
   sortField = 'name';
   sortOrder = 'asc';
   searchControl = new FormControl('');
+  doctorsType = DoctorsType;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -85,8 +86,7 @@ export class DoctorsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onEdit(element: DoctorsResponseModel) {
-    this.doctorsService.selectedItem = element;
-    this.router.navigate([`health/specialization`]);
+    this.router.navigate([`health/doctor`, element.id]);
   }
 
   onDelete(element: DoctorsResponseModel) {
