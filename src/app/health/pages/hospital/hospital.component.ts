@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-hospital',
-  standalone: true,
-  imports: [],
+  standalone: false,
   templateUrl: './hospital.component.html',
   styleUrl: './hospital.component.scss'
 })

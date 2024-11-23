@@ -1,1 +1,91 @@
-<p>hospitals works!</p>
+
+<div *ngIf="isLoading" class="spinner">
+    <mat-spinner color="primary" diameter="30"></mat-spinner>
+  </div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Hospitals</mat-card-title>
+      <mat-card-subtitle>Health</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row pt-2">
+        <div class="col-md-3 col-sm-12">
+          <button mat-fab extended color="primary" [routerLink]="['../hospital']">
+            <mat-icon fontIcon="add"></mat-icon>
+            Add a Hospital
+          </button>
+        </div>
+        <div class="col-md-9 col-sm-12">
+          <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput type="text" [formControl]="searchControl" placeholder="Search hodpital" />
+          </mat-form-field>
+        </div>
+      </div>
+  
+      <div class="mat-elevation-z8 compact-table">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+          </ng-container>
+  
+          <ng-container matColumnDef="banglaName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Bangla Name</th>
+            <td mat-cell *matCellDef="let row">{{ row.banglaName }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="healthCareType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Health Care Type</th>
+            <td mat-cell *matCellDef="let row">{{ row.healthCareType }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalDoctor">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Doctors</th>
+            <td mat-cell *matCellDef="let row">{{ row.totalDoctor }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="departments">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Departments/th>
+            <td mat-cell *matCellDef="let row">{{ row.departments }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Exit and delete menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item color="primary" (click)="onEdit(element)">
+                  <mat-icon aria-label="Edit">edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+                <button mat-menu-item color="warn" (click)="onDelete(element)">
+                  <mat-icon aria-label="Delete">delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5">
+              <p class="text-info-emphasis p-2">No data found</p>
+            </td>
+          </tr>
+        </table>
+  
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          showFirstLastButtons
+          [length]="count"
+          [pageSize]="pageSize"
+          aria-label="Select page of users"></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

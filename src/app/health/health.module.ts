@@ -17,10 +17,12 @@ import { DoctorComponent } from './pages/doctor/doctor.component';
 import { DoctorsClientService } from './services/doctors-client.service';
 import { PersonService } from '../personnel/services/person.service';
 import { HealthOptionsService } from './services/health-options.service';
+import { HospitalsComponent } from './pages/hospitals/hospitals.component';
+import { HospitalComponent } from './pages/hospital/hospital.component';
 
 
 @NgModule({
-  declarations: [HealthComponent, SpecializationsComponent,SpecializationComponent, DoctorsComponent, DoctorComponent,],
+  declarations: [HealthComponent, SpecializationsComponent,SpecializationComponent, DoctorsComponent, DoctorComponent, HospitalsComponent, HospitalComponent],
   imports: [
     CommonModule,
     HealthRoutingModule,
