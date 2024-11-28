@@ -18,7 +18,7 @@ import { HospitalsClientService } from '../../services/hospitals-client.service'
   styleUrl: './hospitals.component.scss'
 })
 export class HospitalsComponent implements OnInit, OnDestroy, AfterViewInit {
-  displayedColumns: string[] = ['name', 'banglaName','healthCareType','totalDoctor', 'actions'];
+  displayedColumns: string[] = ['name', 'banglaName','healthCareType','totalDoctor','village', 'actions'];
   dataSource = new MatTableDataSource<HospitalsSummeryResponseModel>();
   selection = new SelectionModel<HospitalsSummeryResponseModel>(true, []);
   isLoading = false;

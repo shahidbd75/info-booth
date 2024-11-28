@@ -136,6 +136,7 @@ export const API_ENDPOINT_CONST: APIEndPoints = {
     SPECIALIZATION_BASE: `${BASE_URL}Specializations`,
     DOCTOR_BASE: `${BASE_URL}Doctors`,
     HOSPITAL_BASE: `${BASE_URL}Hospitals`,
+    AMENITIES_BASE: `${BASE_URL}HealthAmenities`,
   }
 };
 
@@ -171,6 +172,7 @@ export interface Personnel {
 }
 
 export interface Health {
+  AMENITIES_BASE: string;
   DOCTOR_BASE: string;
   SPECIALIZATION_BASE: string;
   HOSPITAL_BASE: string;

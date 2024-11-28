@@ -1,1 +1,102 @@
-<p>hospital works!</p>
+<form [formGroup]="formGroup">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Hospital Entry</mat-card-title>
+        <mat-card-subtitle>Health</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <div class="g-3 pt-2">
+          <app-village-select
+          [districtId]="selectedDistrictId"
+          [upazilaId]="selectedUpazilaId"
+          villageId="selectedVillageId"
+          (villageChanges)="onVillageChange($event)" />
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="healthCareTypeId" class="form-label">Health Care Type</label>
+              <span class="text-danger">*</span>
+              <ng-select
+                [items]="healthCareTypes$| async"
+                id="healthCareTypeId"
+                [multiple]="false"
+                bindValue="id"
+                bindLabel="name"
+                formControlName="id"
+                placeholder="Please select health care type"></ng-select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="numberOfBed" class="form-label">Number of Bed</label>
+              <input type="number" formControlName="numberOfBed" class="form-control" id="numberOfBed" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="totalDoctor" class="form-label">Total Doctor</label>
+                <input type="text" formControlName="totalDoctor" class="form-control" id="totalDoctor" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="totalStaff" class="form-label">Total Staff</label>
+                <input type="text" formControlName="totalStaff" class="form-control" id="totalStaff" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="departments" class="form-label">Departments</label>
+              <input type="text" formControlName="departments" class="form-control" id="departments" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="amenities" class="form-label">Amenities</label>
+                <ng-select
+                [items]="amenities$ | async"
+                id="amenities"
+                [searchable]="false"
+                [multiple]="false"
+                bindValue="id"
+                bindLabel="name"
+                formControlName="amenities"
+                placeholder="Please select amenities"></ng-select>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="hotlineNumber" class="form-label">Hotline Number</label>
+                <input type="text" formControlName="hotlineNumber" class="form-control" id="hotlineNumber" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="phoneNumber" class="form-label">Phone Number</label>
+              <input type="text" formControlName="phoneNumber" class="form-control" id="phoneNumber" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="phoneNumber2" class="form-label">Phone Number2</label>
+                <input type="text" formControlName="phoneNumber2" class="form-control" id="phoneNumber2" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="mobileNumber" class="form-label">Mobile Number</label>
+                <input type="text" formControlName="mobileNumber" class="form-control" id="mobileNumber" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="mobileNumber2" class="form-label">Mobile Number2</label>
+              <input type="text" formControlName="mobileNumber2" class="form-control" id="mobileNumber2" />
+           </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="contactPersonName" class="form-label">Contact Person</label>
+                <input type="text" formControlName="contactPersonName" class="form-control" id="contactPersonName" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="contactPersonNumber" class="form-label">Contact Person Number</label>
+                <input type="text" formControlName="contactPersonNumber" class="form-control" id="contactPersonNumber" />
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="action-button-container">
+        <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!formGroup.valid" *ngIf="!isEditMode">Add</button>
+        <button mat-raised-button color="primary" (click)="onUpdate()" [disabled]="!formGroup.valid" *ngIf="isEditMode">Update</button>
+        <button mat-raised-button (click)="resetForm()">Cancel</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

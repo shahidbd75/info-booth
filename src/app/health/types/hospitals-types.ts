@@ -5,10 +5,10 @@ export type HospitalsSummeryResponseModel = {
     healthCareType: string;
     totalDoctor:    number;
     departments:    string;
+    village: string;
 }
 
-export type HospitalsUpdateRequestModel = {
-    id:                  string;
+export type HospitalsCreateRequestModel = {
     name:                string;
     banglaName:          string;
     healthCareTypeId:    number;
@@ -23,10 +23,11 @@ export type HospitalsUpdateRequestModel = {
     hotlineNumber:       string;
     contactPersonName:   string;
     contactPersonNumber: string;
+    villageId:           string;
     amenities:           string[];
 }
 
-export type HospitalsCreateRequestModel = HospitalsUpdateRequestModel & {
+export type HospitalsUpdateRequestModel = HospitalsCreateRequestModel & {
     id: string;
 }
 
@@ -46,5 +47,6 @@ export type HospitalsResponseModel = {
     hotlineNumber:       string;
     contactPersonName:   string;
     contactPersonNumber: string;
+    villageId:           string;
     amenities:           string[];
 }

@@ -19,6 +19,7 @@ import { PersonService } from '../personnel/services/person.service';
 import { HealthOptionsService } from './services/health-options.service';
 import { HospitalsComponent } from './pages/hospitals/hospitals.component';
 import { HospitalComponent } from './pages/hospital/hospital.component';
+import { VillageModule } from '../shared/modules/village-select/village.module';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { HospitalComponent } from './pages/hospital/hospital.component';
     CommonModule,
     HealthRoutingModule,
     MaterialModule,
-    RouterModule, MaterialModule, FormsModule, SharedModule, ReactiveFormsModule, NgSelectModule,],
+    RouterModule, MaterialModule, FormsModule, SharedModule, ReactiveFormsModule, NgSelectModule,VillageModule,],
   providers: [SpecializationClientService, {provide:BaseHttpService, useClass: SpecializationClientService}, DoctorsClientService, PersonService, HealthOptionsService]
 })
 export class HealthModule { }

@@ -17,4 +17,12 @@ export class HealthOptionsService {
   getDoctorTypes(): Observable<OptionsModel[]> {
     return this.http.get<OptionsModel[]>(`${API_ENDPOINT_CONST.HEALTH.DOCTOR_BASE}/types`);
   }
+
+  getHealthAmenities(): Observable<OptionsModel[]> {
+    return this.http.get<OptionsModel[]>(`${API_ENDPOINT_CONST.HEALTH.AMENITIES_BASE}`);
+  }
+
+  getHealthCareTypes(): Observable<OptionsModel[]> {
+   return this.http.get<OptionsModel[]>(`${API_ENDPOINT_CONST.HEALTH.HOSPITAL_BASE}/types`);
+  }
 }
