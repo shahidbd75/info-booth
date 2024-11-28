@@ -11,6 +11,7 @@ import { HealthRoutePath } from './constant/health-route-path';
 export class HealthComponent implements OnInit {
   cvMenus: MenuType[] = [
     { text: 'Specializations', link: 'health/specializations' },
+    { text: 'Aminities', link: `health/${HealthRoutePath.Amenities}` },
     { text: 'Doctors', link: 'health/doctors' },
     { text: 'Hospitals', link: 'health/hospitals' },
   ];

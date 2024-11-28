@@ -4,7 +4,9 @@
 @import 'bootstrap/scss/bootstrap';
 @import '@ng-select/ng-select/scss/default.theme.scss';
 
-html, body { height: 100%; }
+html, body { height: 100%; 
+  --mat-list-active-indicator-shape: 2px!important;
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .action-button-container {

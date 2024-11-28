@@ -20,15 +20,19 @@ import { HealthOptionsService } from './services/health-options.service';
 import { HospitalsComponent } from './pages/hospitals/hospitals.component';
 import { HospitalComponent } from './pages/hospital/hospital.component';
 import { VillageModule } from '../shared/modules/village-select/village.module';
+import { AmenitiesComponent } from './pages/amenities/amenities.component';
+import { AmenityComponent } from './pages/amenity/amenity.component';
+import { HealthAmenitiesService } from './services/health-amenities.service';
 
 
 @NgModule({
-  declarations: [HealthComponent, SpecializationsComponent,SpecializationComponent, DoctorsComponent, DoctorComponent, HospitalsComponent, HospitalComponent],
+  declarations: [HealthComponent, SpecializationsComponent,SpecializationComponent, DoctorsComponent, 
+    DoctorComponent, HospitalsComponent, HospitalComponent, AmenitiesComponent, AmenityComponent],
   imports: [
     CommonModule,
     HealthRoutingModule,
     MaterialModule,
     RouterModule, MaterialModule, FormsModule, SharedModule, ReactiveFormsModule, NgSelectModule,VillageModule,],
-  providers: [SpecializationClientService, {provide:BaseHttpService, useClass: SpecializationClientService}, DoctorsClientService, PersonService, HealthOptionsService]
+  providers: [SpecializationClientService, {provide:BaseHttpService, useClass: SpecializationClientService}, DoctorsClientService, PersonService, HealthOptionsService, HealthAmenitiesService]
 })
 export class HealthModule { }

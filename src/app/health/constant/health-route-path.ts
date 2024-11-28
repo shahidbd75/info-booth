@@ -6,4 +6,6 @@ export const HealthRoutePath = {
     Doctor: 'doctor',
     Hospitals: 'hospitals',
     Hospital: 'hospital',
+    Amenities: 'amenities',
+    Amenity: 'amenity',
 }
