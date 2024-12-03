@@ -114,7 +114,7 @@ export class HospitalComponent {
       contactPersonName:   [''],
       contactPersonNumber: [''],
       villageId:           [null],
-      amenities:           [null, [Validators.required]],
+      amenityIds:           [null, [Validators.required]],
     });
   }
 }

@@ -14,6 +14,14 @@
           (villageChanges)="onVillageChange($event)" />
           <div class="row">
             <div class="col-md-4 col-xs-12">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" formControlName="name" class="form-control" id="name" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+              <label for="banglaName" class="form-label">Bangla Name</label>
+              <input type="text" formControlName="banglaName" class="form-control" id="banglaName" />
+            </div>
+            <div class="col-md-4 col-xs-12">
               <label for="healthCareTypeId" class="form-label">Health Care Type</label>
               <span class="text-danger">*</span>
               <ng-select
@@ -22,7 +30,7 @@
                 [multiple]="false"
                 bindValue="id"
                 bindLabel="name"
-                formControlName="id"
+                formControlName="healthCareTypeId"
                 placeholder="Please select health care type"></ng-select>
             </div>
           </div>
@@ -51,10 +59,11 @@
                 [items]="amenities$ | async"
                 id="amenities"
                 [searchable]="false"
-                [multiple]="false"
+                [multiple]="true"
                 bindValue="id"
                 bindLabel="name"
-                formControlName="amenities"
+                formControlName="amenityIds"
+                [closeOnSelect]="false"
                 placeholder="Please select amenities"></ng-select>
             </div>
             <div class="col-md-4 col-xs-12">
