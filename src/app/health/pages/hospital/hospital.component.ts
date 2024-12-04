@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { HealthOptionsService } from '../../services/health-options.service';
 import { HospitalsClientService } from '../../services/hospitals-client.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { DoctorsCreateRequestModel, DoctorsUpdateRequestModel, DoctorsResponseModel } from '../../types/doctors-types';
+import { HospitalsCreateRequestModel, HospitalsResponseModel, HospitalsUpdateRequestModel } from '../../types/hospitals-types';
 
 @Component({
   selector: 'app-hospital',
@@ -36,25 +36,25 @@ export class HospitalComponent {
   }
 
   onSave() {
-    const requestModel: DoctorsCreateRequestModel = this.formGroup.value;
+    const requestModel: HospitalsCreateRequestModel = this.formGroup.value;
 
     this.subscription.add(
       this.hospitalService.save(requestModel).subscribe({
         next: () => {
-          this.router.navigate(['health/doctors']);
+          this.router.navigate(['health/hospitals']);
         },
         error: () => console.log('Not saved')
        }));
   }
 
   onUpdate() {
-    const requestModel: DoctorsUpdateRequestModel = this.formGroup.value;
+    const requestModel: HospitalsUpdateRequestModel = this.formGroup.value;
 
     this.subscription.add(
       this.hospitalService.update(requestModel).subscribe(
         {
           next:() => {
-            this.router.navigate(['health/doctors']);
+            this.router.navigate(['health/hospitals']);
           },
           error:() => console.log('Not updated')
         }
@@ -68,7 +68,7 @@ export class HospitalComponent {
 
   resetForm() {
     if (this.isEditMode) {
-      this.router.navigate(['health/doctors']);
+      this.router.navigate(['health/hospitals']);
     } else {
       this.formGroup.reset({doctorsType:1});
     }
@@ -84,11 +84,14 @@ export class HospitalComponent {
       const id: string = params['id'];
       if (id) {
         this.subscription.add(
-          this.hospitalService.getById<DoctorsResponseModel>(id).subscribe((data: DoctorsResponseModel) => {
-            const { createdDate, isActive,name, ...restValue } = data;
+          this.hospitalService.getById<HospitalsResponseModel>(id).subscribe((data: HospitalsResponseModel) => {
+            const {upazilaId,districtId,...restValue } = data;
             this.formGroup.setValue({
               ...restValue,
             });
+            this.selectedDistrictId = districtId;
+            this.selectedUpazilaId = upazilaId;
+            this.selectedVillageId = data.villageId;
           })
         );
 
@@ -99,7 +102,8 @@ export class HospitalComponent {
 
   private createForm() {
     this.formGroup = this.formBuilder.group({
-      name: ['', [Validators.required]],
+      id:                  [null],
+      name:                ['', [Validators.required]],
       banglaName:          [''],
       healthCareTypeId:    [null, [Validators.required]],
       numberOfBed:         [null],
@@ -114,7 +118,7 @@ export class HospitalComponent {
       contactPersonName:   [''],
       contactPersonNumber: [''],
       villageId:           [null],
-      amenityIds:           [null, [Validators.required]],
+      amenityIds:          [null, [Validators.required]],
     });
   }
 }

@@ -43,18 +43,8 @@ export class ToletComponent implements OnInit {
   }
 
   loadData() {
-    // if(this.toletService.selectedWorker) {
-    //   const {id:personId,goodAts,workGroups, workAbilities, preferableDays, ...restvalues} = this.toletService.selectedWorker;
-    //   const goodAtIds = goodAts.map(g => g.id);
-    //   const workGroupIds = workGroups.map(wg => wg.id);
-    //   const workAbilityIds = workAbilities.map(wa => wa.id);
-    //   const preferableDayIds = preferableDays.map(pd => pd.id);
-    //   this.isEditMode = true;
-    //   this.toletForm.patchValue({...restvalues,personId, goodAts: goodAtIds,
-    //     workAbilities: workAbilityIds, perferableDays: preferableDayIds, workGroups: workGroupIds});
-    //   this.toletService.selectedWorker = null;
-    // }
   }
+  
   initializeFormGroup() {
     this.toletForm = this.fb.group({
       personId: [null, [Validators.required]],
@@ -84,9 +74,6 @@ export class ToletComponent implements OnInit {
   }
 
   onWorkerSave() {
-    console.log(this.toletForm.value);
-    // const {startTime, endTime, ...restValue} = this.toletForm.value;
-
     const requestModel: ToLetCreateRequestModel = { ...this.toletForm.value };
 
     this.toletService.saveToLet(requestModel).subscribe(

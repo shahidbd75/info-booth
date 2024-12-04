@@ -24,6 +24,7 @@ export class VillageSelectComponent implements OnInit, OnChanges {
     private fb: FormBuilder,
     private optionService: OptionsService
   ) {}
+  
   ngOnChanges(changes: SimpleChanges): void {
     if (this.reset) {
       this.formGroup.reset();

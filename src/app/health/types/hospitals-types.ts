@@ -48,5 +48,7 @@ export type HospitalsResponseModel = {
     contactPersonName:   string;
     contactPersonNumber: string;
     villageId:           string;
-    amenities:           string[];
-}
+    upazilaId:           number;
+    districtId:          number;
+    amenityIds:          string[];
+};
