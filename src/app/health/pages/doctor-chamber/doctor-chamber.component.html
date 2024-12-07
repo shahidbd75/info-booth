@@ -1,0 +1,82 @@
+<form [formGroup]="formGroup">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Doctors Chamber Entry</mat-card-title>
+        <mat-card-subtitle>Health</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <div class="g-3 pt-2">
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+                <label for="doctorId" class="form-label">Doctor</label>
+                <span class="text-danger">*</span>
+                <ng-select
+                  [items]="doctors$| async"
+                  id="doctorId"
+                  [multiple]="false"
+                  bindValue="id"
+                  bindLabel="name"
+                  formControlName="doctorId"
+                  placeholder="Please select doctor"></ng-select>
+            </div>
+            <div class="col-md-4 col-xs-12">
+              <label for="hospitalId" class="form-label">Hospital</label>
+              <span class="text-danger">*</span>
+              <ng-select
+                [items]="hospitals$| async"
+                id="hospitalId"
+                [multiple]="false"
+                bindValue="id"
+                bindLabel="name"
+                formControlName="hospitalId"
+                placeholder="Please select hospital"></ng-select>
+            </div>
+            <div class="col-md-4 col-xs-12">
+              <label for="firstTimeVisitFees" class="form-label">Consultation Fee(New)</label>
+              <input type="text" formControlName="firstTimeVisitFees" class="form-control" id="firstTimeVisitFees" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="firstTimeReportFees" class="form-label">Report Consultaion Fee(New)</label>
+              <input type="number" formControlName="firstTimeReportFees" class="form-control" id="firstTimeReportFees" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="secondTimeVisitFees" class="form-label">Consultation Fee(Old)</label>
+                <input type="text" formControlName="secondTimeVisitFees" class="form-control" id="secondTimeVisitFees" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="secondTimeReportFees" class="form-label">Report Consultaion Fee(Old)</label>
+                <input type="text" formControlName="secondTimeReportFees" class="form-control" id="secondTimeReportFees" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <label for="oldPatientDays" class="form-label">Patient Old (Days)</label>
+              <input type="text" formControlName="oldPatientDays" class="form-control" id="oldPatientDays" />
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="phoneForSerial1" class="form-label">Call For Serial</label>
+                <input type="text" formControlName="phoneForSerial1" class="form-control" id="phoneForSerial1" />
+              </div>
+            <div class="col-md-4 col-xs-12">
+                <label for="phoneForSerial2" class="form-label">Call For Serial(Alternative)</label>
+                <input type="text" formControlName="phoneForSerial2" class="form-control" id="phoneForSerial2" />
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-12 pt-4">
+            <mat-checkbox formControlName="visitOnline" id="visitOnline">Is Consult Online?</mat-checkbox>
+            <mat-checkbox formControlName="giveDiscount" id="giveDiscount">Is Provide Discount</mat-checkbox>
+            <mat-checkbox formControlName="isActive" id="isActive">Is Active?</mat-checkbox>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="action-button-container">
+        <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!formGroup.valid" *ngIf="!isEditMode">Add</button>
+        <button mat-raised-button color="primary" (click)="onUpdate()" [disabled]="!formGroup.valid" *ngIf="isEditMode">Update</button>
+        <button mat-raised-button (click)="resetForm()">Cancel</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

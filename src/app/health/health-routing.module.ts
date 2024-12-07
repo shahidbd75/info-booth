@@ -10,6 +10,8 @@ import { HospitalComponent } from './pages/hospital/hospital.component';
 import { HospitalsComponent } from './pages/hospitals/hospitals.component';
 import { AmenitiesComponent } from './pages/amenities/amenities.component';
 import { AmenityComponent } from './pages/amenity/amenity.component';
+import { DoctorChambersComponent } from './pages/doctor-chambers/doctor-chambers.component';
+import { DoctorChamberComponent } from './pages/doctor-chamber/doctor-chamber.component';
 
 const routes: Routes = [
   { path:HealthRoutePath.Root, component: HealthComponent,
@@ -26,6 +28,9 @@ const routes: Routes = [
     { path:HealthRoutePath.Amenities, component: AmenitiesComponent},
     { path:`${HealthRoutePath.Amenity}/:id`, component: AmenityComponent},
     { path:HealthRoutePath.Amenity, component: AmenityComponent},
+    { path:HealthRoutePath.DoctorChambers, component: DoctorChambersComponent},
+    { path:`${HealthRoutePath.DoctorChamber}/:id`, component: DoctorChamberComponent},
+    { path:HealthRoutePath.DoctorChamber, component: DoctorChamberComponent},
   ]
 },];
 

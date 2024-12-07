@@ -23,16 +23,19 @@ import { VillageModule } from '../shared/modules/village-select/village.module';
 import { AmenitiesComponent } from './pages/amenities/amenities.component';
 import { AmenityComponent } from './pages/amenity/amenity.component';
 import { HealthAmenitiesService } from './services/health-amenities.service';
+import { DoctorChambersComponent } from './pages/doctor-chambers/doctor-chambers.component';
+import { DoctorChambersClientService } from './services/doctor-chambers-client.service';
+import { DoctorChamberComponent } from './pages/doctor-chamber/doctor-chamber.component';
 
 
 @NgModule({
   declarations: [HealthComponent, SpecializationsComponent,SpecializationComponent, DoctorsComponent, 
-    DoctorComponent, HospitalsComponent, HospitalComponent, AmenitiesComponent, AmenityComponent],
+    DoctorComponent, HospitalsComponent, HospitalComponent, AmenitiesComponent, AmenityComponent, DoctorChambersComponent, DoctorChamberComponent],
   imports: [
     CommonModule,
     HealthRoutingModule,
     MaterialModule,
     RouterModule, MaterialModule, FormsModule, SharedModule, ReactiveFormsModule, NgSelectModule,VillageModule,],
-  providers: [SpecializationClientService, {provide:BaseHttpService, useClass: SpecializationClientService}, DoctorsClientService, PersonService, HealthOptionsService, HealthAmenitiesService]
+  providers: [SpecializationClientService, {provide:BaseHttpService, useClass: SpecializationClientService}, DoctorsClientService, PersonService, HealthOptionsService, HealthAmenitiesService, DoctorChambersClientService]
 })
 export class HealthModule { }

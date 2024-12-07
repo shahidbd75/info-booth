@@ -14,6 +14,7 @@ export class HealthComponent implements OnInit {
     { text: 'Aminities', link: `health/${HealthRoutePath.Amenities}` },
     { text: 'Doctors', link: 'health/doctors' },
     { text: 'Hospitals', link: 'health/hospitals' },
+    { text: 'Doctors Chamber', link: 'health/doctor-chambers' },
   ];
 
   constructor(private globalDataContextService: GlobalDataContextService) {
