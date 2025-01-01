@@ -41,7 +41,7 @@
 
         <ng-container matColumnDef="isNegotiable">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Negotiable?</th>
-          <td mat-cell *matCellDef="let row">{{ row.isNegotiable }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.isNegotiable ? 'Yes' : 'No' }}</td>
         </ng-container>
 
         <ng-container matColumnDef="medium">

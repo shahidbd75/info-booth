@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { DoctorChambersClientService } from '../../services/doctor-chambers-client.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, map, filter, switchMap } from 'rxjs';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { HealthOptionsService } from '../../services/health-options.service';
 import { DoctorsChambersCreateRequestModel, DoctorsChambersResponseModel, DoctorsChambersUpdateRequestModel } from '../../types/doctors-chambers.types';
 import { HealthRoutePath } from '../../constant/health-route-path';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 @Component({
   selector: 'app-doctor-chamber',
   standalone: false,
@@ -22,10 +24,11 @@ export class DoctorChamberComponent {
   listRouteUrl = `health/${HealthRoutePath.DoctorChambers}`;
   constructor(
     private formBuilder: FormBuilder,
-    private hospitalService: DoctorChambersClientService,
+    private doctorChamberService: DoctorChambersClientService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private optionService: HealthOptionsService
+    private optionService: HealthOptionsService,
+    private notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -37,11 +40,14 @@ export class DoctorChamberComponent {
     const requestModel: DoctorsChambersCreateRequestModel = this.formGroup.value;
 
     this.subscription.add(
-      this.hospitalService.save(requestModel).subscribe({
+      this.doctorChamberService.save(requestModel).subscribe({
         next: () => {
+          this.notificationService.success(NotificationMessage.SavedSuccessfully);
           this.router.navigate([this.listRouteUrl]);
         },
-        error: () => console.log('Not saved'),
+        error: () => {
+          this.notificationService.error(NotificationMessage.AlreadyExist);
+        },
       })
     );
   }
@@ -50,11 +56,14 @@ export class DoctorChamberComponent {
     const requestModel: DoctorsChambersUpdateRequestModel = this.formGroup.value;
 
     this.subscription.add(
-      this.hospitalService.update(requestModel).subscribe({
+      this.doctorChamberService.update(requestModel).subscribe({
         next: () => {
+          this.notificationService.success(NotificationMessage.UpdatedSuccessfully);
           this.router.navigate([this.listRouteUrl]);
         },
-        error: () => console.log('Not updated'),
+        error: () => {
+          this.notificationService.error(NotificationMessage.AlreadyExist);
+        },
       })
     );
   }
@@ -77,21 +86,38 @@ export class DoctorChamberComponent {
   }
 
   loadData() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      const id: string = params['id'];
-      if (id) {
-        this.subscription.add(
-          this.hospitalService.getById<DoctorsChambersResponseModel>(id).subscribe((data: DoctorsChambersResponseModel) => {
-            const { ...restValue } = data;
-            this.formGroup.setValue({
-              ...restValue,
-            });
-          })
-        );
+    this.subscription.add(this.activatedRoute.params.pipe(map((params: Params) => params['id']), 
+    filter(data => Boolean(data)),
+    switchMap((id: string) => this.doctorChamberService.getById<DoctorsChambersResponseModel>(id))
+    ).subscribe({
+      next: (response: DoctorsChambersResponseModel) => {
+        const { ...restValue } = response;
+              this.formGroup.setValue({
+                ...restValue,
+              });
+              this.isEditMode= true;
+      },
+      error:()=> this.notificationService.error(NotificationMessage.ServerError),
+    }));
 
-        this.isEditMode = true;
-      }
-    });
+
+
+
+    // this.activatedRoute.params.subscribe((params: Params) => {
+    //   const id: string = params['id'];
+    //   if (id) {
+    //     this.subscription.add(
+    //       this.doctorChamberService.getById<DoctorsChambersResponseModel>(id).subscribe((data: DoctorsChambersResponseModel) => {
+    //         const { ...restValue } = data;
+    //         this.formGroup.setValue({
+    //           ...restValue,
+    //         });
+    //       })
+    //     );
+
+    //     this.isEditMode = true;
+    //   }
+    // });
   }
 
   private createForm() {

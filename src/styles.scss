@@ -6,6 +6,10 @@
 
 html, body { height: 100%; 
   --mat-list-active-indicator-shape: 2px!important;
+  --mdc-protected-button-container-shape: 5px;
+  --mdc-protected-button-container-height: 35px;
+  --mdc-extended-fab-container-height: 42px;
+  --mdc-extended-fab-container-shape: 6px;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -67,5 +71,9 @@ table {
 }
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+  color: #000;
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
   color: #000;
 }
