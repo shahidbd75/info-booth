@@ -19,12 +19,18 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>infoBooth</span>
+
       <span class="spacer"></span>
-      <a href="#" *ngIf="authDataService.authenticateUserSig">
-        {{ authDataService.authenticateUserSig()?.name }}
-      </a>
-      <a [routerLink]="['login']" *ngIf="authDataService.authenticateUserSig() === null || undefined">Login</a>
-      <a href="#" (click)="onLogOutClick()" *ngIf="authDataService.authenticateUserSig() !== null || undefined">Logout</a>
+      @if (authDataService.authenticateUserSig()) {
+        <button mat-button [matMenuTriggerFor]="menu">{{ authDataService.authenticateUserSig()?.name }}</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Profile</button>
+          <button mat-menu-item>Settings</button>
+          <button mat-menu-item (click)="onLogOutClick()">Logout</button>
+        </mat-menu>
+      } @else {
+        <a [routerLink]="['login']" *ngIf="authDataService.authenticateUserSig() === null || undefined">Login</a>
+      }
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

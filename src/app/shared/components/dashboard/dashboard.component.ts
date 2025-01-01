@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
         { title: 'Recent Activity', cols: 2, rows: 1 },
         { title: 'Your Activity', cols: 1, rows: 1 },
         { title: 'Feeds', cols: 1, rows: 2 },
-        { title: 'Transaction', cols: 1, rows: 1 },
+        { title: 'Transactions', cols: 1, rows: 1 },
       ];
     })
   );
