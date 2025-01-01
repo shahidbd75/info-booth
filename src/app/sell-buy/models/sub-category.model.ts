@@ -13,3 +13,10 @@ export type SubCategoryResponse = {
   name: string;
   categoryName: string;
 };
+
+export type ItemSubCategoryDetailResponseModel = {
+  id:           string;
+  categoryId:   string;
+  name:         string;
+  categoryName: string;
+};

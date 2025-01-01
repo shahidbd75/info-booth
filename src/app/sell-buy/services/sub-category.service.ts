@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_ENDPOINT_CONST } from 'src/app/shared/constants/endpoints';
 import { OptionsModel } from 'src/app/shared/models/options-model';
-import { SubCategoryRequestModel, SubCategoryResponse, SubCategoryUpdateModel } from '../models/sub-category.model';
+import { ItemSubCategoryDetailResponseModel, SubCategoryRequestModel, SubCategoryResponse, SubCategoryUpdateModel } from '../models/sub-category.model';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Injectable()
@@ -20,6 +20,14 @@ export class SubCategoryService {
 
   updateSubcategory(requestModel: SubCategoryUpdateModel): Observable<void> {
     return this.http.put<void>(API_ENDPOINT_CONST.BUY_SELL.SUB_CATEGORY_BASE, requestModel);
+  }
+
+  removeSubcategory(id: string): Observable<void> {
+    return this.http.delete<void>(`${API_ENDPOINT_CONST.BUY_SELL.SUB_CATEGORY_BASE}/${id}`);
+  }
+
+  getSubcategoryById(id: string): Observable<ItemSubCategoryDetailResponseModel> {
+    return this.http.get<ItemSubCategoryDetailResponseModel>(`${API_ENDPOINT_CONST.BUY_SELL.SUB_CATEGORY_BASE}/${id}`);
   }
 
   getAllSubCategories(): Observable<Array<SubCategoryResponse>> {

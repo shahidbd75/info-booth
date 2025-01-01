@@ -23,6 +23,7 @@ const routes: Routes = [
       { path: 'items', component: ItemsComponent },
       { path: 'item/:{id}', component: ItemComponent },
       { path: 'item', component: ItemComponent },
+      { path: 'sub-category/:id', component: SubCategoryComponent },
       { path: 'sub-category', component: SubCategoryComponent },
       { path: 'sub-categories', component: SubCategoriesComponent },
       { path: 'buy-list', component: BuyListComponent },
