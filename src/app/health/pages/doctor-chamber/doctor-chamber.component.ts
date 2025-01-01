@@ -39,7 +39,7 @@ export class DoctorChamberComponent {
     this.subscription.add(
       this.hospitalService.save(requestModel).subscribe({
         next: () => {
-          this.router.navigate(['health/hospitals']);
+          this.router.navigate([this.listRouteUrl]);
         },
         error: () => console.log('Not saved'),
       })

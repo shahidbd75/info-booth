@@ -55,7 +55,7 @@ export const API_ENDPOINT_CONST: APIEndPoints = {
     TRAINING_BASE: `${BASE_URL}Training`,
     GET_TRAININGS_BY_PERSON: (personId: string) => `${BASE_URL}Training/${personId}/list`,
     JOB_REFERENCE_BASE: `${BASE_URL}JobReferences`,
-    JOB_REFERENCES_BY_PERSON: (personId: string) => `${BASE_URL}JobReferences/${personId}`,
+    JOB_REFERENCES_BY_PERSON: (personId: string) => `${BASE_URL}JobReferences/person/${personId}`,
     MATRIMONIAL_BASIC_BASE: `${BASE_URL}MatrimonialCv`,
     FAMILY_MEMBER_BASE: `${BASE_URL}FamilyMember`,
     GET_FAMILY_MEMBERS_BY_PERSON: (personId: string) => `${BASE_URL}FamilyMember/getByPersonId/${personId}`,

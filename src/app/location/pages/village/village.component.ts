@@ -62,6 +62,7 @@ export class VillageComponent implements OnInit {
     this.villageService.saveVillage(requestModel).subscribe(() => {
       this.snackbarService.success(NotificationMessage.SavedSuccessfully);
       this.villageForm.controls['name'].reset();
+      this.villageForm.controls['banglaName'].reset();
     });
   }
 

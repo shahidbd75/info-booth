@@ -51,7 +51,7 @@
         </ng-container>
         <ng-container matColumnDef="availability">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Is Available</th>
-          <td mat-cell *matCellDef="let row">{{ row.availability }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.availability ? 'Yes': 'No' }}</td>
         </ng-container>
         <ng-container matColumnDef="personName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Posted By</th>

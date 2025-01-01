@@ -6,4 +6,5 @@ export const NotificationMessage = {
   ServerError: 'Server error occured',
   DeletedSuccessfully: 'Deleted Successfully',
   DeleteFailure: 'Unavle to delete',
+  AlreadyExist: 'Data already exist',
 };

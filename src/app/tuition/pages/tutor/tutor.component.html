@@ -50,7 +50,7 @@
           </div>
           <div class="col-md-4">
             <label for="experience" class="form-label">Experience</label>
-            <input type="text" formControlName="experience" class="form-control" id="experience" />
+            <input type="text" formControlName="experience" class="form-control" id="experience" placeholder="Ex: 4 years"/>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
     <mat-card-actions class="action-button-container">
       <button mat-raised-button color="primary" (click)="onTutorAdd()" [disabled]="!tutorForm.valid" *ngIf="!isEditMode">Add</button>
       <button mat-raised-button color="primary" (click)="onTutorUpdate()" [disabled]="!tutorForm.valid" *ngIf="isEditMode">Update</button>
-      <button mat-raised-button (click)="resetForm()">Cancel</button>
+      <button mat-raised-button (click)="resetForm()">Reset</button>
     </mat-card-actions>
   </mat-card>
 </form>

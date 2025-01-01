@@ -99,7 +99,15 @@
           </div>
           <div class="col-md-4">
             <label for="bloodGroup" class="form-label">Blood Group</label>
-            <input type="text" formControlName="bloodGroup" class="form-control" maxlength="3" id="bloodGroup" />
+            <ng-select
+            [items]="bloodGroups"
+            id="bloodGroup"
+            [searchable]="true"
+            [multiple]="false"
+            bindValue="id"
+            bindLabel="name"
+            formControlName="bloodGroup"
+            placeholder="Please select Blood Group"></ng-select>
           </div>
           <div class="col-md-8">
             <label for="address" class="form-label">Address</label>
@@ -111,7 +119,7 @@
     <mat-card-actions class="action-button-container">
       <button mat-raised-button color="primary" (click)="onPersonAdd()" [disabled]="!personForm.valid" *ngIf="!isEditMode">Add</button>
       <button mat-raised-button color="primary" (click)="onPersonUpdate()" [disabled]="!personForm.valid" *ngIf="isEditMode">Update</button>
-      <button mat-raised-button (click)="resetForm()">Cancel</button>
+      <button mat-raised-button (click)="resetForm()">Reset</button>
     </mat-card-actions>
   </mat-card>
 </form>

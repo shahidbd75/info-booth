@@ -1,3 +1,4 @@
+import { bloodGroups } from './../../constants/blood-groups';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonService } from '../../services/person.service';
@@ -20,6 +21,7 @@ export class PersonComponent implements OnInit {
   degrees$: Observable<OptionsModel[]> = this.optionsService.getDegrees();
   villages$: Observable<OptionsModel[]>;
   occupations$: Observable<OptionsModel[]>;
+  bloodGroups = bloodGroups;
   selectedDistrictId: number;
   selectedUpazilaId: number;
   selectedVillageId: string;

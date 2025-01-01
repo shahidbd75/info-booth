@@ -20,7 +20,7 @@
     <mat-card-actions class="action-button-container">
       <button mat-raised-button color="primary" (click)="onOccupationAdd()" [disabled]="!occupationForm.valid" *ngIf="!isEditMode">Add</button>
       <button mat-raised-button color="primary" (click)="onOccupationUpdate()" [disabled]="!occupationForm.valid" *ngIf="isEditMode">Update</button>
-      <button mat-raised-button [routerLink]="['..']">Cancel</button>
+      <button mat-raised-button [routerLink]="['/personnel/occupations']">Cancel</button>
     </mat-card-actions>
   </mat-card>
 </form>

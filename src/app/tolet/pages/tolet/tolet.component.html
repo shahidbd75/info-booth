@@ -90,7 +90,7 @@
               placeholder="Please select flat view"></ng-select>
           </div>
           <div class="col-md-4 col-xs-12">
-            <label for="LandMarkIds" class="form-label">Land Marks</label>
+            <label for="LandMarkIds" class="form-label">Nearby Landmarks</label>
             <ng-select
               [items]="landmarks$ | async"
               id="LandMarkIds"
@@ -101,17 +101,10 @@
               formControlName="landMarkIds"
               placeholder="Please select land marks"></ng-select>
           </div>
-          <div class="col-md-4 col-xs-12">
-            <label for="Amenities" class="form-label">Amenities</label>
-            <ng-select
-              [items]="aminities$ | async"
-              id="Amenities"
-              [searchable]="true"
-              [multiple]="true"
-              bindValue="name"
-              bindLabel="name"
-              formControlName="amenities"
-              placeholder="Please select amenities"></ng-select>
+          <div class="col-md-4 col-xs-12 pt-4">
+            <mat-checkbox formControlName="isBachelorAllowed" id="IsBachelorAllowed">Is Bachelor Allowed</mat-checkbox>
+            <mat-checkbox formControlName="hasParking" id="HasParking">Has Parking</mat-checkbox>
+            <mat-checkbox formControlName="hasGenerator" id="HasGenerator">Is Generator Available</mat-checkbox>
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="preferableReligion" class="form-label">Preferable Religion</label>
@@ -126,14 +119,22 @@
               placeholder="Please select preferable religion"></ng-select>
           </div>
           <div class="col-md-12 col-xs-12">
+            <label for="Amenities" class="form-label">Amenities</label>
+            <ng-select
+              [items]="aminities$ | async"
+              id="Amenities"
+              [searchable]="true"
+              [multiple]="true"
+              bindValue="name"
+              bindLabel="name"
+              formControlName="amenities"
+              placeholder="Please select amenities"></ng-select>
+          </div>
+          <div class="col-md-12 col-xs-12">
             <label for="Description" class="form-label">Description</label>
             <input type="text" formControlName="description" class="form-control" id="Description" />
           </div>
-          <div class="col-md-4 col-xs-12 pt-4">
-            <mat-checkbox formControlName="isBachelorAllowed" id="IsBachelorAllowed">Is Bachelor Allowed</mat-checkbox>
-            <mat-checkbox formControlName="hasParking" id="HasParking">Has Parking</mat-checkbox>
-            <mat-checkbox formControlName="hasGenerator" id="HasGenerator">Is Generator Available</mat-checkbox>
-          </div>
+         
           <div class="col-md-4 col-xs-12">
             <label for="CareTakerName" class="form-label">Care Taker Name</label>
             <input type="text" formControlName="careTakerName" class="form-control" id="CareTakerName" />

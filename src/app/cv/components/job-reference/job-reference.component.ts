@@ -6,7 +6,7 @@ import { CvEnumOptionsService } from '../../services/cv-enum-options.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { JobReferenceCreateRequestType, JobReferenceResponseType, JobReferenceUpdateRequestType } from '../../types/job-reference-type';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, map, switchMap, tap } from 'rxjs';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { PersonService } from 'src/app/personnel/services/person.service';
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
@@ -39,15 +39,7 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.activatedRoute.params.subscribe({
-      next: (params: Params) => {
-        this.personId = params['id'];
-        this.loadAllJobReferences();
-      },
-      error: err => {
-        console.log(err);
-      },
-    });
+    this.loadAllJobReferences();
   }
 
   ngOnDestroy(): void {
@@ -95,7 +87,7 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
   }
 
   onEdit(data: JobReferenceResponseType) {
-    const { designation, isActive, mobile, personName, ...restValue } = data;
+    const { designation, mobile, personName,occupation, ...restValue } = data;
     this.IsEditMode = true;
     this.formGroup.setValue({ ...restValue });
   }
@@ -127,17 +119,9 @@ export class JobReferenceComponent implements OnInit, OnDestroy {
   }
 
   private loadAllJobReferences(): void {
-    if (this.personId) {
-      this.subscription.add(
-        this.jobReferenceService.getJobReferenceByPersonId(this.personId).subscribe({
-          next: (response: JobReferenceResponseType[]) => {
-            this.dataSource = new MatTableDataSource(response);
-          },
-          error: () => {
-            this.notificationService.error('Not found');
-          },
-        })
-      );
-    }
+    this.activatedRoute.params.pipe(
+      map((params: Params) => params['id']),
+      switchMap((personId: string) => this.jobReferenceService.getJobReferenceByPersonId(personId)),
+    tap( (response: JobReferenceResponseType[]) => this.dataSource = new MatTableDataSource(response))).subscribe();
   }
 }

@@ -103,7 +103,7 @@
     <mat-card-actions class="action-button-container">
       <button mat-raised-button color="primary" (click)="onSave()" [disabled]="!formGroup.valid" *ngIf="!isEditMode">Add</button>
       <button mat-raised-button color="primary" (click)="onUpdate()" [disabled]="!formGroup.valid" *ngIf="isEditMode">Update</button>
-      <button mat-raised-button (click)="resetForm()">Cancel</button>
+      <button mat-raised-button (click)="resetForm()">Reset</button>
     </mat-card-actions>
   </mat-card>
 </form>
