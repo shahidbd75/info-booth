@@ -57,3 +57,15 @@ table {
   background: rgba(65, 252, 134, 0.534);
   color: white;
 }
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  color:black;
+}
+
+.ng-select .ng-select-container {
+  color: black;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+  color: #000;
+}
