@@ -118,4 +118,5 @@ export type MatrimonialTableResponse = {
   facebookProfileLink: string;
   presentAddress: string;
   expectations: string;
+  createdDate: Date;
 };
