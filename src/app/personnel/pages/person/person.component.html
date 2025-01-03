@@ -7,11 +7,7 @@
     <mat-card-content>
       <mat-divider></mat-divider>
       <div class="g-3 pt-2">
-        <app-village-select
-          [districtId]="selectedDistrictId"
-          [upazilaId]="selectedUpazilaId"
-          [villageId]="selectedVillageId"
-          (villageChanges)="onVillageChange($event)"></app-village-select>
+        <app-location-selector />
         <div class="row">
           <div class="col-md-4 col-xs-12">
             <label for="name" class="form-label">Full Name</label>
@@ -109,7 +105,15 @@
             formControlName="bloodGroup"
             placeholder="Please select Blood Group"></ng-select>
           </div>
-          <div class="col-md-8">
+          <div class="col-md-4">
+            <label for="citizenshipType" class="form-label">Citizen Type</label>
+            <input type="text" formControlName="citizenshipType" class="form-control" id="citizenshipType" />
+          </div>
+          <div class="col-md-4">
+            <label for="birthCountry" class="form-label">Birth Country</label>
+            <input type="text" formControlName="birthCountry" class="form-control" id="birthCountry" />
+          </div>
+          <div class="col-md-12">
             <label for="address" class="form-label">Address</label>
             <textarea class="form-control" formControlName="address" id="address" rows="3"></textarea>
           </div>

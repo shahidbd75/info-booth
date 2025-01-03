@@ -3,11 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonService } from '../../services/person.service';
 import { PersonCreateRequestModel, PersonUpdateRequestModel } from '../../types/person.model';
-import { Observable } from 'rxjs';
+import { filter, map, Observable, Subscription, switchMap } from 'rxjs';
 import { OccupationService } from '../../services/occupation.service';
 import { OptionsService } from 'src/app/shared/services/options.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
   selector: 'app-person',
@@ -22,16 +24,16 @@ export class PersonComponent implements OnInit {
   villages$: Observable<OptionsModel[]>;
   occupations$: Observable<OptionsModel[]>;
   bloodGroups = bloodGroups;
-  selectedDistrictId: number;
-  selectedUpazilaId: number;
-  selectedVillageId: string;
+  subscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
     private personService: PersonService,
     private router: Router,
     public occupationService: OccupationService,
-    private optionsService: OptionsService
+    private optionsService: OptionsService,
+    private activatedRoute: ActivatedRoute,
+    private notificationService: NotificationService,
   ) {
     this.createForm();
   }
@@ -41,18 +43,15 @@ export class PersonComponent implements OnInit {
   }
 
   private loadPerson() {
-    if (this.personService.selectedPerson) {
-      const { districtId, upazilaId, villageId, occupationId, occupationName, districtName, upazilaName, villageName, degreeName, ...person } =
-        this.personService.selectedPerson;
-      this.personForm.setValue({ ...person, villageId, occupation: occupationId });
-      this.isEditMode = true;
-
-      this.selectedDistrictId = districtId;
-      this.selectedUpazilaId = upazilaId;
-      this.selectedVillageId = villageId;
-
-      this.personService.selectedPerson = null;
-    }
+    this.subscription = this.activatedRoute.params.pipe(map(params => params['id']), filter(id => id !== undefined),
+  switchMap((id:string) => this.personService.getPersons(id))).subscribe({
+    next: person => {
+      const { occupationId, occupationName, districtName, upazilaName, villageName, degreeName, ...restValue } = person;
+        this.personForm.setValue({ ...restValue, occupation: occupationId });
+        this.isEditMode = true;
+    },
+    error: (error) => this.notificationService.error(NotificationMessage.ServerError),
+  });
   }
 
   onPersonAdd() {
@@ -76,11 +75,7 @@ export class PersonComponent implements OnInit {
   }
 
   resetForm() {
-    this.personForm.reset({ villageId: this.selectedVillageId });
-  }
-
-  onVillageChange(villageId: string) {
-    this.personForm.patchValue({ villageId });
+    this.personForm.reset();
   }
 
   loadOccupation() {
@@ -107,7 +102,8 @@ export class PersonComponent implements OnInit {
       dateOfBirth: [null],
       postalCode: [''],
       degreeId: [null],
-      villageId: [null, Validators.required],
+      citizenshipType: [null],
+      birthCountry: [null],
     });
   }
 }

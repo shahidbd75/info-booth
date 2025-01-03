@@ -86,8 +86,7 @@ export class PersonsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onEdit(element: PersonResponseModel) {
-    this.personService.selectedPerson = element;
-    this.router.navigate([`personnel/person`]);
+    this.router.navigate([`personnel/person`, element.id]);
   }
 
   onDelete(element: PersonResponseModel) {

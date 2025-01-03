@@ -26,6 +26,7 @@ import { HealthAmenitiesService } from './services/health-amenities.service';
 import { DoctorChambersComponent } from './pages/doctor-chambers/doctor-chambers.component';
 import { DoctorChambersClientService } from './services/doctor-chambers-client.service';
 import { DoctorChamberComponent } from './pages/doctor-chamber/doctor-chamber.component';
+import { LocationSelectorComponent } from "../shared/components/location-selector/location-selector.component";
 
 
 @NgModule({
@@ -35,7 +36,9 @@ import { DoctorChamberComponent } from './pages/doctor-chamber/doctor-chamber.co
     CommonModule,
     HealthRoutingModule,
     MaterialModule,
-    RouterModule, MaterialModule, FormsModule, SharedModule, ReactiveFormsModule, NgSelectModule,VillageModule,],
+    RouterModule, MaterialModule, FormsModule, SharedModule, ReactiveFormsModule, NgSelectModule, VillageModule,
+    LocationSelectorComponent
+],
   providers: [SpecializationClientService, {provide:BaseHttpService, useClass: SpecializationClientService}, DoctorsClientService, PersonService, HealthOptionsService, HealthAmenitiesService, DoctorChambersClientService]
 })
 export class HealthModule { }

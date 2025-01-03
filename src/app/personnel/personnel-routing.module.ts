@@ -12,6 +12,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: 'persons', component: PersonsComponent },
+      { path: 'person/:id', component: PersonComponent },
       { path: 'person', component: PersonComponent },
       { path: 'occupations', component: OccupationsComponent },
       { path: 'occupation/:id', component: OccupationComponent },

@@ -1,11 +1,13 @@
 import { OptionsModel } from './../../../shared/models/options-model';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { filter, map, Observable, Subscription, switchMap } from 'rxjs';
 import { HealthOptionsService } from '../../services/health-options.service';
 import { HospitalsClientService } from '../../services/hospitals-client.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HospitalsCreateRequestModel, HospitalsResponseModel, HospitalsUpdateRequestModel } from '../../types/hospitals-types';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
   selector: 'app-hospital',
@@ -17,9 +19,6 @@ export class HospitalComponent {
   isEditMode = false;
   formGroup: FormGroup;
   subscription: Subscription = new Subscription();
-  selectedDistrictId: number;
-  selectedUpazilaId: number;
-  selectedVillageId: string;
   healthCareTypes$: Observable<OptionsModel[]> = this.optionService.getHealthCareTypes();
   amenities$: Observable<OptionsModel[]> = this.optionService.getHealthAmenities();
   constructor(
@@ -28,6 +27,7 @@ export class HospitalComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private optionService: HealthOptionsService,
+    private notification: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -41,9 +41,10 @@ export class HospitalComponent {
     this.subscription.add(
       this.hospitalService.save(requestModel).subscribe({
         next: () => {
+          this.notification.success(NotificationMessage.SavedSuccessfully);
           this.router.navigate(['health/hospitals']);
         },
-        error: () => console.log('Not saved')
+        error: () => this.notification.error(NotificationMessage.SavedFailure)
        }));
   }
 
@@ -54,16 +55,13 @@ export class HospitalComponent {
       this.hospitalService.update(requestModel).subscribe(
         {
           next:() => {
+            this.notification.success(NotificationMessage.UpdatedSuccessfully);
             this.router.navigate(['health/hospitals']);
           },
-          error:() => console.log('Not updated')
+          error:() => this.notification.error(NotificationMessage.UpdatedFailure)
         }
       )
     );
-  }
-
-  onVillageChange(villageId: string) {
-    this.formGroup.patchValue({ villageId });
   }
 
   resetForm() {
@@ -80,23 +78,13 @@ export class HospitalComponent {
   }
 
   loadData() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      const id: string = params['id'];
-      if (id) {
-        this.subscription.add(
-          this.hospitalService.getById<HospitalsResponseModel>(id).subscribe((data: HospitalsResponseModel) => {
-            const {upazilaId,districtId,...restValue } = data;
-            this.formGroup.setValue({
-              ...restValue,
-            });
-            this.selectedDistrictId = districtId;
-            this.selectedUpazilaId = upazilaId;
-            this.selectedVillageId = data.villageId;
-          })
-        );
-
-        this.isEditMode = true;
-      }
+    this.subscription = this.activatedRoute.params.pipe(
+      map(param => param['id']),
+      filter(data => Boolean(data)),
+      switchMap((id)=> this.hospitalService.getById<HospitalsResponseModel>(id)),
+    ).subscribe((data: HospitalsResponseModel) => {
+      this.isEditMode = true;
+        this.formGroup.setValue(data);
     });
   }
 
