@@ -50,13 +50,14 @@ export type ToLetDetailResponseModel = {
   careTakerName:     string;
   careTakerPhone:    string;
   amenities:         string[];
-  flatViewId:        number;
-  landMarkId:        number[];
+  viewId:        number;
+  landMarkIds:        number[];
   villageId:         string;
   villageName:       string;
   upazilaId:         number;
   districtId:        number;
   isActive:          boolean;
   id:                string;
+  preferableReligion: number;
 };
 
