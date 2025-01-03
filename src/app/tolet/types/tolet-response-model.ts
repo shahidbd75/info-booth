@@ -22,14 +22,41 @@ export type ToLetTableResponseModel = {
   landMarkId: number[];
   villageId: string;
   villageName: string;
-  upazilaId: number;
-  districtId: number;
+  upazila: number;
+  district: number;
   isActive: boolean;
   owner: string;
   rentTypeName: string;
 };
 
 export type ToLetDetailResponseModel = {
-  id: string;
-  title: string;
+  title:             string;
+  personId:          string;
+  owner:             string;
+  rent:              number;
+  isRentNegotiable:  boolean;
+  availableFrom:     Date;
+  description:       string;
+  floorNumber:       number;
+  totalFloor:        number;
+  numberOfBed:       number;
+  numberOfBath:      number;
+  areaInSqFeet:      number;
+  isBachelorAllowed: boolean;
+  hasParking:        boolean;
+  hasGenerator:      boolean;
+  rentTypeId:        number;
+  rentTypeName:      string;
+  careTakerName:     string;
+  careTakerPhone:    string;
+  amenities:         string[];
+  flatViewId:        number;
+  landMarkId:        number[];
+  villageId:         string;
+  villageName:       string;
+  upazilaId:         number;
+  districtId:        number;
+  isActive:          boolean;
+  id:                string;
 };
+

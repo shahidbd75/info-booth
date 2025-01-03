@@ -1,25 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { filter, map, Observable, Subscription, switchMap } from 'rxjs';
 import { PersonService } from 'src/app/personnel/services/person.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 import { ToletService } from '../../services/tolet.service';
 import { ToletOptionsService } from '../../services/tolet-options.service';
 import { ToLetCreateRequestModel, ToLetUpdateRequestModel } from '../../types/tolet-request-model';
 import { ToLetDetailResponseModel } from '../../types/tolet-response-model';
+import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
+import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
   selector: 'app-tolet',
   templateUrl: './tolet.component.html',
   styleUrls: ['./tolet.component.scss'],
 })
-export class ToletComponent implements OnInit {
+export class ToletComponent implements OnInit, OnDestroy, AfterViewInit {
   toletForm: FormGroup;
   isEditMode = false;
+  detailResponse: ToLetDetailResponseModel;
   selectedDistrictId: number;
   selectedUpazilaId: number;
   selectedVillageId: string;
+  subscription: Subscription;
 
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();
   rentTypes$: Observable<OptionsModel[]> = this.optionService.getFlatTypes();
@@ -34,15 +38,17 @@ export class ToletComponent implements OnInit {
     private toletService: ToletService,
     private personService: PersonService,
     private activatedRoute: ActivatedRoute,
+    private notificationService: NotificationService,
     public optionService: ToletOptionsService
   ) {}
 
   ngOnInit(): void {
     this.initializeFormGroup();
-    this.loadFromParam();
+    this.loadTolet();
   }
 
-  loadData() {
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
   
   initializeFormGroup() {
@@ -69,22 +75,25 @@ export class ToletComponent implements OnInit {
       landMarkIds: [null],
       amenities: [null],
       preferableReligion: [null],
-      villageId: [null, [Validators.required]],
+      id: [null],
     });
   }
 
-  onWorkerSave() {
+  onToletSave() {
     const requestModel: ToLetCreateRequestModel = { ...this.toletForm.value };
 
     this.toletService.saveToLet(requestModel).subscribe(
-      () => {
-        this.router.navigate(['tolet/to-lets']);
-      },
-      error => console.log(error)
+      {
+        next: () => {
+          this.notificationService.success(NotificationMessage.SavedSuccessfully)
+          this.router.navigate(['tolet/to-lets']);
+        },
+        error: (err) => this.notificationService.error(NotificationMessage.SavedFailure)
+      }
     );
   }
 
-  onWorkerUpdate() {
+  onToletUpdate() {
     const requestModel: ToLetUpdateRequestModel = { ...this.toletForm.value };
 
     this.toletService.updateToLet(requestModel).subscribe(
@@ -103,6 +112,10 @@ export class ToletComponent implements OnInit {
     this.toletForm.patchValue({ villageId });
   }
 
+  ngAfterViewInit(): void {
+    this.toletForm.patchValue(this.detailResponse);
+  }
+
   private formatTime(inputTime: string): string {
     const date = new Date();
     if (inputTime) {
@@ -112,14 +125,15 @@ export class ToletComponent implements OnInit {
 
     return date.toLocaleTimeString([], { timeStyle: 'short' });
   }
-  private loadFromParam() {
-    this.activatedRoute.params.subscribe((param: Params) => {
-      const { id } = param;
-      if (id) {
-        this.toletService.getToLetById(id).subscribe((tolet: ToLetDetailResponseModel) => {
-          this.toletForm.patchValue(tolet);
-        });
-      }
+  private loadTolet() {
+    this.subscription = this.activatedRoute.params.pipe(
+      map(param => param['id']),
+      filter(data => Boolean(data)),
+      switchMap((id)=> this.toletService.getToLetById(id)),
+    ).subscribe((tolet: ToLetDetailResponseModel) => {
+      this.isEditMode = true;
+      this.detailResponse = tolet;
+      this.toletForm.patchValue(tolet);
     });
   }
 }

@@ -7,11 +7,12 @@
     <mat-card-content>
       <mat-divider></mat-divider>
       <div class="g-3 pt-2">
-        <app-village-select
+        <app-location-selector />
+        <!-- <app-village-select
           [districtId]="selectedDistrictId"
           [upazilaId]="selectedUpazilaId"
           villageId="selectedVillageId"
-          (villageChanges)="onVillageChange($event)" />
+          (villageChanges)="onVillageChange($event)" /> -->
         <div class="row">
           <div class="col-md-4 col-xs-12">
             <label for="personId" class="form-label">Owner</label>
@@ -69,6 +70,7 @@
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="RentType" class="form-label">Rent Type</label>
+            <span class="text-danger">*</span>
             <ng-select
               [items]="rentTypes$ | async"
               id="RentType"
@@ -80,6 +82,7 @@
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="View" class="form-label">View</label>
+            <span class="text-danger">*</span>
             <ng-select
               [items]="views$ | async"
               id="View"
@@ -91,6 +94,7 @@
           </div>
           <div class="col-md-4 col-xs-12">
             <label for="LandMarkIds" class="form-label">Nearby Landmarks</label>
+            <span class="text-danger">*</span>
             <ng-select
               [items]="landmarks$ | async"
               id="LandMarkIds"
@@ -120,6 +124,7 @@
           </div>
           <div class="col-md-12 col-xs-12">
             <label for="Amenities" class="form-label">Amenities</label>
+            <span class="text-danger">*</span>
             <ng-select
               [items]="aminities$ | async"
               id="Amenities"
@@ -147,8 +152,8 @@
       </div>
     </mat-card-content>
     <mat-card-actions class="action-button-container">
-      <button mat-raised-button color="primary" (click)="onWorkerSave()" [disabled]="!toletForm.valid" *ngIf="!isEditMode">Add</button>
-      <button mat-raised-button color="primary" (click)="onWorkerUpdate()" [disabled]="!toletForm.valid" *ngIf="isEditMode">Update</button>
+      <button mat-raised-button color="primary" (click)="onToletSave()" [disabled]="!toletForm.valid" *ngIf="!isEditMode">Add</button>
+      <button mat-raised-button color="primary" (click)="onToletUpdate()" [disabled]="!toletForm.valid" *ngIf="isEditMode">Update</button>
       <button mat-raised-button (click)="resetForm()">Cancel</button>
     </mat-card-actions>
   </mat-card>

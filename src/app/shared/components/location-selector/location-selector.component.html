@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-4">
+      <label for="district" class="form-label">District</label>
+      <ng-select
+        [items]="districts$ | async"
+        id="districtId"
+        [searchable]="true"
+        bindValue="id"
+        bindLabel="name"
+        formControlName="districtId"
+        (change)="loadUpazilas($event)"
+        placeholder="Please select district"></ng-select>
+    </div>
+    <div class="col-md-4">
+      <label for="upazila" class="form-label">Upazila</label>
+      <ng-select
+        [items]="upazilas$ | async"
+        id="upazila"
+        [searchable]="true"
+        bindValue="id"
+        bindLabel="name"
+        formControlName="upazilaId"
+        (change)="loadVillages($event)"
+        placeholder="Please select upazila"></ng-select>
+    </div>
+    <div class="col-md-4">
+      <label for="village" class="form-label">Village</label>
+      <span class="text-danger">*</span>
+      <ng-select
+        [items]="villages$ | async"
+        id="village"
+        [searchable]="true"
+        bindValue="id"
+        bindLabel="name"
+        formControlName="villageId"
+        placeholder="Please select village"></ng-select>
+    </div>
+  </div>
+  

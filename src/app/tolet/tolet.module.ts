@@ -14,6 +14,7 @@ import { PersonService } from '../personnel/services/person.service';
 import { ToletService } from './services/tolet.service';
 import { ToletOptionsService } from './services/tolet-options.service';
 import { VillageModule } from '../shared/modules/village-select/village.module';
+import { LocationSelectorComponent } from "../shared/components/location-selector/location-selector.component";
 
 @NgModule({
   declarations: [ToletsComponent, LayoutComponent, ToletComponent],
@@ -27,7 +28,8 @@ import { VillageModule } from '../shared/modules/village-select/village.module';
     HttpClientModule,
     NgSelectModule,
     VillageModule,
-  ],
+    LocationSelectorComponent
+],
   providers: [PersonService, ToletService, ToletOptionsService],
 })
 export class ToletModule {}
