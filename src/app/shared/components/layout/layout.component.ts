@@ -7,9 +7,10 @@ import { AuthDataService } from 'src/app/core/services/auth-data.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss'],
+    selector: 'app-layout',
+    templateUrl: './layout.component.html',
+    styleUrls: ['./layout.component.scss'],
+    standalone: false
 })
 export class LayoutComponent {
   private breakpointObserver = inject(BreakpointObserver);

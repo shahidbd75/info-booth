@@ -7,9 +7,10 @@ import { CreateRequestModel, UpdateRequestModel } from '../../types/common-reque
 import { CommonResponseModel } from '../../types/common-response-type';
 
 @Component({
-  selector: 'app-subject',
-  templateUrl: './subject.component.html',
-  styleUrls: ['./subject.component.scss'],
+    selector: 'app-subject',
+    templateUrl: './subject.component.html',
+    styleUrls: ['./subject.component.scss'],
+    standalone: false
 })
 export class SubjectComponent implements OnInit, OnDestroy {
   isEditMode = false;

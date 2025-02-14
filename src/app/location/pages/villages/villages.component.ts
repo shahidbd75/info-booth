@@ -9,9 +9,10 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 
 @Component({
-  selector: 'app-villages',
-  templateUrl: './villages.component.html',
-  styleUrls: ['./villages.component.scss'],
+    selector: 'app-villages',
+    templateUrl: './villages.component.html',
+    styleUrls: ['./villages.component.scss'],
+    standalone: false
 })
 export class VillagesComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'banglaName', 'upazilaName', 'districtName', 'actions'];

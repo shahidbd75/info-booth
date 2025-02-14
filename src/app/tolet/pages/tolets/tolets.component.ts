@@ -8,9 +8,10 @@ import { ToLetTableResponseModel } from '../../types/tolet-response-model';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-tolets',
-  templateUrl: './tolets.component.html',
-  styleUrls: ['./tolets.component.scss'],
+    selector: 'app-tolets',
+    templateUrl: './tolets.component.html',
+    styleUrls: ['./tolets.component.scss'],
+    standalone: false
 })
 export class ToletsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['village', 'title', 'rent', 'availableFrom', 'accomodation', 'rentType', 'area', 'postedBy', 'isActive', 'actions'];

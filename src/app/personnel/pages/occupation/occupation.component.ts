@@ -6,9 +6,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-occupation',
-  templateUrl: './occupation.component.html',
-  styleUrls: ['./occupation.component.scss'],
+    selector: 'app-occupation',
+    templateUrl: './occupation.component.html',
+    styleUrls: ['./occupation.component.scss'],
+    standalone: false
 })
 export class OccupationComponent implements OnInit {
   occupationForm: FormGroup;

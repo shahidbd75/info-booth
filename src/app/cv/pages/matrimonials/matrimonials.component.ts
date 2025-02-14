@@ -8,9 +8,10 @@ import { MatrimonialBasicCvService } from '../../services/matrimonial-basic.serv
 import { MatrimonialReponseType, MatrimonialTableResponse } from '../../types/matrimonial-basic-types';
 
 @Component({
-  selector: 'app-matrimonials',
-  templateUrl: './matrimonials.component.html',
-  styleUrls: ['./matrimonials.component.scss'],
+    selector: 'app-matrimonials',
+    templateUrl: './matrimonials.component.html',
+    styleUrls: ['./matrimonials.component.scss'],
+    standalone: false
 })
 export class MatrimonialsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'phone', 'villageName', 'percentComplete', 'createdDate', 'actions'];

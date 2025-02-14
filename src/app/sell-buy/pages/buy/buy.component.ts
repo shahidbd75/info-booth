@@ -3,9 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { VillageSelectComponent } from 'src/app/shared/modules/village-select/village-select.component';
 
 @Component({
-  selector: 'app-buy',
-  templateUrl: './buy.component.html',
-  styleUrls: ['./buy.component.scss'],
+    selector: 'app-buy',
+    templateUrl: './buy.component.html',
+    styleUrls: ['./buy.component.scss'],
+    standalone: false
 })
 export class BuyComponent {
   villageId = '9754110e-c315-4d51-8a87-d856b0caabec';

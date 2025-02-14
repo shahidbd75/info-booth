@@ -7,9 +7,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { StepperOrientation } from '@angular/material/stepper';
 
 @Component({
-  selector: 'app-professional',
-  templateUrl: './professional.component.html',
-  styleUrls: ['./professional.component.scss'],
+    selector: 'app-professional',
+    templateUrl: './professional.component.html',
+    styleUrls: ['./professional.component.scss'],
+    standalone: false
 })
 export class ProfessionalComponent implements OnInit {
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();

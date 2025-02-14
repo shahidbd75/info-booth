@@ -11,9 +11,10 @@ import { ItemDataService } from '../../services/item-data.service';
 import { ItemTransactionType } from '../../enums/transaction-type';
 
 @Component({
-  selector: 'app-items',
-  templateUrl: './items.component.html',
-  styleUrls: ['./items.component.scss'],
+    selector: 'app-items',
+    templateUrl: './items.component.html',
+    styleUrls: ['./items.component.scss'],
+    standalone: false
 })
 export class ItemsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'subCategoryName', 'transactionType', 'postedBy', 'actions'];

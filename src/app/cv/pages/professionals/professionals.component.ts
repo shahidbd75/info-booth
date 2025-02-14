@@ -8,9 +8,10 @@ import { ProfessionalTableResponseModel } from '../../types/professional-basic-t
 import { ProfessionalBasicService } from '../../services/professional-basic.service';
 
 @Component({
-  selector: 'app-professionals',
-  templateUrl: './professionals.component.html',
-  styleUrls: ['./professionals.component.scss'],
+    selector: 'app-professionals',
+    templateUrl: './professionals.component.html',
+    styleUrls: ['./professionals.component.scss'],
+    standalone: false
 })
 export class ProfessionalsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'phone', 'villageName', 'percentComplete', 'createdDate', 'actions'];

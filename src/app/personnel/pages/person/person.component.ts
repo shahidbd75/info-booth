@@ -12,9 +12,10 @@ import { NotificationService } from 'src/app/lib/material/notification/services/
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
-  selector: 'app-person',
-  templateUrl: './person.component.html',
-  styleUrls: ['./person.component.scss'],
+    selector: 'app-person',
+    templateUrl: './person.component.html',
+    styleUrls: ['./person.component.scss'],
+    standalone: false
 })
 export class PersonComponent implements OnInit {
   personForm: FormGroup;

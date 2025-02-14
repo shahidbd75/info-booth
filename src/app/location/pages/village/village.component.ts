@@ -10,9 +10,10 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 
 @Component({
-  selector: 'app-village',
-  templateUrl: './village.component.html',
-  styleUrls: ['./village.component.scss'],
+    selector: 'app-village',
+    templateUrl: './village.component.html',
+    styleUrls: ['./village.component.scss'],
+    standalone: false
 })
 export class VillageComponent implements OnInit {
   villageForm: FormGroup;

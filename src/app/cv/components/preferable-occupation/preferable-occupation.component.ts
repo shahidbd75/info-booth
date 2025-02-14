@@ -6,9 +6,10 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-preferable-occupation',
-  templateUrl: './preferable-occupation.component.html',
-  styleUrls: ['./preferable-occupation.component.scss'],
+    selector: 'app-preferable-occupation',
+    templateUrl: './preferable-occupation.component.html',
+    styleUrls: ['./preferable-occupation.component.scss'],
+    standalone: false
 })
 export class PreferableOccupationComponent implements OnInit, OnDestroy {
   pOFormGroup: FormGroup;

@@ -14,9 +14,10 @@ import { HealthRoutePath } from '../../constant/health-route-path';
 
 
 @Component({
-  selector: 'app-amenities',
-  templateUrl: './amenities.component.html',
-  styleUrl: './amenities.component.scss'
+    selector: 'app-amenities',
+    templateUrl: './amenities.component.html',
+    styleUrl: './amenities.component.scss',
+    standalone: false
 })
 export class AmenitiesComponent implements OnInit, OnDestroy, AfterViewInit {
   displayedColumns: string[] = ['name', 'banglaName', 'actions'];

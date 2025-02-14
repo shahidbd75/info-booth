@@ -13,9 +13,10 @@ import { NotificationService } from 'src/app/lib/material/notification/services/
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
-  selector: 'app-job-reference',
-  templateUrl: './job-reference.component.html',
-  styleUrls: ['./job-reference.component.scss'],
+    selector: 'app-job-reference',
+    templateUrl: './job-reference.component.html',
+    styleUrls: ['./job-reference.component.scss'],
+    standalone: false
 })
 export class JobReferenceComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;

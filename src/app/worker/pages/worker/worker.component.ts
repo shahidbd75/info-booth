@@ -8,9 +8,10 @@ import { Observable } from 'rxjs';
 import { WorkerRequestModel, WorkerResponseModel } from '../../types/worker-model';
 
 @Component({
-  selector: 'app-worker',
-  templateUrl: './worker.component.html',
-  styleUrls: ['./worker.component.scss'],
+    selector: 'app-worker',
+    templateUrl: './worker.component.html',
+    styleUrls: ['./worker.component.scss'],
+    standalone: false
 })
 export class WorkerComponent implements OnInit {
   workerForm: FormGroup;

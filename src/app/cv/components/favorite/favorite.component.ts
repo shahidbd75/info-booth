@@ -10,9 +10,10 @@ import { NotificationService } from 'src/app/lib/material/notification/services/
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
-  selector: 'app-favorite',
-  templateUrl: './favorite.component.html',
-  styleUrls: ['./favorite.component.scss'],
+    selector: 'app-favorite',
+    templateUrl: './favorite.component.html',
+    styleUrls: ['./favorite.component.scss'],
+    standalone: false
 })
 export class FavoriteComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   favoriteFormGroup: FormGroup;

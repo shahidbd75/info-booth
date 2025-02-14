@@ -8,9 +8,10 @@ import { BookCategoryResponseModel } from '../../types/book-category-model';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-book-categories',
-  templateUrl: './book-categories.component.html',
-  styleUrls: ['./book-categories.component.scss'],
+    selector: 'app-book-categories',
+    templateUrl: './book-categories.component.html',
+    styleUrls: ['./book-categories.component.scss'],
+    standalone: false
 })
 export class BookCategoriesComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'banglaName', 'createdDate', 'actions'];

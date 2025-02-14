@@ -8,9 +8,10 @@ import { LanguageService } from '../../services/language.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-languages',
-  templateUrl: './languages.component.html',
-  styleUrls: ['./languages.component.scss'],
+    selector: 'app-languages',
+    templateUrl: './languages.component.html',
+    styleUrls: ['./languages.component.scss'],
+    standalone: false
 })
 export class LanguagesComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'createdDate', 'actions'];

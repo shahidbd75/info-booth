@@ -17,9 +17,10 @@ import { NotificationMessage } from 'src/app/shared/constants/notification-messa
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 
 @Component({
-  selector: 'app-family-member',
-  templateUrl: './family-member.component.html',
-  styleUrls: ['./family-member.component.scss'],
+    selector: 'app-family-member',
+    templateUrl: './family-member.component.html',
+    styleUrls: ['./family-member.component.scss'],
+    standalone: false
 })
 export class FamilyMemberComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;

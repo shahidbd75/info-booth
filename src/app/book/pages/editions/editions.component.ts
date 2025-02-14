@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
 import { EditionService } from '../../services/edition.service';
 
 @Component({
-  selector: 'app-editions',
-  templateUrl: './editions.component.html',
-  styleUrls: ['./editions.component.scss'],
+    selector: 'app-editions',
+    templateUrl: './editions.component.html',
+    styleUrls: ['./editions.component.scss'],
+    standalone: false
 })
 export class EditionsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'createdDate', 'actions'];

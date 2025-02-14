@@ -9,9 +9,10 @@ import { OccupationService } from '../../services/occupation.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-occupations',
-  templateUrl: './occupations.component.html',
-  styleUrls: ['./occupations.component.scss'],
+    selector: 'app-occupations',
+    templateUrl: './occupations.component.html',
+    styleUrls: ['./occupations.component.scss'],
+    standalone: false
 })
 export class OccupationsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'banglaName', 'actions'];

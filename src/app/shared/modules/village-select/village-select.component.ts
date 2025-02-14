@@ -5,9 +5,10 @@ import { Observable, delay } from 'rxjs';
 import { OptionsModel } from '../../models/options-model';
 
 @Component({
-  selector: 'app-village-select',
-  templateUrl: './village-select.component.html',
-  styleUrls: ['./village-select.component.scss'],
+    selector: 'app-village-select',
+    templateUrl: './village-select.component.html',
+    styleUrls: ['./village-select.component.scss'],
+    standalone: false
 })
 export class VillageSelectComponent implements OnInit, OnChanges {
   public formGroup: FormGroup;

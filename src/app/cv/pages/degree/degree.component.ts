@@ -7,9 +7,10 @@ import { CreateRequestModel, UpdateRequestModel } from '../../types/common-reque
 import { CommonResponseModel } from '../../types/common-response-type';
 
 @Component({
-  selector: 'app-degree',
-  templateUrl: './degree.component.html',
-  styleUrls: ['./degree.component.scss'],
+    selector: 'app-degree',
+    templateUrl: './degree.component.html',
+    styleUrls: ['./degree.component.scss'],
+    standalone: false
 })
 export class DegreeComponent implements OnInit, OnDestroy {
   isEditMode = false;

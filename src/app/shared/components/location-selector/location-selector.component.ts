@@ -7,13 +7,12 @@ import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-location-selector',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgSelectModule, AsyncPipe],
-  templateUrl: './location-selector.component.html',
-  styleUrl: './location-selector.component.scss',
-  providers: [OptionsService],
-  viewProviders: [{ provide: ControlContainer, useFactory: () => inject(ControlContainer, { skipSelf: true }) }],
+    selector: 'app-location-selector',
+    imports: [ReactiveFormsModule, NgSelectModule, AsyncPipe],
+    templateUrl: './location-selector.component.html',
+    styleUrl: './location-selector.component.scss',
+    providers: [OptionsService],
+    viewProviders: [{ provide: ControlContainer, useFactory: () => inject(ControlContainer, { skipSelf: true }) }]
 })
 export class LocationSelectorComponent implements OnInit, OnDestroy {
   private optionService = inject(OptionsService);

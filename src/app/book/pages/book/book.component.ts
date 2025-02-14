@@ -9,9 +9,10 @@ import { OptionsService } from 'src/app/shared/services/options.service';
 import { BookCategoryCreateRequestModel, BookCategoryUpdateRequestModel } from '../../types/book-category-model';
 
 @Component({
-  selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss'],
+    selector: 'app-book',
+    templateUrl: './book.component.html',
+    styleUrls: ['./book.component.scss'],
+    standalone: false
 })
 export class BookComponent implements OnInit, OnDestroy {
   isEditMode = false;

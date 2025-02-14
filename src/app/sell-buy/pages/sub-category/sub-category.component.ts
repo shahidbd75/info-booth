@@ -10,9 +10,10 @@ import { ItemSubCategoryDetailResponseModel } from '../../models/sub-category.mo
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 
 @Component({
-  selector: 'app-sub-category',
-  templateUrl: './sub-category.component.html',
-  styleUrls: ['./sub-category.component.scss'],
+    selector: 'app-sub-category',
+    templateUrl: './sub-category.component.html',
+    styleUrls: ['./sub-category.component.scss'],
+    standalone: false
 })
 export class SubCategoryComponent implements OnInit, OnDestroy {
   categories$: Observable<Array<OptionsModel>>;

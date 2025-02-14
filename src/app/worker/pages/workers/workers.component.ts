@@ -9,9 +9,10 @@ import { Router } from '@angular/router';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Component({
-  selector: 'app-workers',
-  templateUrl: './workers.component.html',
-  styleUrls: ['./workers.component.scss'],
+    selector: 'app-workers',
+    templateUrl: './workers.component.html',
+    styleUrls: ['./workers.component.scss'],
+    standalone: false
 })
 export class WorkersComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'phone', 'occupation', 'village', 'expectedWages', 'goodAts', 'actions'];

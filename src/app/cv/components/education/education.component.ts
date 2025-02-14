@@ -11,9 +11,10 @@ import { NotificationService } from 'src/app/lib/material/notification/services/
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
-  selector: 'app-education',
-  templateUrl: './education.component.html',
-  styleUrls: ['./education.component.scss'],
+    selector: 'app-education',
+    templateUrl: './education.component.html',
+    styleUrls: ['./education.component.scss'],
+    standalone: false
 })
 export class EducationComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;

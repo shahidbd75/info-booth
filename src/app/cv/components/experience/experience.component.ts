@@ -11,9 +11,10 @@ import { NotificationMessage } from 'src/app/shared/constants/notification-messa
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 
 @Component({
-  selector: 'app-experience',
-  templateUrl: './experience.component.html',
-  styleUrls: ['./experience.component.scss'],
+    selector: 'app-experience',
+    templateUrl: './experience.component.html',
+    styleUrls: ['./experience.component.scss'],
+    standalone: false
 })
 export class ExperienceComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;

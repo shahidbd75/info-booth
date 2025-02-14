@@ -13,9 +13,10 @@ import { PagedResponseModel } from 'src/app/shared/models/paged-list-response';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-persons',
-  templateUrl: './persons.component.html',
-  styleUrls: ['./persons.component.scss'],
+    selector: 'app-persons',
+    templateUrl: './persons.component.html',
+    styleUrls: ['./persons.component.scss'],
+    standalone: false
 })
 export class PersonsComponent implements OnInit, OnDestroy, AfterViewInit {
   displayedColumns: string[] = ['name', 'phone', 'gender', 'degreeName', 'address', 'actions'];

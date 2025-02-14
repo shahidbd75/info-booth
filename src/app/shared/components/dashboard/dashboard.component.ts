@@ -5,9 +5,10 @@ import { GlobalDataContextService } from '../../services/global-data-context.ser
 import { BaseMenus } from '../../constants/base-menus';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    standalone: false
 })
 export class DashboardComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);

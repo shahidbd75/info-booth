@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
 import { PagedRequestModel } from 'src/app/shared/models/paged-request-model';
 
 @Component({
-  selector: 'app-doctors',
-  templateUrl: './doctors.component.html',
-  styleUrl: './doctors.component.scss'
+    selector: 'app-doctors',
+    templateUrl: './doctors.component.html',
+    styleUrl: './doctors.component.scss',
+    standalone: false
 })
 export class DoctorsComponent implements OnInit, OnDestroy, AfterViewInit {
   displayedColumns: string[] = ['name', 'degrees','bmdcRegNo','doctorsType', 'actions'];

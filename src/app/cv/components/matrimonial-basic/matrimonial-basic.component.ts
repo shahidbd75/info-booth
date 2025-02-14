@@ -10,9 +10,10 @@ import { NotificationService } from 'src/app/lib/material/notification/services/
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
-  selector: 'app-matrimonial-basic',
-  templateUrl: './matrimonial-basic.component.html',
-  styleUrls: ['./matrimonial-basic.component.scss'],
+    selector: 'app-matrimonial-basic',
+    templateUrl: './matrimonial-basic.component.html',
+    styleUrls: ['./matrimonial-basic.component.scss'],
+    standalone: false
 })
 export class MatrimonialBasicComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   matrimonialFormGroup: FormGroup;

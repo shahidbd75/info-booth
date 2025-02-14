@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
 import { DegreeService } from '../../services/degree.service';
 
 @Component({
-  selector: 'app-degrees',
-  templateUrl: './degrees.component.html',
-  styleUrls: ['./degrees.component.scss'],
+    selector: 'app-degrees',
+    templateUrl: './degrees.component.html',
+    styleUrls: ['./degrees.component.scss'],
+    standalone: false
 })
 export class DegreesComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'banglaName', 'order', 'createdDate', 'actions'];

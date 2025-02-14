@@ -6,9 +6,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-book-category',
-  templateUrl: './book-category.component.html',
-  styleUrls: ['./book-category.component.scss'],
+    selector: 'app-book-category',
+    templateUrl: './book-category.component.html',
+    styleUrls: ['./book-category.component.scss'],
+    standalone: false
 })
 export class BookCategoryComponent implements OnInit, OnDestroy {
   isEditMode = false;

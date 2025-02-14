@@ -7,9 +7,10 @@ import { HealthAmenityCreateRequestModel, HealthAmenityUpdateRequestModel, Healt
 import { HealthRoutePath } from '../../constant/health-route-path';
 
 @Component({
-  selector: 'app-amenity',
-  templateUrl: './amenity.component.html',
-  styleUrl: './amenity.component.scss'
+    selector: 'app-amenity',
+    templateUrl: './amenity.component.html',
+    styleUrl: './amenity.component.scss',
+    standalone: false
 })
 export class AmenityComponent implements OnInit, OnDestroy {
   isEditMode = false;

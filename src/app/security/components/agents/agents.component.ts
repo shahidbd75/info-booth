@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
 import { AgentService } from '../../services/agent.service';
 
 @Component({
-  selector: 'app-agents',
-  templateUrl: './agents.component.html',
-  styleUrls: ['./agents.component.scss'],
+    selector: 'app-agents',
+    templateUrl: './agents.component.html',
+    styleUrls: ['./agents.component.scss'],
+    standalone: false
 })
 export class AgentsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'phone', 'district', 'upazila', 'createdDate', 'actions'];

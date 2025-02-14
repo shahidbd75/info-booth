@@ -9,9 +9,10 @@ import { TuitionPostCreateRequestModel, TuitionPostUpdateRequestModel, TutionPos
 import { TutorService } from '../../services/tutor.service';
 
 @Component({
-  selector: 'app-tution-post',
-  templateUrl: './tution-post.component.html',
-  styleUrls: ['./tution-post.component.scss'],
+    selector: 'app-tution-post',
+    templateUrl: './tution-post.component.html',
+    styleUrls: ['./tution-post.component.scss'],
+    standalone: false
 })
 export class TutionPostComponent implements OnInit {
   tuitionPostForm: FormGroup;

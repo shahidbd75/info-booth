@@ -10,9 +10,10 @@ import { NotificationMessage } from 'src/app/shared/constants/notification-messa
 import { CvEnumOptionsComponent } from '../matrimonial-basic/matrimonial-basic-options.component';
 
 @Component({
-  selector: 'app-preferable',
-  templateUrl: './preferable.component.html',
-  styleUrls: ['./preferable.component.scss'],
+    selector: 'app-preferable',
+    templateUrl: './preferable.component.html',
+    styleUrls: ['./preferable.component.scss'],
+    standalone: false
 })
 export class PreferableComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   preferableFormGroup: FormGroup;

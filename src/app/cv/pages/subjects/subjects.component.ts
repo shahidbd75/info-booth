@@ -8,9 +8,10 @@ import { Subscription } from 'rxjs';
 import { CommonResponseModel } from '../../types/common-response-type';
 
 @Component({
-  selector: 'app-subjects',
-  templateUrl: './subjects.component.html',
-  styleUrls: ['./subjects.component.scss'],
+    selector: 'app-subjects',
+    templateUrl: './subjects.component.html',
+    styleUrls: ['./subjects.component.scss'],
+    standalone: false
 })
 export class SubjectsComponent {
   displayedColumns: string[] = ['name', 'banglaName', 'createdDate', 'actions'];

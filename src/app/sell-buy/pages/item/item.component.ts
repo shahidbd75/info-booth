@@ -11,9 +11,10 @@ import { Router } from '@angular/router';
 import { ItemDataService } from '../../services/item-data.service';
 
 @Component({
-  selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss'],
+    selector: 'app-item',
+    templateUrl: './item.component.html',
+    styleUrls: ['./item.component.scss'],
+    standalone: false
 })
 export class ItemComponent implements OnInit {
   categories$: Observable<OptionsModel[]> | undefined;

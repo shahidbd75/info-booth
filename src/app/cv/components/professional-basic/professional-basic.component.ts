@@ -11,9 +11,10 @@ import { NotificationMessage } from 'src/app/shared/constants/notification-messa
 import { NotificationService } from 'src/app/lib/material/notification/services/notification.service';
 
 @Component({
-  selector: 'app-professional-basic',
-  templateUrl: './professional-basic.component.html',
-  styleUrls: ['./professional-basic.component.scss'],
+    selector: 'app-professional-basic',
+    templateUrl: './professional-basic.component.html',
+    styleUrls: ['./professional-basic.component.scss'],
+    standalone: false
 })
 export class ProfessionalBasicComponent implements OnInit, OnDestroy {
   professionalFormGroup: FormGroup;

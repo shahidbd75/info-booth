@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-designations',
-  templateUrl: './designations.component.html',
-  styleUrls: ['./designations.component.scss'],
+    selector: 'app-designations',
+    templateUrl: './designations.component.html',
+    styleUrls: ['./designations.component.scss'],
+    standalone: false
 })
 export class DesignationsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'banglaName', 'createdDate', 'actions'];

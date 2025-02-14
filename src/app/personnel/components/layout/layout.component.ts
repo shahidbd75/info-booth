@@ -3,9 +3,10 @@ import { MenuType } from 'src/app/shared/models/menu-model';
 import { GlobalDataContextService } from 'src/app/shared/services/global-data-context.service';
 
 @Component({
-  selector: 'app-personnel-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss'],
+    selector: 'app-personnel-layout',
+    templateUrl: './layout.component.html',
+    styleUrls: ['./layout.component.scss'],
+    standalone: false
 })
 export class LayoutComponent {
   personnelMenus: MenuType[] = [

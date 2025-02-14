@@ -12,9 +12,10 @@ import { SpecializationClientService } from '../../services/specialization-clien
 import { PagedRequestModel } from 'src/app/shared/models/paged-request-model';
 
 @Component({
-  selector: 'app-specializations',
-  templateUrl: './specializations.component.html',
-  styleUrl: './specializations.component.scss',
+    selector: 'app-specializations',
+    templateUrl: './specializations.component.html',
+    styleUrl: './specializations.component.scss',
+    standalone: false
 })
 export class SpecializationsComponent implements OnInit, OnDestroy, AfterViewInit {
   displayedColumns: string[] = ['name', 'banglaName', 'actions'];

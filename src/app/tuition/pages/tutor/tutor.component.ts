@@ -9,9 +9,10 @@ import { PersonService } from 'src/app/personnel/services/person.service';
 import { CvOptionsService } from 'src/app/cv/services/cv-options.service';
 
 @Component({
-  selector: 'app-tutor',
-  templateUrl: './tutor.component.html',
-  styleUrls: ['./tutor.component.scss'],
+    selector: 'app-tutor',
+    templateUrl: './tutor.component.html',
+    styleUrls: ['./tutor.component.scss'],
+    standalone: false
 })
 export class TutorComponent implements OnInit {
   tutorForm: FormGroup;

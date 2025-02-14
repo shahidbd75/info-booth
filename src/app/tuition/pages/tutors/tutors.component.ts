@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
 import { TutorService } from '../../services/tutor.service';
 
 @Component({
-  selector: 'app-tutors',
-  templateUrl: './tutors.component.html',
-  styleUrls: ['./tutors.component.scss'],
+    selector: 'app-tutors',
+    templateUrl: './tutors.component.html',
+    styleUrls: ['./tutors.component.scss'],
+    standalone: false
 })
 export class TutorsComponent implements OnInit, OnDestroy, AfterViewInit {
   displayedColumns: string[] = ['name', 'degree', 'subject', 'institute', 'experience', 'actions'];

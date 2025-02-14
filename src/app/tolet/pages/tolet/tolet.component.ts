@@ -12,9 +12,10 @@ import { NotificationService } from 'src/app/lib/material/notification/services/
 import { NotificationMessage } from 'src/app/shared/constants/notification-message';
 
 @Component({
-  selector: 'app-tolet',
-  templateUrl: './tolet.component.html',
-  styleUrls: ['./tolet.component.scss'],
+    selector: 'app-tolet',
+    templateUrl: './tolet.component.html',
+    styleUrls: ['./tolet.component.scss'],
+    standalone: false
 })
 export class ToletComponent implements OnInit, OnDestroy, AfterViewInit {
   toletForm: FormGroup;

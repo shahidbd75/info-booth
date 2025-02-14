@@ -7,9 +7,10 @@ import { CommonResponseModel } from '../../types/common-response-type';
 import { DesignationService } from '../../services/designation.service';
 
 @Component({
-  selector: 'app-designation',
-  templateUrl: './designation.component.html',
-  styleUrls: ['./designation.component.scss'],
+    selector: 'app-designation',
+    templateUrl: './designation.component.html',
+    styleUrls: ['./designation.component.scss'],
+    standalone: false
 })
 export class DesignationComponent implements OnInit, OnDestroy {
   isEditMode = false;

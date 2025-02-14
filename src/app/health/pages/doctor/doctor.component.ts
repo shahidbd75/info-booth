@@ -9,9 +9,10 @@ import { PersonService } from 'src/app/personnel/services/person.service';
 import { HealthOptionsService } from '../../services/health-options.service';
 
 @Component({
-  selector: 'app-doctor',
-  templateUrl: './doctor.component.html',
-  styleUrl: './doctor.component.scss'
+    selector: 'app-doctor',
+    templateUrl: './doctor.component.html',
+    styleUrl: './doctor.component.scss',
+    standalone: false
 })
 export class DoctorComponent {
   isEditMode = false;

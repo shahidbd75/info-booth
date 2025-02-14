@@ -11,9 +11,10 @@ import { OptionsModel } from 'src/app/shared/models/options-model';
 import { ReligionInformationRequest } from '../../types/religion-information-type';
 
 @Component({
-  selector: 'app-religion-info',
-  templateUrl: './religion-info.component.html',
-  styleUrls: ['./religion-info.component.scss'],
+    selector: 'app-religion-info',
+    templateUrl: './religion-info.component.html',
+    styleUrls: ['./religion-info.component.scss'],
+    standalone: false
 })
 export class ReligionInfoComponent extends CvEnumOptionsComponent implements OnInit, OnDestroy {
   religionFormGroup: FormGroup;

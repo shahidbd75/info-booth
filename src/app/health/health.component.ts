@@ -4,9 +4,10 @@ import { MenuType } from '../shared/models/menu-model';
 import { HealthRoutePath } from './constant/health-route-path';
 
 @Component({
-  selector: 'app-health',
-  templateUrl: './health.component.html',
-  styleUrl: './health.component.scss'
+    selector: 'app-health',
+    templateUrl: './health.component.html',
+    styleUrl: './health.component.scss',
+    standalone: false
 })
 export class HealthComponent implements OnInit {
   cvMenus: MenuType[] = [

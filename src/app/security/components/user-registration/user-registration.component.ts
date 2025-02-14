@@ -9,9 +9,10 @@ import { Subscription } from 'rxjs';
 import { UserResponseModel } from '../../types/user-model';
 
 @Component({
-  selector: 'app-user-registration',
-  templateUrl: './user-registration.component.html',
-  styleUrls: ['./user-registration.component.scss'],
+    selector: 'app-user-registration',
+    templateUrl: './user-registration.component.html',
+    styleUrls: ['./user-registration.component.scss'],
+    standalone: false
 })
 export class UserRegistrationComponent implements OnInit {
   signUpFormGroup: FormGroup;

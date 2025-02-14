@@ -6,9 +6,10 @@ import { SpecializationClientService } from '../../services/specialization-clien
 import { SpecializationCreateRequestModel, SpecializationResponseModel, SpecializationUpdateRequestModel } from '../../types/specialization-model';
 
 @Component({
-  selector: 'app-specialization',
-  templateUrl: './specialization.component.html',
-  styleUrl: './specialization.component.scss'
+    selector: 'app-specialization',
+    templateUrl: './specialization.component.html',
+    styleUrl: './specialization.component.scss',
+    standalone: false
 })
 export class SpecializationComponent implements OnInit, OnDestroy {
   isEditMode = false;

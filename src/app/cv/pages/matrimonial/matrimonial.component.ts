@@ -6,9 +6,10 @@ import { PersonService } from 'src/app/personnel/services/person.service';
 import { OptionsModel } from 'src/app/shared/models/options-model';
 
 @Component({
-  selector: 'app-matrimonial',
-  templateUrl: './matrimonial.component.html',
-  styleUrls: ['./matrimonial.component.scss'],
+    selector: 'app-matrimonial',
+    templateUrl: './matrimonial.component.html',
+    styleUrls: ['./matrimonial.component.scss'],
+    standalone: false
 })
 export class MatrimonialComponent {
   persons$: Observable<OptionsModel[]> = this.personService.getPersonOptions();

@@ -8,9 +8,10 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-sub-categories',
-  templateUrl: './sub-categories.component.html',
-  styleUrls: ['./sub-categories.component.scss'],
+    selector: 'app-sub-categories',
+    templateUrl: './sub-categories.component.html',
+    styleUrls: ['./sub-categories.component.scss'],
+    standalone: false
 })
 export class SubCategoriesComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'categoryName', 'actions'];

@@ -12,9 +12,10 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { TuitionPostService } from '../../services/tuition-post.service';
 
 @Component({
-  selector: 'app-tution-posts',
-  templateUrl: './tution-posts.component.html',
-  styleUrls: ['./tution-posts.component.scss'],
+    selector: 'app-tution-posts',
+    templateUrl: './tution-posts.component.html',
+    styleUrls: ['./tution-posts.component.scss'],
+    standalone: false
 })
 export class TutionPostsComponent implements OnInit, OnDestroy, AfterViewInit {
   displayedColumns: string[] = ['title', 'tutorName', 'salary', 'isNegotiable', 'medium', 'preferableGender', 'actions'];

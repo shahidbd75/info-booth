@@ -6,9 +6,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { LanguageCreateRequestModel, LanguageResponseModel, LanguageUpdateRequestModel } from '../../types/language.types';
 
 @Component({
-  selector: 'app-language',
-  templateUrl: './language.component.html',
-  styleUrls: ['./language.component.scss'],
+    selector: 'app-language',
+    templateUrl: './language.component.html',
+    styleUrls: ['./language.component.scss'],
+    standalone: false
 })
 export class LanguageComponent implements OnInit, OnDestroy {
   isEditMode = false;

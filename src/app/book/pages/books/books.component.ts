@@ -8,9 +8,10 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-books',
-  templateUrl: './books.component.html',
-  styleUrls: ['./books.component.scss'],
+    selector: 'app-books',
+    templateUrl: './books.component.html',
+    styleUrls: ['./books.component.scss'],
+    standalone: false
 })
 export class BooksComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['title', 'author', 'publisher', 'language', 'price', 'quantity', 'availability', 'personName', 'actions'];

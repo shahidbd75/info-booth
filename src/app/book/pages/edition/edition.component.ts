@@ -6,9 +6,10 @@ import { EditionService } from '../../services/edition.service';
 import { EditionCreateRequestModel, EditionResponseModel, EditionUpdateRequestModel } from '../../types/edition-model';
 
 @Component({
-  selector: 'app-edition',
-  templateUrl: './edition.component.html',
-  styleUrls: ['./edition.component.scss'],
+    selector: 'app-edition',
+    templateUrl: './edition.component.html',
+    styleUrls: ['./edition.component.scss'],
+    standalone: false
 })
 export class EditionComponent implements OnInit, OnDestroy {
   isEditMode = false;
